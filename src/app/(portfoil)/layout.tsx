@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 import { TopMenu } from '../../components/ui/top-menu/TopMenu';
 import { useUIDarkMode } from '@/store/ui/ui-store';
 import SideRSS from '@/components/ui/side-rss/SideRSS';
+import Footer from '@/components/ui/footer/Footer';
 
 const PortfoilLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) => {
 
@@ -14,6 +15,7 @@ const PortfoilLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) 
             <TopMenu />
             <SideRSS />
             {children}
+            <Footer />
         </main>
     )
 }
