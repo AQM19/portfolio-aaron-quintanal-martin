@@ -7,6 +7,7 @@ import { titleFont } from '@/config/fonts'
 import { centerMenu, rrssMenu } from '@/config/top-menu/menu-items.config'
 import { MaterialUISwitch } from '../material-ui/switch/MaterialUiSwitch'
 import { useUIDarkMode } from '@/store/ui/ui-store'
+import { IoMenu } from 'react-icons/io5'
 
 export const TopMenu = () => {
 
@@ -19,12 +20,12 @@ export const TopMenu = () => {
     }
 
     return (
-        <nav className={`flex px-5 p-5 justify-center items-center w-full fixed left-0 right-0 transition-all z-10`}>
+        <nav className={`flex pt-4 sm:p-5 justify-center items-center w-full fixed left-0 right-0 transition-all z-10`}>
 
             <div className='flex justify-between items-center align-middle transition-all w-4/5'>
 
                 {/* Logo */}
-                <div>
+                <div className='hidden sm:block'>
                     <Link
                         href="/">
                         <span className={`${titleFont.className} antialiased font-bold dark:text-blue-600`}>XIX</span>
@@ -49,7 +50,7 @@ export const TopMenu = () => {
                 </div>
 
                 {/* Search, Cart, Menu */}
-                <div className='flex items-center'>
+                <div className='hidden sm:flex items-center'>
 
                     {/* <button>
                         <IoMenu className='mx-2 w-8 h-8 rounded' />
@@ -59,8 +60,12 @@ export const TopMenu = () => {
 
                 </div>
 
+
             </div>
 
+                <button>
+                    <IoMenu className='mx-2 w-8 h-8 rounded'></IoMenu>
+                </button>
         </nav>
     )
 }

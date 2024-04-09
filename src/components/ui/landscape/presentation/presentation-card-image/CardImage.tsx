@@ -5,7 +5,7 @@ const CardImage = () => {
     return (
 
         <Card
-            className='h-[550px] w-[500px] bg-neutral-100 dark:bg-neutral-900 opacity-75 rounded-md'
+            className='h-[350px] sm:h-[550px] w-3/4 sm:w-[500px] bg-neutral-100 dark:bg-neutral-900 opacity-75 rounded-md'
             elevation={5}
         >
 

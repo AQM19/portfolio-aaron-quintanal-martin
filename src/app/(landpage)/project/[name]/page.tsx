@@ -3,20 +3,22 @@ import React from 'react'
 
 interface Props {
     params: {
-        id: string;
+        name: string;
     }
 }
 
 const ProjectPage = ({ params }: Props) => {
 
-    const { id } = params;
+    const { name } = params;
 
-    if (id === '0') {
+    if (name === '') {
         notFound();
     }
 
     return (
-        <h1>ProjectPage {id}</h1>
+        <div className='h-screen flex items-center justify-center'>
+            <h1>ProjectPage {name}</h1>
+        </div>
     )
 }
 

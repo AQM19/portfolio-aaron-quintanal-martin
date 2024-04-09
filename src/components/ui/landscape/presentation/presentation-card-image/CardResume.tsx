@@ -18,9 +18,8 @@ if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDate.get
 
 const CardResume = () => {
     return (
-        <Card
-            className='bg-neutral-100 dark:bg-neutral-900 p-5 rounded-sm opacity-75 flex flex-col gap-4'
-            elevation={5}
+        <div
+            className='p-5 rounded-sm flex flex-col gap-4'
         >
 
             <h1
@@ -42,7 +41,7 @@ const CardResume = () => {
                 </p>
             </div>
 
-        </Card>
+        </div>
     )
 }
 
