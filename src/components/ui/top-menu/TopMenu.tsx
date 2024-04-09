@@ -38,7 +38,7 @@ export const TopMenu = () => {
                     {
                         centerMenu.map(value => (
                             <Link
-                                className={`${value.class} m-2 p-2 rounded transition-all hover:bg-gray-100 dark:text-blue-600`}
+                                className={`${value.class} m-2 p-2 rounded transition-all font-bold hover:bg-gray-100 dark:text-blue-600`}
                                 href={value.href}
                                 key={value.name}
                             >
