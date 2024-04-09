@@ -7,8 +7,8 @@ const LandscapeProjectsPage = async () => {
     const repositories: GithubGroupedRepositoryList[] = await getRepos();
 
     return (
-        <div className='h-auto p-5 sm:h-screen flex justify-center items-center'>
-            <div className='w-full project-cards flex flex-col sm:flex-row gap-5 justify-around items-center'>
+        <div className='flex justify-center items-center lg:h-screen'>
+            <div className='flex flex-col lg:grid lg:grid-cols-2 gap-4 project-cards'>
                 {
                     repositories.map(value => (
                         <CardProject key={value.name} data={value} />
