@@ -63,7 +63,7 @@ export const TopMenu = () => {
 
             </div>
 
-                <button>
+                <button className='sm:hidden'>
                     <IoMenu className='mx-2 w-8 h-8 rounded'></IoMenu>
                 </button>
         </nav>
