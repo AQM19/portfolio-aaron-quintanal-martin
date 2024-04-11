@@ -1,4 +1,4 @@
-import { Inter, Montserrat_Alternates, Ubuntu } from "next/font/google";
+import { Inter, Kanit, Montserrat_Alternates, Ubuntu } from "next/font/google";
 
 export const inter = Inter({ subsets: ["latin"] });
 
@@ -11,3 +11,8 @@ export const ubuntu = Ubuntu({
     subsets: ['latin'],
     weight: ['500', '700']
 });
+
+export const kanit = Kanit({
+    subsets: ['latin'],
+    weight: ['500', '700']
+})

@@ -28,7 +28,7 @@ export const TopMenu = () => {
                 <div className='hidden sm:block'>
                     <Link
                         href="/">
-                        <span className={`${titleFont.className} antialiased font-bold dark:text-blue-600`}>XIX</span>
+                        <span className={`${titleFont.className} antialiased font-bold dark:text-[#FFC491]`}>XIX</span>
                     </Link>
                 </div>
 
@@ -38,7 +38,7 @@ export const TopMenu = () => {
                     {
                         centerMenu.map(value => (
                             <Link
-                                className={`${value.class} m-2 p-2 rounded transition-all font-bold hover:bg-gray-100 dark:text-blue-600`}
+                                className={`${value.class} m-2 p-2 rounded transition-all duration-200 font-bold dark:text-[#FFC491]`}
                                 href={value.href}
                                 key={value.name}
                             >
