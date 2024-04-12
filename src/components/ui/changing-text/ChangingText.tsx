@@ -28,7 +28,7 @@ const ChangingText = () => {
                 return;
             }
             setCurrentText(currentText + thinsIAm[textIndex][currentText.length]);
-        }, isDeleting ? 100 : 200);
+        }, isDeleting ? 50 : 200);
 
         return () => clearTimeout(timeoutId);
     }, [currentText, isDeleting, textIndex]);
