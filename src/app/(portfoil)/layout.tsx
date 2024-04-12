@@ -15,7 +15,9 @@ const PortfoilLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) 
             <TopMenu />
             <SideRSS />
             <Sidebar />
-            {children}
+            <section className='w-full h-screen bg-gradient-to-l from-[#fff6ed] to-[#ffead5] dark:from-[#030637] dark:to-[#3C0753] flex flex-col-reverse lg:flex-row p-5 items-center justify-evenly transition-all duration-200'>
+                {children}
+            </section>
         </main>
     )
 }

@@ -1,3 +1,4 @@
+import { environment } from "@/environments/environent";
 import { GithubRepository, GithubRepositoryVM } from "@/interfaces";
 import { GithubGroupedRepositoryList } from "@/interfaces/github/github-grouped-repository-list.interface";
 import axios from "axios";
@@ -6,9 +7,9 @@ import axios from "axios";
 export const getRepos = async (): Promise<GithubGroupedRepositoryList[]> => {
     try {
 
-        const response = await axios.get<GithubRepository[]>(`https://api.github.com/users/${process.env.GITHUB_USER}/repos`, {
+        const response = await axios.get<GithubRepository[]>(`https://api.github.com/users/${environment.GITHUB_USER}/repos`, {
             headers: {
-                Authorization: `token ${process.env.GITHUB_API}`
+                Authorization: `token ${environment.GITHUB_API}`
             }
         });
 
