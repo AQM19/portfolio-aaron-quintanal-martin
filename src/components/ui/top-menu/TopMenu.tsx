@@ -8,11 +8,11 @@ import { MaterialUISwitch } from '../switch/MaterialUiSwitch'
 import { IoMenu } from 'react-icons/io5'
 import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store'
 import { centerMenu } from '@/config/top-menu/top-menu-items.config'
-import { useUIStore } from '@/store/ui/ui-sidebar-status.store'
+import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store'
 
 export const TopMenu = () => {
 
-    const openSideMenu = useUIStore(state => state.openSideMenu);
+    const openSideMenu = useUISidebarStatus(state => state.openSideMenu);
     const isDarkModeEnabled = useUIDarkMode(mode => mode.darkMode);
     const enableDarkMode = useUIDarkMode(mode => mode.enableDarkMode);
     const disableDarkMode = useUIDarkMode(mode => mode.disableDarkMode);

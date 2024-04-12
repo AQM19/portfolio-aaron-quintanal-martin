@@ -1,4 +1,4 @@
-import { useUIStore } from '@/store/ui/ui-sidebar-status.store';
+import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store';
 import React from 'react'
 import clsx from 'clsx';
 import { IoCloseOutline } from 'react-icons/io5';
@@ -10,8 +10,8 @@ import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store';
 
 const Sidebar = () => {
 
-    const isSideMenuOpen = useUIStore(state => state.isSideMenuOpen);
-    const closeMenu = useUIStore(state => state.closeSideMenu);
+    const isSideMenuOpen = useUISidebarStatus(state => state.isSideMenuOpen);
+    const closeMenu = useUISidebarStatus(state => state.closeSideMenu);
 
     const isDarkModeEnabled = useUIDarkMode(mode => mode.darkMode);
     const enableDarkMode = useUIDarkMode(mode => mode.enableDarkMode);
