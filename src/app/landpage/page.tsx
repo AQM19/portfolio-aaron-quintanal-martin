@@ -1,4 +1,4 @@
-import CardResume from "@/components/ui/card-resume/CardResume";
+import CardResume from "@/components/home/card-resume/CardResume";
 
 export default function Home() {
 

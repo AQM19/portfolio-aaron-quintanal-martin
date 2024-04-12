@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { titleFont } from '@/config/fonts'
 
 import { centerMenu, rrssMenu } from '@/config/top-menu/menu-items.config'
-import { MaterialUISwitch } from '../material-ui/switch/MaterialUiSwitch'
+import { MaterialUISwitch } from '../switch/MaterialUiSwitch'
 import { useUIDarkMode } from '@/store/ui/ui-store'
 import { IoMenu } from 'react-icons/io5'
 
