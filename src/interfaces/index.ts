@@ -1,6 +1,6 @@
 // Top menu
 export * from './top-menu/center-menu.interface';
-export * from './top-menu/rrss-menu.interface';
+export * from './rrss-menu/rrss-menu.interface';
 
 // Github
 export * from './github/github-repository.interface';

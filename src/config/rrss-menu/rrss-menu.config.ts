@@ -1,13 +1,5 @@
-import { IoLogoGithub, IoLogoGitlab, IoLogoLinkedin } from "react-icons/io5";
-
-import { CenterMenu } from "@/interfaces/top-menu/center-menu.interface";
-import { RRSSMenu } from "@/interfaces/top-menu/rrss-menu.interface";
-
-export const centerMenu: CenterMenu[] = [
-    { name: 'Projects', href: '/projects' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'Colaborate', href: '/colaborate' }
-];
+import { RRSSMenu } from "@/interfaces/rrss-menu/rrss-menu.interface";
+import { IoLogoGithub, IoLogoLinkedin, IoLogoGitlab } from "react-icons/io5";
 
 export const rrssMenu: RRSSMenu[] = [
     { href: 'https://github.com/AQM19', class: 'text-[#ed4709] dark:text-[#e2b5fd]', icon: IoLogoGithub, target: '_blank' },

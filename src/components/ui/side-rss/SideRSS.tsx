@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { rrssMenu } from '@/config/top-menu/menu-items.config'
+import { rrssMenu } from '@/config/rrss-menu/rrss-menu.config'
 
 const SideRSS = () => {
     return (
