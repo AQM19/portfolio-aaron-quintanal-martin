@@ -1,7 +1,7 @@
 'use client'
 
 import { kanit } from "@/config/fonts";
-import { thinsIAm } from "@/config/things-i-am/things-i-am";
+import { thinsIAm } from "@/config/things-i-am/things-i-am.config";
 import { useEffect, useState } from "react";
 
 const ChangingText = () => {

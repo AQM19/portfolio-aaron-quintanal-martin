@@ -4,13 +4,15 @@ import Link from 'next/link'
 
 import { titleFont } from '@/config/fonts'
 
-import { centerMenu, rrssMenu } from '@/config/top-menu/menu-items.config'
 import { MaterialUISwitch } from '../switch/MaterialUiSwitch'
-import { useUIDarkMode } from '@/store/ui/ui-store'
 import { IoMenu } from 'react-icons/io5'
+import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store'
+import { centerMenu } from '@/config/top-menu/top-menu-items.config'
+import { useUIStore } from '@/store/ui/ui-sidebar-status.store'
 
 export const TopMenu = () => {
 
+    const openSideMenu = useUIStore(state => state.openSideMenu);
     const isDarkModeEnabled = useUIDarkMode(mode => mode.darkMode);
     const enableDarkMode = useUIDarkMode(mode => mode.enableDarkMode);
     const disableDarkMode = useUIDarkMode(mode => mode.disableDarkMode);
@@ -28,7 +30,7 @@ export const TopMenu = () => {
                 <div className='hidden sm:block'>
                     <Link
                         href="/">
-                        <span className={`${titleFont.className} antialiased font-bold text-[#ed4709] dark:text-[#4b76ff] hover:text-[#3c0753] dark:hover:text-[#e2b5fd]`}>XIX</span>
+                        <span className={`${titleFont.className} antialiased font-bold text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff]`}>XIX</span>
                     </Link>
                 </div>
 
@@ -38,7 +40,7 @@ export const TopMenu = () => {
                     {
                         centerMenu.map(value => (
                             <Link
-                                className={`${value.class} m-2 p-2 transition-all font-bold text-[#ed4709] dark:text-[#4b76ff] hover:text-[#3c0753] dark:hover:text-[#e2b5fd] hover:border-b-4 border-[#3c0753] dark:border-[#e2b5fd]`}
+                                className={`${value.class} m-2 p-2 transition-all font-bold text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff] hover:border-b-4 border-[#3c0753] dark:border-[#e2b5fd]`}
                                 href={value.href}
                                 key={value.name}
                             >
@@ -63,9 +65,9 @@ export const TopMenu = () => {
 
             </div>
 
-                <button className='sm:hidden'>
-                    <IoMenu className='mx-2 w-8 h-8 rounded'></IoMenu>
-                </button>
+            <button onClick={() => openSideMenu()}>
+                <IoMenu className='mx-2 w-8 h-8 rounded text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff]'></IoMenu>
+            </button>
         </nav>
     )
 }

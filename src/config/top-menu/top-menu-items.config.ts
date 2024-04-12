@@ -1,7 +1,10 @@
 import { CenterMenu } from "@/interfaces/top-menu/center-menu.interface";
+import { FaProjectDiagram } from "react-icons/fa";
+import { IoMdContact } from "react-icons/io";
+import { IoNewspaperOutline } from "react-icons/io5";
 
 export const centerMenu: CenterMenu[] = [
-    { name: 'Projects', href: '/projects' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'Colaborate', href: '/colaborate' }
+    { name: 'Proyectos', href: '/projects', icon: FaProjectDiagram },
+    { name: 'Contacto', href: '/contact', icon: IoMdContact },
+    { name: 'Noticias', href: '/news', icon: IoNewspaperOutline }
 ];
