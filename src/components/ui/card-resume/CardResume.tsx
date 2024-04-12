@@ -25,21 +25,28 @@ const CardResume = () => {
             className='p-5 rounded-sm flex flex-col gap-4'
         >
 
-            <Typography variant='h5' className='text-neutral-800 dark:text-[#FFC491]'>
+            <Typography variant='h5' className='text-[#ed4709] dark:text-[#e2b5fd]'>
                 ¡Hola!,  soy
             </Typography>
 
             <h1
-                className={`text-6xl text-neutral-800 dark:text-neutral-200 font-thin ${kanit.className}`}
+                className={`text-4xl md:text-6xl text-[#441006] dark:text-[#d2e4ff] font-thin ${kanit.className}`}
             >
                 Aaron Quintanal Martín
             </h1>
 
             <ChangingText />
 
-            <div className='mt-5 text-neutral-900 dark:text-neutral-100 max-w-prose text-lg text-pretty text-justify font-semibold'>
-                Tengo {age} años, residente de España
-            </div>
+            <p className='mt-5 text-[#441006] dark:text-[#d2e4ff] max-w-prose text-lg text-pretty text-justify font-semibold'>
+                Tengo {age} años, residente de España. Como desarrollador full stack me inicié en el mundo de la programación en 2020 y ahora es mi vida.
+                Compaginando trabajo y estudios me mantengo en contínua formación para mejorar como desarrollador.
+                <br />
+                Aquí presento mi portfolio que poco a poco irá teniendo cambios y mejoras. Mi sitio web por excelencia.
+            </p>
+
+            <button className='lg:self-end mt-5 w-min px-5 py-2 rounded-md text-[#ed4709] dark:text-[#e2b5fd] font-bold border-2 border-[#ed4709] dark:border-[#e2b5fd]'>
+                Contacto
+            </button>
 
         </div>
     )

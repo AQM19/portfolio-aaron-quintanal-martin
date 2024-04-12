@@ -10,7 +10,7 @@ export const centerMenu: CenterMenu[] = [
 ];
 
 export const rrssMenu: RRSSMenu[] = [
-    { href: 'https://github.com/AQM19', icon: IoLogoGithub, class: 'text-purple-600 dark:text-[#FFC491]', target: '_blank' },
-    { href: 'https://www.linkedin.com/in/aar%C3%B3n-quintanal-mart%C3%ADn-6116b5270/', icon: IoLogoLinkedin, class: 'text-blue-700 dark:text-blue-400', target: '_blank' },
-    {href: 'https://gitlab.com/AQM19', icon: IoLogoGitlab , class: 'text-[#E24329] dark:text-[#FFC491]', target: '_blank'}
+    { href: 'https://github.com/AQM19', class: 'text-[#ed4709] dark:text-[#efd6fe]', icon: IoLogoGithub, target: '_blank' },
+    { href: 'https://www.linkedin.com/in/aar%C3%B3n-quintanal-mart%C3%ADn-6116b5270/', icon: IoLogoLinkedin, class: 'text-blue-700 dark:text-[#efd6fe]', target: '_blank' },
+    { href: 'https://gitlab.com/AQM19', class: 'text-[#ed4709] dark:text-[#efd6fe]', icon: IoLogoGitlab, target: '_blank' }
 ];

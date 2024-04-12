@@ -2,7 +2,6 @@
 
 import { kanit } from "@/config/fonts";
 import { thinsIAm } from "@/config/things-i-am/things-i-am";
-import { randomInt } from "crypto";
 import { useEffect, useState } from "react";
 
 const ChangingText = () => {
@@ -35,7 +34,7 @@ const ChangingText = () => {
 
     return (
         <h2
-            className={`text-3xl text-blue-700 dark:text-[#ffc491] font-bold ${kanit.className}`}
+            className={`text-3xl text-[#ed4709] dark:text-[#e2b5fd] font-bold ${kanit.className}`}
         >
             {currentText}
 

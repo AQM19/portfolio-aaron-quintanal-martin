@@ -20,15 +20,15 @@ export const TopMenu = () => {
     }
 
     return (
-        <nav className={`flex pt-4 sm:p-5 justify-center items-center w-full fixed left-0 right-0 transition-all z-10`}>
+        <nav className={`flex pt-4 sm:p-5 justify-center items-center w-full fixed left-0 right-0 z-10`}>
 
-            <div className='flex justify-between items-center align-middle transition-all w-4/5'>
+            <div className='flex justify-between items-center align-middle w-4/5'>
 
                 {/* Logo */}
                 <div className='hidden sm:block'>
                     <Link
                         href="/">
-                        <span className={`${titleFont.className} antialiased font-bold dark:text-[#FFC491]`}>XIX</span>
+                        <span className={`${titleFont.className} antialiased font-bold text-[#ed4709] dark:text-[#4b76ff] hover:text-[#3c0753] dark:hover:text-[#e2b5fd]`}>XIX</span>
                     </Link>
                 </div>
 
@@ -38,7 +38,7 @@ export const TopMenu = () => {
                     {
                         centerMenu.map(value => (
                             <Link
-                                className={`${value.class} m-2 p-2 rounded transition-all duration-200 font-bold dark:text-[#FFC491]`}
+                                className={`${value.class} m-2 p-2 transition-all font-bold text-[#ed4709] dark:text-[#4b76ff] hover:text-[#3c0753] dark:hover:text-[#e2b5fd] hover:border-b-4 border-[#3c0753] dark:border-[#e2b5fd]`}
                                 href={value.href}
                                 key={value.name}
                             >
