@@ -60,8 +60,9 @@ const Sidebar = () => {
                 />
 
                 {
-                    centerMenu.map(value => (
+                    centerMenu.map((value, index) => (
                         <Link
+                            key={index}
                             href={value.href}
                             onClick={() => closeMenu()}
                             className={`${value.class} flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all`}
