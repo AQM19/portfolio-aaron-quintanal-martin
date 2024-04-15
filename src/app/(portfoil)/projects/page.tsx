@@ -1,12 +1,12 @@
 'use client'
 
-import { getRepos } from '@/actions/github/get-github-repos/retrieve-list-user-repos.action'
-import { GithubGroupedRepositoryList } from '@/interfaces/github/github-grouped-repository-list.interface';
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react'
-import clsx from 'clsx';
-import { IoMdShare } from 'react-icons/io';
+
 import ProjectCard from '@/components/projects/project-card/ProjectCard';
+
+import { GithubGroupedRepositoryList } from '@/interfaces/github/github-grouped-repository-list.interface';
+
+import { getRepos } from '@/actions/github/get-github-repos/retrieve-list-user-repos.action'
 
 const ProjectsPage = () => {
 
