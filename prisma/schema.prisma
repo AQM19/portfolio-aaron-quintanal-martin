@@ -1,0 +1,80 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+enum Role {
+    admin
+    user
+}
+
+enum Status {
+    investigation
+    planification
+    designing
+    developping
+    deploying
+    manteinance
+    finished
+}
+
+enum Tag {
+    humor
+    terror
+    gaming
+    tools
+}
+
+model Category {
+    id      String    @id @default(uuid())
+    name    String    @unique
+    project Project[]
+}
+
+model Developer {
+    id        String   @id @default(uuid())
+    name      String
+    surname   String
+    github    String?
+    portfoil  String?
+    Project   Project? @relation(fields: [projectId], references: [id])
+    projectId String?
+}
+
+model ProjectImage {
+    id  Int    @id @default(autoincrement())
+    url String
+
+    Project   Project? @relation(fields: [projectId], references: [id])
+    projectId String?
+}
+
+model Project {
+    id            String         @id @default(uuid())
+    title         String         @unique
+    description   String
+    logo          String
+    dateStart     DateTime       @default(now())
+    dateEnd       DateTime?
+    documentation String?
+    link          String?        @unique
+    status        Status         @default(investigation)
+    slug          String         @unique
+    tags          Tag[]          @default([])
+    authors       Developer[]
+    images        ProjectImage[]
+    Category      Category?      @relation(fields: [categoryId], references: [id])
+    categoryId    String?
+}
+
+model User {
+    id       String @id @default(uuid())
+    name     String
+    email    String @unique
+    password String
+    role     Role   @default(user)
+}
