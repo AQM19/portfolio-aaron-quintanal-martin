@@ -17,3 +17,4 @@ export * from './projects/project.interface';
 export * from './role/role.interface';
 export * from './status/status.interface';
 export * from './tag/tag.interface';
+export * from './user/user.interface';

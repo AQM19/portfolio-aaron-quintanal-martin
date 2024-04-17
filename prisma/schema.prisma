@@ -1,38 +1,86 @@
 generator client {
-    provider = "prisma-client-js"
+    provider        = "prisma-client-js"
+    previewFeatures = ["multiSchema"]
 }
 
 datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
+    schemas  = ["public", "security", "projects", "configuration"]
 }
 
-enum Role {
-    admin
-    user
+model Role {
+    id    Int    @id @default(autoincrement())
+    name  String @unique
+    users User[]
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime? @default(now())
+    isDeleted Boolean   @default(false)
+
+    @@schema("security")
 }
 
-enum Status {
-    investigation
-    planification
-    designing
-    developping
-    deploying
-    manteinance
-    finished
+model User {
+    id       String @id @default(uuid())
+    name     String
+    email    String @unique
+    password String
+    rol      Role?   @relation(fields: [roleId], references: [id]) // one-to-many
+    roleId   Int?
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime? @default(now())
+    isDeleted Boolean   @default(false)
+
+    @@schema("security")
 }
 
-enum Tag {
-    humor
-    terror
-    gaming
-    tools
+model Status {
+    id      String    @id @default(uuid())
+    name    String    @unique
+    project Project[]
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime? @default(now())
+    isDeleted Boolean   @default(false)
+
+    @@schema("configuration")
+}
+
+model Tag {
+    id       String           @id @default(uuid())
+    name     String           @unique
+    projects TagsOnProjects[]
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime? @default(now())
+    isDeleted Boolean   @default(false)
+
+    @@schema("projects")
+}
+
+model TagsOnProjects {
+    project    Project  @relation(fields: [projectId], references: [id])
+    projectId  String
+    tag        Tag      @relation(fields: [tagId], references: [id])
+    tagId      String
+    assignedAt DateTime @default(now())
+
+    @@id([projectId, tagId])
+    @@schema("projects")
 }
 
 model Category {
     id      String    @id @default(uuid())
     name    String    @unique
     project Project[]
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime? @default(now())
+    isDeleted Boolean   @default(false)
+
+    @@schema("projects")
 }
 
 model Developer {
@@ -43,6 +91,12 @@ model Developer {
     portfoil  String?
     Project   Project? @relation(fields: [projectId], references: [id])
     projectId String?
+
+    createdAt DateTime  @default(now())
+    updatedAt DateTime? @default(now())
+    isDeleted Boolean   @default(false)
+
+    @@schema("public")
 }
 
 model ProjectImage {
@@ -51,30 +105,31 @@ model ProjectImage {
 
     Project   Project? @relation(fields: [projectId], references: [id])
     projectId String?
+
+    @@schema("projects")
 }
 
 model Project {
-    id            String         @id @default(uuid())
-    title         String         @unique
+    id            String           @id @default(uuid())
+    title         String           @unique
     description   String
     logo          String
-    dateStart     DateTime       @default(now())
+    dateStart     DateTime         @default(now())
     dateEnd       DateTime?
     documentation String?
-    link          String?        @unique
-    status        Status         @default(investigation)
-    slug          String         @unique
-    tags          Tag[]          @default([])
-    authors       Developer[]
+    link          String?          @unique
+    slug          String           @unique
+    developers    Developer[]
     images        ProjectImage[]
-    Category      Category?      @relation(fields: [categoryId], references: [id])
-    categoryId    String?
-}
+    Category      Category         @relation(fields: [categoryId], references: [id])
+    categoryId    String
+    Status        Status           @relation(fields: [statusId], references: [id])
+    statusId      String
+    tags          TagsOnProjects[]
 
-model User {
-    id       String @id @default(uuid())
-    name     String
-    email    String @unique
-    password String
-    role     Role   @default(user)
+    createdAt DateTime  @default(now())
+    updatedAt DateTime? @default(now())
+    isDeleted Boolean   @default(false)
+
+    @@schema("projects")
 }
