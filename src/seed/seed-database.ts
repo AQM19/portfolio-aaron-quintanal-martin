@@ -57,9 +57,66 @@ async function main() {
         const dbUser = await prisma.user.create({
             data: {
                 ...rest, // Asignación del scope del objeto
-                roleId: adminRole?.id // Override del id del rol
+                roleId: adminRole!!.id // Override del id del rol
             }
-        })
+        });
+
+    });
+
+    // Creación de los desarrolladores
+    await prisma.developer.createMany({
+        data: developers
+    });
+
+    // Creación de los proyectos
+
+    const statusFinished = await prisma.status.findUnique({
+        where: {
+            name: 'finished'
+        }
+    });
+
+    const categoryPersonal = await prisma.category.findUnique({
+        where: {
+            name: 'personal'
+        }
+    });
+
+    projects.forEach(async (project) => {
+
+        const { categoryId, statusId, images, tags, ...rest } = project;
+
+        const dbProject = await prisma.project.create({
+            data: {
+                ...rest,
+                categoryId: categoryPersonal!!.id,
+                statusId: statusFinished!!.id
+            }
+        });
+
+        const imagesData = images.map(image => ({
+            url: image,
+            projectId: dbProject.id
+        }));
+
+        await prisma.projectImage.createMany({
+            data: imagesData
+        });
+
+        tags.forEach(async (tag) => {
+            const dbTag = await prisma.tag.findUnique({
+                where: {
+                    name: tag
+                }
+            });
+
+            await prisma.tagsOnProjects.create({
+                data: {
+                    projectId: dbProject.id,
+                    tagId: dbTag!!.id
+                }
+            });
+        });
 
     });
 

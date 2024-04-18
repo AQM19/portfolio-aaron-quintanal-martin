@@ -9,12 +9,11 @@ interface SeedProject {
     dateEnd?: Date;
     documentation?: string;
     link?: string;
-    status: SeedStatus;
+    statusId: string;
+    categoryId: string;
     slug: string;
     tags: SeedTag[];
-    authors: SeedDeveloper[];
     images: string[];
-    category: string;
 }
 
 interface SeedUser {
@@ -71,22 +70,15 @@ export const initialData: SeedData = {
     ],
     projects: [
         {
-            authors: [
-                {
-                    name: 'Aarón',
-                    surname: 'Quintanal Martín',
-                    github: 'https://github.com/AQM19'
-                }
-            ],
-            category: 'personal',
-            dateStart: new Date(),
-            description: 'Descripción',
-            images: [],
-            logo: '',
-            slug: 'auto-terra',
-            status: 'developping',
-            tags: ['tools'],
             title: 'Auto-Terra',
+            description: 'Descripción',
+            logo: '',
+            dateStart: new Date(),
+            statusId: '',
+            categoryId: '',
+            images: [],
+            slug: 'auto-terra',
+            tags: ['tools'],
         }
     ]
 }

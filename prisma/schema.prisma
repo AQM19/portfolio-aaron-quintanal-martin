@@ -26,7 +26,7 @@ model User {
     name     String
     email    String @unique
     password String
-    rol      Role?   @relation(fields: [roleId], references: [id]) // one-to-many
+    rol      Role?  @relation(fields: [roleId], references: [id]) // one-to-many
     roleId   Int?
 
     createdAt DateTime  @default(now())
@@ -84,17 +84,17 @@ model Category {
 }
 
 model Developer {
-    id        String   @id @default(uuid())
+    id        String  @id @default(uuid())
     name      String
     surname   String
     github    String?
     portfoil  String?
-    Project   Project? @relation(fields: [projectId], references: [id])
     projectId String?
 
-    createdAt DateTime  @default(now())
-    updatedAt DateTime? @default(now())
-    isDeleted Boolean   @default(false)
+    createdAt DateTime              @default(now())
+    updatedAt DateTime?             @default(now())
+    isDeleted Boolean               @default(false)
+    projects  DevelopersOnProject[]
 
     @@schema("public")
 }
@@ -109,6 +109,18 @@ model ProjectImage {
     @@schema("projects")
 }
 
+model DevelopersOnProject {
+    project     Project   @relation(fields: [projectId], references: [id])
+    projectId   String
+    developer   Developer @relation(fields: [developerId], references: [id])
+    developerId String
+
+    assignedAt DateTime @default(now())
+
+    @@id([projectId, developerId])
+    @@schema("projects")
+}
+
 model Project {
     id            String           @id @default(uuid())
     title         String           @unique
@@ -119,7 +131,6 @@ model Project {
     documentation String?
     link          String?          @unique
     slug          String           @unique
-    developers    Developer[]
     images        ProjectImage[]
     Category      Category         @relation(fields: [categoryId], references: [id])
     categoryId    String
@@ -127,9 +138,10 @@ model Project {
     statusId      String
     tags          TagsOnProjects[]
 
-    createdAt DateTime  @default(now())
-    updatedAt DateTime? @default(now())
-    isDeleted Boolean   @default(false)
+    createdAt  DateTime              @default(now())
+    updatedAt  DateTime?             @default(now())
+    isDeleted  Boolean               @default(false)
+    developers DevelopersOnProject[]
 
     @@schema("projects")
 }
