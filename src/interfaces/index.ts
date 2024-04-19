@@ -18,3 +18,6 @@ export * from './role/role.interface';
 export * from './status/status.interface';
 export * from './tag/tag.interface';
 export * from './user/user.interface';
+
+// info interfaces
+export * from './info/ip-address.interface';
