@@ -6,7 +6,7 @@ import { IoMailOutline } from 'react-icons/io5'
 
 const ContactPage = () => {
     return (
-        <section className='w-full h-screen p-20 flex flex-col lg:flex-row justify-around items-center'>
+        <section className='w-full md:h-screen px-5 py-20 md:p-20 flex flex-col lg:flex-row gap-4 md:gap-0 justify-around items-center'>
 
             <div className='flex flex-col gap-4 w-full lg:w-1/3'>
 
@@ -37,49 +37,67 @@ const ContactPage = () => {
                 </div>
             </div>
 
-            <div className='flex flex-col gap-4 w-full lg:w-1/3'>
+            <div className='flex flex-col gap-4 w-full lg:w-1/2 rounded bg-slate-100 p-10'>
 
-                <Typography variant='h4' className='text-[#ed4709] dark:text-[#e2b5fd]'>
+                <Typography variant='h4' className='text-[#ed4709] dark:text-[#e2b5fd] text-xl'>
                     ¡Deja tus datos y y mismo me pondré en contacto contigo!
                 </Typography>
 
-                <form action="" className='flex flex-col'>
+                <form action="">
 
-                    <div className='flex flex-col md:flex-row gap-4'>
-                        <div>
+                    <div className='flex flex-col md:flex-row flex-wrap gap-4'>
+
+
+                        <div className='flex flex-col flex-[1_0_1rem]'>
                             <label htmlFor="complete_name">Nombre completo:</label>
                             <input
-                                className='px-5 py-2 border bg-gray-200 rounded mb-5'
+                                className='px-5 py-2 border bg-gray-200 rounded'
                                 type="text"
                                 name='complete_name'
                                 required />
                         </div>
-                        <div>
+
+                        <div className='flex flex-col flex-[1_0_1rem]'>
                             <label htmlFor="empress">Empresa:</label>
                             <input
-                                className='px-5 py-2 border bg-gray-200 rounded mb-5'
+                                className='px-5 py-2 border bg-gray-200 rounded'
                                 type="text"
                                 name='empress'
                             />
                         </div>
-                    </div>
 
-                    <div className='flex flex-col md:flex-row gap-4'>
-                        <div>
+                        <div className='flex flex-col flex-[1_0_1rem]'>
                             <label htmlFor="email">Email:</label>
                             <input
-                                className='px-5 py-2 border bg-gray-200 rounded mb-5'
+                                className='px-5 py-2 border bg-gray-200 rounded'
                                 type="email"
                                 name='email' />
                         </div>
-                        <div>
+
+                        <div className='flex flex-col flex-[1_0_1rem]'>
                             <label htmlFor="phone">Número de teléfono:</label>
                             <input
-                                className='px-5 py-2 border bg-gray-200 rounded mb-5'
+                                className='px-5 py-2 border bg-gray-200 rounded'
                                 type="tel"
                                 name="phone" />
                         </div>
+
+                        <div className='flex flex-col flex-[1_0_1rem]'>
+                            <label htmlFor="body">Mensaje:</label>
+                            <textarea
+                                className='p-5'
+                                name="body"
+                                cols={20}
+                                rows={4}
+                                wrap='soft'
+                                maxLength={1000}
+                                placeholder='Inserta tu mensaje...' />
+                        </div>
                     </div>
+
+                    <button className='self-end mt-5 w-min px-5 py-2 rounded-md text-[#ed4709] dark:text-[#e2b5fd] font-bold border-2 border-[#ed4709] dark:border-[#e2b5fd]'>
+                        Contacto
+                    </button>
 
                 </form>
 
