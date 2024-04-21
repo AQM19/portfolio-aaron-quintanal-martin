@@ -3,6 +3,7 @@
 import { kanit } from '@/config/fonts'
 import { Typography } from '@mui/material'
 import ChangingText from '../changing-text/ChangingText';
+import Link from 'next/link';
 
 // Obtener edad dinámicamente
 const birthDate: Date = new Date(1996, 2, 15);
@@ -44,9 +45,12 @@ const CardResume = () => {
                 Aquí presento mi portfolio que poco a poco irá teniendo cambios y mejoras. Mi sitio web por excelencia.
             </p>
 
-            <button className='lg:self-end mt-5 w-min px-5 py-2 rounded-md text-[#ed4709] dark:text-[#e2b5fd] font-bold border-2 border-[#ed4709] dark:border-[#e2b5fd]'>
-                Contacto
-            </button>
+            <Link href={'/contact'} >
+                <button
+                    className='lg:self-end mt-5 w-min px-5 py-2 rounded-md text-[#ed4709] dark:text-[#e2b5fd] font-bold border-2 border-[#ed4709] dark:border-[#e2b5fd]'>
+                    Contacto
+                </button>
+            </Link>
 
         </div>
     )
