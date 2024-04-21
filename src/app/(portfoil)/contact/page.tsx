@@ -84,7 +84,7 @@ const ContactPage = () => {
                                 htmlFor="complete_name"
                             >Nombre completo:</label>
                             <input
-                                className='px-5 py-2 border bg-neutral-50 dark:bg-purple-900 rounded text-[#441006] dark:text-[#d2e4ff] '
+                                className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff] '
                                 type="text"
                                 {...register("fullName", { required: true })}
                                 aria-invalid={errors.fullName ? "true" : "false"}
@@ -101,7 +101,7 @@ const ContactPage = () => {
                                 className='text-[#ed4709] dark:text-[#e2b5fd]'
                                 htmlFor="empress">Empresa:</label>
                             <input
-                                className='px-5 py-2 border bg-neutral-50 dark:bg-purple-900 rounded text-[#441006] dark:text-[#d2e4ff] '
+                                className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff] '
                                 type="text"
                                 {...register('empress', { required: false })}
                             />
@@ -112,7 +112,7 @@ const ContactPage = () => {
                                 className='text-[#ed4709] dark:text-[#e2b5fd]'
                                 htmlFor="email">Email:</label>
                             <input
-                                className='px-5 py-2 border bg-neutral-50 dark:bg-purple-900 rounded text-[#441006] dark:text-[#d2e4ff] '
+                                className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff] '
                                 type="email"
                                 {...register("email", { required: true })}
                                 aria-invalid={errors.email ? "true" : "false"}
@@ -129,7 +129,7 @@ const ContactPage = () => {
                                 className='text-[#ed4709] dark:text-[#e2b5fd]'
                                 htmlFor="phone">Número de teléfono:</label>
                             <input
-                                className='px-5 py-2 border bg-neutral-50 dark:bg-purple-900 rounded text-[#441006] dark:text-[#d2e4ff] '
+                                className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff] '
                                 type="tel"
                                 {...register("phone", { required: false })}
                             />
@@ -143,7 +143,7 @@ const ContactPage = () => {
                                 className='text-[#ed4709] dark:text-[#e2b5fd]'
                                 htmlFor="subject">Asunto:</label>
                             <input
-                                className='px-5 py-2 border bg-neutral-50 dark:bg-purple-900 rounded text-[#441006] dark:text-[#d2e4ff] '
+                                className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff] '
                                 type="text"
                                 {...register("subject", { required: false })}
                             />
@@ -154,7 +154,7 @@ const ContactPage = () => {
                                 className='text-[#ed4709] dark:text-[#e2b5fd]'
                                 htmlFor="message">Mensaje:</label>
                             <textarea
-                                className='p-5 bg-neutral-50 dark:bg-purple-900 text-[#441006] dark:text-[#d2e4ff]'
+                                className='p-5 bg-neutral-50 dark:bg-[#03063750] text-[#441006] dark:text-[#d2e4ff]'
                                 cols={20}
                                 rows={4}
                                 wrap='soft'
