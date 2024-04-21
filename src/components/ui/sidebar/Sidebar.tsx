@@ -1,7 +1,7 @@
 import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store';
 import React from 'react'
 import clsx from 'clsx';
-import { IoCloseOutline } from 'react-icons/io5';
+import { IoCloseOutline, IoHomeSharp } from 'react-icons/io5';
 import Link from 'next/link';
 import { centerMenu } from '@/config/top-menu/top-menu-items.config';
 import { MaterialUISwitch } from '../switch/MaterialUiSwitch';
@@ -58,6 +58,15 @@ const Sidebar = () => {
                     className='absolute top-5 right-5 cursor-pointer'
                     onClick={() => closeMenu()}
                 />
+
+                <Link
+                    href={'/'}
+                    onClick={() => closeMenu()}
+                    className={`flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all sm:hidden`}
+                >
+                    <IoHomeSharp size={30} />
+                    <span className='ml-3 text-xl'>Inicio</span>
+                </Link>
 
                 {
                     centerMenu.map((value, index) => (
