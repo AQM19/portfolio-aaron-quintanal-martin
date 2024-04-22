@@ -102,7 +102,7 @@ const ContactForm = () => {
                         className='text-[#ed4709] dark:text-[#e2b5fd]'
                         htmlFor="subject">Asunto:</label>
                     <input
-                        className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff] '
+                        className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff]'
                         type="text"
                         {...register("subject", { required: false })}
                     />
@@ -113,7 +113,7 @@ const ContactForm = () => {
                         className='text-[#ed4709] dark:text-[#e2b5fd]'
                         htmlFor="message">Mensaje:</label>
                     <textarea
-                        className='p-5 bg-neutral-50 dark:bg-[#03063750] text-[#441006] dark:text-[#d2e4ff]'
+                        className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff]'
                         cols={20}
                         rows={4}
                         wrap='soft'
