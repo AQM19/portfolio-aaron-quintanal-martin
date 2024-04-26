@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 
 import { titleFont } from '@/config/fonts'
 
@@ -9,6 +8,9 @@ import { IoMenu } from 'react-icons/io5'
 import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store'
 import { centerMenu } from '@/config/top-menu/top-menu-items.config'
 import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store'
+import LocalSwitcher from '../local-switcher/local-switcher';
+import { useLocale, useTranslations } from 'next-intl';
+import { Link } from '@/navigation'
 
 export const TopMenu = () => {
 
@@ -20,6 +22,8 @@ export const TopMenu = () => {
     const toggleDarkMode = () => {
         isDarkModeEnabled ? disableDarkMode() : enableDarkMode();
     }
+
+    const t = useTranslations("Menu");
 
     return (
         <nav className={`flex pt-4 sm:p-5 justify-center items-center w-full fixed left-0 right-0 z-10`}>
@@ -44,15 +48,17 @@ export const TopMenu = () => {
                                 href={value.href}
                                 key={value.name}
                             >
-                                {value.name}
+                                {t(value.name)}
                             </Link>
                         ))
                     }
 
                 </div>
 
+
                 {/* Search, Cart, Menu */}
                 <div className='hidden sm:flex items-center'>
+                    <LocalSwitcher />
 
                     {/* <button>
                         <IoMenu className='mx-2 w-8 h-8 rounded' />

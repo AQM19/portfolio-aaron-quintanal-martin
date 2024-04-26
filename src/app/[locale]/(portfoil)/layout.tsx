@@ -1,10 +1,10 @@
 'use client'
 
 import React from 'react'
-import { TopMenu } from '../../components/ui/top-menu/TopMenu';
 import SideRSS from '@/components/ui/side-rss/SideRSS';
-import Sidebar from '../../components/ui/sidebar/Sidebar';
 import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store';
+import { TopMenu } from '@/components';
+import Sidebar from '@/components/ui/sidebar/Sidebar';
 
 const PortfoilLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) => {
 

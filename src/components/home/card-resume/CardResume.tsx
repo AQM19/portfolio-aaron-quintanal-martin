@@ -3,7 +3,8 @@
 import { kanit } from '@/config/fonts'
 import { Typography } from '@mui/material'
 import ChangingText from '../changing-text/ChangingText';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/navigation';
 
 // Obtener edad dinámicamente
 const birthDate: Date = new Date(1996, 2, 15);
@@ -21,13 +22,15 @@ if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDate.get
 
 const CardResume = () => {
 
+    const t = useTranslations("Index");
+
     return (
         <div
             className='p-5 rounded-sm flex flex-col gap-4'
         >
 
             <Typography variant='h5' className='text-[#ed4709] dark:text-[#e2b5fd]'>
-                ¡Hola!,  soy
+                {t('hello')}
             </Typography>
 
             <h1
@@ -39,16 +42,15 @@ const CardResume = () => {
             <ChangingText />
 
             <p className='mt-5 text-[#441006] dark:text-[#d2e4ff] max-w-prose text-lg text-pretty text-justify font-semibold'>
-                Tengo {age} años, residente de España. Como desarrollador full stack me inicié en el mundo de la programación en 2020 y ahora es mi vida.
-                Compaginando trabajo y estudios me mantengo en contínua formación para mejorar como desarrollador.
+                {t('I have')} {age} {t('first-part-presentation')}
                 <br />
-                Aquí presento mi portfolio que poco a poco irá teniendo cambios y mejoras. Mi sitio web por excelencia.
+                {t('second-part-presentation')}
             </p>
 
             <Link href={'/contact'} >
                 <button
                     className='lg:self-end mt-5 w-min px-5 py-2 rounded-md text-[#ed4709] dark:text-[#e2b5fd] font-bold border-2 border-[#ed4709] dark:border-[#e2b5fd]'>
-                    Contacto
+                    {t('contact-button')}
                 </button>
             </Link>
 

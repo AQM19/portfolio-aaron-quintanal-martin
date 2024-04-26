@@ -1,0 +1,41 @@
+{
+    "Index": {
+        "hello": "¡Hola!, soy",
+        "I have": "Tengo",
+        "first-part-presentation": "años, residente de España. Como desarrollador full stack me inicié en el mundo de la programación en 2020 y ahora es mi vida.Compaginando trabajo y estudios me mantengo en contínua formación para mejorar como desarrollador.",
+        "second-part-presentation": "Aquí presento mi portfolio que poco a poco irá teniendo cambios y mejoras. Mi sitio web por excelencia.",
+        "contact-button": "Contacto"
+    },
+    "Menu": {
+        "projects": "Proyectos",
+        "contact": "Contacto",
+        "news": "Noticias",
+        "my career": "Mi carrera"
+    },
+    "Contact": {
+        "title": "¡Hablemos de tu proyecto!",
+        "description": "Transformemos tus ideas en resultados tangibles juntos. Como profesional independiente, sé lo que significa trabajar duro para alcanzar tus metas. Sin trucos ni promesas vacías, solo compromiso y dedicación para ayudarte a lograr tus objetivos.",
+        "question": "¿Listo para dar el primer paso?",
+        "hook": "¡Contáctame hoy mismo y comencemos!",
+        "form title": "¡Deja tus datos y y mismo me pondré en contacto contigo!",
+        "full name": "Nombre completo:",
+        "name required": "El nombre es requerido",
+        "empress": "Empresa:",
+        "email": "Correo:",
+        "email required": "El email es requerido",
+        "phone": "Número de teléfono:",
+        "subject": "Asunto:",
+        "body": "Mensaje:",
+        "body required": "El mensaje es requerido",
+        "body placeholder": "Inserta tu mensaje...",
+        "send": "Enviar"
+    },
+    "Not Found": {
+        "oopsie": "¡Ha habido un problema!",
+        "cat problem": "Parece ser que bigotitos ha eliminado esta página",
+        "go back": "Por tanto tienes que volver",
+        "index": "al inicio.",
+        "sorry": "Disculpa las molestias.",
+        "image alt": "Imagen de Aarón Quintanal Martín"
+    }
+}

@@ -2,10 +2,11 @@ import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store';
 import React from 'react'
 import clsx from 'clsx';
 import { IoCloseOutline, IoHomeSharp } from 'react-icons/io5';
-import Link from 'next/link';
 import { centerMenu } from '@/config/top-menu/top-menu-items.config';
 import { MaterialUISwitch } from '../switch/MaterialUiSwitch';
 import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store';
+import { Link } from '@/navigation';
+import { useTranslations } from 'next-intl';
 
 
 const Sidebar = () => {
@@ -20,6 +21,8 @@ const Sidebar = () => {
     const toggleDarkMode = () => {
         isDarkModeEnabled ? disableDarkMode() : enableDarkMode();
     }
+
+    const t = useTranslations("Menu");
 
     return (
         <aside>
@@ -77,7 +80,7 @@ const Sidebar = () => {
                             className={`${value.class} flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all`}
                         >
                             <value.icon size={30} />
-                            <span className='ml-3 text-xl'>{value.name}</span>
+                            <span className='ml-3 text-xl'>{t(value.name)}</span>
                         </Link>
                     ))
                 }

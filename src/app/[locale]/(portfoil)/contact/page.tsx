@@ -1,11 +1,14 @@
 import ContactForm from '@/components/contact/contact-form'
 import { kanit } from '@/config/fonts'
 import Typography from '@mui/material/Typography/Typography'
+import { useTranslations } from 'next-intl'
 import React from 'react'
 import { AiOutlinePhone } from 'react-icons/ai'
 import { IoMailOutline } from 'react-icons/io5'
 
 const ContactPage = () => {
+
+    const t = useTranslations("Contact");
 
     return (
         <section className='w-full h-auto lg:h-screen px-5 py-20 md:p-20 flex flex-col lg:flex-row gap-4 lg:gap-0 justify-around items-center'>
@@ -13,17 +16,15 @@ const ContactPage = () => {
             <div className='flex flex-col gap-4 w-full lg:w-1/3'>
 
                 <Typography variant='h5' className='text-[#ed4709] dark:text-[#e2b5fd]'>
-                    ¡Hablemos de tu proyecto!
+                    {t("title")}
                 </Typography>
 
                 <p className={`text-pretty text-[#441006] dark:text-[#d2e4ff] font-thin ${kanit.className} max-w-prose text-justify`}>
-                    Transformemos tus ideas en resultados tangibles juntos. Como profesional independiente,
-                    sé lo que significa trabajar duro para alcanzar tus metas. Sin trucos ni promesas vacías,
-                    solo compromiso y dedicación para ayudarte a lograr tus objetivos.
+                    {t("description")}
                     <br />
-                    ¿Listo para dar el primer paso?
+                    {t("question")}
                     <br />
-                    <span className='text-[#ed4709] dark:text-[#e2b5fd]'>¡Contáctame hoy mismo y comencemos!</span>
+                    <span className='text-[#ed4709] dark:text-[#e2b5fd]'>{t("hook")}</span>
                 </p>
 
                 <div className={`text-[#441006] dark:text-[#d2e4ff] font-thin ${kanit.className}`}>
@@ -42,7 +43,7 @@ const ContactPage = () => {
             <div className='flex flex-col gap-4 w-full lg:w-1/2 rounded bg-[#44100625] dark:bg-[#d2e4ff25] p-5 md:p-10'>
 
                 <Typography variant='h4' className='text-[#ed4709] dark:text-[#e2b5fd] text-xl'>
-                    ¡Deja tus datos y y mismo me pondré en contacto contigo!
+                    {t("form title")}
                 </Typography>
 
                 <ContactForm />

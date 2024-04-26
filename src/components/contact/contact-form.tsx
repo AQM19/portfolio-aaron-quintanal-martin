@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl';
 import React from 'react'
 import { useForm } from 'react-hook-form';
 
@@ -13,6 +14,8 @@ type Inputs = {
 };
 
 const ContactForm = () => {
+
+    const t = useTranslations("Contact");
 
     const { handleSubmit, register, formState: { isValid, errors }, reset } = useForm<Inputs>({
         defaultValues: {
@@ -41,7 +44,9 @@ const ContactForm = () => {
                     <label
                         className='text-[#ed4709] dark:text-[#e2b5fd]'
                         htmlFor="complete_name"
-                    >Nombre completo:</label>
+                    >
+                        {t("full name")}
+                    </label>
                     <input
                         className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff] '
                         type="text"
@@ -51,14 +56,18 @@ const ContactForm = () => {
                     {errors.fullName?.type === "required" && (
                         <p
                             className='text-[#441006] dark:text-[#d2e4ff]'
-                            role="alert">El nombre es requerido</p>
+                            role="alert">
+                            {t("name required")}
+                        </p>
                     )}
                 </div>
 
                 <div className='flex flex-col flex-[1_0_1rem]'>
                     <label
                         className='text-[#ed4709] dark:text-[#e2b5fd]'
-                        htmlFor="empress">Empresa:</label>
+                        htmlFor="empress">
+                        {t("empress")}
+                    </label>
                     <input
                         className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff] '
                         type="text"
@@ -69,7 +78,9 @@ const ContactForm = () => {
                 <div className='flex flex-col flex-[1_0_1rem]'>
                     <label
                         className='text-[#ed4709] dark:text-[#e2b5fd]'
-                        htmlFor="email">Email:</label>
+                        htmlFor="email">
+                        {t("email")}
+                    </label>
                     <input
                         className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff] '
                         type="email"
@@ -79,14 +90,18 @@ const ContactForm = () => {
                     {errors.email?.type === "required" && (
                         <p
                             className='text-[#441006] dark:text-[#d2e4ff]'
-                            role="alert">El email es requerido</p>
+                            role="alert">
+                            {t("email required")}
+                        </p>
                     )}
                 </div>
 
                 <div className='flex flex-col flex-[1_0_1rem]'>
                     <label
                         className='text-[#ed4709] dark:text-[#e2b5fd]'
-                        htmlFor="phone">Número de teléfono:</label>
+                        htmlFor="phone">
+                        {t("phone")}
+                    </label>
                     <input
                         className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff] '
                         type="tel"
@@ -100,7 +115,9 @@ const ContactForm = () => {
                 <div className='flex flex-col flex-[1_0_1rem]'>
                     <label
                         className='text-[#ed4709] dark:text-[#e2b5fd]'
-                        htmlFor="subject">Asunto:</label>
+                        htmlFor="subject">
+                        {t("subject")}
+                    </label>
                     <input
                         className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff]'
                         type="text"
@@ -111,21 +128,25 @@ const ContactForm = () => {
                 <div className='flex flex-col flex-[1_0_1rem]'>
                     <label
                         className='text-[#ed4709] dark:text-[#e2b5fd]'
-                        htmlFor="message">Mensaje:</label>
+                        htmlFor="message">
+                        {t("body")}
+                    </label>
                     <textarea
                         className='px-5 py-2 border bg-neutral-50 dark:bg-[#03063750] rounded text-[#441006] dark:text-[#d2e4ff]'
                         cols={20}
                         rows={4}
                         wrap='soft'
                         maxLength={1000}
-                        placeholder='Inserta tu mensaje...'
+                        placeholder={t("body placeholder")}
                         {...register("message", { required: true })}
                         aria-invalid={errors.message ? "true" : "false"}
                     />
                     {errors.message?.type === "required" && (
                         <p
                             className='text-[#441006] dark:text-[#d2e4ff]'
-                            role="alert">El mensaje es requerido</p>
+                            role="alert">
+                            {t("body required")}
+                        </p>
                     )}
                 </div>
             </div>
@@ -133,7 +154,7 @@ const ContactForm = () => {
             <button
                 type='submit'
                 className='self-end mt-5 w-min px-5 py-2 rounded-md text-[#ed4709] dark:text-[#e2b5fd] font-bold border-2 border-[#ed4709] dark:border-[#e2b5fd]'>
-                Enviar
+                {t("send")}
             </button>
 
         </form>
