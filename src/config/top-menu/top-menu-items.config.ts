@@ -7,5 +7,5 @@ export const centerMenu: CenterMenu[] = [
     { name: 'projects', href: '/projects', icon: FaProjectDiagram },
     { name: 'contact', href: '/contact', icon: IoMdContact },
     { name: 'news', href: '/news', icon: IoNewspaperOutline },
-    { name: 'my career', href: '/my career', icon: IoCodeWorking }
+    { name: 'my career', href: '/my-career', icon: IoCodeWorking }
 ];

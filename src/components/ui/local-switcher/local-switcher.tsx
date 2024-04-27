@@ -2,8 +2,8 @@
 
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import React, { ChangeEvent, useState, useTransition } from 'react'
-import { FaFlag, FaLanguage } from 'react-icons/fa';
+import React, { useState, useTransition } from 'react'
+import { FaFlag } from 'react-icons/fa';
 
 const LocalSwitcher = () => {
     const [isPending, startTransition] = useTransition();
@@ -11,16 +11,12 @@ const LocalSwitcher = () => {
     const localActive = useLocale();
     const [isListOpen, setIsListOpen] = useState(false);
 
-    // const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    //     const nextLocale = e.target.value;
-    //     startTransition(() => {
-    //         router.replace(`/${nextLocale}`);
-    //     });
-    // }
-
     const handleLanguageChange = (locale: string) => {
+
+        const currentUrl = new URL(window.location.href).pathname.replace(/^\/[a-z]{2}/, locale);
+
         startTransition(() => {
-            router.replace(`/${locale}`);
+            router.replace(`/${currentUrl}`);
         });
         setIsListOpen(false);
     };
