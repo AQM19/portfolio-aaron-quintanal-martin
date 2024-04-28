@@ -58,6 +58,7 @@ interface SeedData {
     status: string[],
     roles: string[],
     tags: string[],
+    locales: string[],
     developers: SeedDeveloper[];
     projects: SeedProject[];
 }
@@ -77,6 +78,7 @@ export const initialData: SeedData = {
     status: ['investigation', 'planification', 'designing', 'developping', 'deploying', 'manteinance', 'finished'],
     roles: ['admin', 'user', 'editor'],
     tags: ['humor', 'terror', 'gaming', 'tools'],
+    locales: ['es', 'en'],
     developers: [
         {
             name: 'Aarón',

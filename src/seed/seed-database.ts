@@ -12,6 +12,7 @@ async function main() {
     await prisma.projectDescription.deleteMany();
     await prisma.shortProjectDescription.deleteMany();
     await prisma.projectDocumentation.deleteMany();
+    await prisma.locales.deleteMany();
     await prisma.developer.deleteMany();
     await prisma.project.deleteMany();
     await prisma.category.deleteMany();
@@ -19,13 +20,14 @@ async function main() {
     await prisma.status.deleteMany();
 
     // desestructuración de initialData
-    const { roles, users, status, tags, categories, developers, projects } = initialData;
+    const { roles, users, status, tags, categories, developers, projects, locales } = initialData;
 
     // mapeo de strings
     const categoriesData = categories.map(category => ({ nemonic: category }));
     const statusData = status.map(status => ({ nemonic: status }));
     const rolesData = roles.map(role => ({ name: role }));
     const tagsData = tags.map(tag => ({ nemonic: tag }));
+    const localesData = locales.map(intl => ({ locale: intl }));
 
     // creación de modelos simples
     await prisma.category.createMany({
@@ -42,6 +44,10 @@ async function main() {
 
     await prisma.tag.createMany({
         data: tagsData
+    });
+
+    await prisma.locales.createMany({
+        data: localesData
     });
 
     // Creación del usuario por defecto
@@ -98,34 +104,42 @@ async function main() {
             }
         });
 
-        const descriptionsData = description.map(desc => ({
-            locale: desc.locale,
-            value: desc.value,
-            projectId: dbProject.id
-        }));
+        locales.forEach(async (locale) => {
+            const dbLocale = await prisma.locales.findUnique({
+                where: {
+                    locale: locale
+                }
+            });
 
-        await prisma.projectDescription.createMany({
-            data: descriptionsData
-        });
+            const descriptionsData = description.map(desc => ({
+                value: desc.value,
+                projectId: dbProject.id,
+                localesId: dbLocale!!.id
+            }));
 
-        const shortDescriptionsData = shortDescription.map(shortDesc => ({
-            locale: shortDesc.locale,
-            value: shortDesc.value,
-            projectId: dbProject.id
-        }));
+            await prisma.projectDescription.createMany({
+                data: descriptionsData
+            });
 
-        await prisma.shortProjectDescription.createMany({
-            data: shortDescriptionsData
-        });
+            const shortDescriptionsData = shortDescription.map(shortDesc => ({
+                value: shortDesc.value,
+                projectId: dbProject.id,
+                localesId: dbLocale!!.id
+            }));
 
-        const documentationData = documentation.map(doc => ({
-            locale: doc.locale,
-            file: doc.file,
-            projectId: dbProject.id
-        }));
+            await prisma.shortProjectDescription.createMany({
+                data: shortDescriptionsData
+            });
 
-        await prisma.projectDocumentation.createMany({
-            data: documentationData
+            const documentationData = documentation.map(doc => ({
+                file: doc.file,
+                projectId: dbProject.id,
+                localesId: dbLocale!!.id
+            }));
+
+            await prisma.projectDocumentation.createMany({
+                data: documentationData
+            });
         });
 
         const imagesData = images.map(image => ({

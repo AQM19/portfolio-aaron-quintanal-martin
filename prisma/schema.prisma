@@ -98,6 +98,17 @@ model Developer {
     @@schema("public")
 }
 
+model Locales {
+    id     Int    @id @default(autoincrement())
+    locale String @unique()
+
+    ProjectDescription      ProjectDescription[]
+    ShortProjectDescription ShortProjectDescription[]
+    ProjectDocumentation    ProjectDocumentation[]
+
+    @@schema("configuration")
+}
+
 model ProjectImage {
     id  Int    @id @default(autoincrement())
     url String
@@ -109,9 +120,11 @@ model ProjectImage {
 }
 
 model ProjectDescription {
-    id     Int    @id @default(autoincrement())
-    locale String
-    value  String
+    id    Int    @id @default(autoincrement())
+    value String
+
+    Locale    Locales? @relation(fields: [localesId], references: [id])
+    localesId Int?
 
     Project   Project? @relation(fields: [projectId], references: [id])
     projectId String?
@@ -120,9 +133,11 @@ model ProjectDescription {
 }
 
 model ShortProjectDescription {
-    id     Int    @id @default(autoincrement())
-    locale String
-    value  String
+    id    Int    @id @default(autoincrement())
+    value String
+
+    Locale    Locales? @relation(fields: [localesId], references: [id])
+    localesId Int?
 
     Project   Project? @relation(fields: [projectId], references: [id])
     projectId String?
@@ -131,9 +146,11 @@ model ShortProjectDescription {
 }
 
 model ProjectDocumentation {
-    id     Int    @id @default(autoincrement())
-    locale String
-    file   Bytes
+    id   Int   @id @default(autoincrement())
+    file Bytes
+
+    Locale    Locales? @relation(fields: [localesId], references: [id])
+    localesId Int?
 
     Project   Project? @relation(fields: [projectId], references: [id])
     projectId String?
