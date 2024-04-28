@@ -6,22 +6,26 @@ async function main() {
     // eliminación de todos los datos
     await prisma.role.deleteMany();
     await prisma.user.deleteMany();
-    await prisma.status.deleteMany();
-    await prisma.tag.deleteMany();
     await prisma.tagsOnProjects.deleteMany();
-    await prisma.category.deleteMany();
-    await prisma.developer.deleteMany();
+    await prisma.developersOnProject.deleteMany();
     await prisma.projectImage.deleteMany();
+    await prisma.projectDescription.deleteMany();
+    await prisma.shortProjectDescription.deleteMany();
+    await prisma.projectDocumentation.deleteMany();
+    await prisma.developer.deleteMany();
     await prisma.project.deleteMany();
+    await prisma.category.deleteMany();
+    await prisma.tag.deleteMany();
+    await prisma.status.deleteMany();
 
     // desestructuración de initialData
     const { roles, users, status, tags, categories, developers, projects } = initialData;
 
     // mapeo de strings
-    const categoriesData = categories.map(category => ({ name: category }));
-    const statusData = status.map(status => ({ name: status }));
+    const categoriesData = categories.map(category => ({ nemonic: category }));
+    const statusData = status.map(status => ({ nemonic: status }));
     const rolesData = roles.map(role => ({ name: role }));
-    const tagsData = tags.map(tag => ({ name: tag }));
+    const tagsData = tags.map(tag => ({ nemonic: tag }));
 
     // creación de modelos simples
     await prisma.category.createMany({
@@ -72,19 +76,19 @@ async function main() {
 
     const statusFinished = await prisma.status.findUnique({
         where: {
-            name: 'finished'
+            nemonic: 'finished'
         }
     });
 
     const categoryPersonal = await prisma.category.findUnique({
         where: {
-            name: 'personal'
+            nemonic: 'personal'
         }
     });
 
     projects.forEach(async (project) => {
 
-        const { categoryId, statusId, images, tags, ...rest } = project;
+        const { categoryId, statusId, images, tags, description, shortDescription, documentation, ...rest } = project;
 
         const dbProject = await prisma.project.create({
             data: {
@@ -92,6 +96,36 @@ async function main() {
                 categoryId: categoryPersonal!!.id,
                 statusId: statusFinished!!.id
             }
+        });
+
+        const descriptionsData = description.map(desc => ({
+            locale: desc.locale,
+            value: desc.value,
+            projectId: dbProject.id
+        }));
+
+        await prisma.projectDescription.createMany({
+            data: descriptionsData
+        });
+
+        const shortDescriptionsData = shortDescription.map(shortDesc => ({
+            locale: shortDesc.locale,
+            value: shortDesc.value,
+            projectId: dbProject.id
+        }));
+
+        await prisma.shortProjectDescription.createMany({
+            data: shortDescriptionsData
+        });
+
+        const documentationData = documentation.map(doc => ({
+            locale: doc.locale,
+            file: doc.file,
+            projectId: dbProject.id
+        }));
+
+        await prisma.projectDocumentation.createMany({
+            data: documentationData
         });
 
         const imagesData = images.map(image => ({
@@ -106,7 +140,7 @@ async function main() {
         tags.forEach(async (tag) => {
             const dbTag = await prisma.tag.findUnique({
                 where: {
-                    name: tag
+                    nemonic: tag
                 }
             });
 
@@ -116,6 +150,21 @@ async function main() {
                     tagId: dbTag!!.id
                 }
             });
+        });
+
+        developers.forEach(async (dev) => {
+            const dbDev = await prisma.developer.findFirst({
+                where: {
+                    name: dev.name
+                }
+            });
+
+            await prisma.developersOnProject.create({
+                data: {
+                    projectId: dbProject.id,
+                    developerId: dbDev!!.id
+                }
+            })
         });
 
     });

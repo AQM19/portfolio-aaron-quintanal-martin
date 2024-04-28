@@ -1,19 +1,34 @@
 import bcryptjs from 'bcryptjs';
-import { Project } from '../interfaces/projects/project.interface';
 
 interface SeedProject {
     title: string;
-    description: string;
+    description: SeedProjectDescription[];
+    shortDescription: SeedShortProjectDescription[];
     logo: string;
     dateStart: Date;
     dateEnd?: Date;
-    documentation?: string;
+    documentation: SeedProjectDocumentation[];
     link?: string;
     statusId: string;
     categoryId: string;
     slug: string;
     tags: SeedTag[];
     images: string[];
+}
+
+interface SeedProjectDescription {
+    locale: string;
+    value: string;
+}
+
+interface SeedShortProjectDescription {
+    locale: string;
+    value: string;
+}
+
+interface SeedProjectDocumentation {
+    locale: string;
+    file: Buffer;
 }
 
 interface SeedUser {
@@ -35,7 +50,6 @@ interface SeedTagsOnProjects {
     tag: SeedTag;
 }
 
-type SeedStatus = 'investigation' | 'planification' | 'designing' | 'developping' | 'deploying' | 'manteinance' | 'finished'
 type SeedTag = 'humor' | 'tools' | 'gaming' | 'terror'
 
 interface SeedData {
@@ -47,6 +61,8 @@ interface SeedData {
     developers: SeedDeveloper[];
     projects: SeedProject[];
 }
+
+const fs = require('fs'); // Para leer los documentos
 
 export const initialData: SeedData = {
     users: [
@@ -71,12 +87,22 @@ export const initialData: SeedData = {
     projects: [
         {
             title: 'Auto-Terra',
-            description: 'Descripción',
+            description: [
+                { locale: 'es', value: 'Descripcion en español' },
+                { locale: 'en', value: 'English description' }
+            ],
+            shortDescription: [
+                { locale: 'es', value: 'Descripción pequeña en español' },
+                { locale: 'en', value: 'English short description' }
+            ],
             logo: '',
             dateStart: new Date(),
             statusId: '',
             categoryId: '',
             images: [],
+            documentation: [
+                { locale: 'es', file: Buffer.from(fs.readFileSync('/home/aquintanal/Descargas/Proyecto DAM2 Aaron Quintanal Martin.pdf')) }
+            ],
             slug: 'auto-terra',
             tags: ['tools'],
         }

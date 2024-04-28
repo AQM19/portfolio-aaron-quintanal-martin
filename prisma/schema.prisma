@@ -38,7 +38,7 @@ model User {
 
 model Status {
     id      String    @id @default(uuid())
-    name    String    @unique
+    nemonic String    @unique
     project Project[]
 
     createdAt DateTime  @default(now())
@@ -50,7 +50,7 @@ model Status {
 
 model Tag {
     id       String           @id @default(uuid())
-    name     String           @unique
+    nemonic  String           @unique
     projects TagsOnProjects[]
 
     createdAt DateTime  @default(now())
@@ -73,7 +73,7 @@ model TagsOnProjects {
 
 model Category {
     id      String    @id @default(uuid())
-    name    String    @unique
+    nemonic String    @unique
     project Project[]
 
     createdAt DateTime  @default(now())
@@ -84,12 +84,11 @@ model Category {
 }
 
 model Developer {
-    id        String  @id @default(uuid())
-    name      String
-    surname   String
-    github    String?
-    portfoil  String?
-    projectId String?
+    id       String  @id @default(uuid())
+    name     String
+    surname  String
+    github   String?
+    portfoil String?
 
     createdAt DateTime              @default(now())
     updatedAt DateTime?             @default(now())
@@ -102,6 +101,39 @@ model Developer {
 model ProjectImage {
     id  Int    @id @default(autoincrement())
     url String
+
+    Project   Project? @relation(fields: [projectId], references: [id])
+    projectId String?
+
+    @@schema("projects")
+}
+
+model ProjectDescription {
+    id     Int    @id @default(autoincrement())
+    locale String
+    value  String
+
+    Project   Project? @relation(fields: [projectId], references: [id])
+    projectId String?
+
+    @@schema("projects")
+}
+
+model ShortProjectDescription {
+    id     Int    @id @default(autoincrement())
+    locale String
+    value  String
+
+    Project   Project? @relation(fields: [projectId], references: [id])
+    projectId String?
+
+    @@schema("projects")
+}
+
+model ProjectDocumentation {
+    id     Int    @id @default(autoincrement())
+    locale String
+    file   Bytes
 
     Project   Project? @relation(fields: [projectId], references: [id])
     projectId String?
@@ -122,21 +154,22 @@ model DevelopersOnProject {
 }
 
 model Project {
-    id            String           @id @default(uuid())
-    title         String           @unique
-    description   String
-    logo          String
-    dateStart     DateTime         @default(now())
-    dateEnd       DateTime?
-    documentation String?
-    link          String?          @unique
-    slug          String           @unique
-    images        ProjectImage[]
-    Category      Category         @relation(fields: [categoryId], references: [id])
-    categoryId    String
-    Status        Status           @relation(fields: [statusId], references: [id])
-    statusId      String
-    tags          TagsOnProjects[]
+    id               String                    @id @default(uuid())
+    title            String                    @unique
+    description      ProjectDescription[]
+    shortDescription ShortProjectDescription[]
+    logo             String
+    dateStart        DateTime                  @default(now())
+    dateEnd          DateTime?
+    documentation    ProjectDocumentation[]
+    link             String?                   @unique
+    slug             String                    @unique
+    images           ProjectImage[]
+    Category         Category                  @relation(fields: [categoryId], references: [id])
+    categoryId       String
+    Status           Status                    @relation(fields: [statusId], references: [id])
+    statusId         String
+    tags             TagsOnProjects[]
 
     createdAt  DateTime              @default(now())
     updatedAt  DateTime?             @default(now())
