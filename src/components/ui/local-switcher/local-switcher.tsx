@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import React, { useState, useTransition } from 'react'
 import { FaFlag } from 'react-icons/fa';
+import { localesConfig } from '../../../config/locales/locale';
 
 const LocalSwitcher = () => {
     const [isPending, startTransition] = useTransition();
@@ -24,33 +25,26 @@ const LocalSwitcher = () => {
     return (
         <div className='relative'>
 
-            <button onClick={() => setIsListOpen(!isListOpen)} className='px-4 py-2'>
+            <button onClick={() => setIsListOpen(!isListOpen)} className='px-4 py-2 text-[#ed4709] dark:text-[#e2b5fd]'>
                 <FaFlag size={20} />
             </button>
 
             {isListOpen && (
                 <div className='absolute top-10 border-2 rounded bg-white shadow-md z-10'>
                     <ul>
-                        <li>
-                            <button
-                                className={`py-2 px-4 w-full text-left ${localActive === 'es' ? 'bg-gray-200' : ''
-                                    }`}
-                                onClick={() => handleLanguageChange('es')}
-                                disabled={isPending}
-                            >
-                                <img src="/svg/spain.flag.svg" alt="" />
-                            </button>
-                        </li>
-                        <li>
-                            <button
-                                className={`py-2 px-4 w-full text-left ${localActive === 'en' ? 'bg-gray-200' : ''
-                                    }`}
-                                onClick={() => handleLanguageChange('en')}
-                                disabled={isPending}
-                            >
-                                <img src="/svg/united-kingdom.flag.svg" alt="" />
-                            </button>
-                        </li>
+                        {
+                            localesConfig.map((value) => (
+                                <li>
+                                    <button
+                                        className={`py-2 px-4 w-full text-left ${localActive === value.lang ? 'bg-gray-200' : ''}`}
+                                        onClick={() => handleLanguageChange(value.lang)}
+                                        disabled={isPending}
+                                    >
+                                        <img src={value.source} alt={value.alt} />
+                                    </button>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </div>
             )}
