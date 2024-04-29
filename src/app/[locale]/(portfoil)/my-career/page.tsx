@@ -8,9 +8,7 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import Typography from '@mui/material/Typography';
-import { IoLogoAngular, IoSchool } from 'react-icons/io5';
-import { FaNodeJs, FaUserNinja } from 'react-icons/fa6';
-import { SiCsharp } from "react-icons/si";
+import { FaUserNinja } from 'react-icons/fa6';
 import { useMediaQuery } from '@mui/material';
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
 import { myCareerConfig } from '@/config/my-career/my-career.config';
@@ -59,7 +57,9 @@ const MyCareerPage = () => {
                       {value.empress}
                     </Typography>
 
-                    <div className={`${value.empressImage} bg-center bg-cover bg-no-repeat h-60 w-full`}></div>
+                    <div className='h-60 w-full relative overflow-hidden'>
+                      <img src={value.empressImage} loading='lazy' className='w-full h-auto absolute top-1/2 -translate-y-1/2 object-cover' />
+                    </div>
 
                     <p className='self-start text-[#441006] dark:text-[#d2e4ff] text-pretty text-justify'>
                       {value.description}
@@ -106,7 +106,9 @@ const MyCareerPage = () => {
                       {value.dateRange}
                     </Typography>
 
-                    {/* <div className={`${value.empressImage} bg-center bg-cover bg-no-repeat h-60 w-full`}></div> */}
+                    <div className='h-60 w-full relative overflow-hidden'>
+                      <img src={value.empressImage} loading='lazy' className='w-full h-auto absolute top-1/2 -translate-y-1/2 object-cover' />
+                    </div>
 
                     <p className='self-start text-[#441006] dark:text-[#d2e4ff] text-pretty text-justify'>
                       {value.description}
