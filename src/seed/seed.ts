@@ -103,6 +103,7 @@ export const initialData: SeedData = {
             categoryId: '',
             images: [],
             documentation: [
+                // { locale: 'es', file: Buffer.from(fs.readFileSync('/home/aquintanal/Descargas/Proyecto DAM2 Aaron Quintanal Martin.pdf')) }
                 { locale: 'es', file: Buffer.from(fs.readFileSync('C:/Users/aaron/Desktop/Proyecto DAM2 Aaron Quintanal Martin.pdf')) }
             ],
             slug: 'auto-terra',
