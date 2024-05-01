@@ -43,6 +43,48 @@ body {
   100% {opacity: 1;}
 }
 
+@keyframes slideInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes slideInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right{
+  transform: translateX(-100%);
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  -webkit-animation-name: slideInAnimation;
+  animation-name: slideInAnimation;
+}
+
+.slide-in-left {
+  transform: translateX(100%);
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  -webkit-animation-name: slideInAnimation;
+  animation-name: slideInAnimation;
+}
+
 .fade-in {
   -webkit-animation-duration: 0.5s;
   animation-duration: 0.5s;

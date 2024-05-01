@@ -6,6 +6,5 @@ import { IoCodeWorking, IoNewspaperOutline } from "react-icons/io5";
 export const centerMenu: CenterMenu[] = [
     { name: 'projects', href: '/projects', icon: FaProjectDiagram },
     { name: 'contact', href: '/contact', icon: IoMdContact },
-    { name: 'news', href: '/news', icon: IoNewspaperOutline },
     { name: 'my career', href: '/my-career', icon: IoCodeWorking }
 ];

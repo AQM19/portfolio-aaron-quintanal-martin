@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Timeline from '@mui/lab/Timeline';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
@@ -8,16 +8,28 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import Typography from '@mui/material/Typography';
-import { FaUserNinja } from 'react-icons/fa6';
+import { FaCaretDown, FaUserNinja } from 'react-icons/fa6';
 import { useMediaQuery } from '@mui/material';
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
 import { myCareerConfig } from '@/config/my-career/my-career.config';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+
 
 
 const MyCareerPage = () => {
 
   const isMobile = useMediaQuery('(max-width:600px)');
   const myCareer = myCareerConfig;
+
+  const [slideIn, setSlideIn] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSlideIn(true);
+    }, 100);
+  }, []);
 
   return (
     <section className='w-full h-auto lg:h-auto lg:min-h-screen py-20 md:p-20'>
@@ -52,7 +64,8 @@ const MyCareerPage = () => {
                     <TimelineConnector className='bg-[#ed4709] dark:bg-[#e2b5fd]' />
                   </TimelineSeparator>
 
-                  <TimelineContent className='py-3 px-4 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25]'>
+                  <TimelineContent
+                    className={`py-3 px-4 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25] ${slideIn ? (index % 2 == 0 ? 'slide-in-right' : 'slide-in-left') : ''}`}>
                     <Typography variant="h6" component="span" className='text-[#ed4709] dark:text-[#e2b5fd] text-3xl'>
                       {value.empress}
                     </Typography>
@@ -64,6 +77,30 @@ const MyCareerPage = () => {
                     <p className='self-start text-[#441006] dark:text-[#d2e4ff] text-pretty text-justify'>
                       {value.description}
                     </p>
+
+                    {
+                      value.progression && (
+                        value.progression.map((prog, indexProg) => (
+                          <Accordion key={indexProg} className='w-full bg-transparent'>
+                            <AccordionSummary
+                              expandIcon={<FaCaretDown />}
+                              aria-controls="panel1-content"
+                              id={indexProg.toString()}
+                            >
+                              <Typography className='text-[#ed4709] dark:text-[#e2b5fd]'>{prog.promotionDate.toLocaleDateString()}</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                              <Typography className='text-[#441006] dark:text-[#d2e4ff]'>
+                                <span className='font-extrabold text-[#441006] dark:text-[#d2e4ff]'>Evaluación:</span> {prog.evaluation}
+                              </Typography>
+                              <Typography className='text-[#441006] dark:text-[#d2e4ff]'>
+                                <span className='font-extrabold text-[#441006] dark:text-[#d2e4ff]'>Nuevo puesto:</span> {prog.position}
+                              </Typography>
+                            </AccordionDetails>
+                          </Accordion>
+                        ))
+                      )
+                    }
 
                   </TimelineContent>
                 </TimelineItem>
@@ -97,7 +134,8 @@ const MyCareerPage = () => {
                     <TimelineConnector className='bg-[#ed4709] dark:bg-[#e2b5fd]' />
                   </TimelineSeparator>
 
-                  <TimelineContent className='py-3 px-2 my-2 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25]'>
+                  <TimelineContent
+                    className={`py-3 px-2 my-2 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25] ${slideIn ? 'slide-in-left' : ''}`}>
                     <Typography variant="h6" component="span" className='text-[#ed4709] dark:text-[#e2b5fd] text-3xl'>
                       {value.empress}
                     </Typography>
@@ -113,6 +151,30 @@ const MyCareerPage = () => {
                     <p className='self-start text-[#441006] dark:text-[#d2e4ff] text-pretty text-justify'>
                       {value.description}
                     </p>
+
+                    {
+                      value.progression && (
+                        value.progression.map((prog, indexProg) => (
+                          <Accordion key={indexProg} className='w-full bg-transparent'>
+                            <AccordionSummary
+                              expandIcon={<FaCaretDown />}
+                              aria-controls="panel1-content"
+                              id={indexProg.toString()}
+                            >
+                              <Typography className='text-[#ed4709] dark:text-[#e2b5fd]'>{prog.promotionDate.toLocaleDateString()}</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                              <Typography className='text-[#441006] dark:text-[#d2e4ff]'>
+                                <span className='font-extrabold text-[#441006] dark:text-[#d2e4ff]'>Evaluación:</span> {prog.evaluation}
+                              </Typography>
+                              <Typography className='text-[#441006] dark:text-[#d2e4ff]'>
+                                <span className='font-extrabold text-[#441006] dark:text-[#d2e4ff]'>Nuevo puesto:</span> {prog.position}
+                              </Typography>
+                            </AccordionDetails>
+                          </Accordion>
+                        ))
+                      )
+                    }
 
                   </TimelineContent>
                 </TimelineItem>

@@ -39,7 +39,19 @@ export const myCareerConfig: MyCareer[] = [
         empressImage: 'https://static.smartgridsinfo.es/media/2020/03/edificio-santander-cic-consulting-informatico.png',
         description: `Actualmente me encuentro en CIC (Consulting Informático de Cantabria) trabajando como desarrollador junior. Aquí me ofrecen la
         posibilidad de desarrollarme como profesional de una manera asombrosa, ofreciendo desafíos acordes a mi nivel, proyectos
-        interesantes en los que trabajar y, lo más importante, un equipo maravilloso con el que estar.`
+        interesantes en los que trabajar y, lo más importante, un equipo maravilloso con el que estar.`,
+        progression: [
+            {
+                promotionDate: new Date(2024, 1, 11),
+                position: 'Junior Developer II',
+                evaluation: 'Excelente'
+            },
+            {
+                promotionDate: new Date(2024, 1, 18),
+                position: 'Junior Developer IV',
+                evaluation: 'Excelente'
+            }
+        ]
     },
     {
         dateRange: 'Septiembre 2023 - Actualidad',

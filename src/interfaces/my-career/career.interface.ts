@@ -6,4 +6,11 @@ export interface MyCareer {
     empress: string;
     empressImage: string;
     description: string;
+    progression?: MyEmpressProgresion[];
+}
+
+export interface MyEmpressProgresion {
+    promotionDate: Date;
+    position: string;
+    evaluation: string;
 }
