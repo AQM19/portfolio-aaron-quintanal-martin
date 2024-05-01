@@ -51,26 +51,35 @@ async function main() {
     });
 
     // Creación del usuario por defecto
-    // Búsqueda dle rol de admin
+    // Búsqueda del rol de admin
     const adminRole = await prisma.role.findUnique({
         where: {
             name: 'admin'
         }
     });
 
-    // Creación del usuario
-    users.forEach(async (user) => {
+    const editorRole = await prisma.role.findUnique({
+        where: {
+            name: 'editor'
+        }
+    });
 
-        // Desestructuración del objeto user
-        const { roleId, ...rest } = user;
+    // Creación del usuario Admin
+    const { roleId: roleIdUser, ...restAdmin } = users[0];
+    await prisma.user.create({
+        data: {
+            ...restAdmin,
+            roleId: adminRole!!.id
+        }
+    });
 
-        const dbUser = await prisma.user.create({
-            data: {
-                ...rest, // Asignación del scope del objeto
-                roleId: adminRole!!.id // Override del id del rol
-            }
-        });
-
+    // Creación del usuario Editor
+    const { roleId: roleIdEditor, ...restEditor } = users[1];
+    await prisma.user.create({
+        data: {
+            ...restEditor,
+            roleId: editorRole!!.id
+        }
     });
 
     // Creación de los desarrolladores

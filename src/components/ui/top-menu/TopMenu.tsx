@@ -10,7 +10,7 @@ import LocalSwitcher from '../local-switcher/local-switcher';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation'
 import { useSession } from 'next-auth/react'
-import { authMenu } from '@/config/top-menu/top-auth-items.config'
+import { authMenu, editorMenu } from '@/config/top-menu/top-auth-items.config'
 
 export const TopMenu = () => {
 
@@ -26,7 +26,8 @@ export const TopMenu = () => {
     const t = useTranslations("Menu");
 
     const { data: session } = useSession();
-    const isAdmin = (session?.user?.role === '1');
+    const isAdmin = (session?.user?.roleId === 4);
+    const isEditor = (session?.user?.roleId === 6);
 
     return (
         <nav className={`flex pt-4 sm:p-5 justify-center items-center w-full fixed left-0 right-0 z-10`}>
@@ -59,6 +60,20 @@ export const TopMenu = () => {
                     {
                         isAdmin && (
                             authMenu.map(value => (
+                                <Link
+                                    className={`${value.class} m-2 p-2 transition-all font-bold text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff] hover:border-b-4 border-[#3c0753] dark:border-[#e2b5fd]`}
+                                    href={value.href}
+                                    key={value.name}
+                                >
+                                    {value.name}
+                                </Link>
+                            ))
+                        )
+                    }
+
+                    {
+                        (isAdmin || isEditor) && (
+                            editorMenu.map((value) => (
                                 <Link
                                     className={`${value.class} m-2 p-2 transition-all font-bold text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff] hover:border-b-4 border-[#3c0753] dark:border-[#e2b5fd]`}
                                     href={value.href}

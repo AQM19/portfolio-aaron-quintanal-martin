@@ -8,7 +8,7 @@ import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
-import { authMenu } from '@/config/top-menu/top-auth-items.config';
+import { authMenu, editorMenu } from '@/config/top-menu/top-auth-items.config';
 import { logout } from '@/actions';
 
 
@@ -28,7 +28,8 @@ const Sidebar = () => {
     const t = useTranslations("Menu");
 
     const { data: session } = useSession();
-    const isAdmin = (session?.user?.role === '1');
+    const isAdmin = (session?.user?.roleId === 4);
+    const isEditor = (session?.user?.roleId === 6);
 
     return (
         <aside>
@@ -110,10 +111,26 @@ const Sidebar = () => {
                     )
                 }
 
+                {
+                    (isAdmin || isEditor) && (
+                        editorMenu.map((value, index) => (
+                            <Link
+                                key={index}
+                                href={value.href}
+                                onClick={() => closeMenu()}
+                                className={`${value.class} flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all`}
+                            >
+                                <value.icon size={30} />
+                                <span className='ml-3 text-xl'>{value.name}</span>
+                            </Link>
+                        ))
+                    )
+                }
+
                 <div className='flex-grow'></div>
 
                 {
-                    isAdmin && (
+                    (isAdmin || isEditor) && (
                         <button
                             onClick={() => logout()}
                             className='flex w-full items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all'
