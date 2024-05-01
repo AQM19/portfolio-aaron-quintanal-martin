@@ -1,5 +1,6 @@
 'use client'
 
+import { SessionProvider } from "next-auth/react";
 import { IPAddress } from '@/interfaces';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
@@ -21,10 +22,8 @@ export const Provider = ({ children }: Props) => {
     };
 
     return (
-        // <SessionProvider>
-        <>
+        <SessionProvider>
             {children}
-        </>
-        // </SessionProvider>
+        </SessionProvider>
     )
 }
