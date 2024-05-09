@@ -1,4 +1,5 @@
-export * from './github/get-github-repos/retrieve-list-user-repos.action';
+export * from './projects/project-pagination';
+export * from './projects/get-project-bt-slug';
 
 export * from './info/ip';
 

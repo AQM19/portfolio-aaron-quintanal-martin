@@ -1,21 +1,19 @@
 import { Developer } from "../developer/developer.interface";
-import { Status } from "../status/status.interface";
-import { Tag } from "../tag/tag.interface";
-import { Category } from '../category/category.interface';
 
 export interface Project {
     id: string;
     title: string;
-    description: string;
+    description: string | null;
+    shortDescription: string | null;
     logo: string;
     dateStart: Date;
-    dateEnd?: Date;
-    documentation?: string;
-    link?: string;
-    status: Status;
+    dateEnd: Date | null;
+    documentation?: Uint8Array;
+    link: string | null;
     slug: string;
-    tags: Tag[];
-    authors: Developer[];
     images: string[];
-    category: Category;
+    Status: string;
+    Category: string;
+    tags: string[];
+    developers: Developer[];
 }

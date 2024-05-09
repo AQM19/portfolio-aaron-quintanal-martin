@@ -3,13 +3,13 @@ import React from 'react'
 import clsx from 'clsx';
 import { IoCloseOutline, IoHomeSharp, IoLogOutOutline } from 'react-icons/io5';
 import { centerMenu } from '@/config/top-menu/top-menu-items.config';
-import { MaterialUISwitch } from '../switch/MaterialUiSwitch';
 import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
 import { authMenu, editorMenu } from '@/config/top-menu/top-auth-items.config';
 import { logout } from '@/actions';
+import { Switch } from '@mui/material';
 
 
 const Sidebar = () => {
@@ -143,8 +143,8 @@ const Sidebar = () => {
 
                 <div className='block sm:hidden items-center'>
 
-                    <MaterialUISwitch checked={isDarkModeEnabled} onChange={toggleDarkMode} />
-
+                    {/* <MaterialUISwitch checked={isDarkModeEnabled} onChange={toggleDarkMode} /> */}
+                    <Switch checked={isDarkModeEnabled} onChange={toggleDarkMode} className='text-red-400' />
                 </div>
 
             </nav>

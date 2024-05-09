@@ -120,31 +120,37 @@ async function main() {
                 }
             });
 
-            const descriptionsData = description.map(desc => ({
-                value: desc.value,
-                projectId: dbProject.id,
-                localesId: dbLocale!!.id
-            }));
+            const descriptionsData = description
+                .filter(desc => desc.locale === dbLocale!!.locale)
+                .map(desc => ({
+                    value: desc.value,
+                    projectId: dbProject.id,
+                    localesId: dbLocale!!.id
+                }));
 
             await prisma.projectDescription.createMany({
                 data: descriptionsData
             });
 
-            const shortDescriptionsData = shortDescription.map(shortDesc => ({
-                value: shortDesc.value,
-                projectId: dbProject.id,
-                localesId: dbLocale!!.id
-            }));
+            const shortDescriptionsData = shortDescription
+                .filter(desc => desc.locale === dbLocale!!.locale)
+                .map(shortDesc => ({
+                    value: shortDesc.value,
+                    projectId: dbProject.id,
+                    localesId: dbLocale!!.id
+                }));
 
             await prisma.shortProjectDescription.createMany({
                 data: shortDescriptionsData
             });
 
-            const documentationData = documentation.map(doc => ({
-                file: doc.file,
-                projectId: dbProject.id,
-                localesId: dbLocale!!.id
-            }));
+            const documentationData = documentation
+                .filter(desc => desc.locale === dbLocale!!.locale)
+                .map(doc => ({
+                    file: doc.file,
+                    projectId: dbProject.id,
+                    localesId: dbLocale!!.id
+                }));
 
             await prisma.projectDocumentation.createMany({
                 data: documentationData

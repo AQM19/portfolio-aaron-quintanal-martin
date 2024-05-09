@@ -1,38 +1,29 @@
-'use client'
-
-import React, { useEffect, useState } from 'react'
-
+import React from 'react'
+import { getPaginatedProjectsWithImages } from '@/actions';
+import { useLocale } from 'next-intl';
 import ProjectCard from '@/components/projects/project-card/ProjectCard';
+import { Pagination } from '@/components';
+import ProjectGrid from '@/components/projects/project-grid/ProjectGrid';
 
-import { GithubGroupedRepositoryList } from '@/interfaces/github/github-grouped-repository-list.interface';
+export const revalidate = 60;
 
-import { getRepos } from '@/actions/github/get-github-repos/retrieve-list-user-repos.action'
+interface Props {
+    searchParams: {
+        page?: string;
+    }
+}
 
-const ProjectsPage = () => {
+const ProjectsPage = async ({ searchParams }: Props) => {
 
-    const [repos, setRepos] = useState<GithubGroupedRepositoryList[]>([]);
+    const localeActive = useLocale();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const repositorios = await getRepos();
-                setRepos(repositorios);
-            } catch (error) {
-                console.error('Error al obtener repositorios:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
+    const page = searchParams.page ? +searchParams.page : 1;
+    const { projects, currentPage, totalPages } = await getPaginatedProjectsWithImages({ page, lang: localeActive });
 
     return (
-        <section className='w-full min-h-screen py-20 px-12 flex flex-wrap gap-4 items-center justify-center'>
-
-            {
-                repos.map((group, index) => (
-                    <ProjectCard project={group} index={index} />
-                ))
-            }
+        <section className='w-full min-h-screen py-20 px-12 '>
+            <ProjectGrid projects={projects} />
+            <Pagination totalPages={totalPages} />
         </section >
     )
 }

@@ -1,7 +1,6 @@
 'use client'
 
 import { titleFont } from '@/config/fonts'
-import { MaterialUISwitch } from '../switch/MaterialUiSwitch'
 import { IoMenu } from 'react-icons/io5'
 import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store'
 import { centerMenu } from '@/config/top-menu/top-menu-items.config'
@@ -11,6 +10,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation'
 import { useSession } from 'next-auth/react'
 import { authMenu, editorMenu } from '@/config/top-menu/top-auth-items.config'
+import { Switch } from '@mui/material'
 
 export const TopMenu = () => {
 
@@ -96,7 +96,8 @@ export const TopMenu = () => {
                         <IoMenu className='mx-2 w-8 h-8 rounded' />
                     </button> */}
 
-                    <MaterialUISwitch checked={isDarkModeEnabled} onChange={toggleDarkMode} />
+                    {/* <MaterialUISwitch checked={isDarkModeEnabled} onChange={toggleDarkMode} /> */}
+                    <Switch checked={isDarkModeEnabled} onChange={toggleDarkMode} className='text-red-400' />
 
                 </div>
 

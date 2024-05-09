@@ -89,6 +89,7 @@ model Developer {
     surname  String
     github   String?
     portfoil String?
+    avatar   String?
 
     createdAt DateTime              @default(now())
     updatedAt DateTime?             @default(now())
@@ -146,8 +147,8 @@ model ShortProjectDescription {
 }
 
 model ProjectDocumentation {
-    id   Int   @id @default(autoincrement())
-    file Bytes
+    id   Int    @id @default(autoincrement())
+    file String
 
     Locale    Locales? @relation(fields: [localesId], references: [id])
     localesId Int?

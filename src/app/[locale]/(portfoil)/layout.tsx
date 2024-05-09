@@ -11,7 +11,7 @@ const PortfoilLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) 
     const isDarkModeEnabled = useUIDarkMode(mode => mode.darkMode);
 
     return (
-        <main className={`${isDarkModeEnabled ? 'dark' : 'light'}`}>
+        <main className={`${isDarkModeEnabled ? 'dark' : 'light'} min-h-screen`}>
             <TopMenu />
             <SideRSS />
             <Sidebar />
