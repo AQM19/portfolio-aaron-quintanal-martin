@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Timeline from '@mui/lab/Timeline';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
@@ -16,19 +16,40 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 
-
-
 const MyCareerPage = () => {
 
   const isMobile = useMediaQuery('(max-width:600px)');
   const myCareer = myCareerConfig;
-
-  const [slideIn, setSlideIn] = useState(false);
+  const timelineRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      setSlideIn(true);
-    }, 100);
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry, index) => {
+
+        console.log('RESPONSE: ', entry, index)
+
+        if (entry.isIntersecting) {
+          if (index % 2 == 0) {
+            entry.target.classList.add("slide-in-right")
+          } else {
+            entry.target.classList.add("slide-in-left")
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+
+    if (timelineRef.current) {
+      const items = timelineRef.current.querySelectorAll('.card');
+      items.forEach(item => {
+        observer.observe(item)
+      });
+    }
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -36,7 +57,7 @@ const MyCareerPage = () => {
 
       {
         !isMobile && (
-          <Timeline position='alternate'>
+          <Timeline position='alternate' ref={timelineRef}>
 
             {/* Escondido */}
             <TimelineItem className='hidden'>
@@ -65,7 +86,7 @@ const MyCareerPage = () => {
                   </TimelineSeparator>
 
                   <TimelineContent
-                    className={`py-3 px-4 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25] ${slideIn ? (index % 2 == 0 ? 'slide-in-right' : 'slide-in-left') : ''}`}>
+                    className={`py-3 px-4 opacity-0 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25] card`}>
                     <Typography variant="h6" component="span" className='text-[#ed4709] dark:text-[#e2b5fd] text-3xl'>
                       {value.empress}
                     </Typography>
@@ -135,7 +156,7 @@ const MyCareerPage = () => {
                   </TimelineSeparator>
 
                   <TimelineContent
-                    className={`py-3 px-2 my-2 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25] ${slideIn ? 'slide-in-left' : ''}`}>
+                    className={`py-3 px-2 my-2 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25]`}>
                     <Typography variant="h6" component="span" className='text-[#ed4709] dark:text-[#e2b5fd] text-3xl'>
                       {value.empress}
                     </Typography>
