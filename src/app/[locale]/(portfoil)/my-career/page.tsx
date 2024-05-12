@@ -24,25 +24,25 @@ const MyCareerPage = () => {
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry, index) => {
+      entries.forEach(entry => {
 
-        console.log('RESPONSE: ', entry, index)
+        const elementIndex = elementNumberMap.get(entry.target as HTMLElement)!;
 
         if (entry.isIntersecting) {
-          if (index % 2 == 0) {
-            entry.target.classList.add("slide-in-right")
-          } else {
-            entry.target.classList.add("slide-in-left")
-          }
+          const classToAdd = isMobile ? "slide-in-left" : elementIndex % 2 !== 0 ? "slide-in-right" : "slide-in-left";
+          entry.target.classList.add(classToAdd);
         }
+
       });
     };
 
     const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+    const elementNumberMap = new Map<Element, number>();
 
     if (timelineRef.current) {
       const items = timelineRef.current.querySelectorAll('.card');
-      items.forEach(item => {
+      items.forEach((item, index) => {
+        elementNumberMap.set(item, index + 1);
         observer.observe(item)
       });
     }
@@ -141,6 +141,7 @@ const MyCareerPage = () => {
                 padding: 0,
               },
             }}
+            ref={timelineRef}
           >
 
             {
@@ -156,7 +157,7 @@ const MyCareerPage = () => {
                   </TimelineSeparator>
 
                   <TimelineContent
-                    className={`py-3 px-2 my-2 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25]`}>
+                    className={`py-3 px-2 my-2 opacity-0 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25] card`}>
                     <Typography variant="h6" component="span" className='text-[#ed4709] dark:text-[#e2b5fd] text-3xl'>
                       {value.empress}
                     </Typography>
