@@ -4,7 +4,7 @@ import { IoLogoAngular, IoSchool } from "react-icons/io5";
 import { SiCsharp } from "react-icons/si";
 import { GiArtificialIntelligence } from "react-icons/gi";
 
-export const myCareerConfig: MyCareer[] = [
+export const myCareerEsConfig: MyCareer[] = [
     {
         dateRange: 'Febrero 2021 - Agosto 2021',
         dotIcon: FaNodeJs,

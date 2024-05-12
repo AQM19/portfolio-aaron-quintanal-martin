@@ -11,15 +11,18 @@ import Typography from '@mui/material/Typography';
 import { FaCaretDown, FaUserNinja } from 'react-icons/fa6';
 import { useMediaQuery } from '@mui/material';
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
-import { myCareerConfig } from '@/config/my-career/my-career.config';
+import { myCareerEsConfig } from '@/config/my-career/my-career.es.config';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import { useLocale } from 'next-intl';
+import { MyCareerLangMap } from '@/config/my-career/my-career.lang.map';
 
 const MyCareerPage = () => {
 
   const isMobile = useMediaQuery('(max-width:600px)');
-  const myCareer = myCareerConfig;
+  const localeActive = useLocale();
+  const myCareer = MyCareerLangMap[localeActive];
   const timelineRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
