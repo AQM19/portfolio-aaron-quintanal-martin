@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Timeline from '@mui/lab/Timeline';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
@@ -11,24 +11,48 @@ import Typography from '@mui/material/Typography';
 import { FaCaretDown, FaUserNinja } from 'react-icons/fa6';
 import { useMediaQuery } from '@mui/material';
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
-import { myCareerConfig } from '@/config/my-career/my-career.config';
+import { myCareerEsConfig } from '@/config/my-career/my-career.es.config';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-
-
+import { useLocale } from 'next-intl';
+import { MyCareerLangMap } from '@/config/my-career/my-career.lang.map';
 
 const MyCareerPage = () => {
 
   const isMobile = useMediaQuery('(max-width:600px)');
-  const myCareer = myCareerConfig;
-
-  const [slideIn, setSlideIn] = useState(false);
+  const localeActive = useLocale();
+  const myCareer = MyCareerLangMap[localeActive];
+  const timelineRef = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      setSlideIn(true);
-    }, 100);
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+
+        const elementIndex = elementNumberMap.get(entry.target as HTMLElement)!;
+
+        if (entry.isIntersecting) {
+          const classToAdd = isMobile ? "slide-in-left" : elementIndex % 2 !== 0 ? "slide-in-right" : "slide-in-left";
+          entry.target.classList.add(classToAdd);
+        }
+
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+    const elementNumberMap = new Map<Element, number>();
+
+    if (timelineRef.current) {
+      const items = timelineRef.current.querySelectorAll('.card');
+      items.forEach((item, index) => {
+        elementNumberMap.set(item, index + 1);
+        observer.observe(item)
+      });
+    }
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -36,7 +60,7 @@ const MyCareerPage = () => {
 
       {
         !isMobile && (
-          <Timeline position='alternate'>
+          <Timeline position='alternate' ref={timelineRef}>
 
             {/* Escondido */}
             <TimelineItem className='hidden'>
@@ -65,7 +89,7 @@ const MyCareerPage = () => {
                   </TimelineSeparator>
 
                   <TimelineContent
-                    className={`py-3 px-4 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25] ${slideIn ? (index % 2 == 0 ? 'slide-in-right' : 'slide-in-left') : ''}`}>
+                    className={`py-3 px-4 opacity-0 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25] card`}>
                     <Typography variant="h6" component="span" className='text-[#ed4709] dark:text-[#e2b5fd] text-3xl'>
                       {value.empress}
                     </Typography>
@@ -120,6 +144,7 @@ const MyCareerPage = () => {
                 padding: 0,
               },
             }}
+            ref={timelineRef}
           >
 
             {
@@ -135,7 +160,7 @@ const MyCareerPage = () => {
                   </TimelineSeparator>
 
                   <TimelineContent
-                    className={`py-3 px-2 my-2 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25] ${slideIn ? 'slide-in-left' : ''}`}>
+                    className={`py-3 px-2 my-2 opacity-0 flex flex-col items-center gap-3 rounded bg-[#44100625] dark:bg-[#d2e4ff25] card`}>
                     <Typography variant="h6" component="span" className='text-[#ed4709] dark:text-[#e2b5fd] text-3xl'>
                       {value.empress}
                     </Typography>
