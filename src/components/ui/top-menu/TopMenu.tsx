@@ -11,9 +11,12 @@ import { Link } from '@/navigation'
 import { useSession } from 'next-auth/react'
 import { authMenu, editorMenu } from '@/config/top-menu/top-auth-items.config'
 import { Switch } from '@mui/material'
+import { getRoleName } from '@/actions'
+import { useEffect, useState } from 'react'
 
 export const TopMenu = () => {
 
+    const [userRole, setUserRole] = useState('');
     const openSideMenu = useUISidebarStatus(state => state.openSideMenu);
     const isDarkModeEnabled = useUIDarkMode(mode => mode.darkMode);
     const enableDarkMode = useUIDarkMode(mode => mode.enableDarkMode);
@@ -22,12 +25,28 @@ export const TopMenu = () => {
     const toggleDarkMode = () => {
         isDarkModeEnabled ? disableDarkMode() : enableDarkMode();
     }
-
     const t = useTranslations("Menu");
-
     const { data: session } = useSession();
-    const isAdmin = (session?.user?.roleId === 4);
-    const isEditor = (session?.user?.roleId === 6);
+
+    useEffect(() => {
+        const fetchUserRole = async () => {
+            try {
+                if (!session?.user.roleId) {
+                    setUserRole('user');
+                    return;
+                }
+
+                const roleName = await getRoleName(session?.user.roleId);
+                setUserRole(roleName?.role?.name || 'user');
+            } catch (error) {
+                console.error('Error fetching user role:', error);
+            }
+        };
+
+        if (session) {
+            fetchUserRole();
+        }
+    }, [session]);
 
     return (
         <nav className={`flex pt-4 sm:p-5 justify-center items-center w-full fixed left-0 right-0 z-10`}>
@@ -58,7 +77,7 @@ export const TopMenu = () => {
                     }
 
                     {
-                        isAdmin && (
+                        userRole === 'admin' && (
                             authMenu.map(value => (
                                 <Link
                                     className={`${value.class} m-2 p-2 transition-all font-bold text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff] hover:border-b-4 border-[#3c0753] dark:border-[#e2b5fd]`}
@@ -72,7 +91,7 @@ export const TopMenu = () => {
                     }
 
                     {
-                        (isAdmin || isEditor) && (
+                        (userRole === 'admin' || userRole === 'editor') && (
                             editorMenu.map((value) => (
                                 <Link
                                     className={`${value.class} m-2 p-2 transition-all font-bold text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff] hover:border-b-4 border-[#3c0753] dark:border-[#e2b5fd]`}

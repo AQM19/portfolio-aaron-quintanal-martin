@@ -1,5 +1,5 @@
 import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import clsx from 'clsx';
 import { IoCloseOutline, IoHomeSharp, IoLogOutOutline } from 'react-icons/io5';
 import { centerMenu } from '@/config/top-menu/top-menu-items.config';
@@ -8,12 +8,13 @@ import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
 import { authMenu, editorMenu } from '@/config/top-menu/top-auth-items.config';
-import { logout } from '@/actions';
+import { getRoleName, logout } from '@/actions';
 import { Switch } from '@mui/material';
 
 
 const Sidebar = () => {
 
+    const [userRole, setUserRole] = useState('');
     const isSideMenuOpen = useUISidebarStatus(state => state.isSideMenuOpen);
     const closeMenu = useUISidebarStatus(state => state.closeSideMenu);
 
@@ -26,10 +27,27 @@ const Sidebar = () => {
     }
 
     const t = useTranslations("Menu");
-
     const { data: session } = useSession();
-    const isAdmin = (session?.user?.roleId === 4);
-    const isEditor = (session?.user?.roleId === 6);
+
+    useEffect(() => {
+        const fetchUserRole = async () => {
+            try {
+                if (!session?.user.roleId) {
+                    setUserRole('user');
+                    return;
+                }
+
+                const roleName = await getRoleName(session?.user.roleId);
+                setUserRole(roleName?.role?.name || 'user');
+            } catch (error) {
+                console.error('Error fetching user role:', error);
+            }
+        };
+
+        if (session) {
+            fetchUserRole();
+        }
+    }, [session]);
 
     return (
         <aside>
@@ -93,44 +111,56 @@ const Sidebar = () => {
                 }
 
                 {/* Separator */}
-                <div className='w-full h-px bg-[#ed4709] dark:bg-[#e2b5fd] mt-10' />
 
                 {
-                    isAdmin && (
-                        authMenu.map((value, index) => (
-                            <Link
-                                key={index}
-                                href={value.href}
-                                onClick={() => closeMenu()}
-                                className={`${value.class} flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all`}
-                            >
-                                <value.icon size={30} />
-                                <span className='ml-3 text-xl'>{value.name}</span>
-                            </Link>
-                        ))
-                    )
+                    <>
+                        <div className='w-full h-px bg-[#ed4709] dark:bg-[#e2b5fd] mt-10' />
+                        {
+
+                            userRole === 'admin' && (
+                                authMenu.map((value, index) => (
+                                    <Link
+                                        key={index}
+                                        href={value.href}
+                                        onClick={() => closeMenu()}
+                                        className={`${value.class} flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all`}
+                                    >
+                                        <value.icon size={30} />
+                                        <span className='ml-3 text-xl'>{value.name}</span>
+                                    </Link>
+                                ))
+                            )
+                        }
+                    </>
                 }
 
                 {
-                    (isAdmin || isEditor) && (
-                        editorMenu.map((value, index) => (
-                            <Link
-                                key={index}
-                                href={value.href}
-                                onClick={() => closeMenu()}
-                                className={`${value.class} flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all`}
-                            >
-                                <value.icon size={30} />
-                                <span className='ml-3 text-xl'>{value.name}</span>
-                            </Link>
-                        ))
-                    )
+                    <>
+
+                        <div className='w-full h-px bg-[#ed4709] dark:bg-[#e2b5fd] mt-10' />
+                        {
+
+                            (userRole === 'admin' || userRole === 'editor') && (
+                                editorMenu.map((value, index) => (
+                                    <Link
+                                        key={index}
+                                        href={value.href}
+                                        onClick={() => closeMenu()}
+                                        className={`${value.class} flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all`}
+                                    >
+                                        <value.icon size={30} />
+                                        <span className='ml-3 text-xl'>{value.name}</span>
+                                    </Link>
+                                ))
+                            )
+                        }
+                    </>
                 }
 
                 <div className='flex-grow'></div>
 
                 {
-                    (isAdmin || isEditor) && (
+                    (userRole === 'admin' || userRole === 'editor') && (
                         <button
                             onClick={() => logout()}
                             className='flex w-full items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all'

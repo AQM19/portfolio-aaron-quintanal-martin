@@ -18,7 +18,6 @@ export const Provider = ({ children }: Props) => {
     const getUserIp = async () => {
         const ipAddress: IPAddress = (await axios.get("https://ipapi.co/json")).data;
         const { ip, network, city, region, country_name, postal, latitude, longitude, timezone, currency } = ipAddress;
-        console.log(ipAddress)
     };
 
     return (
