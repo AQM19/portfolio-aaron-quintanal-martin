@@ -1,6 +1,7 @@
 // Top menu
 export * from './top-menu/center-menu.interface';
 export * from './rrss-menu/rrss-menu.interface';
+export * from './crud-toolbar/crud-toolbar';
 
 // db interfaces
 export * from './category/category.interface';

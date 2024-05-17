@@ -1,3 +1,5 @@
+'use client'
+
 import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store';
 import React, { useEffect, useState } from 'react'
 import clsx from 'clsx';

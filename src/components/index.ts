@@ -12,3 +12,4 @@ export * from './projects/project-card/ProjectCard';
 export * from './projects/project-grid/ProjectGrid';
 export * from './projects/slideshow/ProjectSlideshow';
 export * from './projects/slideshow/ProjectMobileSlideshow';
+export * from './ui/selector/global-selector';

@@ -8,7 +8,7 @@ export interface Project {
     logo: string;
     dateStart: Date;
     dateEnd: Date | null;
-    documentation?: Uint8Array;
+    documentation?: string;
     link: string | null;
     slug: string;
     images: string[];
