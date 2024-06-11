@@ -3,13 +3,10 @@
 import { CrudToolbarComponent } from '@/components/projects/crud-toolbar/crud-toolbar.component';
 import { PROJECT_GRID_HEADERS } from '@/config/headers/project-grid.headers';
 import { CrudToolbar, Project } from '@/interfaces'
-import { redirect, useRouter } from '@/navigation';
-import { sleep } from '@/utils/sleep';
-import { LinearProgress } from '@mui/material';
-import { DataGrid, GridCallbackDetails, GridRowParams, GridSlots, MuiEvent } from '@mui/x-data-grid';
+import { useRouter } from '@/navigation';
+import { DataGrid, GridCallbackDetails, GridRowParams, MuiEvent } from '@mui/x-data-grid';
 import React, { useState } from 'react'
-import { IoMdEye } from 'react-icons/io';
-import { MdDelete, MdDeleteForever, MdModeEdit } from 'react-icons/md';
+import { MdAdd, MdDelete, MdDeleteForever, MdModeEdit } from 'react-icons/md';
 
 interface Props {
     projects: Partial<Project>[],
@@ -33,18 +30,20 @@ export const ProjectGrid = ({ projects, currentPage, totalPages, totalCount }: P
         row === project ? setProject(null) : setProject(row);
     };
 
-    const handleRead = () => {
+    const handleNewProject = () => {
+        router.replace((`/admin/project/new`))
+    }
+    const handleEdit = () => {
         if (!project) return;
 
-        const { id } = project;
-        router.replace((`manage-project/${id}`))
+        const { slug } = project;
+        router.replace((`/admin/project/${slug}`))
     }
-    const handleEdit = () => { console.log('EDIT'); }
     const handleDisable = () => { console.log('DISABLE'); }
     const handleDelete = () => { console.log('DELETE') }
 
     const crud: CrudToolbar[] = [
-        { icon: IoMdEye, size: 'large', label: 'Visualización', function: handleRead, disabled: !project },
+        { icon: MdAdd, size: 'large', label: 'Añadir', function: handleNewProject },
         { icon: MdModeEdit, size: 'large', label: 'Editar', function: handleEdit, disabled: !project },
         { icon: MdDelete, size: 'large', label: 'Inhabilitar', function: handleDisable, disabled: !project },
         { icon: MdDeleteForever, size: 'large', label: 'Borrar', function: handleDelete, disabled: !project },

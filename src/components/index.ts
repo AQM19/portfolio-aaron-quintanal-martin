@@ -13,3 +13,4 @@ export * from './projects/project-grid/ProjectGrid';
 export * from './projects/slideshow/ProjectSlideshow';
 export * from './projects/slideshow/ProjectMobileSlideshow';
 export * from './ui/selector/global-selector';
+export * from './projects/project-image/ProjectImage';

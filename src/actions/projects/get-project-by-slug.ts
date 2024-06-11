@@ -86,7 +86,7 @@ export const getProjectBySlug = async (slug: string, lang: string) => {
             tags: project.tags.map(tag => tag.tag.nemonic),
             Category: project.Category.nemonic,
             Status: project.Status.nemonic,
-            developers: project.developers
+            developers: project.developers.map(dev => dev.developer)
         }
 
     } catch (error) {

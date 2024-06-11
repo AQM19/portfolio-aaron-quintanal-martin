@@ -5,6 +5,7 @@ export const getCategories = async () => {
 
         const categories = await prisma?.category.findMany({
             select: {
+                id: true,
                 nemonic: true
             },
             where: {
@@ -15,7 +16,7 @@ export const getCategories = async () => {
         if (!categories) return null;
 
         return {
-            categories: categories.map(category => category.nemonic)
+            categories
         }
 
     } catch (error) {

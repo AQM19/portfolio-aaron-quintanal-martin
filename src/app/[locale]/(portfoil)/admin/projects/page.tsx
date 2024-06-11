@@ -1,10 +1,8 @@
 'use server'
 
 import React from 'react'
-import { getPaginatedProjectList, getRoleName } from '@/actions';
+import { getPaginatedProjectList } from '@/actions';
 import { ProjectGrid } from './ui/project-grid';
-import { auth } from '@/auth.config';
-import { redirect } from '@/navigation';
 
 interface Props {
     searchParams: {
@@ -14,11 +12,6 @@ interface Props {
 }
 
 const ManageProjectsPage = async ({ searchParams }: Props) => {
-
-    // Obtener sesión y comprobar que tenga rol administrador
-    const session = await auth();
-    const role = await getRoleName(session!.user.roleId);
-    if (role?.role?.name !== 'admin') redirect('/')
 
     const page = searchParams.page ? +searchParams.page : 1;
     const take = searchParams.take ? +searchParams.take : 10;
