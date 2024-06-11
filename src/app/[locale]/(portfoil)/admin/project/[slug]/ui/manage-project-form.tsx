@@ -3,6 +3,8 @@
 import ProjectImage from '@/components/projects/project-image/ProjectImage';
 import { Category, Project } from '@/interfaces';
 import { useRouter } from '@/navigation';
+import { Checkbox, ListItemText, MenuItem, OutlinedInput, Select, SelectChangeEvent } from '@mui/material';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
 interface Props {
@@ -30,6 +32,15 @@ interface FormInputs {
 const ManageProjectForm = ({ project, categories, tags, status }: Props) => {
 
     const router = useRouter();
+
+    const [selectedTags, setTagSelected] = React.useState<string[]>(project.tags || []);
+
+    const handleChange = (event: SelectChangeEvent<typeof selectedTags>) => {
+        const { target: { value }, } = event;
+        const selectedTagsArray = typeof value === 'string' ? value.split(',') : value;
+        setTagSelected(selectedTagsArray);
+        setValue('tags', selectedTagsArray); // Actualizamos el valor en react-hook-form
+    };
 
     const {
         handleSubmit,
@@ -62,127 +73,144 @@ const ManageProjectForm = ({ project, categories, tags, status }: Props) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='grid px-5 mb-16 grid-cols-1 sm:px-0 sm:grid-cols-3 gap-3'>
 
-                <div className="grid px-5 mb-16 grid-cols-1 sm:px-0 sm:grid-cols-2 gap-3">
+            <div className="grid px-5 mb-16 grid-cols-1 sm:px-56 sm:grid-cols-2 gap-3">
 
-                    <div className='w-full'>
+                <div className='w-full'>
 
-                        <div className='flex flex-col mb-2'>
-                            <span>Titulo</span>
-                            <input type="text" className='p-2 border rounded-md bg-gray-200' {...register('title', { required: true })} />
-                        </div>
-
-                        <div className="flex flex-col mb-2">
-                            <span>Slug</span>
-                            <input type="text" className="p-2 border rounded-md bg-gray-200" {...register('slug', { required: true })} />
-                        </div>
-
-                        <div className="flex flex-col mb-2">
-                            <span>Link</span>
-                            <input type="text" className="p-2 border rounded-md bg-gray-200" {...register('link', { required: false })} />
-                        </div>
-
-                        <div className="flex flex-col mb-2">
-                            <span>Categoría</span>
-                            <select className="p-2 border rounded-md bg-gray-200" {...register('Category', { required: true })}>
-                                <option value="" selected>[Seleccione]</option>
-                                {
-                                    categories.map(category => (
-                                        <option key={category.id} value={category.nemonic}>{category.nemonic}</option>
-                                    ))
-                                }
-                            </select>
-
-                        </div>
+                    <div className='flex flex-col mb-2'>
+                        <span>Titulo</span>
+                        <input type="text" className='p-2 border rounded-md bg-gray-200' {...register('title', { required: true })} />
                     </div>
 
-                    <div className='w-full'>
 
-                        <div className="flex flex-col mb-2">
-                            <span>Estado</span>
-                            <select className="p-2 border rounded-md bg-gray-200" {...register('Status', { required: true })}>
-                                <option value="" selected>[Seleccione]</option>
-                                {
-                                    status.map(state => (
-                                        <option key={state} value={state}>{state}</option>
-                                    ))
-                                }
-                            </select>
-                        </div>
-
-                        <div className="flex flex-col mb-2">
-                            <span>Tags</span>
-                            <input type="text" className="p-2 border rounded-md bg-gray-200" {...register('tags', { required: false })} />
-                        </div>
-
-                        <div className="flex flex-col mb-2">
-                            <span>Fecha de inicio</span>
-                            <input type="date" className="p-2 border rounded-md bg-gray-200" {...register('dateStart', { required: true })} />
-                        </div>
-
-                        <div className="flex flex-col mb-2">
-                            <span>Fecha de finalización</span>
-                            <input type="date" className="p-2 border rounded-md bg-gray-200" {...register('dateEnd', { required: false })} />
-                        </div>
-
+                    <div className="flex flex-col mb-2">
+                        <span>Link</span>
+                        <input type="text" className="p-2 border rounded-md bg-gray-200" {...register('link', { required: false })} />
                     </div>
 
-                    <div className='w-full col-span-2'>
-                        <div className="flex flex-col mb-2">
-                            <span>Resumen</span>
-                            <textarea
-                                rows={2}
-                                className="p-2 border rounded-md bg-gray-200"
-                                {...register('shortDescription', { required: true })}
-                            ></textarea>
-                        </div>
-
-                        <div className="flex flex-col mb-2">
-                            <span>Descripción</span>
-                            <textarea
-                                rows={5}
-                                className="p-2 border rounded-md bg-gray-200"
-                                {...register('description', { required: true })}
-                            ></textarea>
-                        </div>
-                    </div>
-
-                    <div className='w-full'>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-
+                    <div className="flex flex-col mb-2">
+                        <span>Estado</span>
+                        <select className="p-2 border rounded-md bg-gray-200" {...register('Status', { required: true })}>
+                            <option value="" selected>[Seleccione]</option>
                             {
-                                project.images?.map(image => (
-
-                                    <div key={image}>
-                                        <ProjectImage
-                                            src={image}
-                                            alt={project.title ?? ''}
-                                            width={300}
-                                            height={150}
-                                            className="rounded-t shadow-md"
-                                        />
-                                        <button
-                                            type="button"
-                                            // onClick={() => deleteProductImage(image.id, image.url)}
-                                            className="bg-red-500 rounded-b-xl w-full ">
-                                            Eliminar
-                                        </button>
-                                    </div>
-
+                                status.map(state => (
+                                    <option key={state} value={state}>{state}</option>
                                 ))
                             }
+                        </select>
+                    </div>
 
-                        </div>
+
+                    <div className="flex flex-col mb-2">
+                        <span>Fecha de inicio</span>
+                        <input type="date" className="p-2 border rounded-md bg-gray-200" {...register('dateStart', { required: true })} />
+                    </div>
+
+                </div>
+
+                <div className='w-full'>
+
+                    <div className="flex flex-col mb-2">
+                        <span>Slug</span>
+                        <input type="text" className="p-2 border rounded-md bg-gray-200" {...register('slug', { required: true })} />
+                    </div>
+
+                    <div className="flex flex-col mb-2">
+                        <span>Categoría</span>
+                        <select className="p-2 border rounded-md bg-gray-200" {...register('Category', { required: true })}>
+                            <option value="" selected>[Seleccione]</option>
+                            {
+                                categories.map(category => (
+                                    <option key={category.id} value={category.nemonic}>{category.nemonic}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+
+                    <div className='flex flex-col mb-2'>
+                        <span>Tags</span>
+
+                        <Select
+                            className='bg-gray-200'
+                            labelId="demo-multiple-checkbox-label"
+                            id="demo-multiple-checkbox"
+                            multiple
+                            value={selectedTags}
+                            onChange={handleChange}
+                            input={<OutlinedInput label="Tag" />}
+                            renderValue={(selected: string[]) => selected.join(', ')}
+                        >
+                            {tags.map((tag) => (
+                                <MenuItem key={tag} value={tag}>
+                                    <Checkbox checked={selectedTags.indexOf(tag) > -1} />
+                                    <ListItemText primary={tag} />
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </div>
+
+                    <div className="flex flex-col mb-2">
+                        <span>Fecha de finalización</span>
+                        <input type="date" className="p-2 border rounded-md bg-gray-200" {...register('dateEnd', { required: false })} />
+                    </div>
+
+                </div>
+
+                <div className='w-full col-span-2'>
+                    <div className="flex flex-col mb-2">
+                        <span>Resumen</span>
+                        <textarea
+                            rows={2}
+                            className="p-2 border rounded-md bg-gray-200"
+                            {...register('shortDescription', { required: true })}
+                        ></textarea>
+                    </div>
+
+                    <div className="flex flex-col mb-2">
+                        <span>Descripción</span>
+                        <textarea
+                            rows={5}
+                            className="p-2 border rounded-md bg-gray-200"
+                            {...register('description', { required: true })}
+                        ></textarea>
                     </div>
                 </div>
 
+                <div className='w-full'>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+
+                        {
+                            project.images?.map(image => (
+
+                                <div key={image}>
+                                    <ProjectImage
+                                        src={image}
+                                        alt={project.title ?? ''}
+                                        width={300}
+                                        height={150}
+                                        className="rounded-t shadow-md"
+                                    />
+                                    <button
+                                        type="button"
+                                        // onClick={() => deleteProductImage(image.id, image.url)}
+                                        className="bg-red-500 rounded-b-xl w-full ">
+                                        Eliminar
+                                    </button>
+                                </div>
+
+                            ))
+                        }
+
+                    </div>
+                </div>
             </div>
 
+            {/* 
             <button
                 className="btn-primary">
                 Guardar
-            </button>
+            </button> */}
         </form>
     )
 }
