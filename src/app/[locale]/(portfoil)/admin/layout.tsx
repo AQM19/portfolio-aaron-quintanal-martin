@@ -13,8 +13,10 @@ const PortfoilLayout = async ({ children }: Readonly<{ children: React.ReactNode
 
     // Obtener sesión y comprobar que tenga rol administrador
     const session = await auth();
-    const role = await getRoleName(session!.user.roleId);
-    if (role?.role?.name !== 'admin') redirect(Paths.INDEX)
+
+    console.log(session?.user);
+
+    if (session?.user.role !== 'admin') redirect(Paths.INDEX)
 
     return (
         <main className={`min-h-screen`}>

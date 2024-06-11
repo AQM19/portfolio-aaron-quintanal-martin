@@ -31,13 +31,12 @@ export const TopMenu = () => {
     useEffect(() => {
         const fetchUserRole = async () => {
             try {
-                if (!session?.user.roleId) {
+                if (!session?.user.role) {
                     setUserRole('user');
                     return;
                 }
 
-                const roleName = await getRoleName(session?.user.roleId);
-                setUserRole(roleName?.role?.name || 'user');
+                setUserRole(session.user.role || 'user');
             } catch (error) {
                 console.error('Error fetching user role:', error);
             }
