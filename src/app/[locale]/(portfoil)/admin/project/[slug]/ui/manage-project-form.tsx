@@ -29,8 +29,6 @@ interface FormInputs {
 
 const ManageProjectForm = ({ project, categories, tags, status }: Props) => {
 
-    console.log(project);
-
     const router = useRouter();
 
     const {
