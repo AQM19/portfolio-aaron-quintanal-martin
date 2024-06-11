@@ -4,11 +4,12 @@ import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import bcryptjs from 'bcryptjs';
 import prisma from './lib/prisma';
+import { Paths } from './interfaces/paths/paths.enum';
 
 export const authConfig: NextAuthConfig = {
     pages: {
-        signIn: '/auth/login',
-        newUser: '/auth/new-account'
+        signIn: Paths.LOGIN,
+        newUser: Paths.NEW_ACCOUNT
     },
     callbacks: {
         jwt({ token, user }) {

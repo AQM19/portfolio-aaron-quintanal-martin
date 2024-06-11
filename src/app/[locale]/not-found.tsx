@@ -1,6 +1,7 @@
 'use client'
 
 import { kanit } from '@/config/fonts';
+import { Paths } from '@/interfaces/paths/paths.enum';
 import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link'
@@ -28,7 +29,7 @@ const NotFoundPage = () => {
                 </p>
 
                 <p className='mt-5 text-[#441006] dark:text-[#d2e4ff] max-w-prose text-lg text-pretty font-semibold'>
-                    {t("go back")} <Link href={'/'} className='text-[#ed4709] dark:text-[#e2b5fd]'>{t("index")}</Link> {t("sorry")}
+                    {t("go back")} <Link href={Paths.INDEX} className='text-[#ed4709] dark:text-[#e2b5fd]'>{t("index")}</Link> {t("sorry")}
                 </p>
             </div>
         </section>

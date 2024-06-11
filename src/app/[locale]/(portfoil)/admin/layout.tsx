@@ -5,6 +5,7 @@ import { auth } from '@/auth.config';
 import { TopMenu } from '@/components';
 import SideRSS from '@/components/ui/side-rss/SideRSS';
 import Sidebar from '@/components/ui/sidebar/Sidebar';
+import { Paths } from '@/interfaces/paths/paths.enum';
 import { redirect } from '@/navigation';
 import React from 'react'
 
@@ -13,7 +14,7 @@ const PortfoilLayout = async ({ children }: Readonly<{ children: React.ReactNode
     // Obtener sesión y comprobar que tenga rol administrador
     const session = await auth();
     const role = await getRoleName(session!.user.roleId);
-    if (role?.role?.name !== 'admin') redirect('/')
+    if (role?.role?.name !== 'admin') redirect(Paths.INDEX)
 
     return (
         <main className={`min-h-screen`}>

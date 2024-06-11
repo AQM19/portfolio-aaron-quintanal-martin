@@ -6,6 +6,7 @@ import ChangingText from '../changing-text/ChangingText';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation';
 import { TbFileCv } from "react-icons/tb";
+import { Paths } from '@/interfaces/paths/paths.enum';
 
 // Obtener edad dinámicamente
 const birthDate: Date = new Date(1996, 2, 15);
@@ -49,7 +50,7 @@ const CardResume = () => {
             </p>
 
             <div className='flex flex-row gap-4'>
-                <Link href={'/contact'} >
+                <Link href={Paths.CONTACT} >
                     <button
                         className='lg:self-end mt-5 w-min px-5 py-2 rounded-md text-[#ed4709] dark:text-[#e2b5fd] font-bold border-2 border-[#ed4709] dark:border-[#e2b5fd]'>
                         {t('contact-button')}

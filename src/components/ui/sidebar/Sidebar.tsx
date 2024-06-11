@@ -12,6 +12,7 @@ import { useSession } from 'next-auth/react';
 import { authMenu, editorMenu } from '@/config/top-menu/top-auth-items.config';
 import { getRoleName, logout } from '@/actions';
 import { Switch } from '@mui/material';
+import { Paths } from '@/interfaces/paths/paths.enum';
 
 
 const Sidebar = () => {
@@ -90,7 +91,7 @@ const Sidebar = () => {
                 />
 
                 <Link
-                    href={'/'}
+                    href={Paths.INDEX}
                     onClick={() => closeMenu()}
                     className={`flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all sm:hidden`}
                 >

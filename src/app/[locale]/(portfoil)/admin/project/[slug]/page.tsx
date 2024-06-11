@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import React from 'react'
 import ManageProjectForm from './ui/manage-project-form';
 import { useLocale } from 'next-intl';
+import { Paths } from '@/interfaces/paths/paths.enum';
 
 interface Props {
   params: {
@@ -15,7 +16,7 @@ interface Props {
 const ManageProjectByIdPage = async ({ params }: Props) => {
 
   const { slug } = params;
-  if (!slug) redirect('/');
+  if (!slug) redirect(Paths.INDEX);
 
   const localeActive = useLocale();
 
@@ -27,7 +28,7 @@ const ManageProjectByIdPage = async ({ params }: Props) => {
   ])
 
   if (!project && slug !== 'new' || !categories || !tags || !status) {
-    redirect('/projects')
+    redirect(Paths.PROJECTS)
   }
 
 
