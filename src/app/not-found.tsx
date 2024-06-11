@@ -20,7 +20,7 @@ export default function NotFound() {
                     <section className='w-full h-screen flex flex-col p-5 items-center justify-evenly bg-gradient-to-l from-[#fff6ed] to-[#ffead5] dark:from-[#030637] dark:to-[#3C0753] transition-all duration-200'>
 
                         <img
-                            src="/imgs/png/404-not-found-cat.webp"
+                            src="/imgs/404-not-found-cat.webp"
                             alt="Imagen de Aarón Quintanal Martín"
                         />
 

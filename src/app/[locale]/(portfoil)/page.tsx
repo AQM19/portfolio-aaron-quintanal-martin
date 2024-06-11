@@ -8,7 +8,7 @@ export default function Home() {
 
       <img
         className='h-[350px] w-3/4 md:h-[550px] md:w-[500px] hidden md:block'
-        src="/webp/developer.webp"
+        src="/imgs/developer.webp"
         alt="Imagen de Aarón Quintanal Martín"
       />
     </section>
