@@ -50,26 +50,12 @@ async function main() {
         data: localesData
     });
 
-    // Creación del usuario por defecto
-    // Búsqueda del rol de admin
-    const adminRole = await prisma.role.findUnique({
-        where: {
-            name: 'admin'
-        }
-    });
-
-    const editorRole = await prisma.role.findUnique({
-        where: {
-            name: 'editor'
-        }
-    });
-
     // Creación del usuario Admin
     const { roleId: roleIdUser, ...restAdmin } = users[0];
     await prisma.user.create({
         data: {
             ...restAdmin,
-            roleId: adminRole!!.id
+            role: 'admin'
         }
     });
 
@@ -78,7 +64,7 @@ async function main() {
     await prisma.user.create({
         data: {
             ...restEditor,
-            roleId: editorRole!!.id
+            role: 'editor'
         }
     });
 

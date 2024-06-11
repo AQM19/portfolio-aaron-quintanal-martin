@@ -26,8 +26,8 @@ model User {
     name     String
     email    String @unique
     password String
-    rol      Role?  @relation(fields: [roleId], references: [id]) // one-to-many
-    roleId   Int?
+    rol      Role?  @relation(fields: [role], references: [name]) // one-to-many
+    role     String
 
     createdAt DateTime  @default(now())
     updatedAt DateTime? @default(now())
