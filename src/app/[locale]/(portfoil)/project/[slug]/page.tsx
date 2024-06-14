@@ -153,13 +153,13 @@ const SlugProjectPage = async ({ params }: Props) => {
                         <div className="flex items-center gap-4">
                             {
                                 project.developers.map(dev => (
-                                    <Link key={dev.developer.id} href={dev.developer.github ? dev.developer.github : '#'} target='_blank'>
+                                    <Link key={dev.id} href={dev.github ? dev.github : '#'} target='_blank'>
                                         <div className="flex items-center gap-2">
                                             <img
-                                                alt={dev.developer.name}
+                                                alt={dev.name}
                                                 className="h-8 w-8 rounded-full"
                                                 height={32}
-                                                src={dev.developer.avatar ? dev.developer.avatar : ''}
+                                                src={dev.avatar ? dev.avatar : ''}
                                                 style={{
                                                     aspectRatio: "32/32",
                                                     objectFit: "cover",
@@ -169,7 +169,7 @@ const SlugProjectPage = async ({ params }: Props) => {
                                             <div
                                                 className="text-sm font-medium text-[#441006] dark:text-[#d2e4ff]"
                                             >
-                                                {dev.developer.name} {dev.developer.surname}
+                                                {dev.name} {dev.surname}
                                             </div>
                                         </div>
                                     </Link>
