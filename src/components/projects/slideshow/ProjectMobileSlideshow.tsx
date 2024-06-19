@@ -9,9 +9,10 @@ import 'swiper/css/pagination';
 
 import './slideshow.css';
 import Image from 'next/image';
+import { ProjectImage } from '@/interfaces';
 
 interface Props {
-    images: string[];
+    images: ProjectImage[];
     title: string;
     className?: string;
 }
@@ -35,11 +36,11 @@ const ProjectMobileSlideshow = ({ images, title, className }: Props) => {
             >
                 {
                     images.map(image => (
-                        <SwiperSlide key={image}>
+                        <SwiperSlide key={image.id}>
                             <Image
                                 width={600}
                                 height={500}
-                                src={`${image}`}
+                                src={`${image.url}`}
                                 alt={title}
                                 className='object-fill'
                             />

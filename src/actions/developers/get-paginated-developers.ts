@@ -1,0 +1,51 @@
+'use server'
+
+interface PaginationOptions {
+    page?: number;
+    take?: number;
+}
+
+export const getPaginatedDevelopersList = async ({ page = 1, take = 10 }: PaginationOptions) => {
+
+    if (isNaN(Number(page))) page = 1;
+    if (page < 1) page = 1;
+    if (isNaN(Number(take))) take = 10;
+    if (take < 1) take = 10;
+
+    try {
+
+        const developers = await prisma?.developer.findMany({
+            take: take,
+            skip: (page - 1) * take,
+            select: {
+                id: true,
+                name: true,
+                surname: true,
+                github: true,
+                portfoil: true,
+                avatar: true
+            }
+        });
+
+        const totalCount = await prisma!.developer.count({});
+
+        const totalPages = Math.ceil(totalCount / take);
+
+        return {
+            currentPage: page,
+            totalPages: totalPages,
+            totalCount: totalCount,
+            developers: developers
+        }
+
+    } catch (error) {
+        return {
+            ok: false,
+            projects: [],
+            totalCount: 0,
+            totalPages: 1,
+            message: 'No se pudieron listar los desarrolladores'
+        }
+    }
+
+}

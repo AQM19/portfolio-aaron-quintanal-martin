@@ -7,6 +7,7 @@ export * from './crud-toolbar/crud-toolbar';
 export * from './category/category.interface';
 export * from './developer/developer.interface';
 export * from './projects/project.interface';
+export * from './projects/project-image';
 export * from './role/role.interface';
 export * from './status/status.interface';
 export * from './tag/tag.interface';

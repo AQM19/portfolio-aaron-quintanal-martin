@@ -12,9 +12,10 @@ import 'swiper/css/thumbs';
 
 import './slideshow.css';
 import Image from 'next/image';
+import { ProjectImage } from '@/interfaces';
 
 interface Props {
-    images: string[];
+    images: ProjectImage[];
     title: string;
     className?: string;
 }
@@ -45,11 +46,11 @@ const ProjectSlideshow = ({ images, title, className }: Props) => {
             >
                 {
                     images.map(image => (
-                        <SwiperSlide key={image}>
+                        <SwiperSlide key={image.id}>
                             <Image
                                 width={1024}
                                 height={800}
-                                src={`${image}`}
+                                src={`${image.url}`}
                                 alt={title}
                                 className='rounded-lg object-fill'
                             />
@@ -71,11 +72,11 @@ const ProjectSlideshow = ({ images, title, className }: Props) => {
             >
                 {
                     images.map(image => (
-                        <SwiperSlide key={image}>
+                        <SwiperSlide key={image.id}>
                             <Image
                                 width={300}
                                 height={300}
-                                src={`${image}`}
+                                src={`${image.url}`}
                                 alt={title}
                                 className='rounded-lg object-fill'
                             />

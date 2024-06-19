@@ -28,11 +28,7 @@ export const getProjectBySlug = async (slug: string, lang: string) => {
                         value: true
                     }
                 },
-                images: {
-                    select: {
-                        url: true
-                    }
-                },
+                images: true,
                 tags: {
                     select: {
                         tag: true
@@ -72,18 +68,19 @@ export const getProjectBySlug = async (slug: string, lang: string) => {
         if (!project) return null;
 
         return {
-            id: project.id,
-            title: project.title,
-            logo: project.logo,
-            dateStart: project.dateStart,
-            dateEnd: project.dateEnd,
-            link: project.link,
-            slug: project.slug,
-            images: project.images?.map(img => img.url),
+            ...project,
+            // id: project.id,
+            // title: project.title,
+            // logo: project.logo,
+            // dateStart: project.dateStart,
+            // dateEnd: project.dateEnd,
+            // link: project.link,
+            // slug: project.slug,
+            // images: project.images?.map(img => img.url),
             documentation: project.documentation[0]?.file,
             description: project.description[0]?.value,
             shortDescription: project.shortDescription[0]?.value,
-            tags: project.tags.map(tag => tag.tag.nemonic),
+            tags: project.tags.map(tag => tag.tag),
             Category: project.Category.nemonic,
             Status: project.Status.nemonic,
             developers: project.developers.map(dev => dev.developer)

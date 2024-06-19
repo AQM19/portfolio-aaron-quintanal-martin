@@ -1,3 +1,4 @@
+import { ProjectImage, Tag } from "..";
 import { Developer } from "../developer/developer.interface";
 
 export interface Project {
@@ -11,9 +12,9 @@ export interface Project {
     documentation?: string;
     link: string | null;
     slug: string;
-    images: string[];
+    images: ProjectImage[];
     Status: string;
     Category: string;
-    tags: string[];
+    tags: Tag[];
     developers: Developer[];
 }

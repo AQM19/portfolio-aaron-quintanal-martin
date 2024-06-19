@@ -1,5 +1,4 @@
-export type Tag =
-    'humor' |
-    'tools' |
-    'gaming' |
-    'terror'
+export interface Tag {
+    id: string;
+    nemonic: string
+}

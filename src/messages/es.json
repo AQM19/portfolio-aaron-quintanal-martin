@@ -31,6 +31,13 @@
         "body placeholder": "Inserta tu mensaje...",
         "send": "Enviar"
     },
+    "Project": {
+        "category": "Categoría",
+        "date start": "Fecha de inicio",
+        "date end": "Fecha de fin",
+        "download documentation": "Descargar documentación",
+        "view page": "Ver página"
+    },
     "Not Found": {
         "oopsie": "¡Ha habido un problema!",
         "cat problem": "Parece ser que bigotitos ha eliminado esta página",

@@ -1,7 +1,6 @@
 import React from 'react'
 import { getPaginatedProjectsWithImages } from '@/actions';
 import { useLocale } from 'next-intl';
-import ProjectCard from '@/components/projects/project-card/ProjectCard';
 import { Pagination } from '@/components';
 import ProjectGrid from '@/components/projects/project-grid/ProjectGrid';
 

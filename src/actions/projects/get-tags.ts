@@ -6,6 +6,7 @@ export const getTags = async () => {
 
         const tags = await prisma?.tag.findMany({
             select: {
+                id: true,
                 nemonic: true
             },
             where: {
@@ -16,7 +17,7 @@ export const getTags = async () => {
         if (!tags) return null;
 
         return {
-            tags: tags.map(tag => tag.nemonic)
+            tags: tags
         }
 
     } catch (error) {

@@ -9,7 +9,7 @@ interface Props {
     height: number;
 }
 
-const ProjectImage = ({ src, alt, height, width, className, style }: Props) => {
+export const ProjectImage = ({ src, alt, height, width, className, style }: Props) => {
 
     const localSrc = (src)
         ? src.startsWith('http')
