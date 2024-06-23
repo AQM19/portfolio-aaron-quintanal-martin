@@ -1,5 +1,7 @@
 'use client'
 
+import { deleteProjectBySlug } from '@/actions/projects/delete-project-by-slug';
+import { disableProjectBySlug } from '@/actions/projects/disable-project';
 import { CrudToolbarComponent } from '@/components/projects/crud-toolbar/crud-toolbar.component';
 import { PROJECT_GRID_HEADERS } from '@/config/headers/project-grid.headers';
 import { CrudToolbar, Project } from '@/interfaces'
@@ -33,19 +35,25 @@ export const ProjectGrid = ({ projects, currentPage, totalPages, totalCount }: P
     const handleNewProject = () => {
         router.replace((`/admin/project/new`))
     }
+
     const handleEdit = () => {
         if (!project) return;
 
         const { slug } = project;
         router.replace((`/admin/project/${slug}`))
     }
-    const handleDisable = () => { console.log('DISABLE'); }
-    const handleDelete = () => { console.log('DELETE') }
+
+    const handleDelete = () => {
+        if (!project) return;
+
+        const { id } = project
+        deleteProjectBySlug(id);
+        router.refresh();
+    }
 
     const crud: CrudToolbar[] = [
         { icon: MdAdd, size: 'large', label: 'Añadir', function: handleNewProject },
         { icon: MdModeEdit, size: 'large', label: 'Editar', function: handleEdit, disabled: !project },
-        { icon: MdDelete, size: 'large', label: 'Inhabilitar', function: handleDisable, disabled: !project },
         { icon: MdDeleteForever, size: 'large', label: 'Borrar', function: handleDelete, disabled: !project },
     ]
 

@@ -17,6 +17,7 @@ const ManageProjectsPage = async ({ searchParams }: Props) => {
     const take = searchParams.take ? +searchParams.take : 10;
     const { projects, currentPage, totalPages, totalCount } = await getPaginatedProjectList({ page, take });
 
+
     return (
         <section className='w-full h-auto min-h-screen px-5 py-20 md:p-20 md:pt-64 flex md:flex-col items-center'>
 

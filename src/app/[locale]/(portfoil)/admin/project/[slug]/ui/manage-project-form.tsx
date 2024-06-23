@@ -25,7 +25,7 @@ interface FormInputs {
     dateStart: string | Date;
     dateEnd?: string | Date;
     documentation?: string;
-    link: string;
+    link?: string;
     logo: string;
     slug: string;
     Status: string;
@@ -71,9 +71,9 @@ const ManageProjectForm = ({ project, categories, tags, status, developers }: Pr
             developers: [],
             dateStart: project.dateStart ? new Date(project.dateStart).toISOString().split('T')[0] : '',
             dateEnd: project.dateEnd ? new Date(project.dateEnd).toISOString().split('T')[0] : undefined,
-            description: project.description ?? '',
-            shortDescription: project.shortDescription ?? '',
-            link: project.link ?? '',
+            description: project.description ?? undefined,
+            shortDescription: project.shortDescription ?? undefined,
+            link: project.link ?? undefined,
             images: undefined
         }
     });
@@ -88,11 +88,14 @@ const ManageProjectForm = ({ project, categories, tags, status, developers }: Pr
         }
         formData.append('title', projectToSave.title);
         formData.append('slug', projectToSave.slug);
-        formData.append('link', projectToSave.link);
         formData.append('category', projectToSave.Category);
         formData.append('status', projectToSave.Status);
         formData.append('dateStart', projectToSave.dateStart.toLocaleString());
         formData.append('logo', projectToSave.logo);
+        
+        if(projectToSave.link){
+            formData.append('link', projectToSave.link);
+        }
 
         if (projectToSave.description) {
             formData.append('description', projectToSave.description!);
