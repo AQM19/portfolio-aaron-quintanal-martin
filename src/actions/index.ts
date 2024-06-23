@@ -5,6 +5,9 @@ export * from './projects/get-project-by-slug';
 export * from './projects/get-project-list-paginated';
 export * from './projects/get-status';
 export * from './projects/get-tags';
+export * from './projects/get-paginated-projects-with-translations';
+export * from './projects/get-all-locales';
+export * from './projects/get-project-translations-by-project-id';
 export * from './projects/search-project-description'
 export * from './projects/search-project-document'
 export * from './projects/search-project-short-description'
