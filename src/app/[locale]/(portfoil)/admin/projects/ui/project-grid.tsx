@@ -1,14 +1,13 @@
 'use client'
 
-import { deleteProjectBySlug } from '@/actions/projects/delete-project-by-slug';
-import { disableProjectBySlug } from '@/actions/projects/disable-project';
-import { CrudToolbarComponent } from '@/components/projects/crud-toolbar/crud-toolbar.component';
-import { PROJECT_GRID_HEADERS } from '@/config/headers/project-grid.headers';
 import { CrudToolbar, Project } from '@/interfaces'
-import { useRouter } from '@/navigation';
+import { CrudToolbarComponent } from '@/components/projects/crud-toolbar/crud-toolbar.component';
 import { DataGrid, GridCallbackDetails, GridRowParams, MuiEvent } from '@mui/x-data-grid';
+import { deleteProjectById } from '@/actions';
+import { MdAdd, MdDeleteForever, MdModeEdit } from 'react-icons/md';
+import { PROJECT_GRID_HEADERS } from '@/config/headers/project-grid.headers';
+import { useRouter } from '@/navigation';
 import React, { useState } from 'react'
-import { MdAdd, MdDelete, MdDeleteForever, MdModeEdit } from 'react-icons/md';
 
 interface Props {
     projects: Partial<Project>[],
@@ -47,7 +46,8 @@ export const ProjectGrid = ({ projects, currentPage, totalPages, totalCount }: P
         if (!project) return;
 
         const { id } = project
-        deleteProjectBySlug(id);
+        deleteProjectById(id);
+        setProject(null);
         router.refresh();
     }
 
