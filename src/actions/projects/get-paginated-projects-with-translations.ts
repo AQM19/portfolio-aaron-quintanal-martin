@@ -74,11 +74,10 @@ export const getPaginatedProjectsWithTranslations = async ({ page = 1, take = 10
         const totalPages = Math.ceil(totalCount / take);
 
         return {
-            ok: true,
-            projects: projectData,
             currentPage: page,
-            totalCount,
-            totalPages
+            totalPages: totalPages,
+            totalCount: totalCount,
+            projects: projectData
         }
 
     } catch (error) {

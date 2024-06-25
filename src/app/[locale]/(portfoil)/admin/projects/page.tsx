@@ -2,7 +2,8 @@
 
 import React from 'react'
 import { getPaginatedProjectList } from '@/actions';
-import { ProjectGrid } from './ui/project-grid';
+import { ProjectsTable } from './ui/projects-table';
+import { Pagination } from '@/components';
 
 interface Props {
     searchParams: {
@@ -17,17 +18,12 @@ const ManageProjectsPage = async ({ searchParams }: Props) => {
     const take = searchParams.take ? +searchParams.take : 10;
     const { projects, currentPage, totalPages, totalCount } = await getPaginatedProjectList({ page, take });
 
-
     return (
         <section className='w-full h-auto min-h-screen px-5 py-20 md:p-20 md:pt-64 flex md:flex-col items-center'>
 
             <div className='w-full'>
-                <ProjectGrid
-                    projects={projects}
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    totalCount={totalCount}
-                />
+                <ProjectsTable projects={projects ?? []} />
+                <Pagination totalPages={totalPages} />
             </div>
         </section>
     )

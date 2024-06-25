@@ -57,8 +57,8 @@ export const getPaginatedProjectList = async ({ page = 1, take = 10 }: Paginatio
                 dateEnd: project.dateEnd,
                 slug: project.slug,
                 description: project.shortDescription[0]?.value,
-                category: project.Category.nemonic,
-                status: project.Status.nemonic,
+                Category: project.Category.nemonic,
+                Status: project.Status.nemonic,
             }))
         };
 
