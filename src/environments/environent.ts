@@ -1,4 +1,4 @@
 export const environment = {
-    GITHUB_API: "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",
-    GITHUB_USER: "AQM19"
+    GMAIL_USER: "korbatos@gmail.com",
+    GMAIL_PASS: "hapy wevw xalo prbn"
 }

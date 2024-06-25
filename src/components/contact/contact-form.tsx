@@ -1,23 +1,15 @@
 'use client'
 
+import { Mail, sendMail } from '@/actions/mail/send-mail';
 import { useTranslations } from 'next-intl';
 import React from 'react'
 import { useForm } from 'react-hook-form';
-
-type Inputs = {
-    fullName: string;
-    empress?: string;
-    email: string;
-    phone?: string;
-    subject?: string;
-    message: string;
-};
 
 const ContactForm = () => {
 
     const t = useTranslations("Contact");
 
-    const { handleSubmit, register, formState: { isValid, errors }, reset } = useForm<Inputs>({
+    const { handleSubmit, register, formState: { isValid, errors }, reset } = useForm<Mail>({
         defaultValues: {
             email: '',
             empress: '',
@@ -28,8 +20,15 @@ const ContactForm = () => {
         }
     });
 
-    const onSubmit = (data: Inputs) => {
-        console.log({ data });
+    const onSubmit = async (data: Mail) => {
+        const { ok, message } = await sendMail(data);
+
+        if (!ok) {
+            console.log('No se pudo mandar el correo')
+            return;
+        }
+
+        reset();
     };
 
     return (
