@@ -26,6 +26,8 @@ const ProjectCard = ({ project, index }: Props) => {
                     src={`${project.images[0]}`}
                     alt={project.title}
                     className='max-h-52 w-full object-cover'
+                    width={150}
+                    height={150}
                 />
 
                 <div className='flex flex-col gap-4 p-5'>

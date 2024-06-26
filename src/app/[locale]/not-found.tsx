@@ -19,6 +19,8 @@ const NotFoundPage = () => {
             <Image
                 src="/imgs/404-not-found-cat.webp"
                 alt={t("image alt")}
+                width={150}
+                height={150}
             />
 
             <div className='text-center'>

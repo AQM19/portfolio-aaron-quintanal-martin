@@ -23,6 +23,8 @@ export default function NotFound() {
                         <Image
                             src="/imgs/404-not-found-cat.webp"
                             alt="Imagen de Aarón Quintanal Martín"
+                            width={150}
+                            height={150}
                         />
 
                         <div className='text-center'>

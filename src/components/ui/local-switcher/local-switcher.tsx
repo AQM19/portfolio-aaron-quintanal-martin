@@ -41,7 +41,12 @@ const LocalSwitcher = () => {
                                         onClick={() => handleLanguageChange(value.lang)}
                                         disabled={isPending}
                                     >
-                                        <Image src={value.source} alt={value.alt} />
+                                        <Image
+                                            src={value.source}
+                                            alt={value.alt}
+                                            width={150}
+                                            height={150}
+                                        />
                                     </button>
                                 </li>
                             ))

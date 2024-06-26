@@ -95,7 +95,14 @@ const MyCareerPage = () => {
                     </Typography>
 
                     <div className='h-60 w-full relative overflow-hidden'>
-                      <Image src={value.empressImage} loading='lazy' className='w-full h-auto absolute top-1/2 -translate-y-1/2 object-cover' alt={'Foto de la empresa'} />
+                      <Image
+                        src={value.empressImage}
+                        loading='lazy'
+                        className='w-full h-auto absolute top-1/2 -translate-y-1/2 object-cover'
+                        alt={'Foto de la empresa'}
+                        width={150}
+                        height={150}
+                      />
                     </div>
 
                     <p className='self-start text-[#441006] dark:text-[#d2e4ff] text-pretty text-justify'>
@@ -170,7 +177,14 @@ const MyCareerPage = () => {
                     </Typography>
 
                     <div className='h-60 w-full relative overflow-hidden'>
-                      <Image src={value.empressImage} loading='lazy' className='w-full h-auto absolute top-1/2 -translate-y-1/2 object-cover' alt={'Foto de la empresa'} />
+                      <Image
+                        src={value.empressImage}
+                        loading='lazy'
+                        className='w-full h-auto absolute top-1/2 -translate-y-1/2 object-cover'
+                        alt={'Foto de la empresa'}
+                        width={150}
+                        height={150}
+                      />
                     </div>
 
                     <p className='self-start text-[#441006] dark:text-[#d2e4ff] text-pretty text-justify'>

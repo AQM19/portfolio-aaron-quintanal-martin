@@ -11,6 +11,8 @@ export default function Home() {
         className='h-[350px] w-3/4 md:h-[550px] md:w-[500px] hidden md:block'
         src="/imgs/developer.webp"
         alt="Imagen de Aarón Quintanal Martín"
+        width={1920}
+        height={1080}
       />
     </section>
   );
