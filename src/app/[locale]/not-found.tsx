@@ -4,6 +4,7 @@ import { kanit } from '@/config/fonts';
 import { Paths } from '@/interfaces/paths/paths.enum';
 import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import Link from 'next/link'
 import React from 'react'
 
@@ -15,7 +16,7 @@ const NotFoundPage = () => {
     return (
         <section className={`w-full h-screen flex flex-col p-5 items-center justify-evenly bg-gradient-to-l from-[#fff6ed] to-[#ffead5] dark:from-[#030637] dark:to-[#3C0753] transition-all duration-200`}>
 
-            <img
+            <Image
                 src="/imgs/404-not-found-cat.webp"
                 alt={t("image alt")}
             />

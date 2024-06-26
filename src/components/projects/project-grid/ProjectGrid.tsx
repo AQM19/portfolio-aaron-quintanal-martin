@@ -12,7 +12,7 @@ const ProjectGrid = ({ projects }: Props) => {
         <div className='flex flex-wrap gap-4 items-center justify-center'>
             {
                 projects.map((project, index) => (
-                    <ProjectCard project={project} index={index} />
+                    <ProjectCard key={index} project={project} index={index} />
                 ))
             }
         </div>

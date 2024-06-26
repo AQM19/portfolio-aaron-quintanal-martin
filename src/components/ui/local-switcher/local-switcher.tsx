@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState, useTransition } from 'react'
 import { FaFlag } from 'react-icons/fa';
 import { localesConfig } from '../../../config/locales/locale';
+import Image from 'next/image';
 
 const LocalSwitcher = () => {
     const [isPending, startTransition] = useTransition();
@@ -33,14 +34,14 @@ const LocalSwitcher = () => {
                 <div className='absolute top-10 border-2 rounded bg-white shadow-md z-10'>
                     <ul>
                         {
-                            localesConfig.map((value) => (
-                                <li>
+                            localesConfig.map((value, index) => (
+                                <li key={index}>
                                     <button
                                         className={`py-2 px-4 w-full text-left ${localActive === value.lang ? 'bg-gray-200' : ''}`}
                                         onClick={() => handleLanguageChange(value.lang)}
                                         disabled={isPending}
                                     >
-                                        <img src={value.source} alt={value.alt} />
+                                        <Image src={value.source} alt={value.alt} />
                                     </button>
                                 </li>
                             ))

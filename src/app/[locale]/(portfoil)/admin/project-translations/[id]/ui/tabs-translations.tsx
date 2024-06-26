@@ -12,23 +12,83 @@ interface Props {
     projectTranslations: ProjectTranslation[];
 }
 
+interface FormProps {
+    translation: ProjectTranslation;
+    projectId: string;
+    locale: string;
+}
+
+const FormComponent = ({ translation, projectId, locale }: FormProps) => {
+
+    const form = useForm<ProjectTranslation>({
+        defaultValues: {
+            file: translation?.file,
+            shortDescription: translation?.shortDescription,
+            description: translation?.description,
+        }
+    });
+
+    const handleSubmit = async (data: ProjectTranslation) => {
+        const { description, file, shortDescription } = data;
+
+        if (description) {
+            await updateProjectDescription(projectId, description, locale);
+        }
+
+        if (shortDescription) {
+            await updateProjectShortDescription(projectId, shortDescription, locale);
+        }
+
+        if (file) {
+            await updateProjectDocumentation(projectId, file, locale);
+        }
+    };
+
+    return (
+        <form
+            className='flex flex-col gap-4'
+            onSubmit={form.handleSubmit(handleSubmit)}
+        >
+            <div className='flex flex-col mb-2'>
+                <span>Documentación</span>
+                <input
+                    type="text"
+                    className='p-2 border rounded-md bg-gray-200'
+                    {...form.register('file', { required: false })}
+                />
+            </div>
+
+            <div className='flex flex-col mb-2'>
+                <span>Resumen</span>
+                <textarea
+                    rows={2}
+                    className='p-2 border rounded-md bg-gray-200'
+                    {...form.register('shortDescription', { required: false })}
+                />
+            </div>
+
+            <div className='flex flex-col mb-2'>
+                <span>Descripción</span>
+                <textarea
+                    rows={5}
+                    className='p-2 border rounded-md bg-gray-200'
+                    {...form.register('description', { required: false })}
+                />
+            </div>
+
+            <button type="submit" className='p-2 bg-blue-500 text-white rounded-md'>
+                Guardar
+            </button>
+        </form>
+    );
+};
+
 const TabsTranslations = ({ projectTranslations, projectId }: Props) => {
 
     const [currentLocale, setCurrentLocale] = useState<string>(projectTranslations[0].locale);
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setCurrentLocale(newValue);
     };
-
-    const forms = projectTranslations.reduce((acc, translation) => {
-        acc[translation.locale] = useForm<ProjectTranslation>({
-            defaultValues: {
-                file: translation?.file,
-                shortDescription: translation?.shortDescription,
-                description: translation?.description,
-            }
-        });
-        return acc;
-    }, {} as { [key: string]: UseFormReturn<ProjectTranslation> });
 
     const handleSubmitForm = (locale: string) => {
         return async (data: ProjectTranslation) => {
@@ -63,46 +123,13 @@ const TabsTranslations = ({ projectTranslations, projectId }: Props) => {
             </Tabs>
             {projectTranslations.map((item, index) => (
                 <TabPanel key={index} value={item.locale}>
-                    <form
-                        className='flex flex-col gap-4'
-                        onSubmit={forms[item.locale].handleSubmit(handleSubmitForm(item.locale))}
-                    >
-                        <div className='flex flex-col mb-2'>
-                            <span>Documentación</span>
-                            <input
-                                type="text"
-                                className='p-2 border rounded-md bg-gray-200'
-                                {...forms[item.locale].register('file', { required: false })}
-                            />
-                        </div>
-
-                        <div className='flex flex-col mb-2'>
-                            <span>Resumen</span>
-                            <textarea
-                                rows={2}
-                                className='p-2 border rounded-md bg-gray-200'
-                                {...forms[item.locale].register('shortDescription', { required: false })}
-                            />
-                        </div>
-
-                        <div className='flex flex-col mb-2'>
-                            <span>Descripción</span>
-                            <textarea
-                                rows={5}
-                                className='p-2 border rounded-md bg-gray-200'
-                                {...forms[item.locale].register('description', { required: false })}
-                            />
-                        </div>
-
-                        <button type="submit" className='p-2 bg-blue-500 text-white rounded-md'>
-                            Guardar
-                        </button>
-                    </form>
+                    <FormComponent translation={item} projectId={projectId} locale={item.locale} />
                 </TabPanel>
-            ))}
+            ))
+            }
 
 
-        </TabContext>
+        </TabContext >
     )
 }
 

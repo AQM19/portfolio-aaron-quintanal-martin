@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import { MdDone } from 'react-icons/md';
 import { RxCross2 } from "react-icons/rx";
 import { Paths } from '../../../../../../interfaces/paths/paths.enum';
+import Image from 'next/image';
 
 interface Props {
     projects: ProjectWithLocales[];
@@ -29,11 +30,11 @@ const TranslationsTable = ({ projects }: Props) => {
                     </th>
 
                     <th scope="col" className="px-6 py-4">
-                        <img src='/imgs/es.flag.svg' />
+                        <Image src='/imgs/es.flag.svg' alt={'Bandera de españa'} />
                     </th>
 
                     <th scope="col" className="px-6 py-4">
-                        <img src='/imgs/en.flag.svg' />
+                        <Image src='/imgs/en.flag.svg' alt={'Bandera de inglaterra'} />
                     </th>
 
                 </tr>

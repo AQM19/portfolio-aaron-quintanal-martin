@@ -7,6 +7,7 @@ import { Project } from "@/interfaces"
 import { Link } from "@/navigation"
 import { Button } from "@mui/material"
 import { useTranslations } from "next-intl"
+import Image from "next/image"
 import { FiDownload } from "react-icons/fi"
 import { IoIosLink } from "react-icons/io"
 import { IoCalendarOutline } from "react-icons/io5"
@@ -134,7 +135,7 @@ const ProjectView = ({ project }: Props) => {
                                 project.developers.map(dev => (
                                     <Link key={dev.id} href={dev.github ? dev.github : '#'} target='_blank'>
                                         <div className="flex items-center gap-2">
-                                            <img
+                                            <Image
                                                 alt={dev.name}
                                                 className="h-8 w-8 rounded-full"
                                                 height={32}

@@ -4,6 +4,7 @@ import { IoMdShare } from 'react-icons/io';
 
 import { GridProject, Project } from '@/interfaces';
 import { Link } from '@/navigation';
+import Image from 'next/image';
 
 interface Props {
     project: GridProject;
@@ -21,7 +22,7 @@ const ProjectCard = ({ project, index }: Props) => {
                 className='min-w-full sm:min-w-[520px] sm:min-h-[450px] max-w-lg bg-neutral-50 dark:bg-[#3C0753] rounded-lg flex flex-col gap-4 transition-all hover:scale-110 duration-200 shadow-lg shadow-[#441006] dark:shadow-[#e2b5fd] overflow-hidden cursor-pointer'
             >
 
-                <img
+                <Image
                     src={`${project.images[0]}`}
                     alt={project.title}
                     className='max-h-52 w-full object-cover'

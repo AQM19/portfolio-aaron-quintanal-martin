@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Timeline from '@mui/lab/Timeline';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
@@ -11,12 +11,12 @@ import Typography from '@mui/material/Typography';
 import { FaCaretDown, FaUserNinja } from 'react-icons/fa6';
 import { useMediaQuery } from '@mui/material';
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
-import { myCareerEsConfig } from '@/config/my-career/my-career.es.config';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import { useLocale } from 'next-intl';
 import { MyCareerLangMap } from '@/config/my-career/my-career.lang.map';
+import Image from 'next/image';
 
 const MyCareerPage = () => {
 
@@ -53,7 +53,7 @@ const MyCareerPage = () => {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <section className='w-full h-auto lg:h-auto lg:min-h-screen py-20 md:p-20'>
@@ -95,7 +95,7 @@ const MyCareerPage = () => {
                     </Typography>
 
                     <div className='h-60 w-full relative overflow-hidden'>
-                      <img src={value.empressImage} loading='lazy' className='w-full h-auto absolute top-1/2 -translate-y-1/2 object-cover' />
+                      <Image src={value.empressImage} loading='lazy' className='w-full h-auto absolute top-1/2 -translate-y-1/2 object-cover' alt={'Foto de la empresa'} />
                     </div>
 
                     <p className='self-start text-[#441006] dark:text-[#d2e4ff] text-pretty text-justify'>
@@ -170,7 +170,7 @@ const MyCareerPage = () => {
                     </Typography>
 
                     <div className='h-60 w-full relative overflow-hidden'>
-                      <img src={value.empressImage} loading='lazy' className='w-full h-auto absolute top-1/2 -translate-y-1/2 object-cover' />
+                      <Image src={value.empressImage} loading='lazy' className='w-full h-auto absolute top-1/2 -translate-y-1/2 object-cover' alt={'Foto de la empresa'} />
                     </div>
 
                     <p className='self-start text-[#441006] dark:text-[#d2e4ff] text-pretty text-justify'>

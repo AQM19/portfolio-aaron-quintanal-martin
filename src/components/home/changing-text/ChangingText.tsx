@@ -32,7 +32,7 @@ const ChangingText = () => {
         }, isDeleting ? 50 : 200);
 
         return () => clearTimeout(timeoutId);
-    }, [currentText, isDeleting, textIndex]);
+    }, [currentText, isDeleting, textIndex, localeActive]);
 
     return (
         <h2

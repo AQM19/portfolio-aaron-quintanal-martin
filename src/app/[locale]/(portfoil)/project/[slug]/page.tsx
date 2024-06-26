@@ -14,20 +14,20 @@ interface Props {
     }
 }
 
-export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
-    const slug = params.slug
-    const localeActive = useLocale();
-    const project = await getProjectBySlug(slug, localeActive);
-    return {
-        title: project?.title ?? 'Producto no encontrado',
-        description: project?.shortDescription ?? '',
-        openGraph: {
-            title: project?.title ?? 'Producto no encontrado',
-            description: project?.description ?? '',
-            images: [`/products/${project?.images[1]}`],
-        }
-    }
-}
+// export async function GenerateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+//     const slug = params.slug
+//     const localeActive = useLocale();
+//     const project = await getProjectBySlug(slug, localeActive);
+//     return {
+//         title: project?.title ?? 'Producto no encontrado',
+//         description: project?.shortDescription ?? '',
+//         openGraph: {
+//             title: project?.title ?? 'Producto no encontrado',
+//             description: project?.description ?? '',
+//             images: [`/products/${project?.images[1]}`],
+//         }
+//     }
+// }
 
 const SlugProjectPage = async ({ params }: Props) => {
 
