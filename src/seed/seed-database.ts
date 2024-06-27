@@ -81,9 +81,9 @@ async function main() {
         }
     });
 
-    const categoryPersonal = await prisma.category.findUnique({
+    const categoryAcademic = await prisma.category.findUnique({
         where: {
-            nemonic: 'personal'
+            nemonic: 'academic'
         }
     });
 
@@ -94,7 +94,7 @@ async function main() {
         const dbProject = await prisma.project.create({
             data: {
                 ...rest,
-                categoryId: categoryPersonal!!.id,
+                categoryId: categoryAcademic!!.id,
                 statusId: statusFinished!!.id
             }
         });
