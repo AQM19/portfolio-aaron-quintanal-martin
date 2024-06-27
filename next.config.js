@@ -21,6 +21,26 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'avatars.githubusercontent.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.indole.es'
+            },
+            {
+                protocol: 'https',
+                hostname: 'upload.wikimedia.org'
+            },
+            {
+                protocol: 'https',
+                hostname: 'img.youtube.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'static.smartgridsinfo.es'
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.lavanguardia.com'
             }
         ]
     }
