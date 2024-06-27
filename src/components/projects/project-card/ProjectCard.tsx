@@ -1,10 +1,7 @@
-import React from 'react'
-
-import { IoMdShare } from 'react-icons/io';
-
-import { GridProject, Project } from '@/interfaces';
+import { GridProject } from '@/interfaces';
 import { Link } from '@/navigation';
 import Image from 'next/image';
+import React from 'react'
 
 interface Props {
     project: GridProject;
@@ -41,21 +38,6 @@ const ProjectCard = ({ project, index }: Props) => {
                         {project.shortDescription}
                     </p>
 
-                </div>
-
-                <div className='flex-grow'></div>
-
-                <div className='hidden px-5 pb-5 md:flex flex-row flex-wrap gap-4 items-center justify-center md:justify-start'>
-                    <button
-                        className='hidden md:block w-auto px-5 py-2 rounded-md text-[#ed4709] dark:text-[#e2b5fd] font-bold border-2 border-[#ed4709] dark:border-[#e2b5fd]'>
-                        Saber mas
-                    </button>
-
-                    <div className='hidden md:block flex-grow'></div>
-
-                    <button>
-                        <IoMdShare size={30} className='text-[#ed4709] dark:text-[#e2b5fd]' />
-                    </button>
                 </div>
 
             </article>

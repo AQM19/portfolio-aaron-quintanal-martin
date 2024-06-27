@@ -5,8 +5,9 @@ import ProjectSlideshow from "@/components/projects/slideshow/ProjectSlideshow"
 import { ubuntu } from "@/config/fonts"
 import { Project } from "@/interfaces"
 import { Link } from "@/navigation"
+import { getLocaleFormattedDate } from "@/utils/date-format"
 import { Button } from "@mui/material"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import Image from "next/image"
 import { FiDownload } from "react-icons/fi"
 import { IoIosLink } from "react-icons/io"
@@ -19,6 +20,7 @@ interface Props {
 const ProjectView = ({ project }: Props) => {
 
     const t = useTranslations("Project");
+    const locale = useLocale();
 
     return (
         <>
@@ -53,7 +55,7 @@ const ProjectView = ({ project }: Props) => {
                                         {t('category')}
                                     </div>
                                     <div className="rounded-full bg-neutral-900 text-[#fff6ed] dark:bg-[#d2e4ff] dark:text-[#030637] px-3 py-1 text-xs font-medium" >
-                                        {"Académico"}
+                                        {t(project.Category)}
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +73,7 @@ const ProjectView = ({ project }: Props) => {
                                     {t('date start')}:
                                 </div>
                                 <span className='text-[#441006] dark:text-[#d2e4ff]'>
-                                    {project.dateStart.toLocaleDateString()}
+                                    {getLocaleFormattedDate(project.dateStart, locale)}
                                 </span>
                             </div>
 
@@ -81,7 +83,7 @@ const ProjectView = ({ project }: Props) => {
                                     {t('date end')}:
                                 </div>
                                 <span className='text-[#441006] dark:text-[#d2e4ff]'>
-                                    {project.dateEnd ? project.dateEnd.toLocaleDateString() : 'Actualidad'}
+                                    {project.dateEnd ? getLocaleFormattedDate(project.dateEnd, locale) : 'Actualidad'}
                                 </span>
                             </div>
                         </div>
@@ -124,7 +126,7 @@ const ProjectView = ({ project }: Props) => {
                             {
                                 project.tags.map((tag, index) => (
                                     <div key={index} className="rounded-full bg-[#441006] text-[#fff6ed] dark:bg-[#d2e4ff] dark:text-[#030637] px-3 py-1 text-xs font-medium" >
-                                        {tag.nemonic}
+                                        {t(tag.nemonic)}
                                     </div>
                                 ))
                             }
