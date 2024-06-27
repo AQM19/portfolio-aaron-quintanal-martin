@@ -116,21 +116,28 @@ const Sidebar = () => {
 
                 {
                     <>
-                        <div className='w-full h-px bg-[#ed4709] dark:bg-[#e2b5fd] mt-10' />
                         {
 
                             userRole === 'admin' && (
-                                authMenu.map((value, index) => (
-                                    <Link
-                                        key={index}
-                                        href={value.href}
-                                        onClick={() => closeMenu()}
-                                        className={`${value.class} flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all`}
-                                    >
-                                        <value.icon size={30} />
-                                        <span className='ml-3 text-xl'>{value.name}</span>
-                                    </Link>
-                                ))
+                                <>
+                                    <div className='w-full h-px bg-[#ed4709] dark:bg-[#e2b5fd] mt-10' />
+                                    {
+                                        authMenu.map((value, index) => (
+                                            <Link
+                                                key={index}
+                                                href={value.href}
+                                                onClick={() => closeMenu()}
+                                                className={`${value.class} flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all`}
+                                            >
+                                                <value.icon size={30} />
+                                                <span className='ml-3 text-xl'>{value.name}</span>
+                                            </Link>
+                                        ))
+                                    }
+
+                                </>
+
+
                             )
                         }
                     </>
@@ -139,21 +146,26 @@ const Sidebar = () => {
                 {
                     <>
 
-                        <div className='w-full h-px bg-[#ed4709] dark:bg-[#e2b5fd] mt-10' />
                         {
 
                             (userRole === 'admin' || userRole === 'editor') && (
-                                editorMenu.map((value, index) => (
-                                    <Link
-                                        key={index}
-                                        href={value.href}
-                                        onClick={() => closeMenu()}
-                                        className={`${value.class} flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all`}
-                                    >
-                                        <value.icon size={30} />
-                                        <span className='ml-3 text-xl'>{value.name}</span>
-                                    </Link>
-                                ))
+                                <>
+
+                                    <div className='w-full h-px bg-[#ed4709] dark:bg-[#e2b5fd] mt-10' />
+
+                                    {editorMenu.map((value, index) => (
+                                        <Link
+                                            key={index}
+                                            href={value.href}
+                                            onClick={() => closeMenu()}
+                                            className={`${value.class} flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all`}
+                                        >
+                                            <value.icon size={30} />
+                                            <span className='ml-3 text-xl'>{value.name}</span>
+                                        </Link>
+                                    ))}
+
+                                </>
                             )
                         }
                     </>
