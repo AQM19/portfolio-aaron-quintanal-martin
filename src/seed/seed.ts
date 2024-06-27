@@ -91,7 +91,7 @@ export const initialData: SeedData = {
             roleId: 0
         }
     ],
-    categories: ['personal', 'freelance', 'private', 'employee'],
+    categories: ['personal', 'freelance', 'private', 'employee', 'academic'],
     status: ['investigation', 'planification', 'designing', 'developping', 'deploying', 'manteinance', 'finished'],
     roles: ['admin', 'user', 'editor'],
     tags: ['Web Development', 'UI/UX Design', 'Branding', 'Front-end Development', 'Back-end Development', 'Full-stack Development', 'Mobile Development',
