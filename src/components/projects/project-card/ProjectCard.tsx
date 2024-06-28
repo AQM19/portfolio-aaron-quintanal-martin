@@ -12,11 +12,13 @@ const ProjectCard = ({ project, index }: Props) => {
 
     const { slug } = project;
 
+    console.log(project);
+
     return (
         <Link href={`/project/${slug}`} >
             <article
                 key={index}
-                className='min-w-full sm:min-w-[520px] sm:min-h-[450px] max-w-lg bg-neutral-50 dark:bg-[#3C0753] rounded-lg flex flex-col gap-4 transition-all hover:scale-105 duration-200 shadow-lg shadow-[#441006] dark:shadow-[#e2b5fd] overflow-hidden cursor-pointer'
+                className='min-w-full sm:w-[540px] sm:h-[500px] max-w-lg bg-neutral-50 dark:bg-[#3C0753] rounded-lg flex flex-col gap-4 transition-all hover:scale-105 duration-200 shadow-lg shadow-[#441006] dark:shadow-[#e2b5fd] overflow-hidden cursor-pointer'
             >
 
                 <Image

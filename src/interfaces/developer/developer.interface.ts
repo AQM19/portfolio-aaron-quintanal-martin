@@ -1,4 +1,5 @@
 export interface Developer {
+    username: string;
     id: string;
     name: string;
     surname: string;

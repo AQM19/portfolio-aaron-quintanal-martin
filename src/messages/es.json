@@ -111,7 +111,8 @@
         "Healthcare Technology (HealthTech)": "Tecnología de la Salud (HealthTech)",
         "Financial Technology (FinTech)": "Tecnología Financiera (FinTech)",
         "Travel Technology (TravelTech)": "Tecnología de Viajes (TravelTech)",
-        "Entertainment Technology (EntertainmentTech)": "Tecnología del Entretenimiento (EntertainmentTech)"
+        "Entertainment Technology (EntertainmentTech)": "Tecnología del Entretenimiento (EntertainmentTech)",
+        "AI (Artificial Intelligence)": "IA (Inteligencia artificial)"
     },
     "Not Found": {
         "oopsie": "¡Ha habido un problema!",

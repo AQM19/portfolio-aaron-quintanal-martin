@@ -6,12 +6,13 @@ import { ubuntu } from "@/config/fonts"
 import { Project } from "@/interfaces"
 import { Link } from "@/navigation"
 import { getLocaleFormattedDate } from "@/utils/date-format"
-import { Button } from "@mui/material"
+import { Avatar, AvatarGroup, Button } from "@mui/material"
 import { useLocale, useTranslations } from "next-intl"
 import Image from "next/image"
 import { FiDownload } from "react-icons/fi"
 import { IoIosLink } from "react-icons/io"
 import { IoCalendarOutline } from "react-icons/io5"
+import { Developer } from '../../../../../../interfaces/developer/developer.interface';
 
 interface Props {
     project: Project
@@ -134,10 +135,10 @@ const ProjectView = ({ project }: Props) => {
 
                         <div className="flex items-center gap-4">
                             {
-                                project.developers.map(dev => (
+                                project.developers.length === 1 && project.developers.map(dev => (
                                     <Link key={dev.id} href={dev.github ? dev.github : '#'} target='_blank'>
                                         <div className="flex items-center gap-2">
-                                            <Image
+                                            {/* <Image
                                                 alt={dev.name}
                                                 className="h-8 w-8 rounded-full"
                                                 height={32}
@@ -147,7 +148,8 @@ const ProjectView = ({ project }: Props) => {
                                                     objectFit: "cover",
                                                 }}
                                                 width={32}
-                                            />
+                                            /> */}
+                                            <Avatar alt={dev.username} src={dev.avatar!} />
                                             <div
                                                 className="text-sm font-medium text-[#441006] dark:text-[#d2e4ff]"
                                             >
@@ -156,6 +158,15 @@ const ProjectView = ({ project }: Props) => {
                                         </div>
                                     </Link>
                                 ))
+                            }
+                            {
+                                project.developers.length > 1 && (
+                                    <AvatarGroup max={4}>
+                                        {project.developers.map(dev => (
+                                            <Avatar key={dev.id} alt={dev.username} src={dev.avatar!} />
+                                        ))}
+                                    </AvatarGroup>
+                                )
                             }
                         </div>
 

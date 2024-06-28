@@ -85,6 +85,7 @@ model Category {
 
 model Developer {
     id       String  @id @default(uuid())
+    username String  @unique
     name     String
     surname  String
     github   String?

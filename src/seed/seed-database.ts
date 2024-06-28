@@ -4,8 +4,8 @@ import { initialData } from './seed';
 async function main() {
 
     // eliminación de todos los datos
-    await prisma.role.deleteMany();
     await prisma.user.deleteMany();
+    await prisma.role.deleteMany();
     await prisma.tagsOnProjects.deleteMany();
     await prisma.developersOnProject.deleteMany();
     await prisma.projectImage.deleteMany();
@@ -89,7 +89,7 @@ async function main() {
 
     projects.forEach(async (project) => {
 
-        const { categoryId, statusId, images, tags, description, shortDescription, documentation, ...rest } = project;
+        const { categoryId, statusId, images, tags, description, shortDescription, documentation, developers, ...rest } = project;
 
         const dbProject = await prisma.project.create({
             data: {
@@ -170,7 +170,7 @@ async function main() {
         developers.forEach(async (dev) => {
             const dbDev = await prisma.developer.findFirst({
                 where: {
-                    name: dev.name
+                    username: dev
                 }
             });
 
