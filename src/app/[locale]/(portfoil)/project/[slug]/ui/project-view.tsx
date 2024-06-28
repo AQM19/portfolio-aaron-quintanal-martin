@@ -97,7 +97,7 @@ const ProjectView = ({ project }: Props) => {
                                         href={project.documentation}
                                         target='_blank'
                                     >
-                                        <Button className='rounded-md bg-neutral-900 text-neutral-50 dark:bg-neutral-50 dark:text-neutral-900'>
+                                        <Button className='rounded-md bg-neutral-900 text-neutral-50 dark:bg-neutral-50 dark:text-neutral-900 hover:bg-neutral-900'>
                                             <FiDownload className="mr-2 h-4 w-4" />
                                             {t('download documentation')}
                                         </Button>
@@ -112,7 +112,7 @@ const ProjectView = ({ project }: Props) => {
                                         href={project.link}
                                         target='_blank'
                                     >
-                                        <Button className='rounded-md bg-neutral-900 text-neutral-50 dark:bg-neutral-50 dark:text-neutral-900'>
+                                        <Button className='rounded-md bg-neutral-900 text-neutral-50 dark:bg-neutral-50 dark:text-neutral-900 hover:bg-neutral-900'>
                                             <IoIosLink className="mr-2 h-4 w-4" />
                                             {t('view page')}
                                         </Button>

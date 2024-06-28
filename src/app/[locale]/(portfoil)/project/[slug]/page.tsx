@@ -25,7 +25,7 @@ const SlugProjectPage = async ({ params }: Props) => {
     }
 
     return (
-        <section className={`${kanit.className} w-full h-auto lg:h-screen py-12 md:py-14 lg:py-20 px-8 lg:px-12`}>
+        <section className={`${kanit.className} w-full h-auto min-h-screen py-12 md:py-14 lg:py-20 px-8 lg:px-12`}>
             <ProjectView project={project} />
         </section>
     )

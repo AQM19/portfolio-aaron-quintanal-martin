@@ -100,8 +100,8 @@ const MyCareerPage = () => {
                         loading='lazy'
                         className='w-full h-auto absolute top-1/2 -translate-y-1/2 object-cover'
                         alt={'Foto de la empresa'}
-                        width={150}
-                        height={150}
+                        width={1920}
+                        height={1080}
                       />
                     </div>
 
