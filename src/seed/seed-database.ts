@@ -4,8 +4,6 @@ import { initialData } from './seed';
 async function main() {
 
     // eliminación de todos los datos
-    await prisma.user.deleteMany();
-    await prisma.role.deleteMany();
     await prisma.tagsOnProjects.deleteMany();
     await prisma.developersOnProject.deleteMany();
     await prisma.projectImage.deleteMany();
@@ -13,11 +11,14 @@ async function main() {
     await prisma.shortProjectDescription.deleteMany();
     await prisma.projectDocumentation.deleteMany();
     await prisma.locales.deleteMany();
-    await prisma.developer.deleteMany();
+    await prisma.user.deleteMany();
+    await prisma.role.deleteMany();
     await prisma.project.deleteMany();
+    await prisma.developer.deleteMany();
     await prisma.category.deleteMany();
     await prisma.tag.deleteMany();
     await prisma.status.deleteMany();
+    
 
     // desestructuración de initialData
     const { roles, users, status, tags, categories, developers, projects, locales } = initialData;

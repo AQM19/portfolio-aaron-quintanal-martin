@@ -66,6 +66,22 @@ CREATE TABLE "public"."Category" (
 );
 
 -- CreateTable
+CREATE TABLE "public"."Developer" (
+    "id" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "surname" TEXT NOT NULL,
+    "github" TEXT,
+    "portfoil" TEXT,
+    "avatar" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "isDeleted" BOOLEAN NOT NULL DEFAULT false,
+
+    CONSTRAINT "Developer_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "public"."Locales" (
     "id" SERIAL NOT NULL,
     "locale" TEXT NOT NULL,
@@ -153,6 +169,9 @@ CREATE UNIQUE INDEX "Tag_nemonic_key" ON "public"."Tag"("nemonic");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Category_nemonic_key" ON "public"."Category"("nemonic");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Developer_username_key" ON "public"."Developer"("username");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Locales_locale_key" ON "public"."Locales"("locale");
