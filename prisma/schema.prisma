@@ -6,7 +6,7 @@ generator client {
 datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
-    schemas  = ["public", "security", "projects", "configuration"]
+    schemas  = ["public"]
 }
 
 model Role {
@@ -18,7 +18,7 @@ model Role {
     updatedAt DateTime? @default(now())
     isDeleted Boolean   @default(false)
 
-    @@schema("security")
+    @@schema("public")
 }
 
 model User {
@@ -33,7 +33,7 @@ model User {
     updatedAt DateTime? @default(now())
     isDeleted Boolean   @default(false)
 
-    @@schema("security")
+    @@schema("public")
 }
 
 model Status {
@@ -45,7 +45,7 @@ model Status {
     updatedAt DateTime? @default(now())
     isDeleted Boolean   @default(false)
 
-    @@schema("configuration")
+    @@schema("public")
 }
 
 model Tag {
@@ -57,7 +57,7 @@ model Tag {
     updatedAt DateTime? @default(now())
     isDeleted Boolean   @default(false)
 
-    @@schema("projects")
+    @@schema("public")
 }
 
 model TagsOnProjects {
@@ -68,7 +68,7 @@ model TagsOnProjects {
     assignedAt DateTime @default(now())
 
     @@id([projectId, tagId])
-    @@schema("projects")
+    @@schema("public")
 }
 
 model Category {
@@ -80,7 +80,7 @@ model Category {
     updatedAt DateTime? @default(now())
     isDeleted Boolean   @default(false)
 
-    @@schema("projects")
+    @@schema("public")
 }
 
 model Developer {
@@ -108,7 +108,7 @@ model Locales {
     ShortProjectDescription ShortProjectDescription[]
     ProjectDocumentation    ProjectDocumentation[]
 
-    @@schema("configuration")
+    @@schema("public")
 }
 
 model ProjectImage {
@@ -118,7 +118,7 @@ model ProjectImage {
     Project   Project? @relation(fields: [projectId], references: [id])
     projectId String?
 
-    @@schema("projects")
+    @@schema("public")
 }
 
 model ProjectDescription {
@@ -131,7 +131,7 @@ model ProjectDescription {
     Project   Project? @relation(fields: [projectId], references: [id])
     projectId String?
 
-    @@schema("projects")
+    @@schema("public")
 }
 
 model ShortProjectDescription {
@@ -144,7 +144,7 @@ model ShortProjectDescription {
     Project   Project? @relation(fields: [projectId], references: [id])
     projectId String?
 
-    @@schema("projects")
+    @@schema("public")
 }
 
 model ProjectDocumentation {
@@ -157,7 +157,7 @@ model ProjectDocumentation {
     Project   Project? @relation(fields: [projectId], references: [id])
     projectId String?
 
-    @@schema("projects")
+    @@schema("public")
 }
 
 model DevelopersOnProject {
@@ -169,7 +169,7 @@ model DevelopersOnProject {
     assignedAt DateTime @default(now())
 
     @@id([projectId, developerId])
-    @@schema("projects")
+    @@schema("public")
 }
 
 model Project {
@@ -195,5 +195,5 @@ model Project {
     isDeleted  Boolean               @default(false)
     developers DevelopersOnProject[]
 
-    @@schema("projects")
+    @@schema("public")
 }
