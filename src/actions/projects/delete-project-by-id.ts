@@ -1,5 +1,7 @@
 'use server'
 
+import prisma from "@/lib/prisma";
+
 export const deleteProjectById = async (id: string) => {
     try {
 
@@ -10,7 +12,7 @@ export const deleteProjectById = async (id: string) => {
         deleteTagsOnProjectsByProjectId(id);
         deleteDevelopersOnProjectByProjectId(id);
 
-        await prisma?.project.delete({
+        await prisma.project.delete({
             where: { id: id }
         })
 
@@ -22,7 +24,7 @@ export const deleteProjectById = async (id: string) => {
 const deleteProjectDescriptionsByProjectId = async (id: string) => {
     try {
 
-        await prisma?.projectDescription.deleteMany({
+        await prisma.projectDescription.deleteMany({
             where: { projectId: id }
         });
 
@@ -34,7 +36,7 @@ const deleteProjectDescriptionsByProjectId = async (id: string) => {
 const deleteProjectDocumentationsByProjectId = async (id: string) => {
     try {
 
-        await prisma?.projectDocumentation.deleteMany({
+        await prisma.projectDocumentation.deleteMany({
             where: { projectId: id }
         });
 
@@ -46,7 +48,7 @@ const deleteProjectDocumentationsByProjectId = async (id: string) => {
 const deleteProjectImagesByProjectId = async (id: string) => {
     try {
 
-        await prisma?.projectImage.deleteMany({
+        await prisma.projectImage.deleteMany({
             where: { projectId: id }
         });
 
@@ -58,7 +60,7 @@ const deleteProjectImagesByProjectId = async (id: string) => {
 const deleteShortProjectDescriptionsByProjectId = async (id: string) => {
     try {
 
-        await prisma?.shortProjectDescription.deleteMany({
+        await prisma.shortProjectDescription.deleteMany({
             where: { projectId: id }
         });
 
@@ -70,7 +72,7 @@ const deleteShortProjectDescriptionsByProjectId = async (id: string) => {
 const deleteTagsOnProjectsByProjectId = async (id: string) => {
     try {
 
-        await prisma?.tagsOnProjects.deleteMany({
+        await prisma.tagsOnProjects.deleteMany({
             where: { projectId: id }
         });
 
@@ -82,7 +84,7 @@ const deleteTagsOnProjectsByProjectId = async (id: string) => {
 const deleteDevelopersOnProjectByProjectId = async (id: string) => {
     try {
 
-        await prisma?.developersOnProject.deleteMany({
+        await prisma.developersOnProject.deleteMany({
             where: { projectId: id }
         });
 

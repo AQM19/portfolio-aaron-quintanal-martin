@@ -2,6 +2,7 @@
 
 import { searchLocale } from "..";
 import { searchProjectDescription } from "./search-project-description";
+import prisma from "@/lib/prisma";
 
 export const updateProjectDescription = async (projectId: string, description: string, locale: string = 'es') => {
 
@@ -14,7 +15,7 @@ export const updateProjectDescription = async (projectId: string, description: s
     if (!searchedProjectDescription) return null;
 
     try {
-        await prisma?.projectDescription.update({
+        await prisma.projectDescription.update({
             where: { id: searchedProjectDescription.id },
             data: {
                 ...searchedProjectDescription,

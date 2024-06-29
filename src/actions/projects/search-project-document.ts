@@ -1,11 +1,12 @@
 'use server'
 
 import { Locales } from "@prisma/client";
+import prisma from "@/lib/prisma";
 
 export const searchProjectDocumentation = async (projectId: string, locale: Locales) => {
     try {
 
-        const prismaProjectDocumentation = await prisma?.projectDocumentation.findFirstOrThrow({
+        const prismaProjectDocumentation = await prisma.projectDocumentation.findFirstOrThrow({
             where: { localesId: locale.id, projectId: projectId }
         });
 

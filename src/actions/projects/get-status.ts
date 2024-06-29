@@ -1,9 +1,11 @@
 'use server'
 
+import prisma from "@/lib/prisma";
+
 export const getStatus = async () => {
     try {
 
-        const status = await prisma?.status.findMany({
+        const status = await prisma.status.findMany({
             select: {
                 nemonic: true
             },

@@ -1,9 +1,11 @@
 'use server'
 
+import prisma from "@/lib/prisma";
+
 export const getCategories = async () => {
     try {
 
-        const categories = await prisma?.category.findMany({
+        const categories = await prisma.category.findMany({
             select: {
                 id: true,
                 nemonic: true

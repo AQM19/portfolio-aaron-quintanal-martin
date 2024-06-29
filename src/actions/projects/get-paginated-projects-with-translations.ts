@@ -1,6 +1,7 @@
 'use server'
 
 import { getAllLocales } from '..';
+import prisma from "@/lib/prisma";
 
 interface PaginationOptions {
     page?: number;
@@ -24,7 +25,7 @@ export const getPaginatedProjectsWithTranslations = async ({ page = 1, take = 10
 
         const locales = await getAllLocales();        
 
-        const projects = await prisma?.project.findMany({
+        const projects = await prisma.project.findMany({
             take: take,
             skip: (page - 1) * take,
             include: {

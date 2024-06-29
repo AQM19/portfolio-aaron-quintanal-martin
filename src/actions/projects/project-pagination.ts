@@ -1,5 +1,7 @@
 'use server'
 
+import prisma from "@/lib/prisma";
+
 interface PaginationOptions {
     page?: number;
     take?: number;
@@ -19,7 +21,7 @@ export const getPaginatedProjectsWithImages = async ({
 
     try {
 
-        const projects = await prisma!.project.findMany({
+        const projects = await prisma.project.findMany({
             take: take,
             skip: (page - 1) * take,
             include: {

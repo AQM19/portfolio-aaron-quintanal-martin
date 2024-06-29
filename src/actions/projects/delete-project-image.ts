@@ -3,6 +3,7 @@
 import { Paths } from '@/interfaces/paths/paths.enum';
 import { v2 as cloudinary } from 'cloudinary';
 import { revalidatePath } from 'next/cache';
+import prisma from "@/lib/prisma";
 cloudinary.config(process.env.CLOUDINARY_URL ?? '');
 
 export const deleteProjectImage = async (imageId: number, imageUrl: string) => {
@@ -20,7 +21,7 @@ export const deleteProjectImage = async (imageId: number, imageUrl: string) => {
     try {
 
         await cloudinary.uploader.destroy(imageName);
-        const deletedImage = await prisma?.projectImage.delete({
+        const deletedImage = await prisma.projectImage.delete({
             where: {
                 id: imageId
             },

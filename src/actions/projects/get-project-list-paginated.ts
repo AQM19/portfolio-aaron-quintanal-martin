@@ -1,5 +1,7 @@
 'use server'
 
+import prisma from "@/lib/prisma";
+
 interface PaginationOptions {
     page?: number;
     take?: number;
@@ -14,7 +16,7 @@ export const getPaginatedProjectList = async ({ page = 1, take = 10 }: Paginatio
 
     try {
 
-        const projects = await prisma!.project.findMany({
+        const projects = await prisma.project.findMany({
             take: take,
             skip: (page - 1) * take,
             include: {
@@ -42,7 +44,7 @@ export const getPaginatedProjectList = async ({ page = 1, take = 10 }: Paginatio
             }
         });
 
-        const totalCount = await prisma!.project.count({});
+        const totalCount = await prisma.project.count({});
 
         const totalPages = Math.ceil(totalCount / take);
 

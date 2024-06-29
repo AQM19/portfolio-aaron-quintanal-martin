@@ -1,6 +1,7 @@
 'use server'
 
 import { getAllLocales } from "..";
+import prisma from "@/lib/prisma";
 
 export interface ProjectTranslation {
     locale: string;
@@ -45,7 +46,7 @@ const getProjectDescriptions = async (projectId: string) => {
 
     try {
 
-        return await prisma?.projectDescription.findMany({
+        return await prisma.projectDescription.findMany({
             where: { projectId: projectId },
             select: {
                 Locale: {
@@ -68,7 +69,7 @@ const getProjectShortDescription = async (projectId: string) => {
 
     try {
 
-        return await prisma?.shortProjectDescription.findMany({
+        return await prisma.shortProjectDescription.findMany({
             where: { projectId: projectId },
             select: {
                 Locale: {
@@ -91,7 +92,7 @@ const getProjectDocumentation = async (projectId: string) => {
 
     try {
 
-        return await prisma?.projectDocumentation.findMany({
+        return await prisma.projectDocumentation.findMany({
             where: { projectId: projectId },
             select: {
                 Locale: {

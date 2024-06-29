@@ -1,9 +1,11 @@
 'use server'
 
+import prisma from "@/lib/prisma";
+
 export const searchLocale = async (locale: string = 'es') => {
 
     try {
-        const prismaLocale = await prisma?.locales.findUnique({
+        const prismaLocale = await prisma.locales.findUnique({
             where: { locale: locale },
             select: {
                 id: true,

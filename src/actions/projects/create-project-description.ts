@@ -1,6 +1,7 @@
 'use server'
 
 import { searchLocale } from "..";
+import prisma from "@/lib/prisma";
 
 export const createProjectDescription = async (projectId: string, description: string, locale: string = 'es') => {
 
@@ -9,7 +10,7 @@ export const createProjectDescription = async (projectId: string, description: s
     if (!searchedLocale) return null;
 
     try {
-        await prisma?.projectDescription.create({
+        await prisma.projectDescription.create({
             data: {
                 localesId: searchedLocale.id,
                 projectId: projectId,

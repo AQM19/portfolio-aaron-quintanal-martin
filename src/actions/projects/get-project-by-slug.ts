@@ -1,10 +1,12 @@
 'use server'
 
+import prisma from "@/lib/prisma";
+
 export const getProjectBySlug = async (slug: string, lang: string) => {
 
     try {
 
-        const project = await prisma?.project.findFirst({
+        const project = await prisma.project.findFirst({
             include: {
                 description: {
                     take: 1,

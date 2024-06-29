@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { Project } from "@prisma/client";
 import { Paths } from "@/interfaces/paths/paths.enum";
 import { createProjectDescription, createProjectDocumentation, createProjectShortDescription, searchTags, updateProjectDescription, updateProjectDocumentation, updateProjectShortDescription, uploadImages } from "..";
-
+import prisma from "@/lib/prisma";
 
 const projectSchema = z.object({
     id: z.string().uuid().optional().nullable(),
@@ -72,7 +72,7 @@ export const createUpdateProject = async (formData: FormData) => {
 
     try {
 
-        const statusId = await prisma?.status.findUnique({
+        const statusId = await prisma.status.findUnique({
             where: { nemonic: rest.status }
         });
 
@@ -80,7 +80,7 @@ export const createUpdateProject = async (formData: FormData) => {
             throw new Error('Status not found');
         }
 
-        const categoryId = await prisma?.category.findUnique({
+        const categoryId = await prisma.category.findUnique({
             where: { nemonic: rest.category }
         });
 
@@ -88,7 +88,7 @@ export const createUpdateProject = async (formData: FormData) => {
             throw new Error('Category not found');
         }
 
-        const prismaTx = await prisma?.$transaction(async (tx) => {
+        const prismaTx = await prisma.$transaction(async (tx) => {
 
             let prismaProject: Project | undefined
 
@@ -112,7 +112,7 @@ export const createUpdateProject = async (formData: FormData) => {
                         updateData.dateEnd = new Date(rest.dateEnd);
                     }
 
-                    prismaProject = await prisma?.project.update({
+                    prismaProject = await prisma.project.update({
                         where: { id },
                         data: updateData
                     });
@@ -153,7 +153,7 @@ export const createUpdateProject = async (formData: FormData) => {
                 }
 
                 // Crear
-                prismaProject = await prisma?.project.create({
+                prismaProject = await prisma.project.create({
                     data: createData
                 });
 
@@ -179,7 +179,7 @@ export const createUpdateProject = async (formData: FormData) => {
 
                 const tags: string[] = formData.getAll('deleteTags').map(item => item.toString());
 
-                await prisma?.tagsOnProjects.deleteMany({
+                await prisma.tagsOnProjects.deleteMany({
                     where: {
                         projectId: prismaProject?.id,
                         tagId: {
@@ -194,7 +194,7 @@ export const createUpdateProject = async (formData: FormData) => {
 
                 const tags: string[] = formData.getAll('createTags').map(item => item.toString());
 
-                await prisma?.tagsOnProjects.createMany({
+                await prisma.tagsOnProjects.createMany({
                     data: tags.map(tagId => ({
                         tagId: tagId,
                         projectId: prismaProject!.id
@@ -207,7 +207,7 @@ export const createUpdateProject = async (formData: FormData) => {
 
                 const devs: string[] = formData.getAll('deleteDevelopers').map(item => item.toString());
 
-                await prisma?.developersOnProject.deleteMany({
+                await prisma.developersOnProject.deleteMany({
                     where: {
                         projectId: prismaProject?.id,
                         developerId: {
@@ -222,7 +222,7 @@ export const createUpdateProject = async (formData: FormData) => {
 
                 const devs: string[] = formData.getAll('createDevs').map(item => item.toString());
 
-                await prisma?.developersOnProject.createMany({
+                await prisma.developersOnProject.createMany({
                     data: devs.map(devId => ({
                         developerId: devId,
                         projectId: prismaProject!.id
@@ -241,7 +241,7 @@ export const createUpdateProject = async (formData: FormData) => {
                     throw new Error('No se pudieron cargar las imagenes, rolling-back');
                 }
 
-                await prisma?.projectImage.createMany({
+                await prisma.projectImage.createMany({
                     data: images.map(image => ({
                         url: image!,
                         projectId: prismaProject!.id

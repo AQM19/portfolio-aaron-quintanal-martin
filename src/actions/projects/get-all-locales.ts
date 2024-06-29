@@ -1,10 +1,12 @@
 'use server'
 
+import prisma from "@/lib/prisma";
+
 export const getAllLocales = async () => {
 
     try {
 
-        const locales = await prisma?.locales.findMany({
+        const locales = await prisma.locales.findMany({
             select: { id: true, locale: true }
         });
 

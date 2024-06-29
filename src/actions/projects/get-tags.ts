@@ -1,10 +1,12 @@
 'use server'
 
+import prisma from "@/lib/prisma";
+
 export const getTags = async () => {
 
     try {
 
-        const tags = await prisma?.tag.findMany({
+        const tags = await prisma.tag.findMany({
             select: {
                 id: true,
                 nemonic: true
