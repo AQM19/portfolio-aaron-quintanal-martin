@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { inter } from "@/config/fonts";
 import { Provider } from '../../components/providers/Provider';
+import { Analytics } from "@vercel/analytics/react"
 
 import "./globals.css";
 import { NextIntlClientProvider, useMessages } from "next-intl";
@@ -20,6 +21,7 @@ export default function RootLayout({ children, params: { locale } }: Readonly<{ 
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <Provider>
                         {children}
+                        <Analytics />
                     </Provider>
                 </NextIntlClientProvider>
             </body>
