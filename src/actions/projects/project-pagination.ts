@@ -70,6 +70,10 @@ export const getPaginatedProjectsWithImages = async ({
         };
 
     } catch (error) {
-        throw new Error("No se pudieron cargar los proyectos");
+        return {
+            currentPage: page,
+            totalPages: 1,
+            projects: []
+        }
     }
 }
