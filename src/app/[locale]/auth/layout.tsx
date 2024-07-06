@@ -10,13 +10,13 @@ const PortfoilLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) 
     const isDarkModeEnabled = useUIDarkMode(mode => mode.darkMode);
 
     return (
-        <main className={`${isDarkModeEnabled ? 'dark' : 'light'}`}>
+        <body className={`${isDarkModeEnabled ? 'dark' : 'light'}`}>
             <TopMenu />
             <Sidebar />
-            <div className='bg-gradient-to-l from-[#fff6ed] to-[#ffead5] dark:from-[#030637] dark:to-[#3C0753] transition-all duration-200'>
+            <main className='bg-gradient-to-l from-[#fff6ed] to-[#ffead5] dark:from-[#030637] dark:to-[#3C0753] transition-all duration-200'>
                 {children}
-            </div>
-        </main>
+            </main>
+        </body>
     )
 }
 

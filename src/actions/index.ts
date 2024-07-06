@@ -27,8 +27,6 @@ export * from './projects/delete-project-by-id';
 export * from './developers/get-paginated-developers';
 export * from './developers/get-all-developers';
 
-export * from './info/ip';
-
 export * from './auth/login';
 export * from './auth/logout';
 export * from './auth/get-role';
