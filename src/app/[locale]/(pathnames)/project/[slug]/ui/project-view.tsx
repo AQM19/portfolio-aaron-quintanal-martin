@@ -1,22 +1,29 @@
 'use client'
 
+import { Avatar, AvatarGroup, Button } from "@mui/material"
+import { FiDownload } from "react-icons/fi"
+import { generateProjectMetadata } from "@/utils"
+import { getLocaleFormattedDate } from "@/utils/date-format"
+import { IoCalendarOutline } from "react-icons/io5"
+import { IoIosLink } from "react-icons/io"
+import { Link } from "@/navigation"
+import { Metadata, ResolvingMetadata } from "next"
+import { Project } from "@/interfaces"
+import { ubuntu } from "@/config/fonts/fonts"
+import { useLocale, useTranslations } from "next-intl"
 import ProjectMobileSlideshow from "@/components/projects/slideshow/ProjectMobileSlideshow"
 import ProjectSlideshow from "@/components/projects/slideshow/ProjectSlideshow"
-import { Project } from "@/interfaces"
-import { Link } from "@/navigation"
-import { getLocaleFormattedDate } from "@/utils/date-format"
-import { Avatar, AvatarGroup, Button } from "@mui/material"
-import { useLocale, useTranslations } from "next-intl"
-import Image from "next/image"
-import { FiDownload } from "react-icons/fi"
-import { IoIosLink } from "react-icons/io"
-import { IoCalendarOutline } from "react-icons/io5"
-import { Developer } from '../../../../../../interfaces/developer/developer.interface';
-import { ubuntu } from "@/config/fonts/fonts"
 
 interface Props {
     project: Project
 }
+
+export async function generateMetadata({ project }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+    const t = useTranslations("Project");
+    const locale = useLocale();
+    return generateProjectMetadata(project, locale, t);
+}
+
 
 const ProjectView = ({ project }: Props) => {
 
