@@ -5,7 +5,7 @@ import { Paths } from '@/config';
 import { redirect } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import ManageProjectForm from './ui/manage-project-form';
-import React from 'react'
+import React, { use } from 'react'
 
 interface Props {
   params: {
@@ -13,20 +13,20 @@ interface Props {
   }
 }
 
-const ManageProjectByIdPage = async ({ params }: Props) => {
+const ManageProjectByIdPage = ({ params }: Props) => {
 
   const { slug } = params;
   if (!slug) redirect(Paths.INDEX);
 
   const localeActive = useLocale();
 
-  const [project, categories, tags, status, developers] = await Promise.all([
+  const [project, categories, tags, status, developers] = use(Promise.all([
     getProjectBySlug(slug, localeActive),
     getCategories(),
     getTags(),
     getStatus(),
     getAllDevelopers()
-  ])
+  ]))
 
   if (!project && slug !== 'new' || !categories || !tags || !status || !developers) {
     redirect(Paths.PROJECTS)

@@ -5,14 +5,14 @@ import { Paths } from '@/config';
 import { redirect } from '@/navigation';
 import { TopMenu } from '@/components';
 import Footer from '@/components/ui/footer/Footer';
-import React from 'react'
+import React, { use } from 'react'
 import Sidebar from '@/components/ui/sidebar/Sidebar';
 import SideRSS from '@/components/ui/side-rss/SideRSS';
 
-const PortfoilLayout = async ({ children }: Readonly<{ children: React.ReactNode; }>) => {
+const PortfoilLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) => {
 
     // Obtener sesión y comprobar que tenga rol administrador
-    const session = await auth();
+    const session = use(auth());
 
     if (session?.user.role !== 'admin') redirect(Paths.INDEX)
 

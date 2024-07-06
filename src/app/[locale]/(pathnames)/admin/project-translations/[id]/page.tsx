@@ -2,6 +2,7 @@ import { getProjectTranslationsByProjectId } from '@/actions';
 import { redirect } from 'next/navigation';
 import TabsTranslations from './ui/tabs-translations';
 import { Paths } from '@/config';
+import { use } from 'react';
 
 interface Props {
     params: {
@@ -9,12 +10,12 @@ interface Props {
     }
 }
 
-const ManageProjectTranslationsByProjectIdPage = async ({ params }: Props) => {
+const ManageProjectTranslationsByProjectIdPage = ({ params }: Props) => {
 
     const { id } = params;
     if (!id) redirect(Paths.INDEX);
 
-    const projectTranslations = await getProjectTranslationsByProjectId(id);
+    const projectTranslations = use(getProjectTranslationsByProjectId(id));
 
     if (!projectTranslations) {
         redirect(Paths.PROJECTS)

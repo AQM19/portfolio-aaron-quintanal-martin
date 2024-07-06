@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use } from 'react'
 import { getPaginatedProjectsWithImages } from '@/actions';
 import { useLocale } from 'next-intl';
 import { Pagination } from '@/components';
@@ -12,12 +12,12 @@ interface Props {
     }
 }
 
-const ProjectsPage = async ({ searchParams }: Props) => {
+const ProjectsPage = ({ searchParams }: Props) => {
 
     const localeActive = useLocale();
 
     const page = searchParams.page ? +searchParams.page : 1;
-    const { projects, currentPage, totalPages } = await getPaginatedProjectsWithImages({ page, lang: localeActive });
+    const { projects, currentPage, totalPages } = use(getPaginatedProjectsWithImages({ page, lang: localeActive }));
 
     return (
         <section className='w-full min-h-screen py-20 px-12 '>

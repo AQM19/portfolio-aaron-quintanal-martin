@@ -3,7 +3,7 @@ export const revalidate = 604800;
 import { getProjectBySlug } from '@/actions';
 import { useLocale } from 'next-intl';
 import { notFound } from 'next/navigation';
-import React, { } from 'react'
+import React, { use } from 'react'
 import ProjectView from './ui/project-view';
 import { kanit } from '@/config/fonts/fonts';
 
@@ -13,11 +13,11 @@ interface Props {
     }
 }
 
-const SlugProjectPage = async ({ params }: Props) => {
+const SlugProjectPage = ({ params }: Props) => {
 
     const localeActive = useLocale();
     const { slug } = params;
-    const project = await getProjectBySlug(slug, localeActive);
+    const project = use(getProjectBySlug(slug, localeActive));
 
     if (!project) {
         notFound();

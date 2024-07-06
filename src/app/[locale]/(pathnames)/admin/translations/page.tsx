@@ -1,6 +1,6 @@
 import { getPaginatedProjectsWithTranslations } from '@/actions';
 import { Pagination } from '@/components/ui/pagination/Pagination';
-import React from 'react'
+import React, { use } from 'react'
 import TranslationsTable from './ui/translations-table';
 
 
@@ -11,11 +11,11 @@ interface Props {
     }
 }
 
-const ProjectTranslationsSelectorPage = async ({ searchParams }: Props) => {
+const ProjectTranslationsSelectorPage = ({ searchParams }: Props) => {
 
     const page = searchParams.page ? +searchParams.page : 1;
     const take = searchParams.take ? +searchParams.take : 10;
-    const { projects, currentPage, totalPages } = await getPaginatedProjectsWithTranslations({ page, take });
+    const { projects, currentPage, totalPages } = use(getPaginatedProjectsWithTranslations({ page, take }));
 
     const handleOnClick = () => {
         console.log('HOLA')

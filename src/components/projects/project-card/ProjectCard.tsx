@@ -12,8 +12,6 @@ const ProjectCard = ({ project, index }: Props) => {
 
     const { slug } = project;
 
-    console.log(project);
-
     return (
         <Link href={`/project/${slug}`} >
             <article
