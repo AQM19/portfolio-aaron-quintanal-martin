@@ -1,4 +1,4 @@
-import { Paths } from "@/interfaces/paths/paths.enum";
+import { Paths } from "@/config";
 import { CenterMenu } from "@/interfaces/top-menu/center-menu.interface";
 import { FaProjectDiagram } from "react-icons/fa";
 import { IoMdContact } from "react-icons/io";

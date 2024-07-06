@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react';
 import { authMenu, editorMenu } from '@/config/top-menu/top-auth-items.config';
 import { getRoleName, logout } from '@/actions';
 import { Switch } from '@mui/material';
-import { Paths } from '@/interfaces/paths/paths.enum';
+import { Paths } from '@/config';
 
 
 const Sidebar = () => {

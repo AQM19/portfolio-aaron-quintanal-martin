@@ -1,6 +1,6 @@
 'use client'
 
-import { kanit } from "@/config/fonts";
+import { kanit } from "@/config/fonts/fonts";
 import { ThingIAm, thinsIAm } from "@/config/things-i-am/things-i-am.config";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";

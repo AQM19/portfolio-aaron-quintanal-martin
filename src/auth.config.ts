@@ -4,7 +4,7 @@ import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import bcryptjs from 'bcryptjs';
 import prisma from './lib/prisma';
-import { Paths } from './interfaces/paths/paths.enum';
+import { Paths } from './config';
 
 export const authConfig: NextAuthConfig = {
     pages: {

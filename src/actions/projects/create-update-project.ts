@@ -3,9 +3,9 @@
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { Project } from "@prisma/client";
-import { Paths } from "@/interfaces/paths/paths.enum";
 import { createProjectDescription, createProjectDocumentation, createProjectShortDescription, searchTags, updateProjectDescription, updateProjectDocumentation, updateProjectShortDescription, uploadImages } from "..";
 import prisma from "@/lib/prisma";
+import { Paths } from "@/config";
 
 const projectSchema = z.object({
     id: z.string().uuid().optional().nullable(),

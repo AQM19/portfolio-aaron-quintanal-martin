@@ -1,12 +1,12 @@
 'use client'
 
-import { kanit } from '@/config/fonts'
 import { Button, Typography } from '@mui/material'
 import ChangingText from '../changing-text/ChangingText';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation';
 import { TbFileCv } from "react-icons/tb";
-import { Paths } from '@/interfaces/paths/paths.enum';
+import { kanit } from '@/config/fonts/fonts';
+import { Paths } from '@/config';
 
 // Obtener edad dinámicamente
 const birthDate: Date = new Date(1996, 2, 15);

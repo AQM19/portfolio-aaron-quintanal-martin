@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect } from "react";
-import { useFormState, useFormStatus } from "react-dom";
-
 import { authenticate } from "@/actions";
 import { IoInformationOutline } from "react-icons/io5";
+import { Paths } from "@/config";
+import { useEffect } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 import clsx from "clsx";
-import { Paths } from "@/interfaces/paths/paths.enum";
 
 export const LoginForm = () => {
 

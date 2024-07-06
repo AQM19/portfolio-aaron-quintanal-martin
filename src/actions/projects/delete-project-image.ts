@@ -1,9 +1,9 @@
 'use server'
 
-import { Paths } from '@/interfaces/paths/paths.enum';
 import { v2 as cloudinary } from 'cloudinary';
 import { revalidatePath } from 'next/cache';
 import prisma from "@/lib/prisma";
+import { Paths } from '@/config';
 cloudinary.config(process.env.CLOUDINARY_URL ?? '');
 
 export const deleteProjectImage = async (imageId: number, imageUrl: string) => {

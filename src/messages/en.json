@@ -13,6 +13,14 @@
         "news": "News",
         "my career": "My career"
     },
+    "Footer": {
+        "index": "Home",
+        "projects": "Projects",
+        "career": "My career",
+        "contact": "Contact",
+        "follow me": "Follow me",
+        "all rights reserved": "All rights reserved."
+    },
     "Contact": {
         "title": "Let's Talk About Your Project!",
         "description": "Let's turn your ideas into tangible results together. As a freelancer, I know what it takes to work hard to achieve your goals. No tricks or empty promises, just commitment and dedication to help you achieve your objectives.",
@@ -120,6 +128,9 @@
         "go back": "So, you need to go back",
         "index": "to the beginning.",
         "sorry": "Sorry for the inconvenience.",
-        "image alt": "Image of Aarón Quintanal Martín"
+        "image alt": "Image of Aarón Quintanal Martín",
+        "title": "Page Not Found",
+        "body": "It looks like the page you are looking for doesn't exist.",
+        "button": "Go back to Home"
     }
 }

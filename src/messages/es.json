@@ -13,6 +13,14 @@
         "news": "Noticias",
         "my career": "Mi carrera"
     },
+    "Footer": {
+        "index": "Inicio",
+        "projects": "Proyectos",
+        "career": "Mi carrera",
+        "contact": "Contacto",
+        "follow me": "Sígueme en redes sociales",
+        "all rights reserved": "Todos los derechos reservados."
+    },
     "Contact": {
         "title": "¡Hablemos de tu proyecto!",
         "description": "Transformemos tus ideas en resultados tangibles juntos. Como profesional independiente, sé lo que significa trabajar duro para alcanzar tus metas. Sin trucos ni promesas vacías, solo compromiso y dedicación para ayudarte a lograr tus objetivos.",
@@ -120,6 +128,9 @@
         "go back": "Por tanto tienes que volver",
         "index": "al inicio.",
         "sorry": "Disculpa las molestias.",
-        "image alt": "Imagen de Aarón Quintanal Martín"
+        "image alt": "Imagen de Aarón Quintanal Martín",
+        "title": "No se encontró la página",
+        "body": "Parece que la página no se ha encontrado",
+        "button": "Vuelve al inicio"
     }
 }

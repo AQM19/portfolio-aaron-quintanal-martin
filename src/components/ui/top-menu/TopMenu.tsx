@@ -1,18 +1,19 @@
 'use client'
 
-import { titleFont } from '@/config/fonts'
-import { IoMenu } from 'react-icons/io5'
-import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store'
-import { centerMenu } from '@/config/top-menu/top-menu-items.config'
-import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store'
-import LocalSwitcher from '../local-switcher/local-switcher';
-import { useTranslations } from 'next-intl';
-import { Link } from '@/navigation'
-import { useSession } from 'next-auth/react'
 import { authMenu, editorMenu } from '@/config/top-menu/top-auth-items.config'
+import { centerMenu } from '@/config/top-menu/top-menu-items.config'
+import { IoMenu } from 'react-icons/io5'
+import { kanit } from '@/config/fonts/fonts'
+import { Link } from '@/navigation'
+import { Paths } from '@/config'
 import { Switch } from '@mui/material'
-import { getRoleName } from '@/actions'
 import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl';
+import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store'
+import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store'
+import AQMIcon from '@/components/icons/AQMIcon';
+import LocalSwitcher from '../local-switcher/local-switcher';
 
 export const TopMenu = () => {
 
@@ -53,12 +54,20 @@ export const TopMenu = () => {
             <div className='flex justify-between items-center align-middle w-4/5'>
 
                 {/* Logo */}
-                <div className='hidden sm:block'>
-                    <Link
-                        href="/">
-                        <span className={`${titleFont.className} antialiased font-bold text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff]`}>XIX</span>
-                    </Link>
-                </div>
+                <Link
+                    className='flex flex-row gap-6 items-center cursor-pointer'
+                    href={Paths.INDEX}
+                >
+
+                    <AQMIcon />
+
+                    <h1
+                        className={`${kanit.className} text-lg sm:text-2xl font-normal text-[#ed4709] dark:text-[#e2b5fd]`}
+                    >
+                        Aarón Quintanal Martín
+                    </h1>
+
+                </Link>
 
                 {/* Center Menu */}
                 <div className='hidden sm:block'>
