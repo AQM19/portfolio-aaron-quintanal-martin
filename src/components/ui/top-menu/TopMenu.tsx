@@ -30,7 +30,7 @@ export const TopMenu = () => {
     const { data: session } = useSession();
 
     useEffect(() => {
-        const fetchUserRole = async () => {
+        const fetchUserRole = () => {
             try {
                 if (!session?.user.role) {
                     setUserRole('user');
@@ -49,7 +49,7 @@ export const TopMenu = () => {
     }, [session]);
 
     return (
-        <nav className={`flex pt-4 sm:p-5 justify-center items-center w-full fixed left-0 right-0 z-10`}>
+        <nav className={`flex pt-4 sm:p-5 justify-center items-center w-full fixed left-0 right-0 z-10 backdrop-filter backdrop-blur-sm`}>
 
             <div className='flex justify-between items-center align-middle w-4/5'>
 
@@ -131,7 +131,7 @@ export const TopMenu = () => {
 
             </div>
 
-            <button onClick={() => openSideMenu()}>
+            <button onClick={() => openSideMenu()} className='block sm:hidden'>
                 <IoMenu className='mx-2 w-8 h-8 rounded text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff]'></IoMenu>
             </button>
         </nav>
