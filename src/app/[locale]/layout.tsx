@@ -3,6 +3,7 @@ import { host } from "@/config";
 import { inter } from "@/config/fonts/fonts";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { Provider } from '../../components/providers/Provider';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from "next";
 
 import "./globals.css";
@@ -89,6 +90,7 @@ export default function RootLayout({ children, params: { locale } }: Readonly<{ 
                     <Provider>
                         {children}
                         <Analytics />
+                        <SpeedInsights />
                     </Provider>
                 </NextIntlClientProvider>
             </body>

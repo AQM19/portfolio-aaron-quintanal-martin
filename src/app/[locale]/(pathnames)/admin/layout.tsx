@@ -1,13 +1,7 @@
-'use server'
-
 import { auth } from '@/auth.config';
 import { Paths } from '@/config';
 import { redirect } from '@/navigation';
-import { TopMenu } from '@/components';
-import Footer from '@/components/ui/footer/Footer';
 import React, { use } from 'react'
-import Sidebar from '@/components/ui/sidebar/Sidebar';
-import SideRSS from '@/components/ui/side-rss/SideRSS';
 
 const PortfoilLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) => {
 
@@ -17,15 +11,9 @@ const PortfoilLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) 
     if (session?.user.role !== 'admin') redirect(Paths.INDEX)
 
     return (
-        <main className={`min-h-screen`}>
-            <TopMenu />
-            <SideRSS />
-            <Sidebar />
-            <div className='bg-gradient-to-l from-[#fff6ed] to-[#ffead5] dark:from-[#030637] dark:to-[#3C0753] transition-all duration-200'>
-                {children}
-            </div>
-            <Footer />
-        </main>
+        <div className='bg-gradient-to-l from-[#fff6ed] to-[#ffead5] dark:from-[#030637] dark:to-[#3C0753] transition-all duration-200'>
+            {children}
+        </div>
     )
 }
 
