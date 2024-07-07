@@ -18,17 +18,15 @@ interface Props {
     project: Project
 }
 
-export async function generateMetadata({ project }: Props, parent: ResolvingMetadata): Promise<Metadata> {
-    const t = useTranslations("Project");
-    const locale = useLocale();
+export async function generateMetadata(project: Project, locale: string, t: any, parent: ResolvingMetadata): Promise<Metadata> {
     return generateProjectMetadata(project, locale, t);
 }
-
 
 const ProjectView = ({ project }: Props) => {
 
     const t = useTranslations("Project");
     const locale = useLocale();
+    const metadata = generateProjectMetadata(project, locale, t);
 
     return (
         <>
