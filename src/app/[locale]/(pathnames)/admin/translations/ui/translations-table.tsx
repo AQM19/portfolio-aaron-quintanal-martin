@@ -33,16 +33,16 @@ const TranslationsTable = ({ projects }: Props) => {
                         <Image
                             src='/flags/es.flag.svg'
                             alt={'Bandera de españa'}
-                            width={150}
-                            height={150} />
+                            width={30}
+                            height={30} />
                     </th>
 
                     <th scope="col" className="px-6 py-4">
                         <Image
                             src='/flags/en.flag.svg'
                             alt={'Bandera de inglaterra'}
-                            width={150}
-                            height={150} />
+                            width={30}
+                            height={30} />
                     </th>
 
                 </tr>

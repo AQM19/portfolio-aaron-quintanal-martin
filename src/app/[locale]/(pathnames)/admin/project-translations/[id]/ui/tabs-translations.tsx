@@ -115,7 +115,7 @@ const TabsTranslations = ({ projectTranslations, projectId }: Props) => {
                 {
                     projectTranslations.map((item, index) => (
                         <Tab key={index} value={item.locale}
-                            icon={<Avatar alt="test avatar" variant="square" src={`/imgs/${item.locale}.flag.svg`} />}
+                            icon={<Avatar alt="test avatar" variant="square" src={`/flags/${item.locale}.flag.svg`} />}
                         />
 
                     ))

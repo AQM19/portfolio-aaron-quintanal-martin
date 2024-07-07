@@ -1,5 +1,3 @@
-'use server'
-
 import React, { use } from 'react'
 import { getPaginatedProjectList } from '@/actions';
 import { ProjectsTable } from './ui/projects-table';

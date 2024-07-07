@@ -1,16 +1,15 @@
 'use client'
 
-import { createUpdateProject, deleteProjectImage } from '@/actions';
-import ProjectImage from '@/components/projects/project-image/ProjectImage';
+import { Avatar, AvatarGroup, Button, Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField } from '@mui/material';
 import { Category, Project, ProjectImage as ProjectWithImage, Tag } from '@/interfaces';
-import { useRouter } from '@/navigation';
-import { Avatar, AvatarGroup, Button, Checkbox, FormControl, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, SelectChangeEvent, TextField, useTheme } from '@mui/material';
-import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { createUpdateProject, deleteProjectImage } from '@/actions';
 import { Developer } from '../../../../../../../interfaces/developer/developer.interface';
 import { IoMdCloudUpload } from 'react-icons/io';
-import { IoPersonAdd } from 'react-icons/io5';
 import { Paths } from '@/config';
+import { useRouter } from '@/navigation';
+import ProjectImage from '@/components/projects/project-image/ProjectImage';
+import React from 'react';
 
 interface Props {
     project: Partial<Project> & { ProjectImage?: ProjectWithImage[] };

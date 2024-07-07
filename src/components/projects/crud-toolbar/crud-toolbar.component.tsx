@@ -17,14 +17,16 @@ export const CrudToolbarComponent = ({ crud }: Props) => {
             {
                 crud.map((item, index) => (
                     <Tooltip title={item.label} placement='top' key={index}>
-                        <IconButton
-                            aria-label={item.label}
-                            className='text-[#ed4709] dark:text-[#e2b5fd]'
-                            size={item.size}
-                            onClick={() => handleClick(item.function)}
-                            disabled={item.disabled}>
-                            <item.icon />
-                        </IconButton>
+                        <span>
+                            <IconButton
+                                aria-label={item.label}
+                                className='text-[#ed4709] dark:text-[#e2b5fd]'
+                                size={item.size}
+                                onClick={() => handleClick(item.function)}
+                                disabled={item.disabled}>
+                                <item.icon />
+                            </IconButton>
+                        </span>
                     </Tooltip>
                 ))
             }

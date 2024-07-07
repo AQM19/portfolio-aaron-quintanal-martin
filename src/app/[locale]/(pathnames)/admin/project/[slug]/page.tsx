@@ -1,5 +1,3 @@
-'use server'
-
 import { getAllDevelopers, getCategories, getProjectBySlug, getStatus, getTags } from '@/actions';
 import { Paths } from '@/config';
 import { redirect } from 'next/navigation';

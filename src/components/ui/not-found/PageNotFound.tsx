@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/react"
-import { NextIntlClientProvider, useLocale, useMessages, useTranslations } from "next-intl";
-import { inter, kanit } from "@/config/index";
 import "../../../app/[locale]/globals.css";
+import { Analytics } from "@vercel/analytics/react"
+import { inter, kanit } from "@/config/index";
 import { Link } from "@/navigation";
+import { NextIntlClientProvider, useLocale, useMessages, useTranslations } from "next-intl";
 import { Paths, host } from "@/config";
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Aarón Quintanal Martín - Desarrollador Full Stack",
@@ -106,6 +107,7 @@ export default function PageNotFound() {
 
                     </main>
                     <Analytics />
+                    <SpeedInsights />
                 </NextIntlClientProvider>
             </body>
         </html>
