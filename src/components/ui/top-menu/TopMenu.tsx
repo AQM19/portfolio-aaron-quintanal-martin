@@ -14,6 +14,7 @@ import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store'
 import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store'
 import AQMIcon from '@/components/icons/AQMIcon';
 import LocalSwitcher from '../local-switcher/local-switcher';
+import CustomLink from '../custom-link/CustomLink'
 
 export const TopMenu = () => {
 
@@ -54,7 +55,7 @@ export const TopMenu = () => {
             <div className='flex justify-between items-center align-middle w-4/5'>
 
                 {/* Logo */}
-                <Link
+                <CustomLink
                     className='flex flex-row gap-6 items-center cursor-pointer'
                     href={Paths.INDEX}
                 >
@@ -67,33 +68,33 @@ export const TopMenu = () => {
                         Aarón Quintanal Martín
                     </h1>
 
-                </Link>
+                </CustomLink>
 
                 {/* Center Menu */}
                 <div className='hidden sm:block'>
 
                     {
                         centerMenu.map(value => (
-                            <Link
+                            <CustomLink
                                 className={`${value.class} m-2 p-2 transition-all font-bold text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff] hover:border-b-4 border-[#3c0753] dark:border-[#e2b5fd]`}
                                 href={value.href}
                                 key={value.name}
                             >
                                 {t(value.name)}
-                            </Link>
+                            </CustomLink>
                         ))
                     }
 
                     {
                         userRole === 'admin' && (
                             authMenu.map(value => (
-                                <Link
+                                <CustomLink
                                     className={`${value.class} m-2 p-2 transition-all font-bold text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff] hover:border-b-4 border-[#3c0753] dark:border-[#e2b5fd]`}
                                     href={value.href}
                                     key={value.name}
                                 >
                                     {value.name}
-                                </Link>
+                                </CustomLink>
                             ))
                         )
                     }
@@ -101,13 +102,13 @@ export const TopMenu = () => {
                     {
                         (userRole === 'admin' || userRole === 'editor') && (
                             editorMenu.map((value) => (
-                                <Link
+                                <CustomLink
                                     className={`${value.class} m-2 p-2 transition-all font-bold text-[#ed4709] dark:text-[#e2b5fd] hover:text-[#3c0753] dark:hover:text-[#d2e4ff] hover:border-b-4 border-[#3c0753] dark:border-[#e2b5fd]`}
                                     href={value.href}
                                     key={value.name}
                                 >
                                     {value.name}
-                                </Link>
+                                </CustomLink>
                             ))
                         )
                     }

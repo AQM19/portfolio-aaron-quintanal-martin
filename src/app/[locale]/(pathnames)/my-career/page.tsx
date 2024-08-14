@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import Timeline from '@mui/lab/Timeline';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
@@ -17,6 +17,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import { useLocale } from 'next-intl';
 import { MyCareerLangMap } from '@/config/my-career/my-career.lang.map';
 import Image from 'next/image';
+import { useUILoading } from '@/store/ui/ui-loading.store';
 
 const MyCareerPage = () => {
 
@@ -54,6 +55,16 @@ const MyCareerPage = () => {
       observer.disconnect();
     };
   }, [isMobile]);
+
+  const setIsLoaded = useUILoading(state => state.setIsLoaded);
+  const loadPage = useCallback(async () => {
+    await Promise.resolve();
+    setIsLoaded();
+  }, [setIsLoaded]);
+
+  useEffect(() => {
+    loadPage();
+  }, [loadPage]);
 
   return (
     <section className='w-full h-auto lg:h-auto lg:min-h-screen py-20 md:p-20'>

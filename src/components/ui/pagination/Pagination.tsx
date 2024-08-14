@@ -2,9 +2,9 @@
 
 import { generatePaginationNumbers } from "@/utils";
 import clsx from "clsx";
-import Link from "next/link";
 import { redirect, usePathname, useSearchParams } from "next/navigation";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
+import CustomLink from "../custom-link/CustomLink";
 
 interface Props {
     totalPages: number;
@@ -48,17 +48,17 @@ export const Pagination = ({ totalPages }: Props) => {
                 <ul className="flex list-style-none">
 
                     <li className="page-item">
-                        <Link className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-[#ed4709] dark:text-[#e2b5fd] hover:bg-[#44100650] dark:hover:bg-[#d2e4ff50] focus:shadow-none"
+                        <CustomLink className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-[#ed4709] dark:text-[#e2b5fd] hover:bg-[#44100650] dark:hover:bg-[#d2e4ff50] focus:shadow-none"
                             href={createPageUrl(currentPage - 1)}>
                             <IoChevronBackOutline size={30} />
-                        </Link>
+                        </CustomLink>
                     </li>
 
 
                     {
                         allPages.map((page) => (
                             <li key={page} className="page-item">
-                                <Link
+                                <CustomLink
                                     className={
                                         clsx(
                                             'page-link relative block py-1.5 px-3 border-0 outline-none transition-all duration-300 rounded focus:shadow-none text-[#ed4709] dark:text-[#e2b5fd] bg-transparent hover:bg-[#44100650] dark:hover:bg-[#d2e4ff50]',
@@ -69,16 +69,16 @@ export const Pagination = ({ totalPages }: Props) => {
                                     }
                                     href={createPageUrl(page)}>
                                     {page}
-                                </Link>
+                                </CustomLink>
                             </li>
                         ))
                     }
 
                     <li className="page-item">
-                        <Link className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-[#ed4709] dark:text-[#e2b5fd] hover:bg-[#44100650] dark:hover:bg-[#d2e4ff50] focus:shadow-none"
+                        <CustomLink className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-[#ed4709] dark:text-[#e2b5fd] hover:bg-[#44100650] dark:hover:bg-[#d2e4ff50] focus:shadow-none"
                             href={createPageUrl(currentPage + 1)}>
                             <IoChevronForwardOutline size={30} />
-                        </Link>
+                        </CustomLink>
                     </li>
                 </ul>
             </nav>

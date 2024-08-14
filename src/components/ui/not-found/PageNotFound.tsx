@@ -6,6 +6,7 @@ import { NextIntlClientProvider, useLocale, useMessages, useTranslations } from 
 import { Paths, host } from "@/config";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from "next";
+import CustomLink from "../custom-link/CustomLink";
 
 export const metadata: Metadata = {
     title: "Aarón Quintanal Martín - Desarrollador Full Stack",
@@ -100,9 +101,9 @@ export default function PageNotFound() {
                         </p>
 
                         <p className='mt-5 text-[#441006] dark:text-[#d2e4ff] max-w-prose text-lg text-pretty font-semibold'>
-                            <Link href={Paths.INDEX} className='text-[#ed4709] dark:text-[#e2b5fd]'>
+                            <CustomLink href={Paths.INDEX} className='text-[#ed4709] dark:text-[#e2b5fd]'>
                                 {t('button')}
-                            </Link>
+                            </CustomLink>
                         </p>
 
                     </main>

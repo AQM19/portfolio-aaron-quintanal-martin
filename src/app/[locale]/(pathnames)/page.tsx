@@ -1,7 +1,21 @@
+'use client'
+
 import CardResume from "@/components/home/card-resume/CardResume";
+import { useUILoading } from "@/store/ui/ui-loading.store";
 import Image from "next/image";
+import { useCallback, useEffect } from "react";
 
 export default function Home() {
+
+  const setIsLoaded = useUILoading(state => state.setIsLoaded);
+  const loadPage = useCallback(async () => {
+    await Promise.resolve();
+    setIsLoaded();
+  }, [setIsLoaded]);
+
+  useEffect(() => {
+    loadPage();
+  }, [loadPage]);
 
   return (
     <section className="w-full h-screen flex flex-col-reverse lg:flex-row p-5 items-center justify-evenly">

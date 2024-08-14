@@ -1,14 +1,27 @@
+'use client'
+
 import { AiOutlinePhone } from 'react-icons/ai'
 import { IoMailOutline } from 'react-icons/io5'
 import { kanit } from '@/config/fonts/fonts'
 import { useTranslations } from 'next-intl'
 import ContactForm from '@/components/contact/contact-form'
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import Typography from '@mui/material/Typography/Typography'
+import { useUILoading } from '@/store/ui/ui-loading.store'
 
 const ContactPage = () => {
 
     const t = useTranslations("Contact");
+
+    const setIsLoaded = useUILoading(state => state.setIsLoaded);
+    const loadPage = useCallback(async () => {
+        await Promise.resolve();
+        setIsLoaded();
+    }, [setIsLoaded]);
+    
+    useEffect(() => {
+        loadPage();
+    }, [loadPage]);
 
     return (
         <section className='w-full h-auto lg:h-screen px-5 py-20 md:p-20 flex flex-col lg:flex-row gap-4 lg:gap-0 justify-around items-center'>

@@ -6,6 +6,7 @@ import { FaInstagram } from 'react-icons/fa';
 import { useTranslations } from 'next-intl';
 import { Paths } from '@/config';
 import AQMIcon from '@/components/icons/AQMIcon';
+import CustomLink from '../custom-link/CustomLink';
 
 const Footer = () => {
 
@@ -78,15 +79,15 @@ const Footer = () => {
                     </h4>
 
                     <div className="flex gap-2">
-                        <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
+                        <CustomLink href="#" className="text-muted-foreground hover:text-foreground" >
                             <FaXTwitter className="h-5 w-5" />
-                        </Link>
-                        <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
+                        </CustomLink>
+                        <CustomLink href="#" className="text-muted-foreground hover:text-foreground" >
                             <FiFacebook className="h-5 w-5" />
-                        </Link>
-                        <Link href="#" className="text-muted-foreground hover:text-foreground" prefetch={false}>
+                        </CustomLink>
+                        <CustomLink href="#" className="text-muted-foreground hover:text-foreground" >
                             <FaInstagram className="h-5 w-5" />
-                        </Link>
+                        </CustomLink>
                     </div>
                 </div>
 

@@ -7,6 +7,7 @@ import { Link } from '@/navigation';
 import { TbFileCv } from "react-icons/tb";
 import { kanit } from '@/config/fonts/fonts';
 import { Paths } from '@/config';
+import CustomLink from '@/components/ui/custom-link/CustomLink';
 
 // Obtener edad dinámicamente
 const birthDate: Date = new Date(1996, 2, 15);
@@ -50,12 +51,12 @@ const CardResume = () => {
             </p>
 
             <div className='flex flex-row gap-4'>
-                <Link href={Paths.CONTACT} >
+                <CustomLink href={Paths.CONTACT} >
                     <button
                         className='lg:self-end mt-5 w-min px-5 py-2 rounded-md text-[#ed4709] dark:text-[#e2b5fd] font-bold border-2 border-[#ed4709] dark:border-[#e2b5fd]'>
                         {t('contact-button')}
                     </button>
-                </Link>
+                </CustomLink>
 
                 <Link
                     href={'https://drive.google.com/file/d/1_MioP4l1znzu5KJEVtSKWAayt7icYa2x/view'}
