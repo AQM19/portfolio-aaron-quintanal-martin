@@ -7,6 +7,9 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from "next";
 
 import "./globals.css";
+import { Suspense } from "react";
+import Loading from "./loading";
+import LoaderProvider from "@/components/providers/loader/LoaderProvider";
 
 export const metadata: Metadata = {
     title: "Aarón Quintanal Martín - Desarrollador Full Stack",
@@ -88,7 +91,10 @@ export default function RootLayout({ children, params: { locale } }: Readonly<{ 
             <body className={inter.className}>
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <Provider>
-                        {children}
+                        <LoaderProvider />
+                        <Suspense fallback={<Loading />}>
+                            {children}
+                        </Suspense>
                         <Analytics />
                         <SpeedInsights />
                     </Provider>
