@@ -18,6 +18,7 @@ export * from './projects/slideshow/ProjectSlideshow';
 
 // Providers
 export * from './providers/Provider';
+export * from './providers/loader/LoaderProvider';
 
 // UI
 export * from './ui/footer/Footer';
@@ -28,3 +29,4 @@ export * from './ui/selector/global-selector';
 export * from './ui/side-rss/SideRSS';
 export * from './ui/sidebar/Sidebar';
 export * from './ui/top-menu/TopMenu';
+export * from './ui/custom-link/CustomLink';
