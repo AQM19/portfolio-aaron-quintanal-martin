@@ -20,7 +20,7 @@ const ProjectsPage = ({ searchParams }: Props) => {
     const { projects, currentPage, totalPages } = use(getPaginatedProjectsWithImages({ page, lang: localeActive }));
 
     return (
-        <section className='w-full min-h-screen py-20 px-12 '>
+        <section className='w-full px-12 pt-28'>
             <ProjectGrid projects={projects} />
             <Pagination totalPages={totalPages} />
         </section >

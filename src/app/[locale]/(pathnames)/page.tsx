@@ -18,7 +18,7 @@ export default function Home() {
   }, [loadPage]);
 
   return (
-    <section className="w-full h-screen flex flex-col-reverse lg:flex-row p-5 items-center justify-evenly">
+    <section className="w-full pt-28 flex flex-col-reverse lg:flex-row p-5 items-center justify-evenly">
       <CardResume />
 
       <Image

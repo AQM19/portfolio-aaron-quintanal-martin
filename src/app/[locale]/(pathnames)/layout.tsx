@@ -12,13 +12,11 @@ const PortfoilLayout = ({ children, params: { locale } }: Readonly<{ children: R
     const isDarkModeEnabled = useUIDarkMode(mode => mode.darkMode);
 
     return (
-        <main className={`${isDarkModeEnabled ? 'dark' : 'light'} min-h-screen`}>
+        <main className={`${isDarkModeEnabled ? 'dark' : 'light'} min-h-screen bg-gradient-to-l from-[#fff6ed] to-[#ffead5] dark:from-[#030637] dark:to-[#3C0753] transition-all duration-200`}>
             <TopMenu />
             <SideRSS />
             <Sidebar />
-            <div className='min-h-screen bg-gradient-to-l from-[#fff6ed] to-[#ffead5] dark:from-[#030637] dark:to-[#3C0753] transition-all duration-200'>
-                {children}
-            </div>
+            {children}
             <Footer />
         </main>
     )
