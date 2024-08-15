@@ -13,6 +13,7 @@ import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store';
 import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react'
+import CustomLink from '../custom-link/CustomLink';
 
 const Sidebar = () => {
 
@@ -88,18 +89,18 @@ const Sidebar = () => {
                     onClick={() => closeMenu()}
                 />
 
-                <Link
+                <CustomLink
                     href={Paths.INDEX}
                     onClick={() => closeMenu()}
                     className={`flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all sm:hidden`}
                 >
                     <IoHomeSharp size={30} />
                     <span className='ml-3 text-xl'>Inicio</span>
-                </Link>
+                </CustomLink>
 
                 {
                     centerMenu.map((value, index) => (
-                        <Link
+                        <CustomLink
                             key={index}
                             href={value.href}
                             onClick={() => closeMenu()}
@@ -107,7 +108,7 @@ const Sidebar = () => {
                         >
                             <value.icon size={30} />
                             <span className='ml-3 text-xl'>{t(value.name)}</span>
-                        </Link>
+                        </CustomLink>
                     ))
                 }
 
@@ -122,7 +123,7 @@ const Sidebar = () => {
                                     <div className='w-full h-px bg-[#ed4709] dark:bg-[#e2b5fd] mt-10' />
                                     {
                                         authMenu.map((value, index) => (
-                                            <Link
+                                            <CustomLink
                                                 key={index}
                                                 href={value.href}
                                                 onClick={() => closeMenu()}
@@ -130,7 +131,7 @@ const Sidebar = () => {
                                             >
                                                 <value.icon size={30} />
                                                 <span className='ml-3 text-xl'>{value.name}</span>
-                                            </Link>
+                                            </CustomLink>
                                         ))
                                     }
 
