@@ -9,15 +9,19 @@ interface Props {
     target?: HTMLAttributeAnchorTarget | undefined;
     className?: string;
     children: React.ReactNode;
+    onClick?: Function;
 }
 
-const CustomLink = ({ href, target, className, children }: Props) => {
+const CustomLink = ({ href, target, className, children, onClick }: Props) => {
     const pathnames = usePathname();
     const isLoading = useUILoading(loading => loading.setIsLoading);
 
     const handleClick = () => {
         if (pathnames !== href) {
             isLoading();
+        }
+        if (onClick) {
+            onClick();
         }
     };
 
