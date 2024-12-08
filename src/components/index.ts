@@ -9,24 +9,15 @@ export * from './home/changing-text/ChangingText';
 export * from './icons/AQMIcon';
 
 // Projects
-export * from './projects/crud-toolbar/crud-toolbar.component';
 export * from './projects/project-card/ProjectCard';
 export * from './projects/project-grid/ProjectGrid';
 export * from './projects/project-image/ProjectImage';
-export * from './projects/slideshow/ProjectMobileSlideshow';
-export * from './projects/slideshow/ProjectSlideshow';
-
-// Providers
-export * from './providers/Provider';
-export * from './providers/loader/LoaderProvider';
 
 // UI
 export * from './ui/footer/Footer';
 export * from './ui/local-switcher/local-switcher';
 export * from './ui/not-found/PageNotFound';
 export * from './ui/pagination/Pagination';
-export * from './ui/selector/global-selector';
 export * from './ui/side-rss/SideRSS';
 export * from './ui/sidebar/Sidebar';
-export * from './ui/top-menu/TopMenu';
-export * from './ui/custom-link/CustomLink';
+export * from './ui/header/HeaderComponent';

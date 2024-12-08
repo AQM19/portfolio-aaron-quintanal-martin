@@ -1,14 +1,12 @@
 {
   "name": "qfoil",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run prisma:deploy && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "seed": "ts-node src/seed/seed-database.ts",
-    "prisma:deploy": "npx prisma migrate deploy && prisma generate"
+    "lint": "next lint"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.9",

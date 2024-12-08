@@ -1,83 +1,8 @@
 import "../../../app/[locale]/globals.css";
 import { Analytics } from "@vercel/analytics/react"
-import { inter, kanit } from "@/core/config/index";
-import { Link } from "@/navigation";
 import { NextIntlClientProvider, useLocale, useMessages, useTranslations } from "next-intl";
-import { Paths, host } from "@/config";
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import type { Metadata } from "next";
-import CustomLink from "../custom-link/CustomLink";
-
-export const metadata: Metadata = {
-    title: "Aarón Quintanal Martín - Desarrollador Full Stack",
-    description: "Aarón Quintanal Martín es un desarrollador full stack especializado en Angular, Next.js y .NET, ubicado en Cantabria.",
-    authors: [
-        {
-            name: 'Aarón',
-            url: host
-        }
-    ],
-    keywords: ["Aarón Quintanal Martín", "Cantabria", "programador", "desarrollador", "full stack", "Angular", "Next.js", ".NET"],
-    openGraph: {
-        title: "Aarón Quintanal Martín - Desarrollador Full Stack",
-        description: "Conoce a Aarón Quintanal Martín, un experto desarrollador full stack en tecnologías modernas.",
-        url: host,
-        type: "website",
-        images: [
-            {
-                url: `${host}/imgs/aaron-quintanal-martin.png`,
-                width: 800,
-                height: 600,
-                alt: "Aarón Quintanal Martín",
-            }
-        ]
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "Aarón Quintanal Martín - Desarrollador Full Stack",
-        description: "Aarón Quintanal Martín es un desarrollador full stack con experiencia en Angular, Next.js y .NET.",
-        site: '@AQuintanalMDev',
-        creator: '@AQuintanalMDev',
-        images: [
-            `${host}/imgs/aaron-quintanal-martin.png`
-        ]
-    },
-    alternates: {
-        canonical: host,
-        languages: {
-            'en': `${host}/en`,
-            'es': `${host}/es`
-        }
-    },
-    robots: {
-        index: true,
-        follow: true,
-        nocache: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            noimageindex: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
-        },
-    },
-    appleWebApp: {
-        title: 'Aarón Quintanal Martín - Desarrollador Full Stack',
-        statusBarStyle: 'black-translucent',
-        startupImage: [
-            '/imgs/aaron-quintanal-martin.png',
-            {
-                url: '/assets/imgs/aaron-quintanal-martin.png',
-                media: '(device-width: 768px) and (device-height: 1024px)',
-            },
-        ],
-    },
-    assets: [
-        `${host}/assets`,
-    ],
-    category: 'development'
-};
+import { Link } from "@/i18n/routing";
 
 export default function PageNotFound() {
 
@@ -87,12 +12,12 @@ export default function PageNotFound() {
 
     return (
         <html lang={locale}>
-            <body className={`${inter.className} w-full min-h-screen h-auto`}>
+            <body className={`w-full min-h-screen h-auto`}>
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <main
                         className="flex flex-col min-h-screen h-auto w-full items-center justify-center">
 
-                        <h1 className={`${kanit.className} text-4xl md:text-6xl text-[#ed4709] dark:text-[#e2b5fd] font-thin`}>
+                        <h1 className={`text-4xl md:text-6xl text-[#ed4709] dark:text-[#e2b5fd] font-thin`}>
                             {t('title')}
                         </h1>
 
@@ -101,9 +26,9 @@ export default function PageNotFound() {
                         </p>
 
                         <p className='mt-5 text-[#441006] dark:text-[#d2e4ff] max-w-prose text-lg text-pretty font-semibold'>
-                            <CustomLink href={Paths.INDEX} className='text-[#ed4709] dark:text-[#e2b5fd]'>
+                            <Link href={'/'} className='text-[#ed4709] dark:text-[#e2b5fd]'>
                                 {t('button')}
-                            </CustomLink>
+                            </Link>
                         </p>
 
                     </main>
