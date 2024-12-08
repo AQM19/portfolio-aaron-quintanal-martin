@@ -1,6 +1,6 @@
 'use client'
 
-import { centerMenu } from '@/core/config/top-menu/top-menu-items.config';
+import { NavConfig } from '@/core/config/nav-config/nav.config';
 import { useUISidebarStatus } from '@/core/services/ui/sidebar-status.service';
 import { Link } from '@/i18n/routing';
 import clsx from 'clsx';
@@ -71,7 +71,7 @@ const Sidebar = () => {
                 </Link>
 
                 {
-                    centerMenu.map((value, index) => (
+                    NavConfig.map((value, index) => (
                         <Link
                             key={index}
                             href={'/'}

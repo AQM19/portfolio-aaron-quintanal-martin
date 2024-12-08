@@ -3,7 +3,7 @@ import React from 'react'
 
 const AQMIcon = () => {
     return (
-        <Image src={'/imgs/AQM.svg'} alt={'Logo de Aarón Quintanal Martín'} width={40} height={40} />
+        <Image src={'/svg/AQM.svg'} alt={'Logo de Aarón Quintanal Martín'} width={40} height={40} />
     )
 }
 

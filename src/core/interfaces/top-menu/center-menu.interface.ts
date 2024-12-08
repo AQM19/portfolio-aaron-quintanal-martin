@@ -1,6 +1,6 @@
 import { IconType } from "react-icons";
 
-export interface CenterMenu {
+export interface NavMenu {
     href: string;
     name: string;
     icon: IconType;

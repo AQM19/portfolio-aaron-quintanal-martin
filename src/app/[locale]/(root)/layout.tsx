@@ -1,23 +1,20 @@
 'use client'
 
-import React from 'react'
-import { useUIDarkMode } from '@/core/services/ui/dark-mode.service';
-import Footer from '@/components/ui/footer/Footer';
+import React, { useState } from 'react'
 import { HeaderComponent } from '@/components';
+import SideNav from '@/components/ui/sidenav/SideNav';
 
 export default function PortfoilLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
 
-    const isDarkModeEnabled = useUIDarkMode(mode => mode.darkMode);
+    const [isExpanded, setIsExpanded] = useState(false);
 
     return (
-        <>
-            <HeaderComponent />
-            {/* <SideRSS /> */}
-            {/* <Sidebar /> */}
-            <main className={`${isDarkModeEnabled ? 'dark' : 'light'} min-h-screen grid grid-rows-[auto_1fr_auto] overflow-x-hidden bg-silver dark:bg-eerie_black transition-all duration-300`}>
-                {children}
-            </main>
-            <Footer />
-        </>
+        <div className="flex h-screen">
+            <SideNav isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
+            <div className={`flex-1 transition-all duration-500 ${isExpanded ? 'ml-[12.5rem]' : 'ml-[5rem]'}`}>
+                <HeaderComponent />
+                <main className="p-6">{children}</main>
+            </div>
+        </div>
     )
 };

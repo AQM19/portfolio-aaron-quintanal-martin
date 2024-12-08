@@ -21,3 +21,4 @@ export * from './ui/pagination/Pagination';
 export * from './ui/side-rss/SideRSS';
 export * from './ui/sidebar/Sidebar';
 export * from './ui/header/HeaderComponent';
+export * from './ui/sidenav/SideNav';
