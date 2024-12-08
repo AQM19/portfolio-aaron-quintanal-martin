@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useCallback, useEffect } from 'react'
-import { GridProject } from '@/interfaces';
+import { GridProject } from '@/core/interfaces';
 import ProjectCard from '../project-card/ProjectCard';
-import { useUILoading } from '@/store/ui/ui-loading.store';
+import { useUILoading } from '@/core/services/ui/loading.service';
 
 interface Props {
     projects: GridProject[]

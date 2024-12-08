@@ -1,17 +1,17 @@
 'use client'
 
-import { authMenu, editorMenu } from '@/config/top-menu/top-auth-items.config'
-import { centerMenu } from '@/config/top-menu/top-menu-items.config'
+import { authMenu, editorMenu } from '@/core/config/top-menu/top-auth-items.config'
+import { centerMenu } from '@/core/config/top-menu/top-menu-items.config'
 import { IoMenu } from 'react-icons/io5'
-import { kanit } from '@/config/fonts/fonts'
+import { kanit } from '@/core/config/fonts/fonts'
 import { Link } from '@/navigation'
 import { Paths } from '@/config'
 import { Switch } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl';
-import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store'
-import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store'
+import { useUIDarkMode } from '@/core/services/ui/dark-mode.service'
+import { useUISidebarStatus } from '@/core/services/ui/sidebar-status.service'
 import AQMIcon from '@/components/icons/AQMIcon';
 import LocalSwitcher from '../local-switcher/local-switcher';
 import CustomLink from '../custom-link/CustomLink'

@@ -1,4 +1,4 @@
-import { CrudToolbar } from '@/interfaces'
+import { CrudToolbar } from '@/core/interfaces'
 import { IconButton, Tooltip } from '@mui/material';
 import React from 'react'
 

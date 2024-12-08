@@ -1,4 +1,4 @@
-import { rrssMenu } from '@/config/rrss-menu/rrss-menu.config'
+import { rrssMenu } from '@/core/config/rrss-menu/rrss-menu.config'
 import CustomLink from '../custom-link/CustomLink'
 
 const SideRSS = () => {

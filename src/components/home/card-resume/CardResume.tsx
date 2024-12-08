@@ -5,7 +5,7 @@ import ChangingText from '../changing-text/ChangingText';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation';
 import { TbFileCv } from "react-icons/tb";
-import { kanit } from '@/config/fonts/fonts';
+import { kanit } from '@/core/config/fonts/fonts';
 import { Paths } from '@/config';
 import CustomLink from '@/components/ui/custom-link/CustomLink';
 

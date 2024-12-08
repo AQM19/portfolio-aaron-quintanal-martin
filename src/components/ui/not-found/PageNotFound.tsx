@@ -1,6 +1,6 @@
 import "../../../app/[locale]/globals.css";
 import { Analytics } from "@vercel/analytics/react"
-import { inter, kanit } from "@/config/index";
+import { inter, kanit } from "@/core/config/index";
 import { Link } from "@/navigation";
 import { NextIntlClientProvider, useLocale, useMessages, useTranslations } from "next-intl";
 import { Paths, host } from "@/config";

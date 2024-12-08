@@ -1,7 +1,7 @@
 'use client'
 
 import { Link, usePathname, useRouter } from '@/navigation';
-import { useUILoading } from '@/store/ui/ui-loading.store';
+import { useUILoading } from '@/core/services/ui/loading.service';
 import React, { HTMLAttributeAnchorTarget } from 'react'
 
 interface Props {

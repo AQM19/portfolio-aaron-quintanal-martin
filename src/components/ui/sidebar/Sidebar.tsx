@@ -1,7 +1,7 @@
 'use client'
 
-import { authMenu, editorMenu } from '@/config/top-menu/top-auth-items.config';
-import { centerMenu } from '@/config/top-menu/top-menu-items.config';
+import { authMenu, editorMenu } from '@/core/config/top-menu/top-auth-items.config';
+import { centerMenu } from '@/core/config/top-menu/top-menu-items.config';
 import { IoCloseOutline, IoHomeSharp, IoLogOutOutline } from 'react-icons/io5';
 import { Link } from '@/navigation';
 import { logout } from '@/actions';
@@ -9,8 +9,8 @@ import { Paths } from '@/config';
 import { Switch } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
-import { useUIDarkMode } from '@/store/ui/ui-dark-mode.store';
-import { useUISidebarStatus } from '@/store/ui/ui-sidebar-status.store';
+import { useUIDarkMode } from '@/core/services/ui/dark-mode.service';
+import { useUISidebarStatus } from '@/core/services/ui/sidebar-status.service';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react'
 import CustomLink from '../custom-link/CustomLink';

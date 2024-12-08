@@ -1,7 +1,7 @@
 'use client'
 
 import Loading from '@/app/[locale]/loading';
-import { useUILoading } from '@/store/ui/ui-loading.store';
+import { useUILoading } from '@/core/services/ui/loading.service';
 import React from 'react'
 
 const LoaderProvider = () => {

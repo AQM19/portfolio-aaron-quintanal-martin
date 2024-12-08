@@ -1,5 +1,5 @@
 import CustomLink from '@/components/ui/custom-link/CustomLink';
-import { GridProject } from '@/interfaces';
+import { GridProject } from '@/core/interfaces';
 import { Link } from '@/navigation';
 import Image from 'next/image';
 import React from 'react'

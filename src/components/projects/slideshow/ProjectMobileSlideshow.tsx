@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 
 import './slideshow.css';
 import Image from 'next/image';
-import { ProjectImage } from '@/interfaces';
+import { ProjectImage } from '@/core/interfaces';
 
 interface Props {
     images: ProjectImage[];
