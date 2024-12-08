@@ -1,6 +1,5 @@
-import CustomLink from '@/components/ui/custom-link/CustomLink';
-import { GridProject } from '@/interfaces';
-import { Link } from '@/navigation';
+import { GridProject } from '@/core/interfaces';
+import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import React from 'react'
 
@@ -11,10 +10,11 @@ interface Props {
 
 const ProjectCard = ({ project, index }: Props) => {
 
-    const { slug } = project;
+    // const { slug } = project;
 
     return (
-        <CustomLink href={`/project/${slug}`} >
+        <Link href={{ pathname: '/projects/[slug]', params: { slug: project.slug } }}
+        >
             <article
                 key={index}
                 className='min-w-full sm:w-[540px] sm:h-[500px] max-w-lg bg-neutral-50 dark:bg-[#3C0753] rounded-lg flex flex-col gap-4 transition-all hover:scale-105 duration-200 shadow-lg shadow-[#441006] dark:shadow-[#e2b5fd] overflow-hidden cursor-pointer'
@@ -42,7 +42,7 @@ const ProjectCard = ({ project, index }: Props) => {
                 </div>
 
             </article>
-        </CustomLink>
+        </Link>
     )
 }
 

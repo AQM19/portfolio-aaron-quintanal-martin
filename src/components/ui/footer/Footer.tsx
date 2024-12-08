@@ -1,12 +1,11 @@
 import React from 'react'
-import { Link } from '@/navigation';
 import { FaXTwitter } from 'react-icons/fa6';
 import { FiFacebook } from 'react-icons/fi';
 import { FaInstagram } from 'react-icons/fa';
 import { useTranslations } from 'next-intl';
-import { Paths } from '@/config';
 import AQMIcon from '@/components/icons/AQMIcon';
-import CustomLink from '../custom-link/CustomLink';
+import { Link as I18nLink } from '@/i18n/routing';
+import Link from 'next/link';
 
 const Footer = () => {
 
@@ -14,11 +13,11 @@ const Footer = () => {
 
     return (
         <footer
-            className="py-8 md:py-12 px-6 sm:px-0 w-full flex flex-row items-center justify-center bg-transparent bg-gradient-to-l from-[#fff6ed] to-[#ffead5] dark:from-[#030637] dark:to-[#3C0753] transition-all duration-200"
+            className="py-8 md:py-12 px-6 sm:px-0 w-full flex flex-row items-center justify-center transition-all duration-200"
         >
 
             <div
-                className="container max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-[#ed4709] dark:text-[#e2b5fd]"
+                className="container max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8"
             >
 
                 <div
@@ -35,37 +34,38 @@ const Footer = () => {
                 <nav
                     className="grid gap-2"
                 >
-                    <Link
-                        href={Paths.INDEX}
+                    <I18nLink
+                        href={'/'}
                         className="text-sm hover:underline underline-offset-4"
                         prefetch={false}
                     >
                         {t('index')}
-                    </Link>
+                    </I18nLink>
 
-                    <Link
-                        href={Paths.PROJECTS}
+                    <I18nLink
+                        href={'/projects'}
                         className="text-sm hover:underline underline-offset-4"
                         prefetch={false}
                     >
                         {t('projects')}
-                    </Link>
+                    </I18nLink>
 
-                    <Link
-                        href={Paths.CONTACT}
+                    <I18nLink
+                        href={'/contact'}
                         className="text-sm hover:underline underline-offset-4"
                         prefetch={false}
                     >
                         {t('contact')}
-                    </Link>
+                    </I18nLink>
 
-                    <Link
-                        href={Paths.MY_CAREER}
+                    <I18nLink
+                        href={'/career'}
                         className="text-sm hover:underline underline-offset-4"
                         prefetch={false}
                     >
                         {t('career')}
-                    </Link>
+                    </I18nLink>
+
                 </nav>
 
                 <div
@@ -79,15 +79,19 @@ const Footer = () => {
                     </h4>
 
                     <div className="flex gap-2">
-                        <CustomLink href="#" className="text-muted-foreground hover:text-foreground" >
+
+                        <Link href="#" className="text-muted-foreground hover:text-foreground" >
                             <FaXTwitter className="h-5 w-5" />
-                        </CustomLink>
-                        <CustomLink href="#" className="text-muted-foreground hover:text-foreground" >
+                        </Link>
+
+                        <Link href="#" className="text-muted-foreground hover:text-foreground" >
                             <FiFacebook className="h-5 w-5" />
-                        </CustomLink>
-                        <CustomLink href="#" className="text-muted-foreground hover:text-foreground" >
+                        </Link>
+
+                        <Link href="#" className="text-muted-foreground hover:text-foreground" >
                             <FaInstagram className="h-5 w-5" />
-                        </CustomLink>
+                        </Link>
+
                     </div>
                 </div>
 

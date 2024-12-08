@@ -4,7 +4,7 @@ import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import React, { useState, useTransition } from 'react'
 import { FaFlag } from 'react-icons/fa';
-import { localesConfig } from '../../../config/locales/locale';
+import { localesConfig } from '../../../core/config/locales/locale';
 import Image from 'next/image';
 
 const LocalSwitcher = () => {

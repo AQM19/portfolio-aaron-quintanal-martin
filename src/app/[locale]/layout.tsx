@@ -1,15 +1,15 @@
 import { Analytics } from "@vercel/analytics/react"
 import { host } from "@/config";
-import { inter } from "@/config/fonts/fonts";
-import { NextIntlClientProvider, useMessages } from "next-intl";
-import { Provider } from '../../components/providers/Provider';
+import { NextIntlClientProvider } from "next-intl";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Suspense } from "react";
+import Loading from "./loading";
 import type { Metadata } from "next";
 
 import "./globals.css";
-import { Suspense } from "react";
-import Loading from "./loading";
-import LoaderProvider from "@/components/providers/loader/LoaderProvider";
+import { getMessages } from "next-intl/server";
 
 export const metadata: Metadata = {
     title: "Aarón Quintanal Martín - Desarrollador Full Stack",
@@ -82,22 +82,26 @@ export const metadata: Metadata = {
     category: 'development'
 };
 
-export default function RootLayout({ children, params: { locale } }: Readonly<{ children: React.ReactNode; params: { locale: string }; }>) {
+export default async function RootLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
 
-    const messages = useMessages();
+    const { locale } = await params;
+
+    // Ensure that the incoming `locale` is valid
+    if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
+        notFound();
+    }
+
+    const messages = await getMessages();
 
     return (
         <html lang={locale}>
-            <body className={inter.className}>
-                <NextIntlClientProvider locale={locale} messages={messages}>
-                    <Provider>
-                        <LoaderProvider />
-                        <Suspense fallback={<Loading />}>
-                            {children}
-                        </Suspense>
-                        <Analytics />
-                        <SpeedInsights />
-                    </Provider>
+            <body>
+                <NextIntlClientProvider locale={locale} messages={messages} timeZone="Europe/Madrid">
+                    <Suspense fallback={<Loading />}>
+                        {children}
+                    </Suspense>
+                    <Analytics />
+                    <SpeedInsights />
                 </NextIntlClientProvider>
             </body>
         </html>
