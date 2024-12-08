@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { useUIDarkMode } from '@/core/services/ui/dark-mode.service';
 import Footer from '@/components/ui/footer/Footer';
