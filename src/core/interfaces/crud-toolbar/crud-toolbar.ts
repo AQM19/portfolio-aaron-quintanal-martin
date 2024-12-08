@@ -5,5 +5,5 @@ export interface CrudToolbar {
     label?: string;
     disabled?: boolean;
     size: "small" | "large" | "medium";
-    function: Function;
+    function: () => void;
 }

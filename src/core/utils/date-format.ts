@@ -5,7 +5,7 @@ export const getLocaleFormattedDate = (date: Date, locale: string): string => {
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses comienzan desde 0
     const year = date.getFullYear();
 
-    let formattedDate = pattern
+    const formattedDate = pattern
         .replace('dd', day)
         .replace('MM', month)
         .replace('yyyy', String(year));

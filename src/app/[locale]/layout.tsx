@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/react"
 import { host } from "@/config";
-import { NextIntlClientProvider, useMessages } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -9,6 +9,7 @@ import Loading from "./loading";
 import type { Metadata } from "next";
 
 import "./globals.css";
+import { getMessages } from "next-intl/server";
 
 export const metadata: Metadata = {
     title: "Aarón Quintanal Martín - Desarrollador Full Stack",
@@ -81,7 +82,7 @@ export const metadata: Metadata = {
     category: 'development'
 };
 
-export default async function RootLayout({ children, params }: Readonly<{ children: React.ReactNode; params: { locale: string }; }>) {
+export default async function RootLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
 
     const { locale } = await params;
 
@@ -90,7 +91,7 @@ export default async function RootLayout({ children, params }: Readonly<{ childr
         notFound();
     }
 
-    const messages = useMessages();
+    const messages = await getMessages();
 
     return (
         <html lang={locale}>

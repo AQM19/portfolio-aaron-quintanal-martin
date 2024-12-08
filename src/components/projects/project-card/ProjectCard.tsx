@@ -10,7 +10,7 @@ interface Props {
 
 const ProjectCard = ({ project, index }: Props) => {
 
-    const { slug } = project;
+    // const { slug } = project;
 
     return (
         <Link href={{ pathname: '/projects/[slug]', params: { slug: project.slug } }}

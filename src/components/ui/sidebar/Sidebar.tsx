@@ -1,27 +1,25 @@
 'use client'
 
 import { centerMenu } from '@/core/config/top-menu/top-menu-items.config';
-import { useUIDarkMode } from '@/core/services/ui/dark-mode.service';
 import { useUISidebarStatus } from '@/core/services/ui/sidebar-status.service';
 import { Link } from '@/i18n/routing';
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
-import React, { useState } from 'react'
+import React from 'react'
 import { IoCloseOutline, IoHomeSharp } from 'react-icons/io5';
 
 const Sidebar = () => {
 
-    const [userRole, setUserRole] = useState('');
     const isSideMenuOpen = useUISidebarStatus(state => state.isSideMenuOpen);
     const closeMenu = useUISidebarStatus(state => state.closeSideMenu);
 
-    const isDarkModeEnabled = useUIDarkMode(mode => mode.darkMode);
-    const enableDarkMode = useUIDarkMode(mode => mode.enableDarkMode);
-    const disableDarkMode = useUIDarkMode(mode => mode.disableDarkMode);
+    // const isDarkModeEnabled = useUIDarkMode(mode => mode.darkMode);
+    // const enableDarkMode = useUIDarkMode(mode => mode.enableDarkMode);
+    // const disableDarkMode = useUIDarkMode(mode => mode.disableDarkMode);
 
-    const toggleDarkMode = () => {
-        isDarkModeEnabled ? disableDarkMode() : enableDarkMode();
-    }
+    // const toggleDarkMode = () => {
+    //     isDarkModeEnabled ? disableDarkMode() : enableDarkMode();
+    // }
 
     const t = useTranslations("Menu");
 
