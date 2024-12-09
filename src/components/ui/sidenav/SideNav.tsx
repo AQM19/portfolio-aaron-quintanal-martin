@@ -5,12 +5,11 @@ import { NavConfig } from '@/core/config/nav-config/nav.config'
 import { Link } from '@/i18n/routing';
 import { FaAngleRight } from 'react-icons/fa'
 import React from 'react'
-import clsx from 'clsx';
 
 const SideNav = ({ isExpanded, setIsExpanded }: any) => {
     return (
         <aside
-            className={`fixed top-0 left-0 h-full transition-all duration-500 ${isExpanded ? 'w-[12.5rem]' : 'w-[5rem]'} bg-night`}
+            className={`hidden sm:block fixed top-0 left-0 h-full transition-all duration-500 ${isExpanded ? 'w-[12.5rem]' : 'w-[5rem]'} bg-night`}
         >
 
             <nav className="h-full flex flex-col p-4 space-y-2">
