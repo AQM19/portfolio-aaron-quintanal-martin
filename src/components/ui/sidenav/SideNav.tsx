@@ -2,9 +2,10 @@
 
 import AQMIcon from '@/components/icons/AQMIcon'
 import { NavConfig } from '@/core/config/nav-config/nav.config'
-import { Link } from '@/i18n/routing'
+import { Link } from '@/i18n/routing';
 import { FaAngleRight } from 'react-icons/fa'
 import React from 'react'
+import clsx from 'clsx';
 
 const SideNav = ({ isExpanded, setIsExpanded }: any) => {
     return (
@@ -21,23 +22,27 @@ const SideNav = ({ isExpanded, setIsExpanded }: any) => {
                     <AQMIcon />
                 </Link>
 
-                <ul className="flex flex-col gap-2 h-full text-neutral-100">
+                <ul className="flex flex-col gap-2 h-full text-emerald">
 
                     {
                         NavConfig.map((item, index) => (
                             <li key={`${item.name}-${index}`}>
-                                <a
+
+                                <Link
                                     href={item.href}
                                     className="flex items-center gap-4 rounded-md p-2 transition-colors hover:bg-night-600"
                                 >
-                                    <item.icon size={30} className='shrink-0' />
-                                    <span
-                                        className={`text-sm transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0 invisible'
-                                            }`}
-                                    >
+                                    <item.icon
+                                        size={30}
+                                        className='shrink-0'
+                                    />
+
+                                    <span className={`text-sm transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`} >
                                         {item.name}
                                     </span>
-                                </a>
+
+                                </Link>
+
                             </li>
                         ))
                     }
