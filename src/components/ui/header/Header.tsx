@@ -3,8 +3,19 @@ import { Link as I18Link } from '@/i18n/routing'
 import Link from 'next/link'
 import React from 'react'
 import LocalSwitcher from '../local-switcher/local-switcher'
+import Switch from '../switch/Switch'
 
-const Header = () => {
+interface Props {
+  isDarkMode: boolean;
+  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
+
+  const toggleDarkMode = () => {
+    isDarkMode ? setIsDarkMode(true) : setIsDarkMode(false);
+  }
+
   return (
     <header className='flex flex-row items-center justify-between p-4 bg-night text-emerald'>
 
@@ -50,8 +61,9 @@ const Header = () => {
 
       </div>
 
-      <div>
+      <div className='flex flex-row gap-4'>
         <LocalSwitcher />
+        <Switch isOn={isDarkMode} handleToggle={toggleDarkMode} />
       </div>
 
     </header>

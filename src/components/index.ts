@@ -21,3 +21,5 @@ export * from './ui/pagination/Pagination';
 export * from './ui/header/Header';
 export * from './ui/header/MobileHeader';
 export * from './ui/sidenav/SideNav';
+
+export * from './ui/switch/Switch';
