@@ -1,13 +1,13 @@
 {
-    "name": "Mercedes Ríos Gutiérrez - Traductora e intérprete",
-    "short_name": "Mercedes Ríos",
+    "name": "Aarón Quintanal Martín - Desarrollador Full Stack",
+    "short_name": "Aarón Quintanal",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#FFC8DD",
     "icons": [
         {
-            "src": "/png/babel-books.png",
+            "src": "/png/aaron-quintanal-martin.png",
             "sizes": "200x200",
             "type": "image/png"
         }
