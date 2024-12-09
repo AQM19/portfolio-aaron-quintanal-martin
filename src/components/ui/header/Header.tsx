@@ -11,9 +11,8 @@ interface Props {
 }
 
 const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
-
   const toggleDarkMode = () => {
-    isDarkMode ? setIsDarkMode(true) : setIsDarkMode(false);
+    setIsDarkMode(!isDarkMode)
   }
 
   return (
