@@ -1,9 +1,9 @@
 import { IconType } from "react-icons";
 import { HTMLAttributeAnchorTarget } from "react";
 
-export interface RRSSMenu {
+export interface SocialMedia {
     href: string;
     icon: IconType;
-    class?: string;
     target?: HTMLAttributeAnchorTarget;
+    isEnabled: boolean;
 }

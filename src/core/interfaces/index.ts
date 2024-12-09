@@ -8,7 +8,7 @@ export * from './projects/grid-project.interface';
 export * from './projects/project-image';
 export * from './projects/project.interface';
 export * from './role/role.interface';
-export * from './rrss-menu/rrss-menu.interface';
+export * from './social-media/social-media.interface';
 export * from './status/status.interface';
 export * from './tag/tag.interface';
 export * from './top-menu/center-menu.interface';
