@@ -6,7 +6,12 @@ import { Link } from '@/i18n/routing';
 import { FaAngleRight } from 'react-icons/fa'
 import React from 'react'
 
-const SideNav = ({ isExpanded, setIsExpanded }: any) => {
+interface Props {
+    isExpanded: boolean;
+    setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SideNav = ({ isExpanded, setIsExpanded }: Props) => {
     return (
         <aside
             className={`hidden sm:block fixed top-0 left-0 h-full transition-all duration-500 ${isExpanded ? 'w-[12.5rem]' : 'w-[5rem]'} bg-night`}

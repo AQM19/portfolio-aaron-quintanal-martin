@@ -18,6 +18,6 @@ export * from './ui/footer/Footer';
 export * from './ui/local-switcher/local-switcher';
 export * from './ui/not-found/PageNotFound';
 export * from './ui/pagination/Pagination';
-export * from './ui/header/HeaderComponent';
+export * from './ui/header/Header';
 export * from './ui/header/MobileHeader';
 export * from './ui/sidenav/SideNav';
