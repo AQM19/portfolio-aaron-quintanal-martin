@@ -14,7 +14,7 @@ interface Props {
 const SideNav = ({ isExpanded, setIsExpanded }: Props) => {
     return (
         <aside
-            className={`hidden sm:block fixed top-0 left-0 h-full transition-all duration-500 ${isExpanded ? 'w-[12.5rem]' : 'w-[5rem]'} bg-night`}
+            className={`hidden sm:block fixed top-0 left-0 h-full transition-all duration-300 ${isExpanded ? 'w-[12.5rem]' : 'w-[5rem]'} bg-silver-900 dark:bg-night`}
         >
 
             <nav className="h-full flex flex-col p-4 space-y-2">
@@ -26,7 +26,7 @@ const SideNav = ({ isExpanded, setIsExpanded }: Props) => {
                     <AQMIcon />
                 </Link>
 
-                <ul className="flex flex-col gap-2 h-full text-emerald">
+                <ul className="flex flex-col gap-2 h-full text-aero dark:text-emerald">
 
                     {
                         NavConfig.map((item, index) => (
@@ -41,7 +41,7 @@ const SideNav = ({ isExpanded, setIsExpanded }: Props) => {
                                         className='shrink-0'
                                     />
 
-                                    <span className={`text-sm transition-opacity duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0'}`} >
+                                    <span className={`text-sm transition-opacity duration-300 font-semibold ${isExpanded ? 'opacity-100' : 'opacity-0'}`} >
                                         {item.name}
                                     </span>
 
@@ -59,7 +59,7 @@ const SideNav = ({ isExpanded, setIsExpanded }: Props) => {
                             className="flex items-center gap-4 w-full rounded-md p-2 hover:bg-night-600 transition-colors"
                         >
                             <FaAngleRight size={30} className={`shrink-0 ${isExpanded ? 'rotate-180' : 'rotate-0'} duration-500`} />
-                            <span className={`text-sm transition-opacity duration-300 ${isExpanded ? 'opacity-100 visible' : 'opacity-0 invisible'}`} >
+                            <span className={`text-sm transition-opacity duration-300 font-semibold ${isExpanded ? 'opacity-100 visible' : 'opacity-0 invisible'}`} >
                                 Collapse
                             </span>
                         </button>

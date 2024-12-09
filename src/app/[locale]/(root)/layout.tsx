@@ -11,9 +11,9 @@ export default function PortfoilLayout({ children, }: Readonly<{ children: React
     const [isDarkModeEnabled, setDarkModeEnabled] = useState(false);
 
     return (
-        <div className={`${isDarkModeEnabled ? 'dark' : 'light'} flex h-screen transition-all duration-300`}>
+        <div className={`${isDarkModeEnabled ? 'dark' : 'light'} flex h-screen transition-all duration-200`}>
             <SideNav isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
-            <div className={`flex-1 transition-all duration-500 ${isExpanded ? 'sm:ml-[12.5rem]' : 'sm:ml-[5rem]'} grid grid-rows-[auto_auto_1fr_auto] sm:grid-rows-[auto_1fr_auto] min-h-screen`}>
+            <div className={`flex-1 transition-all duration-300 ${isExpanded ? 'sm:ml-[12.5rem]' : 'sm:ml-[5rem]'} grid grid-rows-[auto_auto_1fr_auto] sm:grid-rows-[auto_1fr_auto] min-h-screen`}>
                 <MobileHeader />
                 <Header isDarkMode={isDarkModeEnabled} setIsDarkMode={setDarkModeEnabled} />
                 <main>{children}</main>

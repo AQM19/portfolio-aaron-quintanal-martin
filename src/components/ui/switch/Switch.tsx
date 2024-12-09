@@ -1,37 +1,30 @@
 import React from 'react'
+import { IoMoon, IoSunnyOutline } from 'react-icons/io5'
 
 interface SwitchProps {
-    isOn: boolean
-    handleToggle: () => void
-    colorOn?: string
-    colorOff?: string
+    isDark: boolean
+    toggleTheme: () => void
 }
 
 const Switch: React.FC<SwitchProps> = ({
-    isOn,
-    handleToggle,
-    colorOn = "bg-green-500",
-    colorOff = "bg-gray-300"
+    isDark,
+    toggleTheme
 }) => {
     return (
-        <label className="flex items-center cursor-pointer">
-            <div className="relative">
-                <input
-                    type="checkbox"
-                    className="sr-only"
-                    checked={isOn}
-                    onChange={handleToggle}
-                />
-                <div
-                    className={`block ${colorOff} w-14 h-8 rounded-full ${isOn ? colorOn : colorOff
-                        }`}
-                ></div>
-                <div
-                    className={`dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition ${isOn ? "transform translate-x-full" : ""
-                        }`}
-                ></div>
+        <button
+            onClick={toggleTheme}
+            className={`w-16 h-8 rounded-full p-1 transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${isDark ? 'bg-blue-900' : 'bg-yellow-400'}`}
+        >
+            <div
+                className={`w-6 h-6 rounded-full shadow-md transform transition-transform duration-300 ease-in-out ${isDark ? 'translate-x-8 bg-blue-800' : 'translate-x-0 bg-white'}`}
+            >
+                {
+                    isDark
+                        ? (<IoMoon className="h-6 w-6 text-white p-1" />)
+                        : (<IoSunnyOutline className="h-6 w-6 text-yellow-400 p-1" />)
+                }
             </div>
-        </label>
+        </button>
     )
 }
 

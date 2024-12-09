@@ -16,7 +16,7 @@ const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
   }
 
   return (
-    <header className='flex flex-row items-center justify-between p-4 bg-silver dark:bg-night text-emerald'>
+    <header className='flex flex-row items-center justify-between p-4 bg-silver-900 dark:bg-night text-aero dark:text-emerald transition-colors duration-300'>
 
       <I18Link href={'/'}>
         <h1 className='font-semibold text-xl'>AARON QUINTANAL MARTIN</h1>
@@ -33,7 +33,7 @@ const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
                   target={item.target}>
                   <item.icon
                     size={30}
-                    className='hover:scale-125 transition-all duration-300'
+                    className='hover:scale-125 transition-transform duration-300'
                   />
                 </Link>
               </li>
@@ -50,7 +50,7 @@ const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
                   target={item.target}>
                   <item.icon
                     size={30}
-                    className='hover:scale-125 transition-all duration-300'
+                    className='hover:scale-125 transition-transform duration-300'
                   />
                 </Link>
               </li>
@@ -60,9 +60,9 @@ const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
 
       </div>
 
-      <div className='flex flex-row gap-4'>
+      <div className='flex flex-row gap-4 items-center justify-center'>
         <LocalSwitcher />
-        <Switch isOn={isDarkMode} handleToggle={toggleDarkMode} />
+        <Switch isDark={isDarkMode} toggleTheme={toggleDarkMode} />
       </div>
 
     </header>

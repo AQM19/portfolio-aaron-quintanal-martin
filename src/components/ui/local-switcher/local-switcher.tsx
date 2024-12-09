@@ -27,20 +27,20 @@ const LocalSwitcher = () => {
     return (
         <div className='relative'>
 
-            <button onClick={() => setIsListOpen(!isListOpen)} className='px-4 py-2 text-emerald'>
+            <button onClick={() => setIsListOpen(!isListOpen)} className='px-4 py-2 text-aero dark:text-emerald'>
                 <IoLanguageSharp size={30} />
             </button>
 
             <div
-                className={`absolute top-10 border-2 border-night-600 rounded bg-night shadow-md z-10
-                transition-all duration-300 ease-in-out
+                className={`absolute top-10 border-2 border-silver-600 dark:border-night-600 rounded bg-silver-900 dark:bg-night shadow-md z-10
+                transition-colors duration-300 ease-in-out
                 ${isListOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5 pointer-events-none'}`}
             >
                 <ul>
                     {LocaleConfig.map((value, index) => (
                         <li key={index}>
                             <button
-                                className={`py-2 px-4 w-full text-left ${localActive === value.lang ? 'bg-night-600' : ''
+                                className={`py-2 px-4 w-full text-left ${localActive === value.lang ? 'bg-silver-600 dark:bg-night-600' : ''
                                     }`}
                                 onClick={() => handleLanguageChange(value.lang)}
                                 disabled={isPending}
