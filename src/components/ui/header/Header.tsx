@@ -5,16 +5,7 @@ import React from 'react'
 import LocalSwitcher from '../local-switcher/local-switcher'
 import Switch from '../switch/Switch'
 
-interface Props {
-  isDarkMode: boolean;
-  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-  }
-
+const Header = () => {
   return (
     <header className='flex flex-row items-center justify-between p-4 bg-night text-emerald'>
 
@@ -62,7 +53,7 @@ const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
 
       <div className='flex flex-row gap-4'>
         <LocalSwitcher />
-        <Switch isOn={isDarkMode} handleToggle={toggleDarkMode} />
+        <Switch isOn={true} handleToggle={() => { }} />
       </div>
 
     </header>
