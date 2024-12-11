@@ -8,7 +8,7 @@ import Header from '@/components/ui/header/Header';
 export default function PortfoilLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
 
     const [isExpanded, setIsExpanded] = useState(false);
-    const [isDarkModeEnabled, setDarkModeEnabled] = useState(false);
+    const [isDarkModeEnabled, setDarkModeEnabled] = useState(true);
 
     return (
         <div className={`${isDarkModeEnabled ? 'dark' : 'light'} flex h-screen transition-all duration-200`}>

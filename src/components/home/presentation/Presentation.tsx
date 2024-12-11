@@ -25,8 +25,17 @@ const Presentation = () => {
     const t = useTranslations("Index");
 
     return (
-        <section aqm-data="presentation" className="w-full pt-28 flex flex-col-reverse lg:flex-row p-5 items-center justify-around text-night dark:text-silver-900">
-            <div className='p-5 rounded-sm flex flex-col gap-4'>
+        <section aqm-data="presentation" className="flex flex-col lg:flex-row py-10 sm:py-28 px-5 sm:px-32 justify-normal gap-10 sm:gap-36 text-night dark:text-silver-900">
+
+            <Image
+                className='h-[350px] w-full sm:w-3/4 md:h-[550px] md:w-[500px]'
+                src="/png/mapache-ladron.png"
+                alt="Imagen de Aarón Quintanal Martín"
+                width={1920}
+                height={1080}
+            />
+
+            <div className='rounded-sm flex flex-col gap-4'>
 
                 <p className='transition-colors duration-300'>
                     {t('hello')}
@@ -67,13 +76,6 @@ const Presentation = () => {
 
             </div>
 
-            <Image
-                className='h-[350px] w-3/4 md:h-[550px] md:w-[500px] hidden md:block'
-                src="/imgs/developer.webp"
-                alt="Imagen de Aarón Quintanal Martín"
-                width={1920}
-                height={1080}
-            />
         </section>
     )
 }

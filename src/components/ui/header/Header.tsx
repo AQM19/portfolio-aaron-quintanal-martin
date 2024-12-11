@@ -16,7 +16,7 @@ const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
   }
 
   return (
-    <header className='flex flex-row items-center justify-between p-4 bg-silver-900 dark:bg-night text-aero dark:text-emerald transition-colors duration-300'>
+    <header className='hidden sm:flex flex-row items-center justify-between p-4 bg-silver-900 dark:bg-night text-aero dark:text-emerald transition-colors duration-300'>
 
       <I18Link href={'/'}>
         <h1 className='font-semibold text-xl'>AARON QUINTANAL MARTIN</h1>
