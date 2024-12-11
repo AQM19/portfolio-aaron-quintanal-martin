@@ -15,7 +15,7 @@ export * from './projects/project-image/ProjectImage';
 
 // UI
 export * from './ui/footer/Footer';
-export * from './ui/local-switcher/local-switcher';
+export * from './ui/local-switcher/LocalSwitcher';
 export * from './ui/not-found/PageNotFound';
 export * from './ui/pagination/Pagination';
 export * from './ui/header/Header';

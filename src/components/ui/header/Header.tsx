@@ -2,7 +2,7 @@ import { SocialMediaMenuConfig, WorkMediaMenuConfig } from '@/core/config'
 import { Link as I18Link } from '@/i18n/routing'
 import Link from 'next/link'
 import React from 'react'
-import LocalSwitcher from '../local-switcher/local-switcher'
+import LocalSwitcher from '../local-switcher/LocalSwitcher'
 import Switch from '../switch/Switch'
 
 interface Props {
