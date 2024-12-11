@@ -16,7 +16,7 @@ export default function PortfoilLayout({ children, }: Readonly<{ children: React
             <div className={`flex-1 transition-all duration-300 ${isExpanded ? 'sm:ml-[12.5rem]' : 'sm:ml-[5rem]'} grid grid-rows-[auto_auto_1fr_auto] sm:grid-rows-[auto_1fr_auto] min-h-screen`}>
                 <MobileHeader />
                 <Header isDarkMode={isDarkModeEnabled} setIsDarkMode={setDarkModeEnabled} />
-                <main>{children}</main>
+                <main className='bg-silver-900 dark:bg-night transition-colors duration-300'>{children}</main>
                 <footer>FOOTER</footer>
             </div>
         </div>

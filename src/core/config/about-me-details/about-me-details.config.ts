@@ -1,9 +1,9 @@
-export interface ThingIAm {
+export interface AboutMeData {
     es: string[];
     en: string[];
 }
 
-export const thinsIAm: ThingIAm = {
+export const AboutMeDetails: AboutMeData = {
     'es': [
         'Desarrollador Full Stack',
         'Trabajador de CIC',
