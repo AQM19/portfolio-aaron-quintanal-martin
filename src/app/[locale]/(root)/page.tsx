@@ -1,9 +1,9 @@
-import CardResume from "@/components/home/card-resume/CardResume";
+import Presentation from "@/components/home/presentation/Presentation";
 
 export default function Home() {
   return (
     <>
-      <CardResume />
+      <Presentation />
     </>
   );
 }

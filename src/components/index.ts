@@ -2,7 +2,7 @@
 export * from './contact/contact-form';
 
 // Home
-export * from './home/card-resume/CardResume';
+export * from './home/presentation/Presentation';
 export * from './home/changing-text/ChangingText';
 
 // Icons

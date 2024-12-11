@@ -5,7 +5,7 @@ import { TbFileCv } from "react-icons/tb";
 import Link from 'next/link';
 import Image from 'next/image';
 
-import './card-resume.css'
+import './presentation.css'
 
 const birthDate: Date = new Date(1996, 2, 15);
 const currentDate: Date = new Date();
@@ -20,34 +20,36 @@ if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDate.get
 }
 // Obtener edad dinámicamente
 
-const CardResume = () => {
+const Presentation = () => {
 
     const t = useTranslations("Index");
 
     return (
-        <section aqm-data="presentation" className="w-full pt-28 flex flex-col-reverse lg:flex-row p-5 items-center justify-evenly text-night dark:text-silver-900">
+        <section aqm-data="presentation" className="w-full pt-28 flex flex-col-reverse lg:flex-row p-5 items-center justify-around text-night dark:text-silver-900">
             <div className='p-5 rounded-sm flex flex-col gap-4'>
 
-                <p>
+                <p className='transition-colors duration-300'>
                     {t('hello')}
                 </p>
 
-                <h1 className={`text-4xl md:text-6xl font-thin`}>
+                <h1 className={`text-4xl md:text-6xl font-thin transition-colors duration-300`}>
                     Aaron Quintanal Martín
                 </h1>
 
                 <ChangingText />
 
-                <p className='mt-5 text-[#441006] dark:text-[#d2e4ff] max-w-prose text-lg text-pretty text-justify font-semibold'>
+                <p className='mt-5 max-w-prose text-lg text-pretty text-justify font-semibold transition-colors duration-300'>
                     {t('I have')} {age} {t('first-part-presentation')}
-                    <br />
+                </p>
+
+                <p className='mt-5 max-w-prose text-lg text-pretty text-justify font-semibold transition-colors duration-300'>
                     {t('second-part-presentation')}
                 </p>
 
                 <div className='flex flex-row gap-4'>
                     <I18Link href={'/contact'} >
                         <button
-                            className='lg:self-end mt-5 w-min px-5 py-2 rounded-md text-[#ed4709] dark:text-[#e2b5fd] font-bold border-2 border-[#ed4709] dark:border-[#e2b5fd]'>
+                            className='lg:self-end mt-5 w-min px-5 py-2 rounded-md text-aero dark:text-emerald font-bold border-2 border-aero dark:border-emerald'>
                             {t('contact-button')}
                         </button>
                     </I18Link>
@@ -56,7 +58,7 @@ const CardResume = () => {
                         href={'https://drive.google.com/file/d/1_MioP4l1znzu5KJEVtSKWAayt7icYa2x/view'}
                         target='_blank'
                     >
-                        <button className='flex flex-row lg:self-end mt-5 px-5 py-2 rounded-md text-[#fff6ed] dark:text-[#030637] bg-[#ed4709] dark:bg-[#e2b5fd] font-bold border-2 border-[#ed4709] dark:border-[#e2b5fd]'>
+                        <button className='flex flex-row lg:self-end mt-5 px-5 py-2 rounded-md text-silver-900 dark:text-night bg-aero dark:bg-emerald font-bold border-2 border-aero dark:border-emerald transition-colors duration-300'>
                             <TbFileCv className="mr-2" size={24} />
                             {t('download-cv')}
                         </button>
@@ -76,4 +78,4 @@ const CardResume = () => {
     )
 }
 
-export default CardResume
+export default Presentation
