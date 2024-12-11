@@ -11,5 +11,5 @@ export * from './role/role.interface';
 export * from './social-media/social-media.interface';
 export * from './status/status.interface';
 export * from './tag/tag.interface';
-export * from './top-menu/center-menu.interface';
+export * from './nav-menu/nav-menu.interface';
 export * from './user/user.interface';

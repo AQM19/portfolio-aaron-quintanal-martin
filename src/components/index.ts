@@ -5,6 +5,8 @@ export * from './contact/contact-form';
 export * from './home/presentation/Presentation';
 export * from './home/changing-text/ChangingText';
 
+export * from './language-skills/LanguageSkills';
+
 // Icons
 export * from './icons/AQMIcon';
 
