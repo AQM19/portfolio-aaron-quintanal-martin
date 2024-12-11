@@ -5,6 +5,8 @@ import { TbFileCv } from "react-icons/tb";
 import Link from 'next/link';
 import Image from 'next/image';
 
+import './card-resume.css'
+
 const birthDate: Date = new Date(1996, 2, 15);
 const currentDate: Date = new Date();
 

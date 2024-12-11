@@ -1,0 +1,39 @@
+@keyframes typedjsBlink {
+    0% {
+        opacity: 1;
+    }
+
+    /* Inicio de la animación */
+    50% {
+        opacity: 0;
+    }
+
+    /* Mitad de la animación */
+    100% {
+        opacity: 1;
+    }
+
+    /* Final de la animación */
+}
+
+@-webkit-keyframes typedjsBlink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.typed-cursor {
+    opacity: 1;
+}
+
+.typed-cursor.typed-cursor--blink {
+    animation: typedjsBlink 1s infinite;
+}
