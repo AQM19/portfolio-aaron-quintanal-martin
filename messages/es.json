@@ -13,6 +13,9 @@
         "news": "Noticias",
         "my career": "Mi carrera"
     },
+    "Language skills": {
+        "title": "Lenguages de programación"
+    },
     "Not Found": {
         "title": "",
         "body": "",
