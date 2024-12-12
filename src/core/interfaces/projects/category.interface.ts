@@ -1,4 +1,6 @@
-export interface Category {
-    nemonic: string;
-    value: Map<string, string>;
-}
+export type Category =
+    | 'personal'
+    | 'freelance'
+    | 'private'
+    | 'employee'
+    | 'academic'

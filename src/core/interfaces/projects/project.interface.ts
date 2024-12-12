@@ -3,7 +3,7 @@ import { Developer } from "./developer.interface";
 
 export interface Project {
     slug: string;
-    title: Map<string, string>;
+    title: string;
     description: Map<string, string>;
     shortDescription: Map<string, string>;
     logo: string;

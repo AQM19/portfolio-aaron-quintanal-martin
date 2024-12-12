@@ -6,3 +6,4 @@ export * from './projects/project.interface';
 export * from './projects/status.interface';
 export * from './projects/tag.interface';
 export * from './social-media/social-media.interface';
+export * from './locales/locales.interface';
