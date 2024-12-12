@@ -12,5 +12,10 @@
         "contact": "Contacto",
         "news": "Noticias",
         "my career": "Mi carrera"
+    },
+    "Not Found": {
+        "title": "",
+        "body": "",
+        "button": ""
     }
 }
