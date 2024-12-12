@@ -1,20 +1,19 @@
-import { ProjectImage, Tag } from "..";
+import { Category, Status, Tag } from "..";
 import { Developer } from "../developer/developer.interface";
 
 export interface Project {
-    id: string;
-    title: string;
-    description: string | null;
-    shortDescription: string | null;
+    slug: string;
+    title: Map<string, string>;
+    description: Map<string, string>;
+    shortDescription: Map<string, string>;
     logo: string;
     dateStart: Date;
     dateEnd: Date | null;
-    documentation?: string;
-    link: string | null;
-    slug: string;
-    images: ProjectImage[];
-    Status: string;
-    Category: string;
+    documentation?: Map<string, string>;
+    productionLink?: string;
+    images: string[];
+    status: Status;
+    category: Category;
     tags: Tag[];
     developers: Developer[];
-}
+};
