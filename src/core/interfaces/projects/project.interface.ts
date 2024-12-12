@@ -1,5 +1,5 @@
 import { Category, Status, Tag } from "..";
-import { Developer } from "../developer/developer.interface";
+import { Developer } from "./developer.interface";
 
 export interface Project {
     slug: string;
