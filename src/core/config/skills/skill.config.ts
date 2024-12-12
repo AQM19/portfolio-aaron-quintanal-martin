@@ -1,85 +1,154 @@
 import { Skill } from "@/core/interfaces/skills/skill.interface";
 
 export const SkillConfig: Skill[] = [
+    // Lenguajes de programación
     {
-        nemonic: "android",
-        name: 'Android',
+        nemonic: "javascript",
+        name: "JavaScript",
         alt: new Map([
-            ['en', 'Android logo'],
-            ['es', 'Logotipo de Android']
+            ["en", "JavaScript logo"],
+            ["es", "Logotipo de JavaScript"]
         ]),
-        isEnabled: true
+        isEnabled: false,
+        isFavourite: false,
+        type: "language"
     },
     {
-        nemonic: "angular",
-        name: 'Angular',
+        nemonic: "typescript",
+        name: "TypeScript",
         alt: new Map([
-            ['en', 'Angular logo'],
-            ['es', 'Logotipo de Angular']
+            ["en", "TypeScript logo"],
+            ["es", "Logotipo de TypeScript"]
         ]),
-        isEnabled: true
+        isEnabled: false,
+        isFavourite: false,
+        type: "language"
     },
     {
-        nemonic: "c-sharp",
-        name: 'C#',
+        nemonic: "python",
+        name: "Python",
         alt: new Map([
-            ['en', 'C# logo'],
-            ['es', 'Logotipo de C#']
+            ["en", "Python logo"],
+            ["es", "Logotipo de Python"]
         ]),
-        isEnabled: true
-    },
-    {
-        nemonic: "dot-net-core",
-        name: 'EF Core',
-        alt: new Map([
-            ['en', '.NET Core logo'],
-            ['es', 'Logotipo de .NET Core']
-        ]),
-        isEnabled: true
+        isEnabled: true,
+        isFavourite: false,
+        type: "language"
     },
     {
         nemonic: "java",
-        name: 'Java',
+        name: "Java",
         alt: new Map([
-            ['en', 'Java logo'],
-            ['es', 'Logotipo de Java']
+            ["en", "Java logo"],
+            ["es", "Logotipo de Java"]
         ]),
-        isEnabled: true
+        isEnabled: false,
+        isFavourite: false,
+        type: "language"
     },
     {
-        nemonic: "javascript",
-        name: 'Javascript',
+        nemonic: "c-sharp",
+        name: "C#",
         alt: new Map([
-            ['en', 'JavaScript logo'],
-            ['es', 'Logotipo de JavaScript']
+            ["en", "C# logo"],
+            ["es", "Logotipo de C#"]
         ]),
-        isEnabled: true
+        isEnabled: false,
+        isFavourite: true,
+        type: "language"
     },
     {
         nemonic: "kotlin",
-        name: 'Kotlin',
+        name: "Kotlin",
         alt: new Map([
-            ['en', 'Kotlin logo'],
-            ['es', 'Logotipo de Kotlin']
+            ["en", "Kotlin logo"],
+            ["es", "Logotipo de Kotlin"]
         ]),
-        isEnabled: true
+        isEnabled: false,
+        isFavourite: false,
+        type: "language"
+    },
+
+    // Frameworks
+    {
+        nemonic: "angular",
+        name: "Angular",
+        alt: new Map([
+            ["en", "Angular logo"],
+            ["es", "Logotipo de Angular"]
+        ]),
+        isEnabled: true,
+        isFavourite: false,
+        type: "framework"
     },
     {
         nemonic: "nextjs",
-        name: 'Nextjs',
+        name: "Next.js",
         alt: new Map([
-            ['en', 'Next.js logo'],
-            ['es', 'Logotipo de Next.js']
+            ["en", "Next.js logo"],
+            ["es", "Logotipo de Next.js"]
         ]),
-        isEnabled: true
+        isEnabled: true,
+        isFavourite: true,
+        type: "framework"
     },
     {
-        nemonic: "react",
-        name: 'React',
+        nemonic: "android",
+        name: "Android",
         alt: new Map([
-            ['en', 'React logo'],
-            ['es', 'Logotipo de React']
+            ["en", "Android logo"],
+            ["es", "Logotipo de Android"]
         ]),
-        isEnabled: false
+        isEnabled: false,
+        isFavourite: false,
+        type: "framework"
     },
+
+    // Librerías
+    {
+        nemonic: "react",
+        name: "React",
+        alt: new Map([
+            ["en", "React logo"],
+            ["es", "Logotipo de React"]
+        ]),
+        isEnabled: false,
+        isFavourite: false,
+        type: "library"
+    },
+    {
+        nemonic: "dot-net-core",
+        name: "EF Core",
+        alt: new Map([
+            ["en", "EF Core logo"],
+            ["es", "Logotipo de EF Core"]
+        ]),
+        isEnabled: true,
+        isFavourite: true,
+        type: "library"
+    },
+
+    // Herramientas
+    {
+        nemonic: "docker",
+        name: "Docker",
+        alt: new Map([
+            ["en", "Docker logo"],
+            ["es", "Logotipo de Docker"]
+        ]),
+        isEnabled: false,
+        isFavourite: false,
+        type: "tool"
+    },
+    {
+        nemonic: "git",
+        name: "Git",
+        alt: new Map([
+            ["en", "Git logo"],
+            ["es", "Logotipo de Git"]
+        ]),
+        isEnabled: false,
+        isFavourite: false,
+        type: "tool"
+    }
 ];

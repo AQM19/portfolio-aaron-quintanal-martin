@@ -7,6 +7,8 @@ export * from './home/changing-text/ChangingText';
 
 export * from './language-skills/LanguageSkills';
 
+export * from './cards/skill-card/SkillCard';
+
 // Icons
 export * from './icons/AQMIcon';
 
