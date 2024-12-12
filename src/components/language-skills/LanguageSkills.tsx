@@ -1,6 +1,5 @@
 import { SkillConfig } from '@/core/config/skills/skill.config'
 import { useLocale, useTranslations } from 'next-intl'
-import Image from 'next/image'
 import React from 'react'
 import SkillCard from '../cards/skill-card/SkillCard'
 
@@ -10,7 +9,7 @@ const LanguageSkills = () => {
     const localeActive = useLocale();
 
     return (
-        <section aqm-data="language-skills" className='flex flex-col items-center gap-20 py-10 text-night dark:text-silver-900'>
+        <section aqm-data="language-skills" className='flex flex-col items-center gap-20 py-16 text-night dark:text-silver-900'>
 
             <h2 className='text-3xl font-semibold'>
                 {t('title')}
