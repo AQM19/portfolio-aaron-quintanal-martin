@@ -9,6 +9,7 @@ export * from './language-skills/LanguageSkills';
 export * from './resume-projects/ResumeProjects';
 
 export * from './cards/skill-card/SkillCard';
+export * from './cards/project-resume/ProjectResumeCard';
 
 // Icons
 export * from './icons/AQMIcon';

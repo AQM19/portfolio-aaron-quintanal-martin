@@ -17,7 +17,9 @@
         "title": "Hablidades técnicas"
     },
     "Resume projects": {
-        "title": "Proyectos destacados"
+        "title": "Proyectos destacados",
+        "by": "Por",
+        "read more": "Leer mas"
     },
     "Not Found": {
         "title": "",
