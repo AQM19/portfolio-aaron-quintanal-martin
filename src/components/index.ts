@@ -11,6 +11,9 @@ export * from './resume-projects/ResumeProjects';
 export * from './cards/skill-card/SkillCard';
 export * from './cards/project-resume/ProjectResumeCard';
 
+
+export * from './avatar/Avatar';
+
 // Icons
 export * from './icons/AQMIcon';
 
