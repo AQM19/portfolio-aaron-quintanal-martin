@@ -1,6 +1,7 @@
 'use client'
 
 import Avatar from '@/components/avatar/Avatar';
+import AvatarGroup from '@/components/avatar/AvatarGroup';
 import { ProjectsConfig } from '@/core/config/projects/projects.config';
 import { getLocaleFormattedDate } from '@/core/utils';
 import { useLocale, useTranslations } from 'next-intl';
@@ -26,10 +27,6 @@ const ProjectDetailPage = () => {
     const c = useTranslations('Category');
     const e = useTranslations('Tags');
     const localeActive = useLocale();
-
-    const max = 3;
-    const visibleAvatars = project.developers.slice(0, max)
-    const remainingCount = project.developers.length - max
 
     return (
         <section className='w-full h-auto py-12 px-8 lg:px-12'>
@@ -146,30 +143,9 @@ const ProjectDetailPage = () => {
                             }
 
                             {
-                                visibleAvatars.length > 1 && visibleAvatars.map((dev, index) => (
-                                    <div
-                                        key={index}
-                                        className={`${index !== 0 ? '-ml-2' : ''} border-2 border-silver-900 rounded-full`}
-                                        style={{ zIndex: project.developers.length - index }}
-                                    >
-                                        <img
-                                            key={`${dev.username}-${index}`}
-                                            alt={dev.username}
-                                            src={dev.avatar!}
-                                            className='w-16 h-16 rounded-full'
-                                        />
-                                    </div>
-                                ))
+                                project.developers.length > 1 && <AvatarGroup developers={project.developers} />
                             }
-                            {
-                                remainingCount > 0 && (
-                                    <div
-                                        className='rounded-full bg-gray-200 flex items-center justify-center font-medium text-gray-600 border-2 border-white ml-2 px-1'
-                                    >
-                                        +{remainingCount}
-                                    </div>
-                                )
-                            }
+
                         </div>
 
                     </div>
