@@ -6,5 +6,3 @@ export type Status =
     | 'deploying'
     | 'manteinance'
     | 'finished'
-
-
