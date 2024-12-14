@@ -45,6 +45,19 @@ export const CareerConfig: Career[] = [
         dotIcon: AiOutlineDotNet
     },
     {
+        empress: 'CEIABD',
+        empressImage: '/webp/ceiabd.webp',
+        dateRange: new Map([
+            ['es', 'Septiembre 2023 - Junio 2024'],
+            ['en', 'September 2023 - June 2024']
+        ]),
+        description: new Map([
+            ['es', 'Además, he realizado el curso de Especialización de Inteligencia Artificial y Big Data a la vez que trabajo en CIC. Aportando mas conocimientos a mi currículum y haciendo muchos avances. Además considero que es algo necesario hoy en día con la fiebre de la IA que nos está desbordando últimamente.'],
+            ['en', 'In addition, I made the Artificial Intelligence and Big Data Specialization course while working at CIC. Contributing more knowledge to my resume and making many advances. I also consider it something necessary nowadays with the fever of AI that has been overwhelming us lately.']
+        ]),
+        dotIcon: GiArtificialIntelligence
+    },
+    {
         empress: 'CIC',
         empressImage: '/webp/cic.webp',
         dateRange: new Map([
@@ -74,18 +87,5 @@ export const CareerConfig: Career[] = [
                 promotionDate: new Date(2024, 2, 18)
             }
         ]
-    },
-    {
-        empress: 'CEIABD',
-        empressImage: '/webp/ceiabd.webp',
-        dateRange: new Map([
-            ['es', 'Septiembre 2023 - Junio 2024'],
-            ['en', 'September 2023 - June 2024']
-        ]),
-        description: new Map([
-            ['es', 'Además, he realizado el curso de Especialización de Inteligencia Artificial y Big Data a la vez que trabajo en CIC. Aportando mas conocimientos a mi currículum y haciendo muchos avances. Además considero que es algo necesario hoy en día con la fiebre de la IA que nos está desbordando últimamente.'],
-            ['en', 'In addition, I made the Artificial Intelligence and Big Data Specialization course while working at CIC. Contributing more knowledge to my resume and making many advances. I also consider it something necessary nowadays with the fever of AI that has been overwhelming us lately.']
-        ]),
-        dotIcon: GiArtificialIntelligence
     }
 ];

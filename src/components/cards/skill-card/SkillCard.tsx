@@ -12,7 +12,7 @@ const SkillCard = ({ skill, localeActive }: Props) => {
     return (
         <>
             <div
-                className="hidden sm:block relative w-[300px] pt-[50px] border-4 rounded-lg border-aero dark:border-emerald text-center shadow-md"
+                className="hidden sm:block relative w-[300px] pt-[50px] rounded-lg text-center shadow-lg hover:shadow-xl shadow-night-600 dark:shadow-silver-200 bg-silver-700 dark:bg-night-600 transition-shadow duration-300"
             >
 
                 {
@@ -24,7 +24,7 @@ const SkillCard = ({ skill, localeActive }: Props) => {
                 }
 
                 {/* Círculo con la imagen */}
-                <div className="absolute inset-0 -top-[50px] left-1/2 transform -translate-x-1/2 w-[100px] h-[100px] rounded-full overflow-hidden bg-silver-900 dark:bg-night border-4 border-aero dark:border-emerald">
+                <div className="absolute inset-0 -top-[50px] left-1/2 transform -translate-x-1/2 w-[100px] h-[100px] rounded-full overflow-hidden bg-silver-900 dark:bg-night-600">
                     <Image
                         src={`./svg/${skill.nemonic}.svg`}
                         alt={`${skill.alt.get(localeActive)}`}

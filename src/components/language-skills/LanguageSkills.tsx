@@ -16,7 +16,7 @@ const LanguageSkills = () => {
             </h2>
             
 
-            <div className='w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-16 justify-items-center'>
+            <div className='w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-y-16 justify-items-center container'>
 
                 {
                     SkillConfig.map((item, index) => (

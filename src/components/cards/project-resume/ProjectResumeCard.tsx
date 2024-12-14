@@ -27,7 +27,7 @@ const ProjectResumeCard = ({ project, localeActive, index }: Props) => {
                     ? index * 0.4
                     : 0.2
             }}
-            className="flex flex-col h-full bg-silver-900 dark:bg-night rounded-md border-4 border-aero dark:border-emerald shadow-md text-night dark:text-silver-900 transition-colors duration-300">
+            className="flex flex-col h-full bg-silver-700 dark:bg-night-600 rounded-md border-0 border-aero dark:border-emerald shadow-lg hover:shadow-xl shadow-night-600 dark:shadow-silver-200 text-night dark:text-silver-900 transition-all duration-300">
 
             <div className="flex-grow">
 
