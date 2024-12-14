@@ -29,17 +29,18 @@ export default function ImageSlider({ images, interval = 3000 }: ImageSliderProp
     }, [nextSlide, interval])
 
     return (
-        <div className="relative w-full max-w-3xl mx-auto">
+        <div className="relative w-full max-w-6xl mx-auto flex flex-col justify-center items-center">
 
-            <div className="overflow-hidden aspect-w-16 aspect-h-9">
+            <div className="relative overflow-hidden justify-center items-center flex h-[400px] sm:h-[700px] w-[300px] sm:w-[600px]">
                 {
                     images.map((src, index) => (
                         <Image
                             key={`slide-image-${index}`}
                             src={src}
                             alt={`Slide ${index + 1}`}
-                            fill
-                            className={`absolute top-0 left-0 object-cover transition-opacity duration-500 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+                            width={600}
+                            height={400}
+                            className={`absolute object-contain transition-opacity duration-500 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
                             priority={index === 0}
                         />
                     ))
@@ -48,7 +49,7 @@ export default function ImageSlider({ images, interval = 3000 }: ImageSliderProp
 
             <button
                 onClick={prevSlide}
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all"
+                className="absolute -left-10 sm:-left-16 top-1/2 transform -translate-y-1/2 hover:bg-night-600 hover:dark:bg-silver-300 text-aero dark:text-emerald p-2 rounded-md hover:bg-opacity-75 transition-all duration-300"
                 aria-label="Previous slide"
             >
                 <FaChevronLeft size={24} />
@@ -56,26 +57,24 @@ export default function ImageSlider({ images, interval = 3000 }: ImageSliderProp
 
             <button
                 onClick={nextSlide}
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all"
+                className="absolute -right-10 sm:-right-16 top-1/2 transform -translate-y-1/2 hover:bg-night-600 hover:dark:bg-silver-300 text-aero dark:text-emerald p-2 rounded-md hover:bg-opacity-75 transition-all duration-300"
                 aria-label="Next slide"
             >
                 <FaChevronRight size={24} />
             </button>
 
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            <div className="flex space-x-2 mt-4">
                 {
                     images.map((_, index) => (
                         <button
                             key={index}
                             onClick={() => setCurrentIndex(index)}
-                            className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'
-                                }`}
+                            className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-night-600' : 'bg-silver'}`}
                             aria-label={`Go to slide ${index + 1}`}
                         />
                     ))
                 }
             </div>
-
         </div>
     )
 }
