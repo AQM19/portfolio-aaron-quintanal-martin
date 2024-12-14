@@ -13,6 +13,7 @@ export * from './cards/project-resume/ProjectResumeCard';
 
 export * from './avatar/Avatar';
 export * from './avatar/AvatarGroup';
+export * from './chip/Chip';
 
 // Icons
 export * from './icons/AQMIcon';

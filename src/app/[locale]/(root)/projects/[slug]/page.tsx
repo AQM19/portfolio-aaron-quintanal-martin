@@ -1,17 +1,19 @@
 'use client'
 
+import { FiDownload } from 'react-icons/fi';
+import { getLocaleFormattedDate } from '@/core/utils';
+import { IoCalendarOutline } from 'react-icons/io5';
+import { IoIosLink } from 'react-icons/io';
+import { notFound, useParams } from 'next/navigation'
+import { ProjectsConfig } from '@/core/config/projects/projects.config';
+import { useLocale, useTranslations } from 'next-intl';
 import Avatar from '@/components/avatar/Avatar';
 import AvatarGroup from '@/components/avatar/AvatarGroup';
-import { ProjectsConfig } from '@/core/config/projects/projects.config';
-import { getLocaleFormattedDate } from '@/core/utils';
-import { useLocale, useTranslations } from 'next-intl';
-import Image from 'next/image';
 import Link from 'next/link';
-import { notFound, useParams } from 'next/navigation'
 import React from 'react'
-import { FiDownload } from 'react-icons/fi';
-import { IoIosLink } from 'react-icons/io';
-import { IoCalendarOutline } from 'react-icons/io5';
+import Chip from '@/components/chip/Chip';
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { Link as I18nLink } from '@/i18n/routing';
 
 const ProjectDetailPage = () => {
 
@@ -23,15 +25,37 @@ const ProjectDetailPage = () => {
         notFound();
     }
 
+    const projectIndex = ProjectsConfig.findIndex(project => project.slug === slug);
+    const previousProject =
+        ProjectsConfig[(projectIndex - 1 + ProjectsConfig.length) % ProjectsConfig.length];
+    const nextProject =
+        ProjectsConfig[(projectIndex + 1) % ProjectsConfig.length];
+
     const t = useTranslations('Project');
     const c = useTranslations('Category');
     const e = useTranslations('Tags');
     const localeActive = useLocale();
 
     return (
-        <section className='w-full h-auto py-12 px-8 lg:px-12'>
+        <section className='w-full h-full py-10 px-8 lg:px-12 relative'>
 
-            <div className='flex flex-col lg:flex-row-reverse justify-evenly items-center '>
+            <I18nLink
+                aqm-data="previous-project"
+                href={{ pathname: '/projects/[slug]', params: { slug: previousProject.slug } }}
+                className='hidden sm:flex absolute top-0 left-0 h-full items-center cursor-pointer hover:bg-silver dark:hover:bg-night-600 rounded-sm transition-colors duration-300 text-aero dark:text-emerald'
+            >
+                <FaChevronLeft size={30} />
+            </I18nLink>
+
+            <I18nLink
+                aqm-data="next-project"
+                href={{ pathname: '/projects/[slug]', params: { slug: nextProject.slug } }}
+                className='hidden sm:flex absolute top-0 right-4 h-full items-center cursor-pointer hover:bg-silver dark:hover:bg-night-600 rounded-sm transition-colors duration-300 text-aero dark:text-emerald'
+            >
+                <FaChevronRight size={30} />
+            </I18nLink>
+
+            <div className='flex flex-col lg:flex-row-reverse justify-evenly items-center'>
 
                 <div className='md:w-2/3 lg:w-1/3'>
                     {/* SLIDER */}
@@ -52,23 +76,27 @@ const ProjectDetailPage = () => {
                                         {t('category')}
                                     </div>
 
-                                    <div className="rounded-full bg-neutral-900 text-[#fff6ed] dark:bg-[#d2e4ff] dark:text-[#030637] px-3 py-1 text-xs font-medium" >
-                                        {c(project.category)}
-                                    </div>
+                                    <Chip value={c(project.category)} />
 
                                 </div>
                             </div>
 
-                            <p className='font-light text-justify antialiased text-[#441006] dark:text-[#d2e4ff]'>
-                                {project.description.get(localeActive)}
-                            </p>
+                            <div className='font-light text-justify antialiased text-night dark:text-silver-900 transition-colors duration-300'>
+                                {
+                                    project.description.get(localeActive)?.map((item, index) => (
+                                        <p key={index}>
+                                            {item}
+                                        </p>
+                                    ))
+                                }
+                            </div>
 
                         </div>
 
                         <div className="flex items-center gap-4 text-night dark:text-silver-900">
 
-                            <IoCalendarOutline size={30} />
-                            <div className="text-sm">
+                            <IoCalendarOutline size={30} className='transition-colors duration-300' />
+                            <div className="text-sm transition-colors duration-300">
                                 <div className='text-aero dark:text-emerald font-semibold'>
                                     {t('date start')}:
                                 </div>
@@ -77,8 +105,8 @@ const ProjectDetailPage = () => {
                                 </span>
                             </div>
 
-                            <IoCalendarOutline size={30} />
-                            <div className="text-sm">
+                            <IoCalendarOutline size={30} className='transition-colors duration-300' />
+                            <div className="text-sm transition-colors duration-300">
                                 <div className='text-aero dark:text-emerald font-semibold'>
                                     {t('date end')}:
                                 </div>
@@ -130,9 +158,10 @@ const ProjectDetailPage = () => {
                         <div className="flex flex-wrap items-center gap-2">
                             {
                                 project.tags.map((tag, index) => (
-                                    <div key={index} className="rounded-full bg-[#441006] text-[#fff6ed] dark:bg-[#d2e4ff] dark:text-[#030637] px-3 py-1 text-xs font-medium" >
-                                        {e(tag)}
-                                    </div>
+                                    <Chip
+                                        key={`${tag}-${index}`}
+                                        value={e(tag)}
+                                    />
                                 ))
                             }
                         </div>
