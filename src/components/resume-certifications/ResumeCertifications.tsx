@@ -19,7 +19,7 @@ const ResumeCertifications = () => {
                 {t('title')}
             </h2>
 
-            <div className='w-full grid grid-cols-2 sm:grid-cols-3 gap-8 justify-items-center container'>
+            <div className='w-full grid grid-cols-1 sm:grid-cols-3 gap-8 justify-items-center container px-5'>
 
                 {
                     lastCertifications.map((item, index) => (

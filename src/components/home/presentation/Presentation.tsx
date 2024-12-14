@@ -7,22 +7,20 @@ import Image from 'next/image';
 
 import './presentation.css'
 
-const birthDate: Date = new Date(1996, 2, 15);
-const currentDate: Date = new Date();
-
-const birthMonth = birthDate.getMonth();
-const currentMonth = currentDate.getMonth();
-
-let age = currentDate.getFullYear() - birthDate.getFullYear();
-
-if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDate.getDate() < birthDate.getDate())) {
-    age--;
-}
-// Obtener edad dinámicamente
-
 const Presentation = () => {
 
     const t = useTranslations("Index");
+    const birthDate: Date = new Date(1996, 2, 15);
+    const currentDate: Date = new Date();
+
+    const birthMonth = birthDate.getMonth();
+    const currentMonth = currentDate.getMonth();
+
+    let age = currentDate.getFullYear() - birthDate.getFullYear();
+
+    if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDate.getDate() < birthDate.getDate())) {
+        age--;
+    }
 
     return (
         <section aqm-data="presentation" className="flex flex-col lg:flex-row py-10 sm:py-28 px-5 sm:px-32 justify-normal gap-10 sm:gap-36 text-night dark:text-silver-900">

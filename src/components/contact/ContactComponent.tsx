@@ -37,7 +37,7 @@ const ContactComponent = () => {
 
             <div className='py-20 container mx-auto px-4'>
 
-                <h2 className="text-3xl font-bold mb-8 text-center">{t('title')}</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center dark:text-silver-900 text-night">{t('title')}</h2>
 
                 <form
                     className="max-w-md mx-auto"
