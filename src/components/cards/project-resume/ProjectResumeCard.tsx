@@ -31,13 +31,13 @@ const ProjectResumeCard = ({ project, localeActive, index }: Props) => {
 
             <div className="flex-grow">
 
-                <div className="aspect-w-2 aspect-h-3 w-full mt-4">
+            <div className="relative w-full h-96 mt-4">
                     <Image
-                        src={`/png/${project.logo}.png`}
+                        src={project.logo}
                         alt={`Cover of ${project.title}`}
                         width={300}
                         height={450}
-                        className="object-fill h-full mx-auto max-h-96 rounded hover:scale-105 transition-all cursor-pointer"
+                        className="absolute inset-0 mx-auto my-auto object-contain max-h-96 rounded hover:scale-105 transition-all cursor-pointer"
                     />
                 </div>
 

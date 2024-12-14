@@ -5,7 +5,7 @@ export const ProjectsConfig: Project[] = [
     {
         title: 'Auto Terra',
         slug: 'auto-terra',
-        logo: 'auto-terra',
+        logo: '/png/auto-terra.png',
         description: new Map([
             ['es', ['El proyecto propone una aplicación integral de administración de terrarios diseñada específicamente para propietarios de diversas especies, particularmente las exóticas.',
                 'Esta herramienta digital permite mantener un seguimiento detallado y organizado de las necesidades individuales de cada especie, facilitando la asignación de un terrario adecuado para cada una. Además, los usuarios podrán programar y registrar tareas de cuidado y observaciones relevantes, garantizando una atención oportuna y eficaz.',
@@ -41,7 +41,7 @@ export const ProjectsConfig: Project[] = [
     {
         title: 'ChatBOC',
         slug: 'chat-boc',
-        logo: 'chat-boc',
+        logo: '/webp/chat-boc-1.webp',
         description: new Map([
             ['es', ['ChatBOC es una aplicación innovadora que integra inteligencia artificial en un chatbot, permitiendo a los usuarios hacer preguntas sobre cualquier tema relacionado con el Boletín Oficial de Cantabria (BOC).', 'Este proyecto utiliza una arquitectura de doble base de datos: PostgreSQL y ChromaDB. PostgreSQL es una base de datos relacional encargada de gestionar usuarios, roles y chats, mientras que ChromaDB es una base de datos vectorial que almacena los PDF del BOC, proporcionando contexto relevante para las preguntas dirigidas al modelo de inteligencia artificial.', 'El modelo utilizado para su uso es el de ollama, que se comunicará con la api para proporcionar las respuestas obtenidas a través del chat bajo un contexto dado por la base de datos vectorial de ChromaDB. De esta forma se puede obtener un resultado de búsqueda mucho más sencillo y eficaz a la par que legible para cualquier persona, llegando al usuario final de la manera más simplista posible.']],
             ['en', ['ChatBOC is an innovative application that integrates artificial intelligence into a chatbot, allowing users to ask questions about any topic related to the Official Bulletin of Cantabria (BOC).', 'This project utilizes a dual database architecture: PostgreSQL and ChromaDB. PostgreSQL is a relational database responsible for managing users, roles, and chats, while ChromaDB is a vector database that stores the BOC PDFs, providing relevant context for questions directed to the AI model.', 'The model used is from Ollama, which will communicate with the API to provide responses obtained through the chat based on the context given by the ChromaDB vector database. This way, a much simpler and more efficient search result can be obtained, while also being readable for anyone, reaching the end user in the simplest way possible.']]
