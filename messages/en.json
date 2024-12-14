@@ -24,6 +24,9 @@
     "Resume experience": {
         "title": "Most recent experience"
     },
+    "Resume certifications": {
+        "title": "Latest certifications"
+    },
     "Project": {
         "category": "Category",
         "description": "Description",
