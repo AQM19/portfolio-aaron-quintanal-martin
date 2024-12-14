@@ -44,7 +44,7 @@ const LocalSwitcher = () => {
                         LocaleConfig.map((value, index) => (
                             <li key={index}>
                                 <button
-                                    className={`py-2 px-4 w-full text-left ${localActive === value.lang ? 'bg-silver-600 dark:bg-night-600' : ''}`}
+                                    className={`py-2 px-4 w-full text-left transition-colors duration-300 ${localActive === value.lang ? 'bg-silver-600 dark:bg-night-600' : ''}`}
                                     onClick={() => handleLanguageChange(value.lang)}
                                     disabled={isPending}
                                 >
