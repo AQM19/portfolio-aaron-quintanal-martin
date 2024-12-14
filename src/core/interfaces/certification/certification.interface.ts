@@ -3,4 +3,7 @@ export interface Certification {
     organization: string;
     date: Date;
     description: Map<string, string>;
+    calification?: number;
+    link?: string;
+    professor?: string;
 }
