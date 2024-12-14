@@ -1,8 +1,9 @@
-import Presentation from "@/components/home/presentation/Presentation";
+import ContactComponent from "@/components/contact/ContactComponent";
 import LanguageSkills from "@/components/language-skills/LanguageSkills";
+import Presentation from "@/components/home/presentation/Presentation";
+import ResumeCertifications from "@/components/resume-certifications/ResumeCertifications";
 import ResumeExperience from "@/components/resume-experience/ResumeExperience";
 import ResumeProjects from "@/components/resume-projects/ResumeProjects";
-import ResumeCertifications from '../../../components/resume-certifications/ResumeCertifications';
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
       <ResumeProjects />
       <ResumeExperience />
       <ResumeCertifications />
-      {/* contacto */}
+      <ContactComponent />
     </>
   );
 }
