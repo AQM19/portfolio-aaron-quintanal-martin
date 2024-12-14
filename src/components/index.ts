@@ -14,6 +14,7 @@ export * from './cards/project-resume/ProjectResumeCard';
 export * from './avatar/Avatar';
 export * from './avatar/AvatarGroup';
 export * from './chip/Chip';
+export * from './image-slider/ImageSlider';
 
 // Icons
 export * from './icons/AQMIcon';

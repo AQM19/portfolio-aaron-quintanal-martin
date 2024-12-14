@@ -14,6 +14,7 @@ import React from 'react'
 import Chip from '@/components/chip/Chip';
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Link as I18nLink } from '@/i18n/routing';
+import ImageSlider from '@/components/image-slider/ImageSlider';
 
 const ProjectDetailPage = () => {
 
@@ -58,7 +59,9 @@ const ProjectDetailPage = () => {
             <div className='flex flex-col lg:flex-row-reverse justify-evenly items-center'>
 
                 <div className='md:w-2/3 lg:w-1/3'>
-                    {/* SLIDER */}
+                    <ImageSlider
+                        images={project.images}
+                    />
                 </div>
 
                 <div className='lg:w-1/3 flex flex-col gap-4'>
