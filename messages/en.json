@@ -21,6 +21,9 @@
         "by": "By",
         "read more": "Read More"
     },
+    "Resume experience": {
+        "title": "Most recent experience"
+    },
     "Project": {
         "category": "Category",
         "description": "Description",

@@ -1,15 +1,21 @@
 import { CareerConfig } from '@/core/config/career/career.config'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl';
 import React from 'react'
 
 const ResumeExperience = () => {
 
+    const t = useTranslations('Resume experience');
     const localeActive = useLocale();
     const max = 5;
     const lastCareerConfig = CareerConfig.slice(CareerConfig.length - max, CareerConfig.length);
 
     return (
         <section aqm-data="resume-experience" className='flex flex-col items-center gap-20 py-16 text-night dark:text-silver-900'>
+
+            <h2 className='text-3xl font-semibold'>
+                {t('title')}
+            </h2>
+
             <div className="container overflow-x-auto w-full">
                 <div className="relative">
                     {/* Timeline line */}
