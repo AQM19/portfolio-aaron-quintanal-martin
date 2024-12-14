@@ -27,11 +27,11 @@ const ProjectResumeCard = ({ project, localeActive, index }: Props) => {
                     ? index * 0.4
                     : 0.2
             }}
-            className="flex flex-col h-full bg-silver-700 dark:bg-night-600 rounded-md border-0 border-aero dark:border-emerald shadow-lg hover:shadow-xl shadow-night-600 dark:shadow-silver-200 text-night dark:text-silver-900 transition-all duration-300">
+            className="flex flex-col h-full bg-silver-700 dark:bg-night-600 rounded-md shadow-lg hover:shadow-xl shadow-night-600 dark:shadow-silver-200 text-night dark:text-silver-900 transition-all duration-300">
 
             <div className="flex-grow">
 
-            <div className="relative w-full h-96 mt-4">
+                <div className="relative w-full h-96 mt-4">
                     <Image
                         src={project.logo}
                         alt={`Cover of ${project.title}`}

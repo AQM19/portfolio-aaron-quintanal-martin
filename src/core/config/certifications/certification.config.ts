@@ -35,8 +35,8 @@ export const CertificationConfig: Certification[] = [
     {
         title: 'Inteligencia Artificial y Deep Learning desde cero en Python',
         description: new Map([
-            ['es', ''],
-            ['en', '']
+            ['es', 'Aprende Inteligencia Artificial y Deep Learning con Python, Tensorflow y Keras, conviértete en experto en Deep Learning.'],
+            ['en', 'Learn Artificial Intelligence and Deep Learning with Python, Tensorflow and Keras, become an expert in Deep Learning.']
         ]),
         organization: 'Udemy',
         date: new Date(2024, 5, 9),
@@ -46,8 +46,8 @@ export const CertificationConfig: Certification[] = [
     {
         title: 'Master en ASP.NET MVC - Entity Framework (.NET8)',
         description: new Map([
-            ['es', ''],
-            ['en', '']
+            ['es', 'Master en ASP.NET 8 (.NET Core) MVC, el curso profesional desarrollando proyectos prácticos, desde cero y paso a paso.'],
+            ['en', 'Master in ASP.NET 8 (.NET Core) MVC, the professional course developing practical projects, from scratch and step by step.']
         ]),
         organization: 'Udemy',
         date: new Date(2024, 11, 24),
@@ -57,8 +57,8 @@ export const CertificationConfig: Certification[] = [
     {
         title: 'Spring Framework 6 & Spring Boot 3 desde cero a experto 2024',
         description: new Map([
-            ['es', ''],
-            ['en', '']
+            ['es', 'Construye aplicaciones web Spring Framework 6 y Spring Boot 3: AOP, JPA, Security JWT, RESTful, AWS EC2, Angular, React.'],
+            ['en', 'Build Spring Framework 6 and Spring Boot 3 web applications: AOP, JPA, Security JWT, RESTful, AWS EC2, Angular, React.']
         ]),
         organization: 'Udemy',
         date: new Date(2024, 11, 13),
@@ -68,8 +68,8 @@ export const CertificationConfig: Certification[] = [
     {
         title: 'Ultimate Docker: guía de cero hasta despliegues',
         description: new Map([
-            ['es', ''],
-            ['en', '']
+            ['es', 'Aprende desde los fundamentos, arquitectura, hasta despliegue de aplicaciones con multiples contenedores.'],
+            ['en', 'Learn from the fundamentals, architecture, to deploying applications with multiple containers.']
         ]),
         organization: 'Udemy',
         date: new Date(2024, 5, 14),
