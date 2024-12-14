@@ -27,7 +27,14 @@ export const ProjectsConfig: Project[] = [
         documentation: new Map([
             ['es', 'https://drive.google.com/file/d/1ACM0QEcZ9snltNOwN6C8Ah-kGigo6ZW-/view']
         ]),
-        images: [],
+        images: [
+            '/png/auto-terra.png',
+            '/webp/auto-terra-1.webp',
+            '/webp/auto-terra-2.webp',
+            '/webp/auto-terra-3.webp',
+            '/webp/auto-terra-4.webp',
+            '/webp/auto-terra-5.webp',
+        ],
         status: 'finished',
         tags: ['back-end-development', 'mobile-development', 'cross-platform-development', 'security', 'authentication-and-authorization', 'database-management', 'api-development', 'scalability', 'internet-of-things-iot'],
     },
@@ -47,7 +54,11 @@ export const ProjectsConfig: Project[] = [
         dateStart: new Date(2024, 5, 20),
         dateEnd: new Date(2024, 6, 6),
         developers: DevsConfig.filter(dev => dev.username === 'AQM19' || 'daniv' || 'rumantela' || 'jesusbuenogonzalez' || 'RomanAdgoR'),
-        images: [],
+        images: [
+            '/webp/chat-boc-1.webp',
+            '/webp/chat-boc-2.webp',
+            '/webp/chat-boc-3.webp',
+        ],
         status: "finished",
         tags: ['chatbots', 'devops', 'education-technology-edtech', 'back-end-development', 'front-end-development', 'ai-artificial-inteligence'],
     }
