@@ -1,15 +1,19 @@
+import ContactComponent from "@/components/contact/ContactComponent";
+import LanguageSkills from "@/components/language-skills/LanguageSkills";
+import Presentation from "@/components/home/presentation/Presentation";
+import ResumeCertifications from "@/components/resume-certifications/ResumeCertifications";
+import ResumeExperience from "@/components/resume-experience/ResumeExperience";
+import ResumeProjects from "@/components/resume-projects/ResumeProjects";
+
 export default function Home() {
   return (
-    <section className="w-full pt-28 flex flex-col-reverse lg:flex-row p-5 items-center justify-evenly">
-      {/* <CardResume />
-
-      <Image
-        className='h-[350px] w-3/4 md:h-[550px] md:w-[500px] hidden md:block'
-        src="/imgs/developer.webp"
-        alt="Imagen de Aarón Quintanal Martín"
-        width={1920}
-        height={1080}
-      /> */}
-    </section>
+    <>
+      <Presentation />
+      <LanguageSkills />
+      <ResumeProjects />
+      <ResumeExperience />
+      <ResumeCertifications />
+      <ContactComponent />
+    </>
   );
 }

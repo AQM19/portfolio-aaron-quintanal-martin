@@ -1,20 +1,20 @@
-import { ProjectImage, Tag } from "..";
-import { Developer } from "../developer/developer.interface";
+import { Category, Status, Tag } from "@/core/types";
+import { Developer } from "./developer.interface";
 
 export interface Project {
-    id: string;
-    title: string;
-    description: string | null;
-    shortDescription: string | null;
-    logo: string;
-    dateStart: Date;
-    dateEnd: Date | null;
-    documentation?: string;
-    link: string | null;
     slug: string;
-    images: ProjectImage[];
-    Status: string;
-    Category: string;
+    title: string;
+    description: Map<string, string[]>;
+    shortDescription: Map<string, string>;
+    logo: string;
+    creator: string;
+    dateStart: Date;
+    dateEnd?: Date;
+    documentation?: Map<string, string>;
+    productionLink?: string;
+    images: string[];
+    status: Status;
+    category: Category;
     tags: Tag[];
     developers: Developer[];
-}
+};

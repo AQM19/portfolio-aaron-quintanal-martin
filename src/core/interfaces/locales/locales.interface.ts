@@ -1,5 +1,4 @@
-export interface LocalesConfig {
+export interface Locale {
     lang: string;
-    source: string;
     alt: string;
-};
+}
