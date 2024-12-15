@@ -23,7 +23,7 @@ const Presentation = () => {
     }
 
     return (
-        <section aqm-data="presentation" className="flex flex-col lg:flex-row py-10 sm:py-28 px-5 sm:px-32 justify-normal gap-10 sm:gap-36 text-night dark:text-silver-900">
+        <section aqm-data="presentation" className="flex flex-col xl:flex-row py-10 sm:py-28 px-5 sm:px-32 justify-normal gap-10 sm:gap-36 text-night dark:text-silver-900">
 
             <Image
                 className='h-[350px] w-full sm:w-3/4 md:h-[550px] md:w-[500px]'

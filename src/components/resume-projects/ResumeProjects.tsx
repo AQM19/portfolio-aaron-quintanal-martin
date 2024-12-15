@@ -15,7 +15,7 @@ const ResumeProjects = () => {
                 {t('title')}
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-5 sm:p-0 container">
+            <div className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-3 gap-6 p-5 container">
 
                 {
                     ProjectsConfig.map((project, index) => (

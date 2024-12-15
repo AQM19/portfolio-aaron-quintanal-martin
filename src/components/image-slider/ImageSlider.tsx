@@ -49,7 +49,7 @@ export default function ImageSlider({ images, interval = 3000 }: ImageSliderProp
 
             <button
                 onClick={prevSlide}
-                className="absolute -left-10 sm:-left-16 top-1/2 transform -translate-y-1/2 hover:bg-night-600 hover:dark:bg-silver-300 text-aero dark:text-emerald p-2 rounded-md hover:bg-opacity-75 transition-all duration-300"
+                className="absolute -left-10 sm:-left-16 xl:-left-16 top-1/2 transform -translate-y-1/2 hover:bg-night-600 hover:dark:bg-silver-300 text-aero dark:text-emerald p-2 rounded-md hover:bg-opacity-75 transition-all duration-300"
                 aria-label="Previous slide"
             >
                 <FaChevronLeft size={24} />

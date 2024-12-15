@@ -8,11 +8,11 @@ const ProjectPage = () => {
     const localeActive = useLocale();
 
     return (
-        <section className='flex flex-col w-full h-full items-center justify-center'>
+        <section className='flex flex-col w-full h-full items-center pt-16'>
 
             <div className="container">
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-5 sm:p-0">
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 p-5 sm:p-0">
                     {
                         ProjectsConfig.map((project, index) => (
                             <ProjectResumeCard

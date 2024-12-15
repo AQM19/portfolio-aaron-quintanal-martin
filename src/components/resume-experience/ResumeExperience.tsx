@@ -10,7 +10,7 @@ const ResumeExperience = () => {
     const lastCareerConfig = CareerConfig.slice(CareerConfig.length - max, CareerConfig.length);
 
     return (
-        <section aqm-data="resume-experience" className='flex flex-col items-center gap-20 y-16 text-night dark:text-silver-900'>
+        <section aqm-data="resume-experience" className='hidden xl:flex flex-col items-center gap-20 y-16 text-night dark:text-silver-900'>
 
             <h2 className='text-3xl font-semibold'>
                 {t('title')}

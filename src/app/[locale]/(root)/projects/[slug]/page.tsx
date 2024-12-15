@@ -56,7 +56,7 @@ const ProjectDetailPage = () => {
                 <FaChevronRight size={30} />
             </I18nLink>
 
-            <div className='flex flex-col lg:flex-row-reverse justify-evenly items-center'>
+            <div className='flex flex-col 2xl:flex-row-reverse justify-evenly items-center'>
 
                 <div className='md:w-2/3 lg:w-1/3'>
                     <ImageSlider
@@ -64,7 +64,7 @@ const ProjectDetailPage = () => {
                     />
                 </div>
 
-                <div className='lg:w-1/3 flex flex-col gap-4'>
+                <div className='w-full 2xl:w-1/3 flex flex-col gap-4'>
                     <div className='space-y-4'>
                         <div className='space-y-2'>
                             <div className='flex flex-row gap-4 items-center justify-between'>

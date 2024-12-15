@@ -20,7 +20,7 @@ export default function PortfoilLayout({ children, }: Readonly<{ children: React
                 <MobileHeader isExpanded={isSidebarMobileExpanded} setIsExpanded={setSidebarMobileExpanded} />
                 <Header isDarkMode={isDarkModeEnabled} setIsDarkMode={setDarkModeEnabled} />
                 <Sidebar isExpanded={isSidebarMobileExpanded} setIsExpanded={setSidebarMobileExpanded} />
-                <main className='bg-silver-900 dark:bg-night transition-colors duration-300 py-16 sm:py-0'>{children}</main>
+                <main className='bg-silver-900 dark:bg-night transition-colors duration-300'>{children}</main>
                 <Footer />
             </div>
         </div>

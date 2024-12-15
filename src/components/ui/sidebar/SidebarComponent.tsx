@@ -20,7 +20,7 @@ const Sidebar = ({ isExpanded, setIsExpanded }: Props) => {
     }
 
     return (
-        <aside>
+        <aside className='block sm:hidden'>
             {/* Background black */}
             {
                 isExpanded && (
