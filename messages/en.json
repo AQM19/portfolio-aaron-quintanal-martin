@@ -8,10 +8,18 @@
         "download-cv": "Download CV"
     },
     "Menu": {
+        "home": "Home",
+        "career": "My Career",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
+    "Footer": {
+        "home": "Home",
+        "career": "My Career",
         "projects": "Projects",
         "contact": "Contact",
-        "news": "News",
-        "my career": "My Career"
+        "follow me": "Follow me on social media",
+        "all rights reserved": "All rights reserved."
     },
     "Language skills": {
         "title": "Technical Skills"
@@ -22,10 +30,10 @@
         "read more": "Read More"
     },
     "Resume experience": {
-        "title": "Most recent experience"
+        "title": "Most Recent Experience"
     },
     "Resume certifications": {
-        "title": "Latest certifications"
+        "title": "Latest Certifications"
     },
     "Project": {
         "category": "Category",
@@ -37,7 +45,12 @@
         "actual": "Current"
     },
     "Contact": {
-        "title": "Contact Me",
+        "title": "Contact",
+        "page title": "Let’s talk about your project!",
+        "description": "Let’s turn your ideas into tangible results together. As a freelancer, I understand the value of hard work to achieve your goals. No gimmicks or empty promises—just commitment and dedication to help you succeed.",
+        "question": "Ready to take the first step?",
+        "hook": "Contact me today and let’s get started!",
+        "form title": "Leave your details and I’ll get back to you shortly!",
         "name": "Name",
         "name placeholder": "Enter your name",
         "name required": "Name is required.",
@@ -63,9 +76,9 @@
         "title": "Career"
     },
     "Not Found": {
-        "title": "Not Found",
-        "body": "The page you’re looking for doesn’t exist.",
-        "button": "Back to Home"
+        "title": "Page Not Found",
+        "body": "Sorry, the page you’re looking for doesn’t exist.",
+        "button": "Go Back to Home"
     },
     "Category": {
         "personal": "Personal",
@@ -92,7 +105,7 @@
         "api-development": "API Development",
         "augmented-reality-ar": "Augmented Reality (AR)",
         "authentication-and-authorization": "Authentication and Authorization",
-        "back-end-development": "Backend Development",
+        "back-end-development": "Back-End Development",
         "blockchain-integration": "Blockchain Integration",
         "branding": "Branding",
         "chatbots": "Chatbots",
@@ -109,11 +122,11 @@
         "data-visualization": "Data Visualization",
         "database-management": "Database Management",
         "devops": "DevOps",
-        "e-commerce": "E-commerce",
-        "education-technology-edtech": "Educational Technology (EdTech)",
+        "e-commerce": "E-Commerce",
+        "education-technology-edtech": "Education Technology (EdTech)",
         "entertainment-technology-entertainmenttech": "Entertainment Technology",
         "financial-technology-fintech": "Financial Technology (FinTech)",
-        "front-end-development": "Frontend Development",
+        "front-end-development": "Front-End Development",
         "full-stack-development": "Full-Stack Development",
         "game-development": "Game Development",
         "gamification": "Gamification",
@@ -142,7 +155,7 @@
         "sentiment-analysis": "Sentiment Analysis",
         "seo-search-engine-optimization": "Search Engine Optimization (SEO)",
         "server-configuration": "Server Configuration",
-        "single-page-applications-spas": "Single-Page Applications (SPAs)",
+        "single-page-applications-spas": "Single Page Applications (SPAs)",
         "smart-contracts": "Smart Contracts",
         "social-networking": "Social Networking",
         "travel-technology-traveltech": "Travel Technology",
