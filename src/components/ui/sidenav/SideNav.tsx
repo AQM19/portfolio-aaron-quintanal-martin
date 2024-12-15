@@ -5,6 +5,7 @@ import { NavConfig } from '@/core/config/nav-config/nav.config'
 import { Link } from '@/i18n/routing';
 import { FaAngleRight } from 'react-icons/fa'
 import React from 'react'
+import { useTranslations } from 'next-intl';
 
 interface Props {
     isExpanded: boolean;
@@ -12,6 +13,9 @@ interface Props {
 }
 
 const SideNav = ({ isExpanded, setIsExpanded }: Props) => {
+
+    const t = useTranslations('Menu');
+
     return (
         <aside
             className={`hidden sm:block fixed top-0 left-0 h-full transition-all duration-300 ${isExpanded ? 'w-[12.5rem]' : 'w-[5rem]'} bg-silver-900 dark:bg-night`}
@@ -42,7 +46,7 @@ const SideNav = ({ isExpanded, setIsExpanded }: Props) => {
                                     />
 
                                     <span className={`text-sm transition-opacity duration-300 font-semibold ${isExpanded ? 'opacity-100' : 'opacity-0'}`} >
-                                        {item.name}
+                                        {t(item.name)}
                                     </span>
 
                                 </Link>
@@ -60,7 +64,7 @@ const SideNav = ({ isExpanded, setIsExpanded }: Props) => {
                         >
                             <FaAngleRight size={30} className={`shrink-0 ${isExpanded ? 'rotate-180' : 'rotate-0'} duration-500`} />
                             <span className={`text-sm transition-opacity duration-300 font-semibold ${isExpanded ? 'opacity-100 visible' : 'opacity-0 invisible'}`} >
-                                Collapse
+                                {t('collapse')}
                             </span>
                         </button>
                     </li>

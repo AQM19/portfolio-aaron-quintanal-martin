@@ -11,7 +11,8 @@
         "home": "Inicio",
         "career": "Mi carrera",
         "projects": "Proyectos",
-        "contact": "Contacto"
+        "contact": "Contacto",
+        "collapse": "Cerrar"
     },
     "Footer": {
         "home": "Inicio",
