@@ -26,18 +26,20 @@ const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
 
         <ul className='flex flex-row gap-4'>
           {
-            SocialMediaMenuConfig.map((item, index) => (
-              <li key={`${item.href}-${index}`}>
-                <Link
-                  href={item.href}
-                  target={item.target}>
-                  <item.icon
-                    size={30}
-                    className='hover:scale-125 transition-transform duration-300'
-                  />
-                </Link>
-              </li>
-            ))
+            SocialMediaMenuConfig
+              .filter(item => item.isEnabled)
+              .map((item, index) => (
+                <li key={`${item.href}-${index}`}>
+                  <Link
+                    href={item.href}
+                    target={item.target}>
+                    <item.icon
+                      size={30}
+                      className='hover:scale-125 transition-transform duration-300'
+                    />
+                  </Link>
+                </li>
+              ))
           }
         </ul>
 

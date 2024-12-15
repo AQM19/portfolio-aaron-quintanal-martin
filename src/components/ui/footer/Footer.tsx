@@ -48,17 +48,19 @@ const Footer = () => {
                     <div className="flex gap-2">
 
                         {
-                            SocialMediaMenuConfig.map((item, index) => (
-                                <Link
-                                    key={`${item.href}-${index}`}
-                                    href={item.href}
-                                    target={item.target}
-                                    className="text-aero dark:text-emerald hover:scale-110 transition-all duration-300"
-                                >
-                                    <item.icon className="h-5 w-5" />
-                                </Link>
+                            SocialMediaMenuConfig
+                                .filter(item => item.isEnabled)
+                                .map((item, index) => (
+                                    <Link
+                                        key={`${item.href}-${index}`}
+                                        href={item.href}
+                                        target={item.target}
+                                        className="text-aero dark:text-emerald hover:scale-110 transition-all duration-300"
+                                    >
+                                        <item.icon className="h-5 w-5" />
+                                    </Link>
 
-                            ))
+                                ))
                         }
 
                     </div>
