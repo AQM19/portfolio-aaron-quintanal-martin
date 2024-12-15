@@ -7,6 +7,7 @@ export interface Project {
     description: Map<string, string[]>;
     shortDescription: Map<string, string>;
     logo: string;
+    creator: string;
     dateStart: Date;
     dateEnd?: Date;
     documentation?: Map<string, string>;

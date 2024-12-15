@@ -45,7 +45,7 @@ const ProjectResumeCard = ({ project, localeActive, index }: Props) => {
 
             <div className='px-4'>
                 <h3 className="line-clamp-2 font-bold text-2xl pretty text-aero dark:text-emerald">{project.title}</h3>
-                <p className="text-sm text-muted-foreground mb-2">{t('by')} <Link href={project.developers[0].github || '#'} target='_blank'><span className='dark:text-raisin_black-800 text-fluorescent_cyan-300 hover:underline hover:cursor-pointer transition-colors duration-300'>{project.developers[0].name} {project.developers[0].surname}</span></Link></p>
+                <p className="text-sm text-muted-foreground mb-2">{t('by')} <span className='dark:text-raisin_black-800 text-fluorescent_cyan-300 hover:underline hover:cursor-pointer transition-colors duration-300'>{project.creator}</span></p>
                 <p className="text-sm line-clamp-3">{project.shortDescription.get(localeActive)}</p>
 
                 <div className='flex flex-row items-center justify-center my-4'>
