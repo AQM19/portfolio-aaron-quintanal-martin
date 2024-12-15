@@ -73,7 +73,7 @@ Realiza el despliegue directamente desde la plataforma.
 
 
 ## 📷 Capturas de pantalla
-<!-- ![alt text](./assets/responsive-web.png) -->
+![alt text](./assets/responsive-web.png)
 ---
 
 ## 🛠️ Tecnologías utilizadas
