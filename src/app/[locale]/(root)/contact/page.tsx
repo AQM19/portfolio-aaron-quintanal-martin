@@ -1,0 +1,56 @@
+import ContactForm from '@/components/contact/ContactForm'
+import { useTranslations } from 'next-intl'
+import React from 'react'
+import { AiOutlinePhone } from 'react-icons/ai'
+import { IoMailOutline } from 'react-icons/io5'
+
+const ContactPage = () => {
+
+    const t = useTranslations('Contact')
+
+    return (
+        <section className='w-full px-5 pt-28 flex flex-col lg:flex-row gap-4 lg:gap-0 justify-evenly items-center text-night dark:text-silver-900'>
+
+            <div className='flex flex-col gap-4 w-full lg:w-auto'>
+
+                <h2 className='text-3xl font-semibold text-aero dark:text-emerald'>
+                    {t("page title")}
+                </h2>
+
+                <p className={`text-pretty font-thin max-w-prose text-justify`}>
+                    {t("description")}
+                </p>
+                <p className='text-pretty font-thin max-w-prose text-justify'>
+                    {t("question")}
+                </p>
+                <span className='text-aero dark:text-emerald font-semibold'>{t("hook")}</span>
+
+                <div className='font-thin'>
+
+                    <span className='flex flex-row gap-2 my-2'>
+                        <IoMailOutline size={30} className='text-aero dark:text-emerald' />
+                        <a href="mailto:aquintanalm.dev@gmail.com">aquintanalm.dev@gmail.com</a>
+                    </span>
+
+                    <span className='flex flex-row gap-2 mt-4'>
+                        <AiOutlinePhone size={30} className='text-aero dark:text-emerald' />
+                        <a href="tel:+34635-770-481">635 770 481</a>
+                    </span>
+                </div>
+            </div>
+
+            <div className='flex flex-col gap-4 w-full lg:w-auto rounded bg-silver-700 dark:bg-night-600 p-5 md:p-10'>
+
+                <h2 className='text-aero dark:text-emerald font-semibold text-xl'>
+                    {t("form title")}
+                </h2>
+
+                <ContactForm full />
+
+            </div>
+
+        </section>
+    )
+}
+
+export default ContactPage

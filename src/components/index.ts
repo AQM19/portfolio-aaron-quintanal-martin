@@ -5,6 +5,8 @@ export * from './home/changing-text/ChangingText';
 export * from './language-skills/LanguageSkills';
 export * from './resume-projects/ResumeProjects';
 export * from './resume-experience/ResumeExperience';
+export * from './contact/ContactComponent';
+export * from './contact/ContactForm';
 
 export * from './cards/skill-card/SkillCard';
 export * from './cards/project-resume/ProjectResumeCard';

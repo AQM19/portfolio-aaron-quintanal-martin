@@ -46,6 +46,11 @@
     },
     "Contact": {
         "title": "Contacto",
+        "page title": "¡Hablemos de tu proyecto!",
+        "description": "Transformemos tus ideas en resultados tangibles juntos. Como profesional independiente, sé lo que significa trabajar duro para alcanzar tus metas. Sin trucos ni promesas vacías, solo compromiso y dedicación para ayudarte a lograr tus objetivos.",
+        "question": "¿Listo para dar el primer paso?",
+        "hook": "¡Contáctame hoy mismo y comencemos!",
+        "form title": "¡Deja tus datos y y mismo me pondré en contacto contigo!",
         "name": "Nombre",
         "name placeholder": "Ingresa tu nombre",
         "name required": "El nombre es obligatorio.",
