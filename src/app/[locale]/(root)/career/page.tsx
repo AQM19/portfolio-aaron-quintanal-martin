@@ -9,7 +9,7 @@ const CareerPage = () => {
     const localeActive = useLocale();
 
     return (
-        <section className='py-24'>
+        <section className='py-0 sm:py-24'>
 
             <div className="container mx-auto px-4 relative">
 
