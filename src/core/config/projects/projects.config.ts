@@ -61,5 +61,36 @@ export const ProjectsConfig: Project[] = [
         ],
         status: "finished",
         tags: ['chatbots', 'devops', 'education-technology-edtech', 'back-end-development', 'front-end-development', 'ai-artificial-inteligence'],
+    },
+    {
+        title: 'Bon0',
+        slug: 'bon0',
+        logo: '/png/bon0.png',
+        description: new Map([
+            ['es', [
+                'Bon0 es un gestor de eficiencia energética diseñado para ofrecer un control integral sobre la facturación y el consumo energético en diferentes emplazamientos. ',
+                'La herramienta permite a los usuarios consultar señales y curvas de señal a nivel de emplazamiento y CUPS (Código Universal del Punto de Suministro), facilitando la gestión eficiente de los datos asociados al consumo energético.',
+                'A través de una base de datos centralizada, Bon0 proporciona acceso en tiempo real a información clave para tomar decisiones fundamentadas, optimizar recursos y garantizar una supervisión precisa de la eficiencia energética.',
+                'Este sistema es esencial para empresas y organizaciones que buscan reducir costos, mejorar su sostenibilidad y tener un control absoluto sobre el comportamiento energético de sus activos.'
+            ]],
+            ['en', [
+                'Bon0 is an energy efficiency management system designed to provide comprehensive control over billing and energy consumption across different locations.',
+                'The tool allows users to consult signals and signal curves at the level of sites and CUPS (Universal Supply Point Code), enabling efficient management of energy consumption data.',
+                'Through a centralized database, Bon0 provides real-time access to key information, empowering users to make informed decisions, optimize resources, and ensure accurate energy efficiency monitoring.',
+                'This system is essential for companies and organizations seeking to reduce costs, enhance sustainability, and maintain absolute control over the energy performance of their assets.'
+            ]]
+        ]),
+        shortDescription: new Map([
+            ['es', 'Bon0 es un gestor de eficiencia energética que permite supervisar señales, curvas y datos de consumo para optimizar recursos y controlar la facturación a nivel de CUPS.'],
+            ['en', 'Bon0 is an energy efficiency management system that enables monitoring of signals, curves, and consumption data to optimize resources and control billing at the CUPS level.']
+        ]),
+        category: 'employee',
+        dateStart: new Date(2023, 3, 1),
+        developers: DevsConfig.filter(dev => dev.username === 'AQM19'),
+        images: [
+            '/png/bon0.png'
+        ],
+        status: 'developping',
+        tags: ['back-end-development', 'front-end-development', 'agile-methodologies', 'analytics', 'api-development', 'continuous-integration-continuous-deployment-ci-cd', 'dashboard-development', 'microservices-architecture', 'scalability', 'user-testing'],
     }
 ];

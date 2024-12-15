@@ -8,7 +8,7 @@ export interface Project {
     shortDescription: Map<string, string>;
     logo: string;
     dateStart: Date;
-    dateEnd: Date | null;
+    dateEnd?: Date;
     documentation?: Map<string, string>;
     productionLink?: string;
     images: string[];
