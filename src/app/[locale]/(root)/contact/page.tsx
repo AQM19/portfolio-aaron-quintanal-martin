@@ -9,7 +9,7 @@ const ContactPage = () => {
     const t = useTranslations('Contact')
 
     return (
-        <section className='w-full px-5 pt-28 flex flex-col lg:flex-row gap-4 lg:gap-0 justify-evenly items-center text-night dark:text-silver-900'>
+        <section className='w-full px-5 pt-28 flex flex-col lg:flex-row gap-4 lg:gap-0 justify-evenly items-center text-night dark:text-silver-900 transition-all duration-300'>
 
             <div className='flex flex-col gap-4 w-full lg:w-auto'>
 
@@ -39,7 +39,7 @@ const ContactPage = () => {
                 </div>
             </div>
 
-            <div className='flex flex-col gap-4 w-full lg:w-auto rounded bg-silver-700 dark:bg-night-600 p-5 md:p-10'>
+            <div className='flex flex-col gap-4 w-full lg:w-auto rounded bg-silver-700 dark:bg-night-600 p-5 md:p-10 transition-colors duration-300'>
 
                 <h2 className='text-aero dark:text-emerald font-semibold text-xl'>
                     {t("form title")}
