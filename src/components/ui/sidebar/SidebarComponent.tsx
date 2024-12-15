@@ -1,5 +1,5 @@
 import { IoCloseOutline } from 'react-icons/io5';
-import { Link as I18nLink, Link } from '@/i18n/routing';
+import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import clsx from 'clsx';
 import React from 'react'

@@ -4,7 +4,6 @@ import React from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Link as I18Link } from '@/i18n/routing';
-import Link from 'next/link';
 import { Project } from '@/core/interfaces';
 import { useTranslations } from 'next-intl';
 

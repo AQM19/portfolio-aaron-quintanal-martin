@@ -1,7 +1,4 @@
 import React from 'react'
-import { FaXTwitter } from 'react-icons/fa6';
-import { FiFacebook } from 'react-icons/fi';
-import { FaInstagram } from 'react-icons/fa';
 import { useTranslations } from 'next-intl';
 import AQMIcon from '@/components/icons/AQMIcon';
 import { Link as I18nLink } from '@/i18n/routing';
