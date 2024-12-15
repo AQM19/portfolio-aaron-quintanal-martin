@@ -8,10 +8,18 @@
         "download-cv": "Descarga CV"
     },
     "Menu": {
+        "home": "Inicio",
+        "career": "Mi carrera",
+        "projects": "Proyectos",
+        "contact": "Contacto"
+    },
+    "Footer": {
+        "home": "Inicio",
+        "career": "Mi carrera",
         "projects": "Proyectos",
         "contact": "Contacto",
-        "news": "Noticias",
-        "my career": "Mi carrera"
+        "follow me": "Sígueme en redes sociales",
+        "all rights reserved": "Todos los derechos reservados."
     },
     "Language skills": {
         "title": "Hablidades técnicas"

@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import SideNav from '@/components/ui/sidenav/SideNav';
 import MobileHeader from '@/components/ui/header/MobileHeader';
 import Header from '@/components/ui/header/Header';
+import Footer from '@/components/ui/footer/Footer';
 
 export default function PortfoilLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
 
@@ -17,7 +18,7 @@ export default function PortfoilLayout({ children, }: Readonly<{ children: React
                 <MobileHeader />
                 <Header isDarkMode={isDarkModeEnabled} setIsDarkMode={setDarkModeEnabled} />
                 <main className='bg-silver-900 dark:bg-night transition-colors duration-300'>{children}</main>
-                <footer>FOOTER</footer>
+                <Footer />
             </div>
         </div>
     )
