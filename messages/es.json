@@ -67,6 +67,9 @@
         "message too long": "El mensaje no puede exceder los 1000 caracteres.",
         "send message": "Enviar mensaje"
     },
+    "Career": {
+        "title": "Carrera"
+    },
     "Not Found": {
         "title": "",
         "body": "",

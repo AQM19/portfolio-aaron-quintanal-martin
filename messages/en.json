@@ -59,6 +59,9 @@
         "message too long": "Message cannot exceed 1000 characters.",
         "send message": "Send Message"
     },
+    "Career": {
+        "title": "Career"
+    },
     "Not Found": {
         "title": "Not Found",
         "body": "The page you’re looking for doesn’t exist.",

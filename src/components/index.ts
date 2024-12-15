@@ -1,6 +1,3 @@
-// Contact  
-export * from './contact/contact-form';
-
 // Home
 export * from './home/presentation/Presentation';
 export * from './home/changing-text/ChangingText';
@@ -11,6 +8,7 @@ export * from './resume-experience/ResumeExperience';
 
 export * from './cards/skill-card/SkillCard';
 export * from './cards/project-resume/ProjectResumeCard';
+export * from './cards/career/CareerCard';
 
 export * from './avatar/Avatar';
 export * from './avatar/AvatarGroup';
