@@ -33,7 +33,7 @@ export const sendMail = async (data: Mail) => {
         const info = await transporter.sendMail({
             from: `'${data.name} <${data.email}>'`,
             to: receptor,
-            subject: `${data.subject}`,
+            subject: `Portfolio AQM - ${data.subject}`,
             text: `
                 Nombre completo: ${data.name}
                 Email: ${data.email}
