@@ -9,7 +9,7 @@ const CareerPage = () => {
     const localeActive = useLocale();
 
     return (
-        <section className='py-24'>
+        <section className='py-24 text-night dark:text-silver-900 transition-colors duration-300'>
 
             <div className="container mx-auto px-4 relative">
 

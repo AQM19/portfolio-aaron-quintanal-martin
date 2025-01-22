@@ -28,7 +28,7 @@ const CareerCard = ({ stage, localeActive, index }: Props) => {
             transition={{ duration: 0.5, delay: index * 0.2 }}
             className={`flex ${index % 2 === 0 ? 'justify-start' : 'justify-end'} mb-8`}
         >
-            <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'sm:mr-8' : 'sm:ml-8'} rounded p-4 bg-silver-700 dark:bg-night-600`}>
+            <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'sm:mr-8' : 'sm:ml-8'} rounded p-4 bg-silver-700 dark:bg-night-600 text-night dark:text-silver-900 transition-colors duration-300`}>
 
                 <div>
                     <h3 className='text-2xl font-semibold text-center mb-2 text-aero dark:text-emerald'>{stage.empress}</h3>
