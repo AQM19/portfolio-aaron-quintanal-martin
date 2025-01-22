@@ -14,7 +14,7 @@ const MobileHeader = ({ isExpanded, setIsExpanded }: Props) => {
     }
 
     return (
-        <div className='sm:hidden grid grid-cols-[1fr_auto] sm:grid-cols-3 py-4 px-4 fixed top-0 left-0 w-full bg-thistle-400 bg-opacity-50 backdrop-blur-sm items-center'>
+        <div className='sm:hidden grid grid-cols-[1fr_auto] sm:grid-cols-3 py-4 px-4 fixed top-0 left-0 w-full bg-thistle-400 bg-opacity-50 backdrop-blur-sm items-center z-10'>
 
             <AQMIcon />
 
