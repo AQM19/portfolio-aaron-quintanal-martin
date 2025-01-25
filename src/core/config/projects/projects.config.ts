@@ -95,5 +95,40 @@ export const ProjectsConfig: Project[] = [
         ],
         status: 'developping',
         tags: ['back-end-development', 'front-end-development', 'agile-methodologies', 'analytics', 'api-development', 'continuous-integration-continuous-deployment-ci-cd', 'dashboard-development', 'microservices-architecture', 'scalability', 'user-testing'],
+    },
+    {
+        title: 'Agora Myrmex',
+        slug: 'agora-myrmex',
+        logo: '/png/agora-myrmex.png',
+        creator: 'Aarón Quintanal Martín',
+        description: new Map([
+            ['es', [
+                'Agora Myrmex es una aplicación donde se puede visualizar de manera rápida y sencilla los distintos parámetros y datos de cuidado de las especies de hormigas de todo el planeta.',
+                'Si bien no todas las especies tienen datos de cuidado ya que no están o no pueden ser destinadas a la crianza casera o de laboratorio, otorga información de la mayoría de las especies que sí pueden ser criadas.',
+                'Además, se puede visualizar un mapa interactivo donde se pueden ver las distintas especies de hormigas y se puede acceder a la información de cada una de ellas a través de AntMaps.',
+                'Agora Myrmex es una aplicación que se presenta como una herramienta indispensable para todos aquellos aficionados a las hormigas que buscan información sobre las distintas especies y sus cuidados.'
+            ]],
+            ['en', [
+                'Agora Myrmex is an application where you can quickly and easily view the different parameters and care data of ant species from around the world.',
+                'While not all species have care data as they are not or cannot be destined for home or laboratory breeding, it provides information on most species that can be bred.',
+                'In addition, you can view an interactive map where you can see the different ant species and access information on each of them through AntMaps.',
+                'Agora Myrmex is an application that is presented as an indispensable tool for all ant enthusiasts seeking information on the different species and their care.'
+            ]]
+        ]),
+        shortDescription: new Map([
+            ['es', 'Agora Myrmex es una aplicación para visualizar los parámetros y datos de cuidado de las especies de hormigas de todo el planeta. Esencial para aficionados a las hormigas.'],
+            ['en', 'Agora Myrmex is an application to view the parameters and care data of ant species from around the world. Essential for ant enthusiasts.']
+        ]),
+        category: 'personal',
+        dateStart: new Date(2025, 1, 1),
+        developers: DevsConfig.filter(dev => dev.username === 'AQM19'),
+        images: [
+            '/png/agora-myrmex.png',
+            '/png/agora-myrmex-responsive.png',
+            '/webp/agora-myrmex-1.webp',
+            '/webp/agora-myrmex-2.webp',
+        ],
+        status: 'finished',
+        tags: ['back-end-development', 'front-end-development', 'cross-platform-development', 'database-management', 'api-development', 'scalability'],
     }
 ];

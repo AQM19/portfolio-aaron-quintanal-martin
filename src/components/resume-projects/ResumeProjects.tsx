@@ -18,7 +18,9 @@ const ResumeProjects = () => {
             <div className="grid grid-cols-1  sm:grid-cols-2 xl:grid-cols-3 gap-6 p-5 container">
 
                 {
-                    ProjectsConfig.map((project, index) => (
+                    ProjectsConfig
+                    .slice(0, 3)
+                    .map((project, index) => (
                         <ProjectResumeCard
                             key={`${project.title}-${index}`}
                             project={project}
