@@ -1,12 +1,12 @@
-import CareerCard from '@/components/cards/career/CareerCard';
 import { CareerConfig } from '@/core/config/career/career.config';
-import { useLocale, useTranslations } from 'next-intl'
+import { getLocale, getTranslations } from 'next-intl/server';
+import CareerCard from '@/components/cards/career/CareerCard';
 import React from 'react'
 
-const CareerPage = () => {
+const CareerPage = async () => {
 
-    const t = useTranslations('Career');
-    const localeActive = useLocale();
+    const t = await getTranslations('Career');
+    const localeActive = await getLocale();
 
     return (
         <section className='py-24 text-night dark:text-silver-900 transition-colors duration-300'>

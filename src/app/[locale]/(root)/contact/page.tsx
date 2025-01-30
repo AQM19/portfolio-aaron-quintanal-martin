@@ -1,12 +1,12 @@
-import ContactForm from '@/components/contact/ContactForm'
-import { useTranslations } from 'next-intl'
-import React from 'react'
 import { AiOutlinePhone } from 'react-icons/ai'
+import { getTranslations } from 'next-intl/server'
 import { IoMailOutline } from 'react-icons/io5'
+import ContactForm from '@/components/contact/ContactForm'
+import React from 'react'
 
-const ContactPage = () => {
+const ContactPage = async () => {
 
-    const t = useTranslations('Contact')
+    const t = await getTranslations('Contact')
 
     return (
         <section className='w-full px-5 pt-20 sm:pt-28 flex flex-col xl:flex-row gap-4 2xl:gap-0 justify-evenly items-center text-night dark:text-silver-900 transition-all duration-300'>

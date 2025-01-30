@@ -1,6 +1,6 @@
-import ProjectResumeCard from '@/components/cards/project-resume/ProjectResumeCard'
 import { ProjectsConfig } from '@/core/config/projects/projects.config'
 import { useLocale, useTranslations } from 'next-intl';
+import ProjectResumeCard from '@/components/cards/project-resume/ProjectResumeCard'
 import React from 'react'
 
 const ProjectPage = () => {

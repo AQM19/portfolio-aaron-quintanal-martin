@@ -1,25 +1,26 @@
-'use client'
-
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FiDownload } from 'react-icons/fi';
+import { getLocale, getTranslations } from "next-intl/server";
 import { getLocaleFormattedDate } from '@/core/utils';
+import { GetStaticPaths } from "next";
 import { IoCalendarOutline } from 'react-icons/io5';
 import { IoIosLink } from 'react-icons/io';
-import { notFound, useParams } from 'next/navigation'
+import { Link as I18nLink } from '@/i18n/routing';
+import { notFound } from 'next/navigation'
 import { ProjectsConfig } from '@/core/config/projects/projects.config';
-import { useLocale, useTranslations } from 'next-intl';
 import Avatar from '@/components/avatar/Avatar';
 import AvatarGroup from '@/components/avatar/AvatarGroup';
+import Chip from '@/components/chip/Chip';
+import ImageSlider from '@/components/image-slider/ImageSlider';
 import Link from 'next/link';
 import React from 'react'
-import Chip from '@/components/chip/Chip';
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { Link as I18nLink } from '@/i18n/routing';
-import ImageSlider from '@/components/image-slider/ImageSlider';
 
-const ProjectDetailPage = () => {
+export const revalidate = 84600;
+export const dynamicParams = true;
 
-    const params = useParams();
-    const slug = params.slug as string;
+const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string }> }) => {
+
+    const slug = (await params).slug
     const project = ProjectsConfig.find(project => project.slug === slug);
 
     if (!project) {
@@ -32,10 +33,11 @@ const ProjectDetailPage = () => {
     const nextProject =
         ProjectsConfig[(projectIndex + 1) % ProjectsConfig.length];
 
-    const t = useTranslations('Project');
-    const c = useTranslations('Category');
-    const e = useTranslations('Tags');
-    const localeActive = useLocale();
+    const t = await getTranslations('Project');
+    const c = await getTranslations('Category');
+    const e = await getTranslations('Tags');
+
+    const localeActive = await getLocale();
 
     return (
         <section className='w-full h-full py-10 px-8 lg:px-12 relative'>
@@ -190,3 +192,24 @@ const ProjectDetailPage = () => {
 }
 
 export default ProjectDetailPage
+
+export const getStaticPaths: GetStaticPaths = async (ctx) => {
+    const paths = ProjectsConfig.map(project => ({
+        params: {
+            slug: project.slug
+        }
+    }));
+
+    return {
+        paths,
+        fallback: 'blocking'
+    }
+};
+
+export async function generateStaticParams() {
+    return ProjectsConfig.map(project => ({
+        params: {
+            slug: project.slug
+        }
+    }));
+}

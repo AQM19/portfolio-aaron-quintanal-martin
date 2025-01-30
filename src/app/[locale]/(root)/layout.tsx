@@ -1,14 +1,13 @@
 'use client'
 
-import React, { useState } from 'react'
-import SideNav from '@/components/ui/sidenav/SideNav';
-import MobileHeader from '@/components/ui/header/MobileHeader';
-import Header from '@/components/ui/header/Header';
 import Footer from '@/components/ui/footer/Footer';
+import Header from '@/components/ui/header/Header';
+import MobileHeader from '@/components/ui/header/MobileHeader';
+import React, { useState } from 'react'
 import Sidebar from '@/components/ui/sidebar/SidebarComponent';
+import SideNav from '@/components/ui/sidenav/SideNav';
 
 export default function PortfoilLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
-
     const [isExpanded, setIsExpanded] = useState(false);
     const [isSidebarMobileExpanded, setSidebarMobileExpanded] = useState(false);
     const [isDarkModeEnabled, setDarkModeEnabled] = useState(true);
