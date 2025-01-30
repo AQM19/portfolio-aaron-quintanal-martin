@@ -1,7 +1,12 @@
 {
   "name": "qfoil",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "private": true,
+  "author": {
+    "name": "Aarón Quintanal Martín",
+    "email": "aquintanalm.dev@gmail.com",
+    "url": "https://aaronquintanalmartin.com"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
