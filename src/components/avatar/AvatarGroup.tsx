@@ -1,4 +1,5 @@
 import { Developer } from '@/core/interfaces'
+import Image from 'next/image';
 import React from 'react'
 
 interface Props {
@@ -20,10 +21,12 @@ const AvatarGroup = ({ developers }: Props) => {
                         className={`${index !== 0 ? '-ml-2' : ''} border-2 border-silver-900 rounded-full`}
                         style={{ zIndex: developers.length - index }}
                     >
-                        <img
+                        <Image
                             key={`${dev.username}-${index}`}
                             alt={dev.username}
                             src={dev.avatar!}
+                            width={150}
+                            height={150}
                             className='w-16 h-16 rounded-full'
                         />
                     </div>

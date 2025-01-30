@@ -1,4 +1,5 @@
 import { Developer } from '@/core/interfaces'
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 
@@ -14,7 +15,7 @@ const Avatar = ({ dev }: Props) => {
         >
             <div className="flex items-center gap-2">
                 <div>
-                    <img
+                    <Image
                         alt={dev.username}
                         src={dev.avatar!}
                         width={150}

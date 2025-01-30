@@ -193,7 +193,7 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string }
 
 export default ProjectDetailPage
 
-export const getStaticPaths: GetStaticPaths = async (ctx) => {
+export const getStaticPaths: GetStaticPaths = async () => {
     const paths = ProjectsConfig.map(project => ({
         params: {
             slug: project.slug
