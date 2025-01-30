@@ -2,7 +2,6 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FiDownload } from 'react-icons/fi';
 import { getLocale, getTranslations } from "next-intl/server";
 import { getLocaleFormattedDate } from '@/core/utils';
-import { GetStaticPaths } from "next";
 import { IoCalendarOutline } from 'react-icons/io5';
 import { IoIosLink } from 'react-icons/io';
 import { Link as I18nLink } from '@/i18n/routing';
@@ -18,7 +17,7 @@ import React from 'react'
 export const revalidate = 84600;
 export const dynamicParams = true;
 
-const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string }> }) => {
+const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, locale: string }> }) => {
 
     const slug = (await params).slug
     const project = ProjectsConfig.find(project => project.slug === slug);
@@ -193,23 +192,18 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string }
 
 export default ProjectDetailPage
 
-export const getStaticPaths: GetStaticPaths = async () => {
-    const paths = ProjectsConfig.map(project => ({
-        params: {
-            slug: project.slug
-        }
-    }));
-
-    return {
-        paths,
-        fallback: 'blocking'
-    }
-};
-
 export async function generateStaticParams() {
-    return ProjectsConfig.map(project => ({
-        params: {
-            slug: project.slug
+    const locales = ['en', 'es'];
+    const paths = [];
+
+    for (const locale of locales) {
+        for (const project of ProjectsConfig) {
+            paths.push({
+                locale: locale,
+                slug: project.slug
+            });
         }
-    }));
+    }
+
+    return paths;
 }
