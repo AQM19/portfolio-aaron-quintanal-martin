@@ -7,7 +7,7 @@ const PrivacyPage = async () => {
     const t = await getTranslations('Privacy');
 
     return (
-        <section id='privacy-policy-page' className='container mx-auto py-8 px-4 max-w-3xl text-night dark:text-silver-900 transition-colors duration-300'>
+        <section id='privacy-policy-page' className='container mx-auto py-20 lg:py-8 px-4 max-w-3xl text-justify text-night dark:text-silver-900 transition-colors duration-300'>
 
             <h1 className='text-3xl font-bold mb-6'>{t('title')}</h1>
 
