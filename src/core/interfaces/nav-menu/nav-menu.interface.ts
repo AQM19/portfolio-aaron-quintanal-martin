@@ -10,8 +10,10 @@ export interface NavMenu {
     | "/projects"
     | "/contact"
     | "/career"
+    | "/privacy"
     | ({ pathname: "/"; } & Omit<UrlObject, "pathname">)
     | ({ pathname: "/projects"; } & Omit<UrlObject, "pathname">)
     | ({ pathname: "/contact"; } & Omit<UrlObject, "pathname">)
     | ({ pathname: "/career"; } & Omit<UrlObject, "pathname">)
+    | ({ pathname: "/privacy"; } & Omit<UrlObject, "pathname">);
 }

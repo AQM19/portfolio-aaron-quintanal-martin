@@ -12,13 +12,15 @@
         "career": "My Career",
         "projects": "Projects",
         "contact": "Contact",
-        "collapse": "Collapse"
+        "collapse": "Collapse",
+        "privacy": "Privacy policy"
     },
     "Footer": {
         "home": "Home",
         "career": "My Career",
         "projects": "Projects",
         "contact": "Contact",
+        "privacy": "Privacy policy",
         "follow me": "Follow me on social media",
         "all rights reserved": "All rights reserved."
     },
@@ -99,6 +101,31 @@
         "deploying": "Deploying",
         "manteinance": "Maintenance",
         "finished": "Finished"
+    },
+    "Privacy": {
+        "title": "Privacy Policy",
+        "responsable": "Data Controller",
+        "responsable text": "The person responsible for collecting and processing personal data provided through the contact form on this website is ",
+        "recopiled data": "Data Collected",
+        "recopiled data text": "When completing the contact form, the following personal data may be collected:",
+        "recopiled data item 1": "Name",
+        "recopiled data item 2": "Email",
+        "recopiled data item 3": "Subject",
+        "recopiled data item 4": "Message",
+        "purpose of treatment": "Purpose of Processing",
+        "purpose text": "The data provided through the contact form will be used exclusively to respond to queries sent by the user.",
+        "conservation of data": "Data Retention",
+        "conservation text": "The data will be stored only for the time necessary to address the request and will not be shared with third parties or used for commercial purposes.",
+        "user rights": "User Rights",
+        "user rights text": "As a user, you have the right to:",
+        "user rights item 1": "Access, rectify or delete your personal data.",
+        "user rights item 2": "Limit or oppose its processing.",
+        "user rights item 3": "Request the portability of your data.",
+        "user rights add": "To exercise these rights, you can send a request to ",
+        "security of data": "Data Security",
+        "security text": "Security measures have been implemented to ensure the protection of personal data sent through the form.",
+        "contact": "Contact",
+        "contact text": "If you have questions about this privacy policy, you can write to "
     },
     "Tags": {
         "ab-testing": "A/B Testing",
