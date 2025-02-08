@@ -122,6 +122,7 @@ export const ProjectsConfig: Project[] = [
         category: 'personal',
         dateStart: new Date(2025, 1, 1),
         developers: DevsConfig.filter(dev => dev.username === 'AQM19'),
+        productionLink: 'https://agora-myrmex.vercel.app',
         images: [
             '/png/agora-myrmex.png',
             '/png/agora-myrmex-responsive.png',
