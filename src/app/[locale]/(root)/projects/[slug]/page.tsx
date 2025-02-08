@@ -149,9 +149,12 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
                                         href={project.productionLink}
                                         target='_blank'
                                     >
-                                        <button className='rounded-md bg-neutral-900 text-neutral-50 dark:bg-neutral-50 dark:text-neutral-900 hover:bg-neutral-900'>
-                                            <IoIosLink className="mr-2 h-4 w-4" />
-                                            {t('view page')}
+                                        <button
+                                            className='lg:self-end mt-5 px-5 py-4 rounded-md text-aero dark:text-emerald font-bold border-2 border-aero dark:border-emerald flex flex-row items-center gap-x-4'>
+                                            <IoIosLink size={20} />
+                                            <span>
+                                                {t('view page')}
+                                            </span>
                                         </button>
                                     </Link>
                                 )
