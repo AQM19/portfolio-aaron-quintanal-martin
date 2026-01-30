@@ -62,7 +62,7 @@ const Presentation = () => {
                     </I18Link>
 
                     <Link
-                        href={'https://drive.google.com/file/d/1_MioP4l1znzu5KJEVtSKWAayt7icYa2x/view'}
+                        href={process.env.CV_LINK as string}
                         target='_blank'
                     >
                         <button className='flex flex-row lg:self-end mt-5 px-5 py-2 rounded-md text-silver-900 dark:text-night bg-aero dark:bg-emerald font-bold border-2 border-aero dark:border-emerald transition-colors duration-300'>
