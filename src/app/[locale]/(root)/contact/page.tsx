@@ -2,11 +2,23 @@ import { AiOutlinePhone } from 'react-icons/ai'
 import { getTranslations } from 'next-intl/server'
 import { IoMailOutline } from 'react-icons/io5'
 import ContactForm from '@/components/contact/ContactForm'
-import React from 'react'
 
 const ContactPage = async () => {
 
-    const t = await getTranslations('Contact')
+    const t = await getTranslations('Contact');
+    const formattedPhone = (() => {
+        const raw = process.env.PHONE ?? '';
+        // keep only digits
+        let digits = raw.replace(/\D/g, '');
+        // remove Spanish country code if present
+        if (digits.startsWith('34') && digits.length > 9) digits = digits.slice(2);
+        // format 9-digit Spanish mobile as: 3 2 2 2 -> 635 77 04 81
+        if (digits.length === 9) {
+            return `${digits.slice(0, 3)} ${digits.slice(3, 5)} ${digits.slice(5, 7)} ${digits.slice(7, 9)}`;
+        }
+        // fallback to raw value if formatting not applicable
+        return raw;
+    })();
 
     return (
         <section className='w-full px-5 pt-20 sm:pt-28 flex flex-col xl:flex-row gap-4 2xl:gap-0 justify-evenly items-center text-night dark:text-silver-900 transition-all duration-300'>
@@ -29,12 +41,12 @@ const ContactPage = async () => {
 
                     <span className='flex flex-row gap-2 my-2'>
                         <IoMailOutline size={30} className='text-aero dark:text-emerald' />
-                        <a href="mailto:aquintanalm.dev@gmail.com">aquintanalm.dev@gmail.com</a>
+                        <a href={`mailto:${process.env.EMAIL}`}>{process.env.EMAIL}</a>
                     </span>
 
                     <span className='flex flex-row gap-2 mt-4'>
                         <AiOutlinePhone size={30} className='text-aero dark:text-emerald' />
-                        <a href="tel:+34635-770-481">635 770 481</a>
+                        <a href={`tel:${process.env.PHONE}`}>{formattedPhone}</a>
                     </span>
                 </div>
             </div>
