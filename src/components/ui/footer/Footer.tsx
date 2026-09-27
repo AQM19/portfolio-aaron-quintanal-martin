@@ -3,9 +3,15 @@ import { useTranslations } from 'next-intl';
 import AQMIcon from '@/components/icons/AQMIcon';
 import { Link as I18nLink } from '@/i18n/routing';
 import Link from 'next/link';
-import { NavConfig, SocialMediaMenuConfig, WorkMediaMenuConfig } from '@/core/config';
+import { NavConfig } from '@/core/config';
+import SocialIcon from '@/components/icons/SocialIcon';
+import { SocialLink } from '@/core/interfaces';
 
-const Footer = () => {
+interface Props {
+    socialLinks: SocialLink[];
+}
+
+const Footer = ({ socialLinks }: Props) => {
 
     const t = useTranslations("Footer");
 
@@ -48,16 +54,17 @@ const Footer = () => {
                     <div className="flex gap-2">
 
                         {
-                            SocialMediaMenuConfig
-                                .filter(item => item.isEnabled)
+                            socialLinks
+                                .filter(item => item.group === 'social')
                                 .map((item, index) => (
                                     <Link
                                         key={`${item.href}-${index}`}
                                         href={item.href}
-                                        target={item.target}
+                                        target='_blank'
+                                        aria-label={item.label ?? item.platform}
                                         className="text-aero dark:text-emerald hover:scale-110 transition-all duration-300"
                                     >
-                                        <item.icon className="h-5 w-5" />
+                                        <SocialIcon platform={item.platform} className="h-5 w-5" />
                                     </Link>
 
                                 ))
@@ -67,14 +74,15 @@ const Footer = () => {
 
                     <div className="flex gap-2">
                         {
-                            WorkMediaMenuConfig.map((item, index) => (
+                            socialLinks.filter(item => item.group === 'work').map((item, index) => (
                                 <Link
                                     key={`${item.href}-${index}`}
                                     href={item.href}
-                                    target={item.target}
+                                    target='_blank'
+                                    aria-label={item.label ?? item.platform}
                                     className="text-aero dark:text-emerald hover:scale-110 transition-all duration-300"
                                 >
-                                    <item.icon className="h-5 w-5" />
+                                    <SocialIcon platform={item.platform} className="h-5 w-5" />
                                 </Link>
                             ))
                         }

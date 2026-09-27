@@ -9,6 +9,8 @@ interface Props {
 }
 
 const SkillCard = ({ skill, localeActive }: Props) => {
+    const iconUrl = skill.iconUrl ?? `/svg/${skill.nemonic}.svg`;
+
     return (
         <>
             <div
@@ -26,7 +28,7 @@ const SkillCard = ({ skill, localeActive }: Props) => {
                 {/* Círculo con la imagen */}
                 <div className="absolute inset-0 -top-[50px] left-1/2 transform -translate-x-1/2 w-[100px] h-[100px] rounded-full overflow-hidden bg-silver-900 dark:bg-night-600">
                     <Image
-                        src={`./svg/${skill.nemonic}.svg`}
+                        src={iconUrl}
                         alt={`${skill.alt.get(localeActive)}`}
                         width={100}
                         height={100}
@@ -39,7 +41,7 @@ const SkillCard = ({ skill, localeActive }: Props) => {
                 </div>
             </div>
             <Image
-                src={`./svg/${skill.nemonic}.svg`}
+                src={iconUrl}
                 alt={`${skill.alt.get(localeActive)}`}
                 width={150}
                 height={150}

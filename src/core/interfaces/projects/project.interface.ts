@@ -12,9 +12,16 @@ export interface Project {
     dateEnd?: Date;
     documentation?: Map<string, string>;
     productionLink?: string;
+    repoUrl?: string;
+    featured?: boolean;
+    /** Names from the admin catalogs; when absent (local config) the keys are translated with messages. */
+    categoryLabel?: string;
+    statusLabel?: string;
+    stageLabel?: string;
+    tagLabels?: string[];
     images: string[];
     status: Status;
-    category: Category;
+    category?: Category;
     tags: Tag[];
     developers: Developer[];
 };

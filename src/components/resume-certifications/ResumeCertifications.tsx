@@ -1,16 +1,19 @@
-import { CertificationConfig } from '@/core/config/certifications/certification.config'
+import { Certification } from '@/core/interfaces/certification/certification.interface'
 import { useLocale, useTranslations } from 'next-intl'
 import React from 'react'
 import CertificationCard from '../cards/certification-card/CertificationCard'
 
-const ResumeCertifications = () => {
+interface Props {
+    certifications: Certification[];
+}
+
+const ResumeCertifications = ({ certifications }: Props) => {
 
     const t = useTranslations('Resume certifications');
     const localeActive = useLocale();
-    const lenght = CertificationConfig.length;
     const max = 6;
-    const sortedCertifications = CertificationConfig.sort((a, b) => { return b.date.getTime() - a.date.getTime(); });
-    const lastCertifications = sortedCertifications.slice(lenght - max, lenght);
+    const sortedCertifications = [...certifications].sort((a, b) => { return b.date.getTime() - a.date.getTime(); });
+    const lastCertifications = sortedCertifications.slice(-max);
 
     return (
         <section aqm-data="resume-experience" className='flex flex-col items-center gap-20 py-16 text-night dark:text-silver-900'>

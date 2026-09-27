@@ -5,6 +5,8 @@ export interface Skill {
     isEnabled: boolean;
     isFavourite: boolean;
     type: SkillType;
+    /** Defaults to `/svg/{nemonic}.svg`. */
+    iconUrl?: string;
 }
 
 type SkillType = 'language' | 'framework' | 'library' | 'tool';

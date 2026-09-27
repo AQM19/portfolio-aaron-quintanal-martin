@@ -7,7 +7,11 @@ import Image from 'next/image';
 
 import './presentation.css'
 
-const Presentation = () => {
+interface Props {
+    cvUrl?: string;
+}
+
+const Presentation = ({ cvUrl }: Props) => {
 
     const t = useTranslations("Index");
     const birthDate: Date = new Date(1996, 2, 15);
@@ -61,15 +65,19 @@ const Presentation = () => {
                         </button>
                     </I18Link>
 
-                    <Link
-                        href={process.env.CV_LINK as string}
-                        target='_blank'
-                    >
-                        <button className='flex flex-row lg:self-end mt-5 px-5 py-2 rounded-md text-silver-900 dark:text-night bg-aero dark:bg-emerald font-bold border-2 border-aero dark:border-emerald transition-colors duration-300'>
-                            <TbFileCv className="mr-2" size={24} />
-                            {t('download-cv')}
-                        </button>
-                    </Link>
+                    {
+                        cvUrl && (
+                            <Link
+                                href={cvUrl}
+                                target='_blank'
+                            >
+                                <button className='flex flex-row lg:self-end mt-5 px-5 py-2 rounded-md text-silver-900 dark:text-night bg-aero dark:bg-emerald font-bold border-2 border-aero dark:border-emerald transition-colors duration-300'>
+                                    <TbFileCv className="mr-2" size={24} />
+                                    {t('download-cv')}
+                                </button>
+                            </Link>
+                        )
+                    }
                 </div>
 
             </div>

@@ -6,7 +6,8 @@ import { IoCalendarOutline } from 'react-icons/io5';
 import { IoIosLink } from 'react-icons/io';
 import { Link as I18nLink } from '@/i18n/routing';
 import { notFound } from 'next/navigation'
-import { ProjectsConfig } from '@/core/config/projects/projects.config';
+import { loadProjects } from '@/core/content';
+import { routing } from '@/i18n/routing';
 import Avatar from '@/components/avatar/Avatar';
 import AvatarGroup from '@/components/avatar/AvatarGroup';
 import Chip from '@/components/chip/Chip';
@@ -19,18 +20,19 @@ export const dynamicParams = true;
 
 const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, locale: string }> }) => {
 
-    const slug = (await params).slug
-    const project = ProjectsConfig.find(project => project.slug === slug);
+    const { slug, locale } = await params;
+    const projects = await loadProjects(locale);
+    const project = projects.find(project => project.slug === slug);
 
     if (!project) {
         notFound();
     }
 
-    const projectIndex = ProjectsConfig.findIndex(project => project.slug === slug);
+    const projectIndex = projects.findIndex(project => project.slug === slug);
     const previousProject =
-        ProjectsConfig[(projectIndex - 1 + ProjectsConfig.length) % ProjectsConfig.length];
+        projects[(projectIndex - 1 + projects.length) % projects.length];
     const nextProject =
-        ProjectsConfig[(projectIndex + 1) % ProjectsConfig.length];
+        projects[(projectIndex + 1) % projects.length];
 
     const t = await getTranslations('Project');
     const c = await getTranslations('Category');
@@ -74,15 +76,20 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
                                     {project.title}
                                 </h2>
 
-                                <div className="flex flex-col gap-2 items-center">
+                                {
+                                    // Remote projects bring the name from the admin catalog; local ones are translated here.
+                                    (project.categoryLabel ?? (project.category && c(project.category))) && (
+                                        <div className="flex flex-col gap-2 items-center">
 
-                                    <div className="font-medium text-aero dark:text-emerald">
-                                        {t('category')}
-                                    </div>
+                                            <div className="font-medium text-aero dark:text-emerald">
+                                                {t('category')}
+                                            </div>
 
-                                    <Chip value={c(project.category)} />
+                                            <Chip value={project.categoryLabel ?? c(project.category!)} />
 
-                                </div>
+                                        </div>
+                                    )
+                                }
                             </div>
 
                             <div className='font-light text-justify antialiased text-night dark:text-silver-900 transition-colors duration-300'>
@@ -164,10 +171,10 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
 
                         <div className="flex flex-wrap items-center gap-2">
                             {
-                                project.tags.map((tag, index) => (
+                                (project.tagLabels ?? project.tags.map((tag) => e(tag))).map((tag, index) => (
                                     <Chip
                                         key={`${tag}-${index}`}
-                                        value={e(tag)}
+                                        value={tag}
                                     />
                                 ))
                             }
@@ -196,11 +203,10 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
 export default ProjectDetailPage
 
 export async function generateStaticParams() {
-    const locales = ['en', 'es'];
     const paths = [];
 
-    for (const locale of locales) {
-        for (const project of ProjectsConfig) {
+    for (const locale of routing.locales) {
+        for (const project of await loadProjects(locale)) {
             paths.push({
                 locale: locale,
                 slug: project.slug

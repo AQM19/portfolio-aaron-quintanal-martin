@@ -1,13 +1,17 @@
-import { CareerConfig } from '@/core/config/career/career.config'
+import { Career } from '@/core/interfaces/career/career.interface';
 import { useLocale, useTranslations } from 'next-intl';
 import React from 'react'
 
-const ResumeExperience = () => {
+interface Props {
+    career: Career[];
+}
+
+const ResumeExperience = ({ career }: Props) => {
 
     const t = useTranslations('Resume experience');
     const localeActive = useLocale();
     const max = 5;
-    const lastCareerConfig = CareerConfig.slice(CareerConfig.length - max, CareerConfig.length);
+    const lastCareerConfig = career.slice(-max);
 
     return (
         <section aqm-data="resume-experience" className='hidden xl:flex flex-col items-center gap-20 y-16 text-night dark:text-silver-900'>

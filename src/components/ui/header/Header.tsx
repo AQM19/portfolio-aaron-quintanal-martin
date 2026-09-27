@@ -1,4 +1,5 @@
-import { SocialMediaMenuConfig, WorkMediaMenuConfig } from '@/core/config'
+import SocialIcon from '@/components/icons/SocialIcon'
+import { SocialLink } from '@/core/interfaces'
 import { Link as I18Link } from '@/i18n/routing'
 import Link from 'next/link'
 import React from 'react'
@@ -8,9 +9,10 @@ import Switch from '../switch/Switch'
 interface Props {
   isDarkMode: boolean;
   setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+  socialLinks: SocialLink[];
 }
 
-const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
+const Header = ({ isDarkMode, setIsDarkMode, socialLinks }: Props) => {
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode)
   }
@@ -26,14 +28,15 @@ const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
 
         <ul className='flex flex-row gap-4'>
           {
-            SocialMediaMenuConfig
-              .filter(item => item.isEnabled)
+            socialLinks
+              .filter(item => item.group === 'social')
               .map((item, index) => (
                 <li key={`${item.href}-${index}`}>
                   <Link
                     href={item.href}
-                    target={item.target}>
-                    <item.icon
+                    target='_blank'
+                    aria-label={item.label ?? item.platform}>
+                    <SocialIcon platform={item.platform}
                       size={30}
                       className='hover:scale-125 transition-transform duration-300'
                     />
@@ -45,12 +48,15 @@ const Header = ({ isDarkMode, setIsDarkMode }: Props) => {
 
         <ul className='flex flex-row gap-4'>
           {
-            WorkMediaMenuConfig.map((item, index) => (
+            socialLinks
+              .filter(item => item.group === 'work')
+              .map((item, index) => (
               <li key={`${item.href}-${index}`}>
                 <Link
                   href={item.href}
-                  target={item.target}>
-                  <item.icon
+                  target='_blank'
+                  aria-label={item.label ?? item.platform}>
+                  <SocialIcon platform={item.platform}
                     size={30}
                     className='hover:scale-125 transition-transform duration-300'
                   />
