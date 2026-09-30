@@ -37,6 +37,7 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
     const t = await getTranslations('Project');
     const c = await getTranslations('Category');
     const e = await getTranslations('Tags');
+    const s = await getTranslations('Status');
 
     const localeActive = await getLocale();
 
@@ -76,20 +77,32 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
                                     {project.title}
                                 </h2>
 
-                                {
-                                    // Remote projects bring the name from the admin catalog; local ones are translated here.
-                                    (project.categoryLabel ?? (project.category && c(project.category))) && (
-                                        <div className="flex flex-col gap-2 items-center">
+                                <div className="flex flex-row gap-6">
+                                    {
+                                        // Remote projects bring the name from the admin catalog; local ones are translated here.
+                                        (project.categoryLabel ?? (project.category && c(project.category))) && (
+                                            <div className="flex flex-col gap-2 items-center">
 
-                                            <div className="font-medium text-aero dark:text-emerald">
-                                                {t('category')}
+                                                <div className="font-medium text-aero dark:text-emerald">
+                                                    {t('category')}
+                                                </div>
+
+                                                <Chip value={project.categoryLabel ?? c(project.category!)} />
+
                                             </div>
+                                        )
+                                    }
 
-                                            <Chip value={project.categoryLabel ?? c(project.category!)} />
+                                    <div className="flex flex-col gap-2 items-center">
 
+                                        <div className="font-medium text-aero dark:text-emerald">
+                                            {t('status')}
                                         </div>
-                                    )
-                                }
+
+                                        <Chip value={project.statusLabel ?? s(project.status)} color={project.statusColor} />
+
+                                    </div>
+                                </div>
                             </div>
 
                             {

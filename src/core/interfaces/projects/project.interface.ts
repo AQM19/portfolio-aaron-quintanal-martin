@@ -20,6 +20,8 @@ export interface Project {
     /** Names from the admin catalogs; when absent (local config) the keys are translated with messages. */
     categoryLabel?: string;
     statusLabel?: string;
+    /** `#RRGGBB` from the admin status catalog. */
+    statusColor?: string;
     stageLabel?: string;
     tagLabels?: string[];
     images: string[];

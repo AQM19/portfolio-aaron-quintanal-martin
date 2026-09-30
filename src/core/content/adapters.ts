@@ -112,6 +112,7 @@ function toProject(dto: ProjectDto, lang: string, ownerName: string, catalogs: C
         tags: dto.tags.filter((tag): tag is Tag => isOneOf(TAGS, tag)),
         categoryLabel: dto.category ? catalogs.categories.get(dto.category)?.name : undefined,
         statusLabel: dto.status ? catalogs.statuses.get(dto.status)?.name : undefined,
+        statusColor: dto.status ? catalogs.statuses.get(dto.status)?.color ?? undefined : undefined,
         stageLabel: dto.stage ? catalogs.stages.get(dto.stage)?.name : undefined,
         tagLabels: dto.tags.map((slug) => catalogs.tags.get(slug)?.name ?? slug),
         developers: dto.collaborators.map(toDeveloper),

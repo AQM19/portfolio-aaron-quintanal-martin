@@ -43,6 +43,7 @@
     },
     "Project": {
         "category": "Categoria",
+        "status": "Estado",
         "description": "Descripción",
         "download documentation": "Descargar documentación",
         "view page": "Visitar la página",

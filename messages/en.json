@@ -43,6 +43,7 @@
     },
     "Project": {
         "category": "Category",
+        "status": "Status",
         "description": "Description",
         "download documentation": "Download Documentation",
         "view page": "View Page",

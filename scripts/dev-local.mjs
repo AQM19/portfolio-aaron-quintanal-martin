@@ -5,7 +5,7 @@
  * by hand or committed: the web reads public_api.published_content with the read-only web_reader role and
  * loads images from the local S3. Then starts `next dev`.
  *
- * Admin repository path: ADMIN_REPO env var, or ../AQPortfoil next to this repository.
+ * Admin repository path: ADMIN_REPO env var, or ../AQPortfoil (or ../portfolio-aaron-desk) next to this repository.
  */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -14,7 +14,9 @@ import { createRequire } from 'node:module';
 
 const webRoot = resolve(import.meta.dirname, '..');
 const target = resolve(webRoot, '.env.development.local');
-const adminRoot = resolve(process.env.ADMIN_REPO ?? resolve(webRoot, '..', 'AQPortfoil'));
+const adminRoot = resolve(process.env.ADMIN_REPO
+    ?? ['AQPortfoil', 'portfolio-aaron-desk'].map((name) => resolve(webRoot, '..', name)).find((dir) => existsSync(resolve(dir, '.env')))
+    ?? resolve(webRoot, '..', 'AQPortfoil'));
 const adminEnv = resolve(adminRoot, '.env');
 
 if (!existsSync(target)) {
