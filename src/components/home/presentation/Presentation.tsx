@@ -2,39 +2,29 @@ import { Link as I18Link } from '@/i18n/routing';
 import ChangingText from '../changing-text/ChangingText';
 import { useTranslations } from 'next-intl';
 import { TbFileCv } from "react-icons/tb";
-import Link from 'next/link';
+import type { Profile } from '@/core/interfaces/profile/profile.interface';
 import Image from 'next/image';
 
 import './presentation.css'
 
 interface Props {
-    cvUrl?: string;
+    profile: Profile;
 }
 
-const Presentation = ({ cvUrl }: Props) => {
+const Presentation = ({ profile }: Props) => {
 
     const t = useTranslations("Index");
-    const birthDate: Date = new Date(1996, 2, 15);
-    const currentDate: Date = new Date();
-
-    const birthMonth = birthDate.getMonth();
-    const currentMonth = currentDate.getMonth();
-
-    let age = currentDate.getFullYear() - birthDate.getFullYear();
-
-    if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDate.getDate() < birthDate.getDate())) {
-        age--;
-    }
 
     return (
         <section aqm-data="presentation" className="flex flex-col xl:flex-row py-16 sm:py-28 px-5 sm:px-32 justify-normal gap-10 sm:gap-36 text-night dark:text-silver-900">
 
             <Image
-                className='h-[350px] w-full sm:w-3/4 md:h-[550px] md:w-[500px]'
-                src="/png/mapache-ladron.png"
-                alt="Imagen de Aarón Quintanal Martín"
+                className='h-[350px] w-full sm:w-3/4 md:h-[550px] md:w-[500px] object-contain'
+                src={profile.avatarUrl}
+                alt={profile.ownerName}
                 width={1920}
                 height={1080}
+                priority
             />
 
             <div className='rounded-sm flex flex-col gap-4'>
@@ -44,18 +34,16 @@ const Presentation = ({ cvUrl }: Props) => {
                 </p>
 
                 <h1 className={`text-4xl md:text-6xl font-thin transition-colors duration-300`}>
-                    Aaron Quintanal Martín
+                    {profile.ownerName}
                 </h1>
 
-                <ChangingText />
+                <ChangingText taglines={profile.taglines} />
 
-                <p className='mt-5 max-w-prose text-lg text-pretty text-justify font-semibold transition-colors duration-300'>
-                    {t('I have')} {age} {t('first-part-presentation')}
-                </p>
-
-                <p className='mt-5 max-w-prose text-lg text-pretty text-justify font-semibold transition-colors duration-300'>
-                    {t('second-part-presentation')}
-                </p>
+                {/* Sanitized on the server (rich-text.ts), with the age already filled in */}
+                <div
+                    className='rich-text presentation-bio mt-5 max-w-prose text-lg text-pretty text-justify font-semibold transition-colors duration-300'
+                    dangerouslySetInnerHTML={{ __html: profile.bioHtml }}
+                />
 
                 <div className='flex flex-row gap-4'>
                     <I18Link href={'/contact'} >
@@ -66,16 +54,18 @@ const Presentation = ({ cvUrl }: Props) => {
                     </I18Link>
 
                     {
-                        cvUrl && (
-                            <Link
-                                href={cvUrl}
+                        // The PDF opens in a new tab: the browser shows it and offers the download.
+                        profile.cvUrl && (
+                            <a
+                                href={profile.cvUrl}
                                 target='_blank'
+                                rel='noopener noreferrer'
                             >
                                 <button className='flex flex-row lg:self-end mt-5 px-5 py-2 rounded-md text-silver-900 dark:text-night bg-aero dark:bg-emerald font-bold border-2 border-aero dark:border-emerald transition-colors duration-300'>
                                     <TbFileCv className="mr-2" size={24} />
                                     {t('download-cv')}
                                 </button>
-                            </Link>
+                            </a>
                         )
                     }
                 </div>

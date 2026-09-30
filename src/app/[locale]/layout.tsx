@@ -8,79 +8,69 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Suspense } from "react";
 import Loading from "./loading";
 import type { Metadata } from "next";
+import { loadProfile } from "@/core/content";
 
 import "./globals.css";
 
-export const metadata: Metadata = {
-    title: "Aarón Quintanal Martín - Desarrollador Full Stack",
-    description: "Aarón Quintanal Martín es un desarrollador full stack especializado en Angular, Next.js y .NET, ubicado en Cantabria.",
-    authors: [
-        {
-            name: 'Aarón',
-            url: host
-        }
-    ],
-    keywords: ["Aarón Quintanal Martín", "Cantabria", "programador", "desarrollador", "full stack", "Angular", "Next.js", ".NET"],
-    openGraph: {
-        title: "Aarón Quintanal Martín - Desarrollador Full Stack",
-        description: "Conoce a Aarón Quintanal Martín, un experto desarrollador full stack en tecnologías modernas.",
-        url: host,
-        type: "website",
-        images: [
+/** Absolute URL for social cards: site paths are resolved against the deployment host. */
+const absolute = (url: string | undefined) => !url ? undefined : url.startsWith('/') ? `${host}${url}` : url;
+
+/** SEO from the admin (Perfil y SEO), with the previous texts as local fallback. */
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    const { ownerName, seo } = await loadProfile(locale);
+    const image = absolute(seo.ogImageUrl);
+
+    return {
+        title: seo.title,
+        description: seo.description,
+        authors: [
             {
-                url: `${host}/imgs/aaron-quintanal-martin.png`,
-                width: 800,
-                height: 600,
-                alt: "Aarón Quintanal Martín",
+                name: ownerName,
+                url: host
             }
-        ]
-    },
-    twitter: {
-        card: "summary_large_image",
-        title: "Aarón Quintanal Martín - Desarrollador Full Stack",
-        description: "Aarón Quintanal Martín es un desarrollador full stack con experiencia en Angular, Next.js y .NET.",
-        site: '@AQuintanalMDev',
-        creator: '@AQuintanalMDev',
-        images: [
-            `${host}/imgs/aaron-quintanal-martin.png`
-        ]
-    },
-    alternates: {
-        canonical: host,
-        languages: {
-            'en': `${host}/en`,
-            'es': `${host}/es`
-        }
-    },
-    robots: {
-        index: true,
-        follow: true,
-        nocache: true,
-        googleBot: {
+        ],
+        keywords: seo.keywords,
+        openGraph: {
+            title: seo.title,
+            description: seo.description,
+            url: `${host}/${locale}`,
+            locale,
+            type: "website",
+            images: image ? [{ url: image, alt: ownerName }] : undefined,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: seo.title,
+            description: seo.description,
+            site: '@AQuintanalMDev',
+            creator: '@AQuintanalMDev',
+            images: image ? [image] : undefined,
+        },
+        alternates: {
+            canonical: `${host}/${locale}`,
+            languages: Object.fromEntries(routing.locales.map((l) => [l, `${host}/${l}`])),
+        },
+        robots: {
             index: true,
             follow: true,
-            noimageindex: true,
-            'max-video-preview': -1,
-            'max-image-preview': 'large',
-            'max-snippet': -1,
-        },
-    },
-    appleWebApp: {
-        title: 'Aarón Quintanal Martín - Desarrollador Full Stack',
-        statusBarStyle: 'black-translucent',
-        startupImage: [
-            '/imgs/aaron-quintanal-martin.png',
-            {
-                url: '/assets/imgs/aaron-quintanal-martin.png',
-                media: '(device-width: 768px) and (device-height: 1024px)',
+            nocache: true,
+            googleBot: {
+                index: true,
+                follow: true,
+                noimageindex: true,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
             },
-        ],
-    },
-    assets: [
-        `${host}/assets`,
-    ],
-    category: 'development'
-};
+        },
+        appleWebApp: {
+            title: seo.title,
+            statusBarStyle: 'black-translucent',
+        },
+        category: 'development'
+    };
+}
 
 export default async function RootLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
 

@@ -3,6 +3,7 @@
 import { Mail } from '@/core/interfaces/mail/mail.interface';
 import { sendMail } from '@/core/services/mail/email.service';
 import { useTranslations } from 'next-intl';
+import { Link as I18nLink } from '@/i18n/routing';
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { IoMailOutline } from 'react-icons/io5'
@@ -171,6 +172,13 @@ const ContactForm = ({ full }: Props) => {
                 <IoMailOutline size={22} />
                 {t('send message')}
             </button>
+
+            <p className="text-xs text-center opacity-80">
+                {t('privacy notice')}{' '}
+                <I18nLink href="/privacy" className="underline underline-offset-2">
+                    {t('privacy link')}
+                </I18nLink>.
+            </p>
 
         </form>
     )

@@ -76,7 +76,9 @@
         "message required": "Message is required.",
         "message too short": "Message must be at least 10 characters long.",
         "message too long": "Message cannot exceed 1000 characters.",
-        "send message": "Send Message"
+        "send message": "Send Message",
+        "privacy notice": "I'll only use your name and email to reply to your message. More information in the",
+        "privacy link": "privacy policy"
     },
     "Career": {
         "title": "Career"
@@ -125,7 +127,11 @@
         "security of data": "Data Security",
         "security text": "Security measures have been implemented to ensure the protection of personal data sent through the form.",
         "contact": "Contact",
-        "contact text": "If you have questions about this privacy policy, you can write to "
+        "contact text": "If you have questions about this privacy policy, you can write to ",
+        "legal basis text": "The legal basis for the processing is your consent, given when you submit the form. Messages are received through the controller's email service, which acts as data processor.",
+        "complaint text": "If you believe the processing does not comply with the law, you can lodge a complaint with the Spanish Data Protection Agency:",
+        "analytics": "Usage statistics",
+        "analytics text": "This site uses Vercel Web Analytics and Speed Insights to learn, in an aggregated and anonymous way, about visits and page performance. They do not use cookies and cannot identify you."
     },
     "Tags": {
         "ab-testing": "A/B Testing",

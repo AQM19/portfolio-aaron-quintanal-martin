@@ -4,7 +4,10 @@ import { Developer } from "./developer.interface";
 export interface Project {
     slug: string;
     title: string;
+    /** Paragraphs (local config). Published content uses descriptionHtml instead. */
     description: Map<string, string[]>;
+    /** Sanitized HTML from the admin. */
+    descriptionHtml?: Map<string, string>;
     shortDescription: Map<string, string>;
     logo: string;
     creator: string;

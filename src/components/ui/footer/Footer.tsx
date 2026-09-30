@@ -9,9 +9,10 @@ import { SocialLink } from '@/core/interfaces';
 
 interface Props {
     socialLinks: SocialLink[];
+    ownerName: string;
 }
 
-const Footer = ({ socialLinks }: Props) => {
+const Footer = ({ socialLinks, ownerName }: Props) => {
 
     const t = useTranslations("Footer");
 
@@ -25,7 +26,7 @@ const Footer = ({ socialLinks }: Props) => {
                 <div className="flex items-center gap-2" >
                     <AQMIcon />
                     <span className="text-lg font-semibold text-aero dark:text-emerald" >
-                        Aarón Quintanal Martín
+                        {ownerName}
                     </span>
                 </div>
 
@@ -42,6 +43,10 @@ const Footer = ({ socialLinks }: Props) => {
                             </I18nLink>
                         ))
                     }
+
+                    <I18nLink href="/privacy" className="text-sm">
+                        {t('privacy')}
+                    </I18nLink>
 
                 </nav>
 
@@ -90,7 +95,7 @@ const Footer = ({ socialLinks }: Props) => {
 
                 </div>
 
-                <div className="text-xs text-muted-foreground">&copy; 2024 Aarón Quintanal Martín. {t('all rights reserved')}</div>
+                <div className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} {ownerName}. {t('all rights reserved')}</div>
 
             </div>
 

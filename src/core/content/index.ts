@@ -5,7 +5,7 @@ export {
     getPortfolioContent,
     loadCareer,
     loadCertifications,
-    loadCvUrl,
+    loadProfile,
     loadProjects,
     loadSkills,
     loadSocialLinks,

@@ -5,5 +5,7 @@ export interface Career {
     empress: string;
     empressImage: string;
     description: Map<string, string>;
+    /** Sanitized HTML from the admin; takes precedence over description. */
+    descriptionHtml?: Map<string, string>;
     progression?: EmpressProgression[];
 }

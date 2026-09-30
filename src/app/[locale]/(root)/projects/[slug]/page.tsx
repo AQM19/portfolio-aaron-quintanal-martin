@@ -92,15 +92,27 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
                                 }
                             </div>
 
-                            <div className='font-light text-justify antialiased text-night dark:text-silver-900 transition-colors duration-300'>
-                                {
-                                    project.description.get(localeActive)?.map((item, index) => (
-                                        <p key={index}>
-                                            {item}
-                                        </p>
-                                    ))
-                                }
-                            </div>
+                            {
+                                project.descriptionHtml?.get(localeActive)
+                                    ? (
+                                        // Published content: HTML sanitized on the server (rich-text.ts)
+                                        <div
+                                            className='rich-text font-light text-justify antialiased text-night dark:text-silver-900 transition-colors duration-300'
+                                            dangerouslySetInnerHTML={{ __html: project.descriptionHtml.get(localeActive)! }}
+                                        />
+                                    )
+                                    : (
+                                        <div className='font-light text-justify antialiased text-night dark:text-silver-900 transition-colors duration-300'>
+                                            {
+                                                project.description.get(localeActive)?.map((item, index) => (
+                                                    <p key={index}>
+                                                        {item}
+                                                    </p>
+                                                ))
+                                            }
+                                        </div>
+                                    )
+                            }
 
                         </div>
 

@@ -28,6 +28,7 @@ const PrivacyPage = async () => {
 
                 <h3 className='text-xl font-semibold mt-4'>3. {t('purpose of treatment')}</h3>
                 <p>{t('purpose text')}</p>
+                <p>{t('legal basis text')}</p>
 
                 <h3 className='text-xl font-semibold mt-4'>4. {t('conservation of data')}</h3>
                 <p>{t('conservation text')}</p>
@@ -40,11 +41,15 @@ const PrivacyPage = async () => {
                     <li>{t('user rights item 2')}</li>
                     <li>{t('user rights item 3')}</li>
                 </ul>
+                <p>{t('complaint text')} <Link href={'https://www.aepd.es'} target='_blank' rel='noopener noreferrer'><strong>www.aepd.es</strong></Link>.</p>
 
                 <h3 className='text-xl font-semibold mt-4'>6. {t('security of data')}</h3>
                 <p>{t('security text')}</p>
 
-                <h3 className='text-xl font-semibold mt-4'>7. {t('contact')}</h3>
+                <h3 className='text-xl font-semibold mt-4'>7. {t('analytics')}</h3>
+                <p>{t('analytics text')}</p>
+
+                <h3 className='text-xl font-semibold mt-4'>8. {t('contact')}</h3>
                 <p>{t('contact text')} <Link href={'mailto:aquintanalm.dev@gmail.com'}><strong>aquintanalm.dev@gmail.com</strong></Link></p>
 
             </div>

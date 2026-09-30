@@ -45,7 +45,11 @@ const CareerCard = ({ stage, localeActive, index }: Props) => {
                 </div>
 
                 <div className='mt-6'>
-                    <p className="text-base mb-4 text-justify">{stage.description.get(localeActive)}</p>
+                    {
+                        stage.descriptionHtml?.get(localeActive)
+                            ? <div className="rich-text text-base mb-4 text-justify" dangerouslySetInnerHTML={{ __html: stage.descriptionHtml.get(localeActive)! }} />
+                            : <p className="text-base mb-4 text-justify">{stage.description.get(localeActive)}</p>
+                    }
 
                     {
                         stage.progression && (

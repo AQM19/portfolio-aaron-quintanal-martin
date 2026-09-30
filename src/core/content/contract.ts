@@ -10,15 +10,19 @@
  * - Optional fields are always present as `null`, never omitted. Lists are never `null`.
  * - Dates are `YYYY-MM-DD`; `publishedAt` is ISO 8601 UTC.
  * - Lists come filtered (only visible / published items) and sorted as they must be displayed.
- * - `description` and `bio` are Markdown.
+ * - `description` and `bio` are sanitized HTML (see rich-text.ts). `bio` may contain `{age}`.
+ * - Image and document fields are public URLs, or web paths (`/png/…`) for assets served by this site.
  * - Enum values are lowercase. New values may be added without bumping `schemaVersion`, so consumers
  *   must tolerate values they do not know.
  * - Project statuses, stages, categories and tags are catalogs managed in the admin. They come translated in
  *   `projectStatuses`, `projectStages`, `projectCategories` and `tags`; projects reference them by slug.
  */
 
-/** 2: managed catalogs (statuses, stages, categories, tags) and optional slug references in projects. */
-export const SUPPORTED_SCHEMA_VERSION = 2;
+/**
+ * 2: managed catalogs (statuses, stages, categories, tags) and optional slug references in projects.
+ * 3: one title per project, HTML long texts, settings with taglines, birth date, SEO keywords and a CV per language.
+ */
+export const SUPPORTED_SCHEMA_VERSION = 3;
 
 export const SOCIAL_PLATFORMS = [
     'github', 'linkedin', 'x', 'bluesky', 'mastodon', 'youtube', 'instagram', 'email', 'website', 'other',
@@ -68,12 +72,20 @@ export interface SettingsDto {
     ownerName: string;
     email: string | null;
     location: string | null;
+    /** Used to replace `{age}` in the bio. */
+    birthDate: IsoDate | null;
     avatarUrl: string | null;
+    /** Image for social cards (Open Graph / Twitter). */
+    ogImageUrl: string | null;
+    /** CV in this language (PDF); falls back to the default language's. */
     cvUrl: string | null;
-    headline: string;
+    /** Rotating headlines of the home presentation, in order. */
+    taglines: string[];
+    /** Sanitized HTML with `{age}`. */
     bio: string | null;
     seoTitle: string | null;
     seoDescription: string | null;
+    seoKeywords: string[];
 }
 
 export interface SocialLinkDto {
@@ -131,7 +143,8 @@ export interface ProjectDto {
     demoUrl: string | null;
     documentationUrl: string | null;
     featured: boolean;
-    startDate: IsoDate | null;
+    startDate: IsoDate;
+    /** Only set when the project status is a closing one; null means "in progress". */
     endDate: IsoDate | null;
     /** Slugs referencing `skills[].slug`. */
     skills: string[];
@@ -206,7 +219,9 @@ export function parsePortfolioContent(raw: unknown): PortfolioContent {
 
     const settings = asObject(root.settings, '$.settings');
     asString(settings.ownerName, '$.settings.ownerName');
-    asString(settings.headline, '$.settings.headline');
+    asOptionalDate(settings.birthDate, '$.settings.birthDate');
+    asArray(settings.taglines, '$.settings.taglines');
+    asArray(settings.seoKeywords, '$.settings.seoKeywords');
 
     eachItem(root.socialLinks, '$.socialLinks', (item, path) => {
         asString(item.platform, `${path}.platform`);
@@ -232,7 +247,7 @@ export function parsePortfolioContent(raw: unknown): PortfolioContent {
         asOptionalString(item.status, `${path}.status`);
         asOptionalString(item.stage, `${path}.stage`);
         asOptionalString(item.category, `${path}.category`);
-        asOptionalDate(item.startDate, `${path}.startDate`);
+        asDate(item.startDate, `${path}.startDate`);
         asOptionalDate(item.endDate, `${path}.endDate`);
         asArray(item.images, `${path}.images`);
         asArray(item.tags, `${path}.tags`);

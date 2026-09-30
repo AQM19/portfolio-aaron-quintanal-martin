@@ -1,10 +1,12 @@
 import type { Career } from '@/core/interfaces/career/career.interface';
 import type { Certification } from '@/core/interfaces/certification/certification.interface';
 import type { Developer, Project, SocialLink } from '@/core/interfaces';
+import type { Profile } from '@/core/interfaces/profile/profile.interface';
 import type { Skill } from '@/core/interfaces/skills/skill.interface';
 import { CATEGORIES, Status, TAGS, Tag } from '@/core/types';
 import { WORK_PLATFORMS } from '@/core/config/social-media/social-icons';
 import { isRenderableImage } from './image-hosts';
+import { sanitizeRichText, withAge } from './rich-text';
 import {
     CatalogDto, CertificationDto, CollaboratorDto, ExperienceDto, parseContractDate, PortfolioContent, ProjectDto,
     SkillDto, SocialLinkDto
@@ -66,6 +68,24 @@ export function toSocialLinks(content: PortfolioContent): SocialLink[] {
     return content.socialLinks.map(toSocialLink);
 }
 
+/** Missing values are completed with the local fallback, so the home never shows an empty presentation. */
+export function toProfile(content: PortfolioContent, fallback: Profile): Profile {
+    const s = content.settings;
+    return {
+        ownerName: s.ownerName || fallback.ownerName,
+        taglines: s.taglines.length > 0 ? s.taglines : fallback.taglines,
+        bioHtml: sanitizeRichText(s.bio ? withAge(s.bio, s.birthDate) : null) ?? fallback.bioHtml,
+        avatarUrl: isRenderableImage(s.avatarUrl) ? s.avatarUrl : fallback.avatarUrl,
+        cvUrl: s.cvUrl ?? undefined,
+        seo: {
+            title: s.seoTitle ?? fallback.seo.title,
+            description: s.seoDescription ?? fallback.seo.description,
+            keywords: s.seoKeywords.length > 0 ? s.seoKeywords : fallback.seo.keywords,
+            ogImageUrl: s.ogImageUrl ?? fallback.seo.ogImageUrl,
+        },
+    };
+}
+
 function toProject(dto: ProjectDto, lang: string, ownerName: string, catalogs: Catalogs): Project {
     const images = dto.images.filter(isRenderableImage);
     const cover = [dto.imageUrl, ...images].find(isRenderableImage) ?? DEFAULT_PROJECT_LOGO;
@@ -75,10 +95,11 @@ function toProject(dto: ProjectDto, lang: string, ownerName: string, catalogs: C
         title: dto.title,
         creator: ownerName,
         logo: cover,
-        description: new Map([[lang, markdownParagraphs(dto.description)]]),
+        description: new Map([[lang, []]]),
+        descriptionHtml: htmlMap(lang, dto.description),
         shortDescription: new Map([[lang, dto.summary ?? '']]),
         documentation: dto.documentationUrl ? new Map([[lang, dto.documentationUrl]]) : undefined,
-        dateStart: dto.startDate ? parseContractDate(dto.startDate) : new Date(),
+        dateStart: parseContractDate(dto.startDate),
         dateEnd: dto.endDate ? parseContractDate(dto.endDate) : undefined,
         productionLink: dto.demoUrl ?? undefined,
         repoUrl: dto.repoUrl ?? undefined,
@@ -118,7 +139,8 @@ function toCareerItem(dto: ExperienceDto, lang: string, presentLabel: string): C
         empress: dto.company,
         empressImage: isRenderableImage(dto.logoUrl) ? dto.logoUrl : DEFAULT_CAREER_IMAGE,
         dateRange: new Map([[lang, `${start} - ${end}`]]),
-        description: new Map([[lang, dto.description ?? '']]),
+        description: new Map([[lang, '']]),
+        descriptionHtml: htmlMap(lang, dto.description),
         progression: dto.milestones.length > 0
             ? dto.milestones.map((milestone) => ({
                 promotionDate: parseContractDate(milestone.date),
@@ -134,7 +156,8 @@ function toCertification(dto: CertificationDto, lang: string): Certification {
         title: dto.name,
         organization: dto.issuer,
         date: parseContractDate(dto.issuedOn),
-        description: new Map([[lang, dto.description ?? '']]),
+        description: new Map([[lang, '']]),
+        descriptionHtml: htmlMap(lang, dto.description),
         calification: dto.grade ?? undefined,
         link: dto.credentialUrl ?? undefined,
         professor: dto.instructor ?? undefined,
@@ -162,12 +185,10 @@ function toSocialLink(dto: SocialLinkDto): SocialLink {
     };
 }
 
-/** Splits Markdown into the paragraph list the project page renders. */
-function markdownParagraphs(markdown: string | null): string[] {
-    return (markdown ?? '')
-        .split(/\r?\n\s*\r?\n/)
-        .map((paragraph) => paragraph.trim())
-        .filter((paragraph) => paragraph.length > 0);
+/** Sanitized HTML for the page locale, or undefined when there is no text. */
+function htmlMap(lang: string, html: string | null): Map<string, string> | undefined {
+    const clean = sanitizeRichText(html);
+    return clean ? new Map([[lang, clean]]) : undefined;
 }
 
 /** "Julio 2023" / "July 2023" */

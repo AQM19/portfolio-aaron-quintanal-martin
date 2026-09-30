@@ -10,9 +10,10 @@ interface Props {
   isDarkMode: boolean;
   setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
   socialLinks: SocialLink[];
+  ownerName: string;
 }
 
-const Header = ({ isDarkMode, setIsDarkMode, socialLinks }: Props) => {
+const Header = ({ isDarkMode, setIsDarkMode, socialLinks, ownerName }: Props) => {
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode)
   }
@@ -21,7 +22,7 @@ const Header = ({ isDarkMode, setIsDarkMode, socialLinks }: Props) => {
     <header className='hidden sm:flex flex-row items-center justify-between p-4 bg-silver-900 dark:bg-night text-aero dark:text-emerald transition-colors duration-300'>
 
       <I18Link href={'/'}>
-        <h1 className='font-semibold text-xl'>AARON QUINTANAL MARTIN</h1>
+        <h1 className='font-semibold text-xl uppercase'>{ownerName}</h1>
       </I18Link>
 
       <div className='flex flex-row gap-20'>

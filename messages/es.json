@@ -76,7 +76,9 @@
         "message required": "El mensaje es obligatorio.",
         "message too short": "El mensaje debe tener al menos 10 caracteres.",
         "message too long": "El mensaje no puede exceder los 1000 caracteres.",
-        "send message": "Enviar mensaje"
+        "send message": "Enviar mensaje",
+        "privacy notice": "Usaré tu nombre y tu email solo para responder a tu mensaje. Más información en la",
+        "privacy link": "política de privacidad"
     },
     "Career": {
         "title": "Carrera"
@@ -125,7 +127,11 @@
         "security of data": "Seguridad de los datos",
         "security text": "Se han implementado medidas de seguridad para garantizar la protección de los datos personales enviados a través del formulario.",
         "contact": "Contacto",
-        "contact text": "Si tienes preguntas sobre esta política de privacidad, puedes escribir a "
+        "contact text": "Si tienes preguntas sobre esta política de privacidad, puedes escribir a ",
+        "legal basis text": "La base jurídica del tratamiento es tu consentimiento, que prestas al enviar el formulario. Los mensajes se reciben a través del servicio de correo electrónico del responsable, que actúa como encargado del tratamiento.",
+        "complaint text": "Si consideras que el tratamiento no se ajusta a la normativa, puedes presentar una reclamación ante la Agencia Española de Protección de Datos:",
+        "analytics": "Estadísticas de uso",
+        "analytics text": "Este sitio utiliza Vercel Web Analytics y Speed Insights para conocer de forma agregada y anónima las visitas y el rendimiento de las páginas. No utilizan cookies ni permiten identificarte."
     },
     "Tags": {
         "ab-testing": "Pruebas A/B",

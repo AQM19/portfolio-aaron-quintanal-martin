@@ -1,16 +1,38 @@
 /**
- * Hosts that `next/image` may load remote images from. `next/image` throws on any other host, so the
- * adapters replace images from unknown hosts with a placeholder instead of breaking the page.
- * Extend with `CONTENT_IMAGE_HOSTS` (comma separated) when the admin publishes images from a new host.
+ * Origins that `next/image` may load remote images from. `next/image` throws on any other origin, so the
+ * adapters replace images from unknown origins with a placeholder instead of breaking the page.
+ *
+ * `CONTENT_IMAGE_HOSTS` (comma separated) adds more: a host name (`cdn.example.com`, https) or a full origin
+ * (`http://localhost:9000`, for the local S3 of the admin). Add the public host of the Neon Storage buckets.
  */
-const DEFAULT_IMAGE_HOSTS = ['avatars.githubusercontent.com'];
+export interface ImageOrigin {
+    protocol: 'http' | 'https';
+    hostname: string;
+    port: string;
+}
 
-export const getImageHosts = (): string[] => [
-    ...DEFAULT_IMAGE_HOSTS,
-    ...(process.env.CONTENT_IMAGE_HOSTS ?? '').split(',').map((host) => host.trim()).filter(Boolean),
-];
+const DEFAULT_ORIGINS = ['avatars.githubusercontent.com'];
 
-/** Site paths (`/webp/x.webp`) or https URLs on an allowed host. */
+export function getImageOrigins(): ImageOrigin[] {
+    const entries = [...DEFAULT_ORIGINS, ...(process.env.CONTENT_IMAGE_HOSTS ?? '').split(',')]
+        .map((entry) => entry.trim())
+        .filter(Boolean);
+
+    return entries.flatMap((entry): ImageOrigin[] => {
+        try {
+            const url = new URL(entry.includes('://') ? entry : `https://${entry}`);
+            return [{ protocol: url.protocol === 'http:' ? 'http' : 'https', hostname: url.hostname, port: url.port }];
+        } catch {
+            return [];
+        }
+    });
+}
+
+/** True when some configured origin is on this machine (local S3): next/image needs explicit permission. */
+export const hasLocalImageOrigin = (): boolean =>
+    getImageOrigins().some((o) => o.hostname === 'localhost' || o.hostname === '127.0.0.1');
+
+/** Site paths (`/webp/x.webp`) or URLs on an allowed origin. */
 export function isRenderableImage(url: string | null | undefined): url is string {
     if (!url) {
         return false;
@@ -20,8 +42,8 @@ export function isRenderableImage(url: string | null | undefined): url is string
     }
 
     try {
-        const { protocol, hostname } = new URL(url);
-        return protocol === 'https:' && getImageHosts().includes(hostname);
+        const { protocol, hostname, port } = new URL(url);
+        return getImageOrigins().some((o) => `${o.protocol}:` === protocol && o.hostname === hostname && o.port === port);
     } catch {
         return false;
     }

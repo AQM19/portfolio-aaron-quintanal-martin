@@ -37,7 +37,11 @@ const CertificationCard = ({ certification, localeActive, index }: Props) => {
             </div>
 
             <div className="mt-4">
-                <p className="text-base mb-4">{certification.description.get(localeActive)}</p>
+                {
+                    certification.descriptionHtml?.get(localeActive)
+                        ? <div className="rich-text text-base mb-4" dangerouslySetInnerHTML={{ __html: certification.descriptionHtml.get(localeActive)! }} />
+                        : <p className="text-base mb-4">{certification.description.get(localeActive)}</p>
+                }
 
                 <div className="flex items-center">
                     <span className='text-sm rounded-full bg-light_sky_blue px-4 font-thin ml-auto'>{`${getLocaleFormattedDate(certification.date, localeActive)}`}</span>
