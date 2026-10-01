@@ -24,7 +24,7 @@ const Avatar = ({ dev }: Props) => {
                     />
                 </div>
 
-                <div className="text-sm text-night dark:text-silver-900 font-semibold transition-colors duration-300">
+                <div className="text-sm text-foreground font-semibold transition-colors duration-300">
                     {dev.name} {dev.surname}
                 </div>
 

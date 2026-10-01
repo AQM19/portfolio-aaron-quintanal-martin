@@ -7,7 +7,7 @@ const PrivacyPage = async () => {
     const t = await getTranslations('Privacy');
 
     return (
-        <section id='privacy-policy-page' className='container mx-auto py-20 lg:py-8 px-4 max-w-3xl text-justify text-night dark:text-silver-900 transition-colors duration-300'>
+        <section id='privacy-policy-page' className='container mx-auto py-20 lg:py-8 px-4 max-w-3xl md:text-justify text-foreground transition-colors duration-300'>
 
             <h1 className='text-3xl font-bold mb-6'>{t('title')}</h1>
 
@@ -28,6 +28,7 @@ const PrivacyPage = async () => {
 
                 <h3 className='text-xl font-semibold mt-4'>3. {t('purpose of treatment')}</h3>
                 <p>{t('purpose text')}</p>
+                <p>{t('legal basis text')}</p>
 
                 <h3 className='text-xl font-semibold mt-4'>4. {t('conservation of data')}</h3>
                 <p>{t('conservation text')}</p>
@@ -40,12 +41,16 @@ const PrivacyPage = async () => {
                     <li>{t('user rights item 2')}</li>
                     <li>{t('user rights item 3')}</li>
                 </ul>
+                <p>{t('complaint text')} <Link href={'https://www.aepd.es'} target='_blank' rel='noopener noreferrer' className='text-accent-fg underline underline-offset-2'><strong>www.aepd.es</strong></Link>.</p>
 
                 <h3 className='text-xl font-semibold mt-4'>6. {t('security of data')}</h3>
                 <p>{t('security text')}</p>
 
-                <h3 className='text-xl font-semibold mt-4'>7. {t('contact')}</h3>
-                <p>{t('contact text')} <Link href={'mailto:aquintanalm.dev@gmail.com'}><strong>aquintanalm.dev@gmail.com</strong></Link></p>
+                <h3 className='text-xl font-semibold mt-4'>7. {t('analytics')}</h3>
+                <p>{t('analytics text')}</p>
+
+                <h3 className='text-xl font-semibold mt-4'>8. {t('contact')}</h3>
+                <p>{t('contact text')} <Link href={'mailto:aquintanalm.dev@gmail.com'} className='text-accent-fg underline underline-offset-2'><strong>aquintanalm.dev@gmail.com</strong></Link></p>
 
             </div>
 

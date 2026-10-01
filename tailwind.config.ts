@@ -2,6 +2,10 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: 'class',
+  future: {
+    // `hover:` only on devices with a real pointer: on touch screens hover sticks after the tap
+    hoverOnlyWhenSupported: true,
+  },
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,9 +13,34 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-geist-sans)', 'Arial', 'Helvetica', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'ui-monospace', 'monospace'],
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        // Semantic tokens (globals.css), they switch with the `dark`/`light` class on <html>
+        background: "rgb(var(--background) / <alpha-value>)",
+        foreground: "rgb(var(--foreground) / <alpha-value>)",
+        surface: {
+          DEFAULT: "rgb(var(--surface) / <alpha-value>)",
+          hover: "rgb(var(--surface-hover) / <alpha-value>)",
+        },
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        accent: {
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
+          hover: "rgb(var(--accent-hover) / <alpha-value>)",
+          fg: "rgb(var(--accent-fg) / <alpha-value>)",
+          'fg-hover': "rgb(var(--accent-fg-hover) / <alpha-value>)",
+        },
+        'on-accent': "rgb(var(--on-accent) / <alpha-value>)",
+        line: {
+          DEFAULT: "rgb(var(--line) / <alpha-value>)",
+          strong: "rgb(var(--line-strong) / <alpha-value>)",
+        },
+        field: "rgb(var(--field) / <alpha-value>)",
+        danger: "rgb(var(--danger) / <alpha-value>)",
+        success: "rgb(var(--success) / <alpha-value>)",
+        favourite: "rgb(var(--favourite) / <alpha-value>)",
         // DARK
         'night': {
           DEFAULT: '#0c0b10',
@@ -49,30 +78,6 @@ export default {
           800: '#a3a7ae',
           900: '#d1d3d6'
         },
-        'dark_green': {
-          DEFAULT: '#113c2a',
-          100: '#030c08',
-          200: '#071811',
-          300: '#0a2419',
-          400: '#0d3021',
-          500: '#113c2a',
-          600: '#247f59',
-          700: '#37c389',
-          800: '#78d9b0',
-          900: '#bbecd8'
-        },
-        'eerie_black': {
-          DEFAULT: '#0f1e1a',
-          100: '#030605',
-          200: '#060c0b',
-          300: '#091210',
-          400: '#0c1815',
-          500: '#0f1e1a',
-          600: '#2e5c50',
-          700: '#4e9a86',
-          800: '#84c1b0',
-          900: '#c1e0d8'
-        },
         // DARK
         // LIGHT
         'fluorescent_cyan': {
@@ -99,18 +104,6 @@ export default {
           800: '#b1e5f0',
           900: '#d8f2f7'
         },
-        'rich_black': {
-          DEFAULT: '#040b11',
-          100: '#010203',
-          200: '#020407',
-          300: '#02060a',
-          400: '#03080d',
-          500: '#040b11',
-          600: '#163e60',
-          700: '#2971af',
-          800: '#60a1da',
-          900: '#b0d0ec'
-        },
         'silver': {
           DEFAULT: '#b5b5b7',
           100: '#242425',
@@ -123,18 +116,6 @@ export default {
           800: '#e1e1e2',
           900: '#f0f0f0'
         },
-        'indigo_dye': {
-          DEFAULT: '#02476e',
-          100: '#000e16',
-          200: '#011c2c',
-          300: '#012a42',
-          400: '#023858',
-          500: '#02476e',
-          600: '#0478bc',
-          700: '#15a6fa',
-          800: '#63c4fc',
-          900: '#b1e1fd'
-        }
         // LIGHT
       },
     },

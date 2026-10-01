@@ -6,7 +6,8 @@ import { IoCalendarOutline } from 'react-icons/io5';
 import { IoIosLink } from 'react-icons/io';
 import { Link as I18nLink } from '@/i18n/routing';
 import { notFound } from 'next/navigation'
-import { ProjectsConfig } from '@/core/config/projects/projects.config';
+import { loadProjects } from '@/core/content';
+import { routing } from '@/i18n/routing';
 import Avatar from '@/components/avatar/Avatar';
 import AvatarGroup from '@/components/avatar/AvatarGroup';
 import Chip from '@/components/chip/Chip';
@@ -19,22 +20,24 @@ export const dynamicParams = true;
 
 const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, locale: string }> }) => {
 
-    const slug = (await params).slug
-    const project = ProjectsConfig.find(project => project.slug === slug);
+    const { slug, locale } = await params;
+    const projects = await loadProjects(locale);
+    const project = projects.find(project => project.slug === slug);
 
     if (!project) {
         notFound();
     }
 
-    const projectIndex = ProjectsConfig.findIndex(project => project.slug === slug);
+    const projectIndex = projects.findIndex(project => project.slug === slug);
     const previousProject =
-        ProjectsConfig[(projectIndex - 1 + ProjectsConfig.length) % ProjectsConfig.length];
+        projects[(projectIndex - 1 + projects.length) % projects.length];
     const nextProject =
-        ProjectsConfig[(projectIndex + 1) % ProjectsConfig.length];
+        projects[(projectIndex + 1) % projects.length];
 
     const t = await getTranslations('Project');
     const c = await getTranslations('Category');
     const e = await getTranslations('Tags');
+    const s = await getTranslations('Status');
 
     const localeActive = await getLocale();
 
@@ -44,7 +47,7 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
             <I18nLink
                 aqm-data="previous-project"
                 href={{ pathname: '/projects/[slug]', params: { slug: previousProject.slug } }}
-                className='hidden sm:flex absolute top-0 left-0 h-full items-center cursor-pointer hover:bg-silver dark:hover:bg-night-600 rounded-sm transition-colors duration-300 text-aero dark:text-emerald'
+                className='hidden sm:flex absolute top-0 left-0 h-full items-center cursor-pointer hover:bg-surface-hover rounded-sm transition-colors duration-300 text-accent-fg'
             >
                 <FaChevronLeft size={30} />
             </I18nLink>
@@ -52,7 +55,7 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
             <I18nLink
                 aqm-data="next-project"
                 href={{ pathname: '/projects/[slug]', params: { slug: nextProject.slug } }}
-                className='hidden sm:flex absolute top-0 right-4 h-full items-center cursor-pointer hover:bg-silver dark:hover:bg-night-600 rounded-sm transition-colors duration-300 text-aero dark:text-emerald'
+                className='hidden sm:flex absolute top-0 right-4 h-full items-center cursor-pointer hover:bg-surface-hover rounded-sm transition-colors duration-300 text-accent-fg'
             >
                 <FaChevronRight size={30} />
             </I18nLink>
@@ -70,38 +73,67 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
                         <div className='space-y-2'>
                             <div className='flex flex-row gap-4 items-center justify-between'>
 
-                                <h2 className={`text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-aero dark:text-emerald`}>
+                                <h2 className={`text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-accent-fg`}>
                                     {project.title}
                                 </h2>
 
-                                <div className="flex flex-col gap-2 items-center">
+                                <div className="flex flex-row gap-6">
+                                    {
+                                        // Remote projects bring the name from the admin catalog; local ones are translated here.
+                                        (project.categoryLabel ?? (project.category && c(project.category))) && (
+                                            <div className="flex flex-col gap-2 items-center">
 
-                                    <div className="font-medium text-aero dark:text-emerald">
-                                        {t('category')}
+                                                <div className="font-medium text-accent-fg">
+                                                    {t('category')}
+                                                </div>
+
+                                                <Chip value={project.categoryLabel ?? c(project.category!)} />
+
+                                            </div>
+                                        )
+                                    }
+
+                                    <div className="flex flex-col gap-2 items-center">
+
+                                        <div className="font-medium text-accent-fg">
+                                            {t('status')}
+                                        </div>
+
+                                        <Chip value={project.statusLabel ?? s(project.status)} color={project.statusColor} />
+
                                     </div>
-
-                                    <Chip value={c(project.category)} />
-
                                 </div>
                             </div>
 
-                            <div className='font-light text-justify antialiased text-night dark:text-silver-900 transition-colors duration-300'>
-                                {
-                                    project.description.get(localeActive)?.map((item, index) => (
-                                        <p key={index}>
-                                            {item}
-                                        </p>
-                                    ))
-                                }
-                            </div>
+                            {
+                                project.descriptionHtml?.get(localeActive)
+                                    ? (
+                                        // Published content: HTML sanitized on the server (rich-text.ts)
+                                        <div
+                                            className='rich-text md:text-justify antialiased text-foreground transition-colors duration-300'
+                                            dangerouslySetInnerHTML={{ __html: project.descriptionHtml.get(localeActive)! }}
+                                        />
+                                    )
+                                    : (
+                                        <div className='md:text-justify antialiased text-foreground transition-colors duration-300'>
+                                            {
+                                                project.description.get(localeActive)?.map((item, index) => (
+                                                    <p key={index}>
+                                                        {item}
+                                                    </p>
+                                                ))
+                                            }
+                                        </div>
+                                    )
+                            }
 
                         </div>
 
-                        <div className="flex items-center gap-4 text-night dark:text-silver-900">
+                        <div className="flex items-center gap-4 text-foreground">
 
                             <IoCalendarOutline size={30} className='transition-colors duration-300' />
                             <div className="text-sm transition-colors duration-300">
-                                <div className='text-aero dark:text-emerald font-semibold'>
+                                <div className='text-accent-fg font-semibold'>
                                     {t('date start')}:
                                 </div>
                                 <span>
@@ -111,7 +143,7 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
 
                             <IoCalendarOutline size={30} className='transition-colors duration-300' />
                             <div className="text-sm transition-colors duration-300">
-                                <div className='text-aero dark:text-emerald font-semibold'>
+                                <div className='text-accent-fg font-semibold'>
                                     {t('date end')}:
                                 </div>
                                 <span>
@@ -125,20 +157,18 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
 
                         </div>
 
-                        <div className="flex items-center gap-4">
+                        <div className="flex flex-wrap items-center gap-4">
                             {
                                 project.documentation && (
                                     <Link
                                         href={project.documentation.get(localeActive) || '#'}
                                         target='_blank'
+                                        className='btn btn-secondary mt-5 py-3'
                                     >
-                                        <button
-                                            className='lg:self-end mt-5 px-5 py-4 rounded-md text-aero dark:text-emerald font-bold border-2 border-aero dark:border-emerald flex flex-row items-center gap-x-4'>
-                                            <FiDownload size={20} />
-                                            <span>
-                                                {t('download documentation')}
-                                            </span>
-                                        </button>
+                                        <FiDownload size={20} aria-hidden />
+                                        <span>
+                                            {t('download documentation')}
+                                        </span>
                                     </Link>
                                 )
                             }
@@ -148,14 +178,12 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
                                     <Link
                                         href={project.productionLink}
                                         target='_blank'
+                                        className='btn btn-secondary mt-5 py-3'
                                     >
-                                        <button
-                                            className='lg:self-end mt-5 px-5 py-4 rounded-md text-aero dark:text-emerald font-bold border-2 border-aero dark:border-emerald flex flex-row items-center gap-x-4'>
-                                            <IoIosLink size={20} />
-                                            <span>
-                                                {t('view page')}
-                                            </span>
-                                        </button>
+                                        <IoIosLink size={20} aria-hidden />
+                                        <span>
+                                            {t('view page')}
+                                        </span>
                                     </Link>
                                 )
                             }
@@ -164,10 +192,10 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
 
                         <div className="flex flex-wrap items-center gap-2">
                             {
-                                project.tags.map((tag, index) => (
+                                (project.tagLabels ?? project.tags.map((tag) => e(tag))).map((tag, index) => (
                                     <Chip
                                         key={`${tag}-${index}`}
-                                        value={e(tag)}
+                                        value={tag}
                                     />
                                 ))
                             }
@@ -196,11 +224,10 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
 export default ProjectDetailPage
 
 export async function generateStaticParams() {
-    const locales = ['en', 'es'];
     const paths = [];
 
-    for (const locale of locales) {
-        for (const project of ProjectsConfig) {
+    for (const locale of routing.locales) {
+        for (const project of await loadProjects(locale)) {
             paths.push({
                 locale: locale,
                 slug: project.slug

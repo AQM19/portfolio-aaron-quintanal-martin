@@ -5,8 +5,8 @@ const Loading = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 text-neutral-50">
 
             <svg width="57" height="57" viewBox="0 0 57 57" xmlns="http://www.w3.org/2000/svg" stroke="#fff">
-                <g fill="none" fill-rule="evenodd">
-                    <g transform="translate(1 1)" stroke-width="2">
+                <g fill="none" fillRule="evenodd">
+                    <g transform="translate(1 1)" strokeWidth="2">
                         <circle cx="5" cy="50" r="5">
                             <animate attributeName="cy"
                                 begin="0s" dur="2.2s"
