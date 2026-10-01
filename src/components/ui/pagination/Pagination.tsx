@@ -48,7 +48,7 @@ export const Pagination = ({ totalPages }: Props) => {
                 <ul className="flex list-style-none">
 
                     <li className="page-item">
-                        <Link className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-[#ed4709] dark:text-[#e2b5fd] hover:bg-[#44100650] dark:hover:bg-[#d2e4ff50] focus:shadow-none"
+                        <Link className="page-link relative flex items-center min-h-[44px] px-3 rounded transition-colors duration-300 text-accent-fg hover:bg-surface-hover"
                             href={createPageUrl(currentPage - 1)}>
                             <IoChevronBackOutline size={30} />
                         </Link>
@@ -61,13 +61,15 @@ export const Pagination = ({ totalPages }: Props) => {
                                 <Link
                                     className={
                                         clsx(
-                                            'page-link relative block py-1.5 px-3 border-0 outline-none transition-all duration-300 rounded focus:shadow-none text-[#ed4709] dark:text-[#e2b5fd] bg-transparent hover:bg-[#44100650] dark:hover:bg-[#d2e4ff50]',
+                                            'page-link relative flex items-center min-h-[44px] px-3 rounded transition-colors duration-300',
                                             {
-                                                'text-[#ed4709] dark:text-[#e2b5fd] bg-transparent hover:bg-[#44100650] dark:hover:bg-[#d2e4ff50]': page === currentPage
+                                                'text-accent-fg hover:bg-surface-hover': page !== currentPage,
+                                                'bg-accent text-on-accent font-bold': page === currentPage
                                             }
                                         )
                                     }
-                                    href={createPageUrl(page)}>
+                                    href={createPageUrl(page)}
+                                    aria-current={page === currentPage ? 'page' : undefined}>
                                     {page}
                                 </Link>
                             </li>
@@ -75,7 +77,7 @@ export const Pagination = ({ totalPages }: Props) => {
                     }
 
                     <li className="page-item">
-                        <Link className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 rounded text-[#ed4709] dark:text-[#e2b5fd] hover:bg-[#44100650] dark:hover:bg-[#d2e4ff50] focus:shadow-none"
+                        <Link className="page-link relative flex items-center min-h-[44px] px-3 rounded transition-colors duration-300 text-accent-fg hover:bg-surface-hover"
                             href={createPageUrl(currentPage + 1)}>
                             <IoChevronForwardOutline size={30} />
                         </Link>

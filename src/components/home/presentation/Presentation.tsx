@@ -2,35 +2,33 @@ import { Link as I18Link } from '@/i18n/routing';
 import ChangingText from '../changing-text/ChangingText';
 import { useTranslations } from 'next-intl';
 import { TbFileCv } from "react-icons/tb";
-import Link from 'next/link';
+import type { Profile } from '@/core/interfaces/profile/profile.interface';
 import Image from 'next/image';
 
 import './presentation.css'
 
-const Presentation = () => {
+interface Props {
+    profile: Profile;
+    /** Current (or latest) job, shown as a link to the career page. */
+    currentJob?: { position?: string; company: string };
+}
+
+const Presentation = ({ profile, currentJob }: Props) => {
 
     const t = useTranslations("Index");
-    const birthDate: Date = new Date(1996, 2, 15);
-    const currentDate: Date = new Date();
-
-    const birthMonth = birthDate.getMonth();
-    const currentMonth = currentDate.getMonth();
-
-    let age = currentDate.getFullYear() - birthDate.getFullYear();
-
-    if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDate.getDate() < birthDate.getDate())) {
-        age--;
-    }
+    const c = useTranslations("Career");
 
     return (
-        <section aqm-data="presentation" className="flex flex-col xl:flex-row py-16 sm:py-28 px-5 sm:px-32 justify-normal gap-10 sm:gap-36 text-night dark:text-silver-900">
+        <section aqm-data="presentation" className="flex flex-col xl:flex-row xl:items-center pt-20 pb-12 sm:py-24 px-5 sm:px-10 lg:px-32 justify-normal gap-8 sm:gap-16 xl:gap-36 text-foreground">
 
             <Image
-                className='h-[350px] w-full sm:w-3/4 md:h-[550px] md:w-[500px]'
-                src="/png/mapache-ladron.png"
-                alt="Imagen de Aarón Quintanal Martín"
+                // Smaller on phones so the name is visible without scrolling
+                className='h-56 sm:h-[350px] w-full sm:w-3/4 md:h-[550px] md:w-[500px] object-contain self-center'
+                src={profile.avatarUrl}
+                alt={profile.ownerName}
                 width={1920}
                 height={1080}
+                priority
             />
 
             <div className='rounded-sm flex flex-col gap-4'>
@@ -39,37 +37,52 @@ const Presentation = () => {
                     {t('hello')}
                 </p>
 
-                <h1 className={`text-4xl md:text-6xl font-thin transition-colors duration-300`}>
-                    Aaron Quintanal Martín
+                <h1 className={`text-4xl md:text-6xl font-light transition-colors duration-300`}>
+                    {profile.ownerName}
                 </h1>
 
-                <ChangingText />
+                <ChangingText taglines={profile.taglines} />
 
-                <p className='mt-5 max-w-prose text-lg text-pretty text-justify font-semibold transition-colors duration-300'>
-                    {t('I have')} {age} {t('first-part-presentation')}
-                </p>
+                {
+                    currentJob && (
+                        <I18Link
+                            href={'/career'}
+                            className='inline-flex w-fit flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-line px-4 py-2 text-sm hover:bg-surface-hover transition-colors'
+                        >
+                            <span className='h-2 w-2 rounded-full bg-accent' aria-hidden />
+                            <span className='font-semibold text-accent-fg'>{c('now')}:</span>
+                            <span>
+                                {currentJob.position ? <>{currentJob.position} {c('at')} <strong>{currentJob.company}</strong></> : <strong>{currentJob.company}</strong>}
+                            </span>
+                        </I18Link>
+                    )
+                }
 
-                <p className='mt-5 max-w-prose text-lg text-pretty text-justify font-semibold transition-colors duration-300'>
-                    {t('second-part-presentation')}
-                </p>
+                {/* Sanitized on the server (rich-text.ts), with the age already filled in */}
+                <div
+                    className='rich-text presentation-bio mt-5 max-w-prose text-lg text-pretty md:text-justify font-semibold transition-colors duration-300'
+                    dangerouslySetInnerHTML={{ __html: profile.bioHtml }}
+                />
 
-                <div className='flex flex-row gap-4'>
-                    <I18Link href={'/contact'} >
-                        <button
-                            className='lg:self-end mt-5 w-min px-5 py-2 rounded-md text-aero dark:text-emerald font-bold border-2 border-aero dark:border-emerald'>
-                            {t('contact-button')}
-                        </button>
+                <div className='flex flex-row flex-wrap gap-4 mt-5'>
+                    <I18Link href={'/contact'} className='btn btn-secondary'>
+                        {t('contact-button')}
                     </I18Link>
 
-                    <Link
-                        href={process.env.CV_LINK as string}
-                        target='_blank'
-                    >
-                        <button className='flex flex-row lg:self-end mt-5 px-5 py-2 rounded-md text-silver-900 dark:text-night bg-aero dark:bg-emerald font-bold border-2 border-aero dark:border-emerald transition-colors duration-300'>
-                            <TbFileCv className="mr-2" size={24} />
-                            {t('download-cv')}
-                        </button>
-                    </Link>
+                    {
+                        // The PDF opens in a new tab: the browser shows it and offers the download.
+                        profile.cvUrl && (
+                            <a
+                                href={profile.cvUrl}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                className='btn btn-primary'
+                            >
+                                <TbFileCv size={24} aria-hidden />
+                                {t('download-cv')}
+                            </a>
+                        )
+                    }
                 </div>
 
             </div>

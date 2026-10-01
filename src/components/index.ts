@@ -4,13 +4,16 @@ export * from './home/changing-text/ChangingText';
 
 export * from './language-skills/LanguageSkills';
 export * from './resume-projects/ResumeProjects';
-export * from './resume-experience/ResumeExperience';
 export * from './contact/ContactComponent';
 export * from './contact/ContactForm';
 
 export * from './cards/skill-card/SkillCard';
 export * from './cards/project-resume/ProjectResumeCard';
-export * from './cards/career/CareerCard';
+export * from './cards/project-featured/ProjectFeaturedCard';
+
+// Career
+export * from './career/CareerTimeline';
+export * from './career/CertificationList';
 
 export * from './avatar/Avatar';
 export * from './avatar/AvatarGroup';

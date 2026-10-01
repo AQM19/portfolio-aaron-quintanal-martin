@@ -2,20 +2,134 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Semantic color tokens (RGB channels, so Tailwind can apply opacity: `bg-background/80`).
+ * The theme follows the `dark`/`light` class on <html> (set by PortfolioShell), not the OS preference.
+ * Ratios in the comments are WCAG contrast against the surface the token is used on.
+ */
+:root,
+.light {
+  color-scheme: light;
+  --background: 240 240 240;      /* silver-900 #f0f0f0 */
+  --foreground: 12 11 16;         /* night #0c0b10: 17.2 on background */
+  --surface: 255 255 255;         /* cards, raised above the page */
+  --surface-hover: 227 239 242;   /* hover / selected rows, aero tint */
+  --muted: 77 81 86;              /* raisin_black-600 #4d5156: 7.0 on background, 8.0 on surface */
+  --accent: 60 189 216;           /* aero #3cbdd8: fills and decoration only, never as text */
+  --accent-hover: 98 203 224;     /* aero-600: hovered fills */
+  --accent-fg: 29 111 128;        /* #1d6f80: aero as text/icons, 5.1 on background, 5.8 on surface */
+  --accent-fg-hover: 18 80 92;    /* aero-200 #12505c: 9.0 on surface */
+  --on-accent: 12 11 16;          /* text on accent fills: 8.8 on aero */
+  --line: 210 210 211;            /* decorative borders */
+  --line-strong: 108 108 110;     /* control borders (3:1 minimum): 5.2 on surface */
+  --field: 255 255 255;
+  --danger: 185 28 28;            /* red-700: 6.5 on surface */
+  --success: 22 101 52;           /* green-800 */
+  --favourite: 161 98 7;          /* yellow-700: 4.9 on surface */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  color-scheme: dark;
+  --background: 12 11 16;         /* night #0c0b10 */
+  --foreground: 240 240 240;      /* silver-900: 17.2 on background, 10.8 on surface */
+  --surface: 54 50 73;            /* night-600 #363249 */
+  --surface-hover: 54 50 73;
+  --muted: 163 167 174;           /* raisin_black-800: 8.1 on background, 5.1 on surface */
+  --accent: 45 186 119;           /* emerald #2dba77 */
+  --accent-hover: 74 211 145;     /* emerald-600 */
+  --accent-fg: 45 186 119;        /* 7.8 on background, 4.9 on surface */
+  --accent-fg-hover: 74 211 145;  /* emerald-600: 6.5 on surface */
+  --on-accent: 12 11 16;          /* 7.8 on emerald */
+  --line: 74 68 102;
+  --line-strong: 147 140 177;     /* night-800: 6.2 on background, 3.9 on surface */
+  --field: 12 11 16;
+  --danger: 252 165 165;          /* red-300: 6.5 on surface */
+  --success: 45 186 119;
+  --favourite: 250 204 21;        /* yellow-400: 8.0 on surface */
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+/* Visible keyboard focus everywhere; mouse and touch clicks don't show it */
+:focus-visible {
+  outline: 2px solid rgb(var(--accent-fg));
+  outline-offset: 2px;
+}
+
+@layer components {
+  /* Buttons: filled primary and outlined secondary; 44px minimum touch target */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 min-h-[44px] px-5 py-2 rounded-md border-2 font-bold transition-colors duration-300;
+  }
+
+  .btn:disabled {
+    @apply opacity-60 cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply bg-accent border-accent text-on-accent;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border-accent-fg text-accent-fg;
+  }
+
+  /* Hover only where there is a real pointer: on touch screens it would stick after the tap */
+  @media (hover: hover) {
+    .btn-primary:not(:disabled):hover {
+      @apply bg-accent-hover border-accent-hover;
+    }
+
+    .btn-secondary:not(:disabled):hover {
+      @apply bg-accent border-accent text-on-accent;
+    }
+  }
+
+  .card {
+    @apply rounded-md border border-line bg-surface text-foreground shadow-lg shadow-night/10 dark:shadow-black/40 transition-shadow duration-300;
+  }
+
+  /*
+   * Project logos are transparent PNGs drawn either dark (Auto Terra) or light (Bon0), so no single
+   * background suits all of them: a thin halo in the opposite tone keeps every logo readable.
+   */
+  .logo-outline {
+    filter: drop-shadow(0 0 1px rgb(12 11 16 / 0.75));
+  }
+
+  .dark .logo-outline {
+    filter: drop-shadow(0 0 1px rgb(240 240 240 / 0.85));
+  }
+
+  /* Form fields: own background and a 3:1 border in both themes, 48px tall */
+  .field {
+    @apply w-full rounded-md border bg-field border-line-strong px-4 py-3 text-foreground placeholder:text-muted transition-colors;
+  }
+
+  .field:focus {
+    @apply border-accent-fg outline outline-2 outline-offset-1 outline-accent-fg;
+  }
+
+  .field[aria-invalid="true"] {
+    @apply border-danger;
+  }
+}
+
+/* Long texts written in the admin's WYSIWYG editor (sanitized HTML: p, h2-h4, lists, links, quotes, code) */
+.rich-text > * + * { margin-top: 0.75em; }
+.rich-text h2 { font-size: 1.35em; font-weight: 700; margin-top: 1.2em; }
+.rich-text h3 { font-size: 1.15em; font-weight: 700; margin-top: 1em; }
+.rich-text h4 { font-weight: 700; margin-top: 1em; }
+.rich-text ul { list-style: disc; padding-left: 1.5em; }
+.rich-text ol { list-style: decimal; padding-left: 1.5em; }
+.rich-text li + li { margin-top: 0.25em; }
+.rich-text a { color: rgb(var(--accent-fg)); text-decoration: underline; text-underline-offset: 2px; }
+.rich-text blockquote { border-left: 3px solid currentColor; padding-left: 0.75em; opacity: 0.85; }
+.rich-text code { font-family: var(--font-geist-mono), ui-monospace, monospace; font-size: 0.9em; padding: 0 0.25em; border-radius: 3px; background: rgb(127 127 127 / 0.15); }
+.rich-text pre { padding: 0.75em; border-radius: 6px; overflow-x: auto; background: rgb(127 127 127 / 0.15); }
+.rich-text pre code { background: none; padding: 0; }
+.rich-text hr { border: none; border-top: 1px solid rgb(127 127 127 / 0.4); }

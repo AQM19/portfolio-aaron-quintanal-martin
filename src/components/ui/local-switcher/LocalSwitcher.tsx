@@ -2,7 +2,7 @@
 
 import { IoLanguageSharp } from 'react-icons/io5';
 import { LocaleConfig } from '../../../core/config/locales/locale';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import React, { useState, useTransition } from 'react'
@@ -11,6 +11,7 @@ const LocalSwitcher = () => {
     const [isPending, startTransition] = useTransition();
     const [isListOpen, setIsListOpen] = useState(false);
 
+    const t = useTranslations('Menu');
     const router = useRouter();
     const localActive = useLocale();
 
@@ -29,22 +30,25 @@ const LocalSwitcher = () => {
 
             <button
                 onClick={() => setIsListOpen(!isListOpen)}
-                className='px-4 py-2 text-aero dark:text-emerald'
+                className='px-4 py-2 rounded-md text-accent-fg'
+                aria-label={t('language')}
+                aria-expanded={isListOpen}
             >
                 <IoLanguageSharp size={30} />
             </button>
 
             <div
-                className={`absolute top-10 border-2 border-silver-600 dark:border-night-600 rounded bg-silver-900 dark:bg-night shadow-md z-10
+                className={`absolute top-10 border-2 border-line-strong rounded bg-background shadow-md z-10
                 transition-all duration-300 ease-in-out
-                ${isListOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5 pointer-events-none'}`}
+                ${isListOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5 pointer-events-none invisible'}`}
             >
                 <ul>
                     {
                         LocaleConfig.map((value, index) => (
                             <li key={index}>
                                 <button
-                                    className={`py-2 px-4 w-full text-left transition-colors duration-300 ${localActive === value.lang ? 'bg-silver-600 dark:bg-night-600' : ''}`}
+                                    className={`py-2 px-4 w-full text-left transition-colors duration-300 hover:bg-surface-hover ${localActive === value.lang ? 'bg-surface-hover shadow-[inset_3px_0_0_rgb(var(--accent-fg))]' : ''}`}
+                                    aria-current={localActive === value.lang ? 'true' : undefined}
                                     onClick={() => handleLanguageChange(value.lang)}
                                     disabled={isPending}
                                 >
