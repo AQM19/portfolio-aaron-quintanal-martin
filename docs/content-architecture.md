@@ -50,13 +50,19 @@ needed) in the same change.
 
 ## Local development against the admin
 
+Two ways to run the web locally, depending on which database the admin is editing:
+
 ```bash
-npm run dev:local
+npm run dev        # Neon: .env.development.local, written by the admin's scripts/setup-neon.ps1
+npm run dev:local  # the admin's Docker Postgres and S3
 ```
 
-The first time it creates `.env.development.local` (git-ignored) from the admin's `.env`
-(`../AQPortfoil/.env`, or `ADMIN_REPO`): `CONTENT_SOURCE=postgres` with the local `web_reader`, and the local
-S3 as image origin. Then it runs `next dev`. The admin seeds the local database with this site's current
+`setup-neon.ps1` (admin repository) writes `.env.development.local` (git-ignored) with `CONTENT_SOURCE=neon`,
+the Neon `web_reader` connection and the Neon Storage images origin.
+
+`npm run dev:local` reads the admin's `.env` (`../AQPortfoil/.env`, or `ADMIN_REPO`) and passes
+`CONTENT_SOURCE=postgres`, the local `web_reader` and the local S3 origin to `next dev` as process variables,
+which take precedence over `.env.development.local`; nothing is written to disk. The admin seeds the local database with this site's current
 content (`db/seed/local-seed.json`); regenerate that file after changing the static config with
 `npm run export-seed`.
 
@@ -68,6 +74,11 @@ PORTFOLIO_READ_DATABASE_URL=postgresql://web_reader:<password>@<host>/<db>?sslmo
 CONTENT_JSON_URL=https://cdn.example.com/content.{lang}.json   # only for CONTENT_SOURCE=json
 CONTENT_REVALIDATE_SECONDS=60
 CONTENT_IMAGE_HOSTS=cdn.example.com
+STORAGE_ENDPOINT=https://<id>.storage.<region>.aws.neon.tech   # private buckets, served by /api/assets
+STORAGE_REGION=us-east-2
+STORAGE_ACCESS_KEY_ID=...                                      # ideally a read-only credential
+STORAGE_SECRET_ACCESS_KEY=...
+STORAGE_BUCKETS=imgs,docs
 ```
 
 `PORTFOLIO_READ_DATABASE_URL` uses the `web_reader` role, which can only `SELECT` the published view. Keep it

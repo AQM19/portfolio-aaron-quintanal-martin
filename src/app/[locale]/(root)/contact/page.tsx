@@ -21,39 +21,39 @@ const ContactPage = async () => {
     })();
 
     return (
-        <section className='w-full px-5 pt-20 sm:pt-28 flex flex-col xl:flex-row gap-4 2xl:gap-0 justify-evenly items-center text-night dark:text-silver-900 transition-all duration-300'>
+        <section className='w-full px-5 pt-20 sm:pt-28 flex flex-col xl:flex-row gap-4 2xl:gap-0 justify-evenly items-center text-foreground transition-all duration-300'>
 
             <div className='flex flex-col gap-4 w-full lg:w-auto'>
 
-                <h2 className='text-3xl font-semibold text-aero dark:text-emerald'>
+                <h2 className='text-3xl font-semibold text-accent-fg'>
                     {t("page title")}
                 </h2>
 
-                <p className={`text-pretty font-thin max-w-prose text-justify`}>
+                <p className='text-pretty max-w-prose md:text-justify'>
                     {t("description")}
                 </p>
-                <p className='text-pretty font-thin max-w-prose text-justify'>
+                <p className='text-pretty max-w-prose md:text-justify'>
                     {t("question")}
                 </p>
-                <span className='text-aero dark:text-emerald font-semibold'>{t("hook")}</span>
+                <span className='text-accent-fg font-semibold'>{t("hook")}</span>
 
-                <div className='font-thin'>
+                <div>
 
                     <span className='flex flex-row gap-2 my-2'>
-                        <IoMailOutline size={30} className='text-aero dark:text-emerald' />
-                        <a href={`mailto:${process.env.EMAIL}`}>{process.env.EMAIL}</a>
+                        <IoMailOutline size={30} className='text-accent-fg' />
+                        <a href={`mailto:${process.env.EMAIL}`} className='underline underline-offset-2 hover:text-accent-fg'>{process.env.EMAIL}</a>
                     </span>
 
                     <span className='flex flex-row gap-2 mt-4'>
-                        <AiOutlinePhone size={30} className='text-aero dark:text-emerald' />
-                        <a href={`tel:${process.env.PHONE}`}>{formattedPhone}</a>
+                        <AiOutlinePhone size={30} className='text-accent-fg' />
+                        <a href={`tel:${process.env.PHONE}`} className='underline underline-offset-2 hover:text-accent-fg'>{formattedPhone}</a>
                     </span>
                 </div>
             </div>
 
-            <div className='flex flex-col gap-4 w-full lg:w-auto rounded bg-silver-700 dark:bg-night-600 p-5 md:p-10 transition-colors duration-300'>
+            <div className='card flex flex-col gap-4 w-full lg:w-auto p-5 md:p-10'>
 
-                <h2 className='text-aero dark:text-emerald font-semibold text-xl'>
+                <h2 className='text-accent-fg font-semibold text-xl'>
                     {t("form title")}
                 </h2>
 

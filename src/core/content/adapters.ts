@@ -38,7 +38,11 @@ interface Catalogs {
     stages: Map<string, CatalogDto>;
     categories: Map<string, CatalogDto>;
     tags: Map<string, CatalogDto>;
+    /** Skill names by slug, for the technologies of projects and experience. */
+    skills: Map<string, string>;
 }
+
+const skillNames = (content: PortfolioContent) => new Map(content.skills.map((skill) => [skill.slug, skill.name]));
 
 export function toProjects(content: PortfolioContent, locale: string): Project[] {
     const bySlug = (items: CatalogDto[]) => new Map(items.map((item) => [item.slug, item]));
@@ -47,13 +51,15 @@ export function toProjects(content: PortfolioContent, locale: string): Project[]
         stages: bySlug(content.projectStages),
         categories: bySlug(content.projectCategories),
         tags: bySlug(content.tags),
+        skills: skillNames(content),
     };
 
     return content.projects.map((project) => toProject(project, locale, content.settings.ownerName, catalogs));
 }
 
 export function toCareer(content: PortfolioContent, locale: string, presentLabel: string): Career[] {
-    return content.experience.map((item) => toCareerItem(item, locale, presentLabel));
+    const skills = skillNames(content);
+    return content.experience.map((item) => toCareerItem(item, locale, presentLabel, skills));
 }
 
 export function toCertifications(content: PortfolioContent, locale: string): Certification[] {
@@ -115,6 +121,7 @@ function toProject(dto: ProjectDto, lang: string, ownerName: string, catalogs: C
         statusColor: dto.status ? catalogs.statuses.get(dto.status)?.color ?? undefined : undefined,
         stageLabel: dto.stage ? catalogs.stages.get(dto.stage)?.name : undefined,
         tagLabels: dto.tags.map((slug) => catalogs.tags.get(slug)?.name ?? slug),
+        skills: dto.skills.map((slug) => catalogs.skills.get(slug) ?? slug),
         developers: dto.collaborators.map(toDeveloper),
     };
 }
@@ -132,12 +139,21 @@ function toDeveloper(dto: CollaboratorDto): Developer {
     };
 }
 
-function toCareerItem(dto: ExperienceDto, lang: string, presentLabel: string): Career {
+function toCareerItem(dto: ExperienceDto, lang: string, presentLabel: string, skills: Map<string, string>): Career {
     const start = formatMonthYear(dto.startDate, lang);
     const end = dto.endDate ? formatMonthYear(dto.endDate, lang) : presentLabel;
 
     return {
         empress: dto.company,
+        startDate: parseContractDate(dto.startDate),
+        position: dto.position,
+        // The admin has no education type yet; it is recognised as soon as it publishes one
+        kind: dto.employmentType === 'education' ? 'education' : 'job',
+        employmentType: dto.employmentType,
+        isCurrent: dto.isCurrent,
+        location: dto.location ?? undefined,
+        companyUrl: dto.companyUrl ?? undefined,
+        skills: dto.skills.map((slug) => skills.get(slug) ?? slug),
         empressImage: isRenderableImage(dto.logoUrl) ? dto.logoUrl : DEFAULT_CAREER_IMAGE,
         dateRange: new Map([[lang, `${start} - ${end}`]]),
         description: new Map([[lang, '']]),

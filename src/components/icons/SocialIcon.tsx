@@ -7,8 +7,8 @@ interface Props extends IconBaseProps {
 }
 
 const SocialIcon = ({ platform, ...props }: Props) => {
-    const Icon = getSocialIcon(platform);
-    return <Icon {...props} />;
+    // The icon comes from a static map; createElement avoids declaring a component during render
+    return React.createElement(getSocialIcon(platform), props);
 }
 
 export default SocialIcon

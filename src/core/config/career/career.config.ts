@@ -3,6 +3,11 @@ import { Career } from "@/core/interfaces/career/career.interface";
 export const CareerConfig: Career[] = [
     {
         empress: 'Indole Studio',
+        startDate: new Date(2021, 1, 1),
+        position: 'Web Developer Intern',
+        kind: 'job',
+        employmentType: 'internship',
+        skills: ['JavaScript'],
         empressImage: '/webp/indole-studio.webp',
         dateRange: new Map([
             ['es', 'Febrero 2021 - Agosto 2021'],
@@ -15,6 +20,9 @@ export const CareerConfig: Career[] = [
     },
     {
         empress: 'DAM',
+        startDate: new Date(2021, 8, 1),
+        position: 'Desarrollo de Aplicaciones Multiplataforma',
+        kind: 'education',
         empressImage: '/webp/ies-miguel-herrero.webp',
         dateRange: new Map([
             ['es', 'Septiembre 2021 - Marzo 2023'],
@@ -27,6 +35,11 @@ export const CareerConfig: Career[] = [
     },
     {
         empress: 'LKS Next',
+        startDate: new Date(2023, 2, 1),
+        position: 'Full Stack Developer Intern',
+        kind: 'job',
+        employmentType: 'internship',
+        skills: ['Angular', '.NET'],
         empressImage: '/webp/lks-next.webp',
         dateRange: new Map([
             ['es', 'Marzo 2023 - Junio 2023'],
@@ -39,6 +52,9 @@ export const CareerConfig: Career[] = [
     },
     {
         empress: 'CEIABD',
+        startDate: new Date(2023, 8, 1),
+        position: 'Inteligencia Artificial y Big Data',
+        kind: 'education',
         empressImage: '/webp/ceiabd.webp',
         dateRange: new Map([
             ['es', 'Septiembre 2023 - Junio 2024'],
@@ -51,6 +67,11 @@ export const CareerConfig: Career[] = [
     },
     {
         empress: 'CIC',
+        startDate: new Date(2023, 6, 1),
+        position: 'Junior Developer',
+        kind: 'job',
+        employmentType: 'fulltime',
+        isCurrent: true,
         empressImage: '/webp/cic.webp',
         dateRange: new Map([
             ['es', 'Julio 2023 - Actualidad'],

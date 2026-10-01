@@ -9,15 +9,21 @@
     },
     "Menu": {
         "home": "Inicio",
-        "career": "Mi carrera",
+        "career": "Trayectoria",
         "projects": "Proyectos",
         "contact": "Contacto",
         "collapse": "Cerrar",
-        "privacy": "Política de privacidad"
+        "privacy": "Política de privacidad",
+        "open menu": "Abrir menú",
+        "close menu": "Cerrar menú",
+        "language": "Cambiar idioma",
+        "theme dark": "Activar tema oscuro",
+        "theme light": "Activar tema claro",
+        "theme": "Tema"
     },
     "Footer": {
         "home": "Inicio",
-        "career": "Mi carrera",
+        "career": "Trayectoria",
         "projects": "Proyectos",
         "contact": "Contacto",
         "privacy": "Política de privacidad",
@@ -25,7 +31,12 @@
         "all rights reserved": "Todos los derechos reservados."
     },
     "Language skills": {
-        "title": "Hablidades técnicas"
+        "title": "Habilidades técnicas",
+        "favourite": "Favorita",
+        "language": "Lenguajes",
+        "framework": "Frameworks",
+        "library": "Librerías",
+        "tool": "Herramientas"
     },
     "Projects": {
         "title": "Proyectos"
@@ -33,23 +44,27 @@
     "Resume projects": {
         "title": "Proyectos destacados",
         "by": "Por",
-        "read more": "Leer mas"
+        "read more": "Leer más",
+        "cover": "Portada de {title}",
+        "view all": "Ver todos los proyectos"
     },
     "Resume experience": {
         "title": "Experiencia más reciente"
     },
     "Resume certifications": {
-        "title": "Últimas certificaciones"
+        "title": "Últimas certificaciones",
+        "average grade": "Nota media"
     },
     "Project": {
-        "category": "Categoria",
+        "category": "Categoría",
         "status": "Estado",
         "description": "Descripción",
         "download documentation": "Descargar documentación",
         "view page": "Visitar la página",
         "date start": "Fecha de inicio",
         "date end": "Fecha de fin",
-        "actual": "Actualidad"
+        "actual": "Actualidad",
+        "tags": "Etiquetas"
     },
     "Contact": {
         "title": "Contacto",
@@ -57,7 +72,7 @@
         "description": "Transformemos tus ideas en resultados tangibles juntos. Como profesional independiente, sé lo que significa trabajar duro para alcanzar tus metas. Sin trucos ni promesas vacías, solo compromiso y dedicación para ayudarte a lograr tus objetivos.",
         "question": "¿Listo para dar el primer paso?",
         "hook": "¡Contáctame hoy mismo y comencemos!",
-        "form title": "¡Deja tus datos y y mismo me pondré en contacto contigo!",
+        "form title": "¡Déjame tus datos y yo mismo me pondré en contacto contigo!",
         "name": "Nombre",
         "name placeholder": "Ingresa tu nombre",
         "name required": "El nombre es obligatorio.",
@@ -79,15 +94,31 @@
         "message too long": "El mensaje no puede exceder los 1000 caracteres.",
         "send message": "Enviar mensaje",
         "privacy notice": "Usaré tu nombre y tu email solo para responder a tu mensaje. Más información en la",
-        "privacy link": "política de privacidad"
+        "privacy link": "política de privacidad",
+        "sending": "Enviando…",
+        "sent": "¡Mensaje enviado! Te responderé lo antes posible.",
+        "send error": "No se pudo enviar el mensaje. Inténtalo de nuevo más tarde."
     },
     "Career": {
-        "title": "Carrera"
+        "title": "Trayectoria",
+        "show achievements": "Ver logros",
+        "hide achievements": "Ocultar logros",
+        "subtitle": "Dónde he trabajado, qué he estudiado y las certificaciones que he ido sumando. El detalle completo está en el CV.",
+        "experience": "Experiencia",
+        "education": "Formación",
+        "certifications": "Certificaciones",
+        "current": "Actual",
+        "milestones": "Hitos",
+        "technologies": "Tecnologías",
+        "now": "Ahora",
+        "at": "en",
+        "view career": "Ver trayectoria",
+        "credential": "Ver credencial"
     },
     "Not Found": {
-        "title": "",
-        "body": "",
-        "button": ""
+        "title": "Página no encontrada",
+        "body": "Lo siento, la página que buscas no existe.",
+        "button": "Volver al inicio"
     },
     "Category": {
         "personal": "Personal",
@@ -206,5 +237,22 @@
         "wearable-technology": "Tecnología wearable",
         "web-development": "Desarrollo web",
         "wireframing": "Wireframing"
+    },
+    "Slider": {
+        "previous": "Imagen anterior",
+        "next": "Imagen siguiente",
+        "go to": "Ir a la imagen {index}",
+        "pause": "Pausar el pase de imágenes",
+        "play": "Reanudar el pase de imágenes",
+        "image": "Imagen {index} de {total}"
+    },
+    "Employment": {
+        "fulltime": "Jornada completa",
+        "parttime": "Media jornada",
+        "freelance": "Freelance",
+        "contract": "Contrato",
+        "internship": "Prácticas",
+        "volunteer": "Voluntariado",
+        "other": "Otro"
     }
 }

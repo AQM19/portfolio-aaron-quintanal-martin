@@ -18,7 +18,7 @@ const AvatarGroup = ({ developers }: Props) => {
                 visibleAvatars.map((dev, index) => (
                     <div
                         key={index}
-                        className={`${index !== 0 ? '-ml-2' : ''} border-2 border-silver-900 rounded-full`}
+                        className={`${index !== 0 ? '-ml-2' : ''} border-2 border-background rounded-full`}
                         style={{ zIndex: developers.length - index }}
                     >
                         <Image
@@ -35,7 +35,7 @@ const AvatarGroup = ({ developers }: Props) => {
             {
                 remainingCount > 0 && (
                     <div
-                        className='rounded-full bg-gray-200 flex items-center justify-center font-medium text-gray-600 border-2 border-white ml-2 px-1'
+                        className='rounded-full bg-surface-hover flex items-center justify-center font-medium text-foreground border-2 border-background ml-2 px-1'
                     >
                         +{remainingCount}
                     </div>

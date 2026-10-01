@@ -18,33 +18,33 @@ const Footer = ({ socialLinks, ownerName }: Props) => {
 
     return (
         <footer
-            className="py-8 md:py-12 px-6 sm:px-0 w-full flex flex-row items-center justify-center bg-silver-900 dark:bg-night text-night dark:text-silver-900 transition-colors duration-300"
+            className="py-8 md:py-12 px-6 sm:px-0 w-full flex flex-row items-center justify-center bg-background text-foreground border-t border-line transition-colors duration-300"
         >
 
             <div className="container max-w-7xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" >
 
                 <div className="flex items-center gap-2" >
                     <AQMIcon />
-                    <span className="text-lg font-semibold text-aero dark:text-emerald" >
+                    <span className="text-lg font-semibold text-accent-fg" >
                         {ownerName}
                     </span>
                 </div>
 
-                <nav className="grid gap-2" >
+                <nav className="grid" >
 
                     {
                         NavConfig.map((item, index) => (
                             <I18nLink
                                 key={`${item.name}-${index}`}
                                 href={item.href}
-                                className="text-sm"
+                                className="inline-block py-2 text-sm hover:text-accent-fg transition-colors"
                             >
                                 {t(item.name)}
                             </I18nLink>
                         ))
                     }
 
-                    <I18nLink href="/privacy" className="text-sm">
+                    <I18nLink href="/privacy" className="inline-block py-2 text-sm hover:text-accent-fg transition-colors">
                         {t('privacy')}
                     </I18nLink>
 
@@ -56,7 +56,7 @@ const Footer = ({ socialLinks, ownerName }: Props) => {
                         {t('follow me')}
                     </h4>
 
-                    <div className="flex gap-2">
+                    <div className="flex gap-1 -ml-3">
 
                         {
                             socialLinks
@@ -67,7 +67,7 @@ const Footer = ({ socialLinks, ownerName }: Props) => {
                                         href={item.href}
                                         target='_blank'
                                         aria-label={item.label ?? item.platform}
-                                        className="text-aero dark:text-emerald hover:scale-110 transition-all duration-300"
+                                        className="p-3 rounded-md text-accent-fg hover:scale-110 transition-all duration-300"
                                     >
                                         <SocialIcon platform={item.platform} className="h-5 w-5" />
                                     </Link>
@@ -77,7 +77,7 @@ const Footer = ({ socialLinks, ownerName }: Props) => {
 
                     </div>
 
-                    <div className="flex gap-2">
+                    <div className="flex gap-1 -ml-3">
                         {
                             socialLinks.filter(item => item.group === 'work').map((item, index) => (
                                 <Link
@@ -85,7 +85,7 @@ const Footer = ({ socialLinks, ownerName }: Props) => {
                                     href={item.href}
                                     target='_blank'
                                     aria-label={item.label ?? item.platform}
-                                    className="text-aero dark:text-emerald hover:scale-110 transition-all duration-300"
+                                    className="p-3 rounded-md text-accent-fg hover:scale-110 transition-all duration-300"
                                 >
                                     <SocialIcon platform={item.platform} className="h-5 w-5" />
                                 </Link>
@@ -95,7 +95,7 @@ const Footer = ({ socialLinks, ownerName }: Props) => {
 
                 </div>
 
-                <div className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} {ownerName}. {t('all rights reserved')}</div>
+                <div className="text-xs text-muted">&copy; {new Date().getFullYear()} {ownerName}. {t('all rights reserved')}</div>
 
             </div>
 

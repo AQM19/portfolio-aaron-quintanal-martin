@@ -47,7 +47,7 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
             <I18nLink
                 aqm-data="previous-project"
                 href={{ pathname: '/projects/[slug]', params: { slug: previousProject.slug } }}
-                className='hidden sm:flex absolute top-0 left-0 h-full items-center cursor-pointer hover:bg-silver dark:hover:bg-night-600 rounded-sm transition-colors duration-300 text-aero dark:text-emerald'
+                className='hidden sm:flex absolute top-0 left-0 h-full items-center cursor-pointer hover:bg-surface-hover rounded-sm transition-colors duration-300 text-accent-fg'
             >
                 <FaChevronLeft size={30} />
             </I18nLink>
@@ -55,7 +55,7 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
             <I18nLink
                 aqm-data="next-project"
                 href={{ pathname: '/projects/[slug]', params: { slug: nextProject.slug } }}
-                className='hidden sm:flex absolute top-0 right-4 h-full items-center cursor-pointer hover:bg-silver dark:hover:bg-night-600 rounded-sm transition-colors duration-300 text-aero dark:text-emerald'
+                className='hidden sm:flex absolute top-0 right-4 h-full items-center cursor-pointer hover:bg-surface-hover rounded-sm transition-colors duration-300 text-accent-fg'
             >
                 <FaChevronRight size={30} />
             </I18nLink>
@@ -73,7 +73,7 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
                         <div className='space-y-2'>
                             <div className='flex flex-row gap-4 items-center justify-between'>
 
-                                <h2 className={`text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-aero dark:text-emerald`}>
+                                <h2 className={`text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-accent-fg`}>
                                     {project.title}
                                 </h2>
 
@@ -83,7 +83,7 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
                                         (project.categoryLabel ?? (project.category && c(project.category))) && (
                                             <div className="flex flex-col gap-2 items-center">
 
-                                                <div className="font-medium text-aero dark:text-emerald">
+                                                <div className="font-medium text-accent-fg">
                                                     {t('category')}
                                                 </div>
 
@@ -95,7 +95,7 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
 
                                     <div className="flex flex-col gap-2 items-center">
 
-                                        <div className="font-medium text-aero dark:text-emerald">
+                                        <div className="font-medium text-accent-fg">
                                             {t('status')}
                                         </div>
 
@@ -110,12 +110,12 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
                                     ? (
                                         // Published content: HTML sanitized on the server (rich-text.ts)
                                         <div
-                                            className='rich-text font-light text-justify antialiased text-night dark:text-silver-900 transition-colors duration-300'
+                                            className='rich-text md:text-justify antialiased text-foreground transition-colors duration-300'
                                             dangerouslySetInnerHTML={{ __html: project.descriptionHtml.get(localeActive)! }}
                                         />
                                     )
                                     : (
-                                        <div className='font-light text-justify antialiased text-night dark:text-silver-900 transition-colors duration-300'>
+                                        <div className='md:text-justify antialiased text-foreground transition-colors duration-300'>
                                             {
                                                 project.description.get(localeActive)?.map((item, index) => (
                                                     <p key={index}>
@@ -129,11 +129,11 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
 
                         </div>
 
-                        <div className="flex items-center gap-4 text-night dark:text-silver-900">
+                        <div className="flex items-center gap-4 text-foreground">
 
                             <IoCalendarOutline size={30} className='transition-colors duration-300' />
                             <div className="text-sm transition-colors duration-300">
-                                <div className='text-aero dark:text-emerald font-semibold'>
+                                <div className='text-accent-fg font-semibold'>
                                     {t('date start')}:
                                 </div>
                                 <span>
@@ -143,7 +143,7 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
 
                             <IoCalendarOutline size={30} className='transition-colors duration-300' />
                             <div className="text-sm transition-colors duration-300">
-                                <div className='text-aero dark:text-emerald font-semibold'>
+                                <div className='text-accent-fg font-semibold'>
                                     {t('date end')}:
                                 </div>
                                 <span>
@@ -157,20 +157,18 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
 
                         </div>
 
-                        <div className="flex items-center gap-4">
+                        <div className="flex flex-wrap items-center gap-4">
                             {
                                 project.documentation && (
                                     <Link
                                         href={project.documentation.get(localeActive) || '#'}
                                         target='_blank'
+                                        className='btn btn-secondary mt-5 py-3'
                                     >
-                                        <button
-                                            className='lg:self-end mt-5 px-5 py-4 rounded-md text-aero dark:text-emerald font-bold border-2 border-aero dark:border-emerald flex flex-row items-center gap-x-4'>
-                                            <FiDownload size={20} />
-                                            <span>
-                                                {t('download documentation')}
-                                            </span>
-                                        </button>
+                                        <FiDownload size={20} aria-hidden />
+                                        <span>
+                                            {t('download documentation')}
+                                        </span>
                                     </Link>
                                 )
                             }
@@ -180,14 +178,12 @@ const ProjectDetailPage = async ({ params, }: { params: Promise<{ slug: string, 
                                     <Link
                                         href={project.productionLink}
                                         target='_blank'
+                                        className='btn btn-secondary mt-5 py-3'
                                     >
-                                        <button
-                                            className='lg:self-end mt-5 px-5 py-4 rounded-md text-aero dark:text-emerald font-bold border-2 border-aero dark:border-emerald flex flex-row items-center gap-x-4'>
-                                            <IoIosLink size={20} />
-                                            <span>
-                                                {t('view page')}
-                                            </span>
-                                        </button>
+                                        <IoIosLink size={20} aria-hidden />
+                                        <span>
+                                            {t('view page')}
+                                        </span>
                                     </Link>
                                 )
                             }

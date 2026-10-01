@@ -24,6 +24,8 @@ export interface Project {
     statusColor?: string;
     stageLabel?: string;
     tagLabels?: string[];
+    /** Technologies used (skill names from the admin); the local config has none. */
+    skills?: string[];
     images: string[];
     status: Status;
     category?: Category;

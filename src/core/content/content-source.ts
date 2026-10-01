@@ -19,6 +19,7 @@ import { routing } from '@/i18n/routing';
 import { parsePortfolioContent, PortfolioContent } from './contract';
 import { toCareer, toCertifications, toProfile, toProjects, toSkills, toSocialLinks } from './adapters';
 import { ageFrom } from './rich-text';
+import { proxyStorageUrls } from './storage';
 
 /**
  * Where the published content comes from (env `CONTENT_SOURCE`):
@@ -148,7 +149,8 @@ export const getPortfolioContent = cache(async (locale: string): Promise<Portfol
             return null;
         }
 
-        return parsePortfolioContent(raw);
+        // Private bucket URLs become /api/assets/... before the image origins are checked
+        return parsePortfolioContent(proxyStorageUrls(raw));
     } catch (error) {
         console.error(`[content] Could not load content from "${source}"; using local config.`, error);
         return null;

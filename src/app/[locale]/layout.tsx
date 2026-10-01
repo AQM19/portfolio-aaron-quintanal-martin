@@ -9,8 +9,14 @@ import { Suspense } from "react";
 import Loading from "./loading";
 import type { Metadata } from "next";
 import { loadProfile } from "@/core/content";
+import { themeInitScript } from "@/core/services/ui/theme-script";
+import localFont from "next/font/local";
 
 import "./globals.css";
+
+/** Geist (variable, 100-900): the fonts were already in the repo but the site used Arial. */
+const geistSans = localFont({ src: "../../core/fonts/GeistVF.woff", variable: "--font-geist-sans", weight: "100 900" });
+const geistMono = localFont({ src: "../../core/fonts/GeistMonoVF.woff", variable: "--font-geist-mono", weight: "100 900" });
 
 /** Absolute URL for social cards: site paths are resolved against the deployment host. */
 const absolute = (url: string | undefined) => !url ? undefined : url.startsWith('/') ? `${host}${url}` : url;
@@ -84,7 +90,12 @@ export default async function RootLayout({ children, params }: { children: React
     const messages = await getMessages();
 
     return (
-        <html lang={locale}>
+        // Dark by default; the inline script applies the saved theme before the first paint
+        // (hence suppressHydrationWarning: the class may differ from the server one on purpose)
+        <html lang={locale} className={`dark ${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+            <head>
+                <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+            </head>
             <body>
                 <NextIntlClientProvider locale={locale} messages={messages} timeZone="Europe/Madrid">
                     <Suspense fallback={<Loading />}>

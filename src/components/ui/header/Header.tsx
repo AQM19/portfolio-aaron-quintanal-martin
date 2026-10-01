@@ -7,19 +7,16 @@ import LocalSwitcher from '../local-switcher/LocalSwitcher'
 import Switch from '../switch/Switch'
 
 interface Props {
-  isDarkMode: boolean;
-  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+  isDark: boolean;
+  toggleTheme: () => void;
   socialLinks: SocialLink[];
   ownerName: string;
 }
 
-const Header = ({ isDarkMode, setIsDarkMode, socialLinks, ownerName }: Props) => {
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode)
-  }
+const Header = ({ isDark, toggleTheme, socialLinks, ownerName }: Props) => {
 
   return (
-    <header className='hidden sm:flex flex-row items-center justify-between p-4 bg-silver-900 dark:bg-night text-aero dark:text-emerald transition-colors duration-300'>
+    <header className='hidden sm:flex flex-row items-center justify-between p-4 bg-background text-accent-fg transition-colors duration-300'>
 
       <I18Link href={'/'}>
         <h1 className='font-semibold text-xl uppercase'>{ownerName}</h1>
@@ -71,7 +68,7 @@ const Header = ({ isDarkMode, setIsDarkMode, socialLinks, ownerName }: Props) =>
 
       <div className='flex flex-row gap-4 items-center justify-center'>
         <LocalSwitcher />
-        <Switch isDark={isDarkMode} toggleTheme={toggleDarkMode} />
+        <Switch isDark={isDark} toggleTheme={toggleTheme} />
       </div>
 
     </header>

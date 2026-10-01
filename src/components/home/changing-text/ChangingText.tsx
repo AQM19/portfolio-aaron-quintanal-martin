@@ -39,7 +39,7 @@ const ChangingText = ({ taglines }: Props) => {
     }, [currentText, isDeleting, textIndex, taglines]);
 
     return (
-        <h2 className={`text-4xl font-bold text-aero dark:text-emerald`}>
+        <h2 className={`text-4xl font-bold text-accent-fg`}>
             {currentText}
             <span className="typed-cursor typed-cursor--blink">_</span>
         </h2>
