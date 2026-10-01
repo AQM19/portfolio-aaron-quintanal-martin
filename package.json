@@ -2,6 +2,9 @@
   "name": "qfoil",
   "version": "2.1.0",
   "private": true,
+  "engines": {
+    "node": "24.x"
+  },
   "author": {
     "name": "Aarón Quintanal Martín",
     "email": "aquintanalm.dev@gmail.com",
@@ -36,7 +39,7 @@
     "zustand": "^5.0.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^24",
     "@types/nodemailer": "^6.4.17",
     "@types/pg": "^8.23.1",
     "@types/react": "^18.3.0",
