@@ -8,7 +8,8 @@ const FORWARDED_HEADERS = ['content-type', 'content-length', 'etag', 'last-modif
  * Serves a file of the private buckets (see core/content/storage.ts): `/api/assets/<bucket>/<key>`.
  * Only the buckets in STORAGE_BUCKETS; anything else, or a missing file, is a 404 (it does not reveal which).
  */
-export async function GET(request: Request, ctx: RouteContext<'/api/assets/[bucket]/[...key]'>) {
+// Explicit type instead of the generated RouteContext, so `tsc` works on a clean checkout (without .next/types)
+export async function GET(request: Request, ctx: { params: Promise<{ bucket: string; key: string[] }> }) {
     const config = getStorageConfig();
     const { bucket, key } = await ctx.params;
 
