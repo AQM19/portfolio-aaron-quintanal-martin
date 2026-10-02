@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: '*/15 * * * *'
 
+permissions:
+  contents: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -18,11 +21,13 @@ jobs:
           node-version: 24
 
       - name: Fetch published content snapshot
+        id: fetch
         env:
           CONTENT_URL: ${{ secrets.CONTENT_JSON_URL }}
         run: |
           if [ -z "$CONTENT_URL" ]; then
             echo "CONTENT_JSON_URL not configured. Skipping sync."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -30,10 +35,12 @@ jobs:
           curl -fsSL "$CONTENT_URL" -o data/content.json
 
       - name: Validate JSON
+        if: steps.fetch.outputs.skip != 'true'
         run: |
           node -e "const fs=require('fs'); const data=JSON.parse(fs.readFileSync('data/content.json','utf8')); if(!data || typeof data !== 'object'){ throw new Error('Invalid content payload'); } console.log('content payload valid');"
 
       - name: Commit generated content
+        if: steps.fetch.outputs.skip != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -41,4 +48,5 @@ jobs:
           git diff --cached --quiet || git commit -m "chore: sync content"
 
       - name: Push updates
+        if: steps.fetch.outputs.skip != 'true'
         run: git push
